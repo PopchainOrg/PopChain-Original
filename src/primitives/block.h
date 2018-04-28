@@ -23,11 +23,11 @@ public:
     // header
     static const int32_t CURRENT_VERSION=1;
     int32_t nVersion;
-    uint256 hashPrevBlock;
+    uint256 hashPrevBlock;                                                         //pre block hash
     uint256 hashMerkleRoot;
     uint256 hashClaimTrie; 							   // for claim operation
     uint32_t nTime;
-    uint32_t nBits;
+    uint32_t nBits;                                                                //pow 
 	uint256 nNonce;
 
     CBlockHeader()
