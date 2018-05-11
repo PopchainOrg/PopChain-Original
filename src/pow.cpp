@@ -81,8 +81,8 @@ unsigned int CalculateNextWorkRequired(arith_uint256 bnAvg,
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
 {
-    bool fNegative;
-    bool fOverflow;
+    bool fNegative = false;
+    bool fOverflow = false;
     arith_uint256 bnTarget;
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
