@@ -503,7 +503,7 @@ CFeeRate CBlockPolicyEstimator::estimateFee(int confTarget)
     return CFeeRate(median);
 }
 
-CFeeRate CBlockPolicyEstimator::estimateSmartFee(int confTarget, int *answerFoundAtTarget, const CTxMemPool& pool)
+CFeeRate CBlockPolicyEstimator::estimateSmartFee(unsigned int confTarget, unsigned int *answerFoundAtTarget, const CTxMemPool& pool)
 {
     if (answerFoundAtTarget)
         *answerFoundAtTarget = confTarget;
