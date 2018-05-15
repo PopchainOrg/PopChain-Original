@@ -6,7 +6,6 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "claimtrie.h"
 #include "rpcserver.h"
 
 #include "base58.h"
@@ -345,20 +344,6 @@ static const CRPCCommand vRPCCommands[] =
     { "hidden",             "resendwallettransactions", &resendwallettransactions, true},
 #endif
 
-    /* Ulord features */
-    { "ulord",               "masternode",             &masternode,             true  },
-    { "ulord",               "masternodelist",         &masternodelist,         true  },
-    { "ulord",               "masternodebroadcast",    &masternodebroadcast,    true  },
-    { "ulord",               "gobject",                &gobject,                true  },
-    { "ulord",               "getgovernanceinfo",      &getgovernanceinfo,      true  },
-    { "ulord",               "getsuperblockbudget",    &getsuperblockbudget,    true  },
-    { "ulord",               "voteraw",                &voteraw,                true  },
-    { "ulord",               "mnsync",                 &mnsync,                 true  },
-    { "ulord",               "spork",                  &spork,                  true  },
-    { "ulord",               "getpoolinfo",            &getpoolinfo,            true  },
-#ifdef ENABLE_WALLET
-    { "ulord",               "privatesend",            &privatesend,            false },
-
     /* Wallet */
     { "wallet",             "keepass",                &keepass,                true },
     { "wallet",             "instantsendtoaddress",   &instantsendtoaddress,   false },
@@ -404,33 +389,7 @@ static const CRPCCommand vRPCCommands[] =
     { "wallet",             "walletlock",             &walletlock,             true  },
     { "wallet",             "walletpassphrasechange", &walletpassphrasechange, true  },
     { "wallet",             "walletpassphrase",       &walletpassphrase,       true  },
-
-	/*claimtrie*/
-    { "Claimtrie",          "claimname",              &claimname,              true  },  
-    { "Claimtrie",          "updateclaim",            &updateclaim,            true  },  
-    { "Claimtrie",          "abandonclaim",           &abandonclaim,           true  },  
-    { "Claimtrie",          "listnameclaims",         &listnameclaims,         true  },  
-    { "Claimtrie",          "supportclaim",           &supportclaim,           true  },  
-    { "Claimtrie",          "abandonsupport",         &abandonsupport,         true  },  
-    { "Claimtrie",          "getclaimsintrie",        &getclaimsintrie,        true  },  
-    { "Claimtrie",          "getclaimtrie",           &getclaimtrie,           true  },  
-    { "Claimtrie",          "getvalueforname",        &getvalueforname,        true  },  
-    { "Claimtrie",          "getclaimsforname",       &getclaimsforname,       true  },  
-    { "Claimtrie",          "gettotalclaimednames",   &gettotalclaimednames,   true  },  
-    { "Claimtrie",          "gettotalclaims",         &gettotalclaims,         true  },  
-    { "Claimtrie",          "gettotalvalueofclaims",  &gettotalvalueofclaims,  true  },  
-    { "Claimtrie",          "getclaimsfortx",         &getclaimsfortx,         true  },  
-    { "Claimtrie",          "getnameproof",           &getnameproof,           true  },  
-    { "Claimtrie",          "getclaimbyid",           &getclaimbyid,           true  },
-    /*Popchain Dev*/
-    /* atomic swap contract of transaction about RPC */
-    { "hidden",	            "crosschaininitial",      &crosschaininitial,      true  },
-    { "hidden",             "crosschainparticipate",  &crosschainparticipate,  true  },
-    { "hidden",             "crosschainredeem",       &crosschainredeem,       true  },
-    { "hidden",             "crosschainrefund",       &crosschainrefund,       true  },
-    { "hidden",             "crosschainextractsecret",&crosschainextractsecret,true  },
-    { "hidden",             "crosschainauditcontract",&crosschainauditcontract,true  },
-    /*Popchain Dev*/
+ 
 #endif // ENABLE_WALLET
 };
 

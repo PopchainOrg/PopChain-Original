@@ -3,9 +3,8 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
-#ifndef BITCOIN_RPCSERVER_H
-#define BITCOIN_RPCSERVER_H
+#ifndef POPCHAIN_RPCSERVER_H
+#define POPCHAIN_RPCSERVER_H
 
 #include "amount.h"
 #include "rpcprotocol.h"
@@ -201,18 +200,7 @@ extern UniValue importpubkey(const UniValue& params, bool fHelp);
 extern UniValue dumpwallet(const UniValue& params, bool fHelp);
 extern UniValue importwallet(const UniValue& params, bool fHelp);
 
-extern UniValue getgenerate(const UniValue& params, bool fHelp); // in rpcmining.cpp
-extern UniValue setgenerate(const UniValue& params, bool fHelp);
-extern UniValue generate(const UniValue& params, bool fHelp);
-extern UniValue getnetworkhashps(const UniValue& params, bool fHelp);
-extern UniValue getmininginfo(const UniValue& params, bool fHelp);
-extern UniValue prioritisetransaction(const UniValue& params, bool fHelp);
-extern UniValue getblocktemplate(const UniValue& params, bool fHelp);
-extern UniValue submitblock(const UniValue& params, bool fHelp);
-extern UniValue estimatefee(const UniValue& params, bool fHelp);
-extern UniValue estimatepriority(const UniValue& params, bool fHelp);
-extern UniValue estimatesmartfee(const UniValue& params, bool fHelp);
-extern UniValue estimatesmartpriority(const UniValue& params, bool fHelp);
+
 
 extern UniValue instantsendtoaddress(const UniValue& params, bool fHelp);
 extern UniValue keepass(const UniValue& params, bool fHelp);
@@ -274,14 +262,11 @@ extern UniValue verifytxoutproof(const UniValue& params, bool fHelp);
 extern UniValue privatesend(const UniValue& params, bool fHelp);
 extern UniValue getpoolinfo(const UniValue& params, bool fHelp);
 extern UniValue spork(const UniValue& params, bool fHelp);
-extern UniValue masternode(const UniValue& params, bool fHelp);
-extern UniValue masternodelist(const UniValue& params, bool fHelp);
-extern UniValue masternodebroadcast(const UniValue& params, bool fHelp);
-extern UniValue gobject(const UniValue& params, bool fHelp);
-extern UniValue getgovernanceinfo(const UniValue& params, bool fHelp);
+
+
 extern UniValue getsuperblockbudget(const UniValue& params, bool fHelp);
-extern UniValue voteraw(const UniValue& params, bool fHelp);
-extern UniValue mnsync(const UniValue& params, bool fHelp);
+
+
 
 extern UniValue getblockcount(const UniValue& params, bool fHelp); // in rpcblockchain.cpp
 extern UniValue getbestblockhash(const UniValue& params, bool fHelp);
@@ -302,54 +287,25 @@ extern UniValue invalidateblock(const UniValue& params, bool fHelp);
 extern UniValue reconsiderblock(const UniValue& params, bool fHelp);
 extern UniValue getspentinfo(const UniValue& params, bool fHelp);
 
-/*claimtrie*/
-extern UniValue claimname(const UniValue& params, bool fHelp);    //in rpcwallet.cpp
-extern void UpdateName(const std::vector<unsigned char>vchName, const uint160 claimId, const std::vector<unsigned char>vchValue, CAmount nAmount, CWalletTx& wtxNew, CWalletTx wtxIn, unsigned int nTxOut);
-extern UniValue updateclaim( const UniValue & params, bool fHelp);
-extern void CreateClaim(CScript& claimScript, CAmount nAmount, CWalletTx& wtxNew);
-extern UniValue abandonclaim(const UniValue&params, bool fHelp);
-extern void ListNameClaims(const CWalletTx& wtx, const std::string &strAccount, int nMinDepth, UniValue &ret, const isminefilter &filter, bool list_spent);
-extern UniValue listnameclaims(const UniValue &params, bool fHelp);
-extern UniValue abandonsupport(const UniValue &params, bool fHelp);
-extern UniValue supportclaim(const UniValue&params, bool fHelp);
-extern UniValue abandonsupport(const UniValue &params, bool fHelp);
-
-typedef std::pair<CClaimValue, std::vector<CSupportValue> > claimAndSupportsType;
-typedef std::map<uint160, claimAndSupportsType> claimSupportMapType;
-typedef std::map<uint160, std::vector<CSupportValue> > supportsWithoutClaimsMapType;
 
 
-extern UniValue getclaimsintrie(const UniValue& params, bool fHelp);   //in rpc/claimtrie.cpp
-extern UniValue getclaimtrie(const UniValue& params, bool fHelp);
-extern bool getValueForClaim(const COutPoint& out, std::string& sValue);
-extern UniValue getvalueforname(const UniValue& params, bool fHelp);
-extern UniValue claimsAndSupportsToJSON(claimSupportMapType::const_iterator itClaimsAndSupports, int nCurrentHeight);
-extern UniValue supportsWithoutClaimsToJSON(supportsWithoutClaimsMapType::const_iterator itSupportsWithoutClaims, int nCurrentHeight);
-extern UniValue getclaimsforname(const UniValue& params, bool fHelp);
-extern UniValue getclaimbyid(const UniValue& params, bool fHelp);
-extern UniValue gettotalclaimednames(const UniValue& params, bool fHelp);
-extern UniValue gettotalclaims(const UniValue& params, bool fHelp);
-extern UniValue gettotalvalueofclaims(const UniValue& params, bool fHelp);
-extern UniValue getclaimsfortx(const UniValue& params, bool fHelp);
-extern UniValue proofToJSON(const CClaimTrieProof& proof);
-extern UniValue getnameproof(const UniValue& params, bool fHelp);
 
-/*Popchain Dev*/
-
-/* atomic swap contract of transaction about RPC */
-extern UniValue crosschaininitial(const UniValue &params, bool fHelp);
-extern UniValue crosschainparticipate(const UniValue &params, bool fHelp);
-extern UniValue crosschainredeem(const UniValue &params, bool fHelp);
-extern UniValue crosschainrefund(const UniValue &params, bool fHelp);
-extern UniValue crosschainextractsecret(const UniValue &params, bool fHelp);
-extern UniValue crosschainauditcontract(const UniValue &params, bool fHelp);
-
-/*Popchain Dev*/
-
+extern UniValue getgenerate(const UniValue& params, bool fHelp); // in rpcmining.cpp
+extern UniValue setgenerate(const UniValue& params, bool fHelp);
+extern UniValue generate(const UniValue& params, bool fHelp);
+extern UniValue getnetworkhashps(const UniValue& params, bool fHelp);
+extern UniValue getmininginfo(const UniValue& params, bool fHelp);
+extern UniValue prioritisetransaction(const UniValue& params, bool fHelp);
+extern UniValue getblocktemplate(const UniValue& params, bool fHelp);
+extern UniValue submitblock(const UniValue& params, bool fHelp);
+extern UniValue estimatefee(const UniValue& params, bool fHelp);
+extern UniValue estimatepriority(const UniValue& params, bool fHelp);
+extern UniValue estimatesmartfee(const UniValue& params, bool fHelp);
+extern UniValue estimatesmartpriority(const UniValue& params, bool fHelp);
 
 bool StartRPC();
 void InterruptRPC();
 void StopRPC();
 std::string JSONRPCExecBatch(const UniValue& vReq);
 
-#endif // BITCOIN_RPCSERVER_H
+#endif // POPCHAIN_RPCSERVER_H
