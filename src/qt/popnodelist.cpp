@@ -1,3 +1,5 @@
+// Copyright (c) 2017-2018 The Popchain Core Developers
+
 #include "popnodelist.h"
 #include "ui_popnodelist.h"
 

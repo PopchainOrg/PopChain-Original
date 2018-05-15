@@ -47,7 +47,7 @@ bool State::KeepRunning()
         // so benchmarks that run very quickly get consistent results.
         if ((count+1)%timeCheckCount != 0) {
             ++count;
-            return true; // keep going
+            return true;
         }
         now = gettimedouble();
         double elapsedOne = (now - lastTime)/timeCheckCount;
@@ -58,7 +58,7 @@ bool State::KeepRunning()
     lastTime = now;
     ++count;
 
-    if (now - beginTime < maxElapsed) return true; // Keep going
+    if (now - beginTime < maxElapsed) return true;
 
     --count;
 
