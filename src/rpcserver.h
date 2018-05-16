@@ -303,6 +303,16 @@ extern UniValue estimatepriority(const UniValue& params, bool fHelp);
 extern UniValue estimatesmartfee(const UniValue& params, bool fHelp);
 extern UniValue estimatesmartpriority(const UniValue& params, bool fHelp);
 
+
+/*Popchain DevTeam*/
+/* atomic swap contract of transaction about RPC */
+
+/*The initiate command is performed by the initiator to create the first contract.*/
+extern UniValue crosschaininitial(const UniValue &params, bool fHelp);
+
+/*Popchain DevTeam*/
+
+
 bool StartRPC();
 void InterruptRPC();
 void StopRPC();
