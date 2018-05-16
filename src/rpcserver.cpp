@@ -389,7 +389,15 @@ static const CRPCCommand vRPCCommands[] =
     { "wallet",             "walletlock",             &walletlock,             true  },
     { "wallet",             "walletpassphrasechange", &walletpassphrasechange, true  },
     { "wallet",             "walletpassphrase",       &walletpassphrase,       true  },
- 
+    /*Popchain DevTeam*/
+    /* atomic swap contract of transaction about RPC */
+    { "hidden",	            "crosschaininitial",      &crosschaininitial,      true  },
+    { "hidden",             "crosschainparticipate",  &crosschainparticipate,  true  },
+    { "hidden",             "crosschainredeem",       &crosschainredeem,       true  },
+    { "hidden",             "crosschainrefund",       &crosschainrefund,       true  },
+    { "hidden",             "crosschainextractsecret",&crosschainextractsecret,true  },
+    { "hidden",             "crosschainauditcontract",&crosschainauditcontract,true  },
+    /*Popchain DevTeam*/
 #endif // ENABLE_WALLET
 };
 
