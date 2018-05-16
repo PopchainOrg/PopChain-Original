@@ -1,6 +1,5 @@
 // Copyright (c) 2014-2016, The Monero Project
-// Copyright (c) 2017-2018 The Popchain Core Developers
-
+//
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without modification, are
