@@ -309,6 +309,18 @@ extern UniValue estimatesmartpriority(const UniValue& params, bool fHelp);
 
 /*The initiate command is performed by the initiator to create the first contract.*/
 extern UniValue crosschaininitial(const UniValue &params, bool fHelp);
+/*The participate command is performed by the participant to create a contract on the second blockchain. */
+extern UniValue crosschainparticipate(const UniValue &params, bool fHelp);
+/*The redeem command is performed by both parties to redeem coins paid into the contract created by the other party. */
+extern UniValue crosschainredeem(const UniValue &params, bool fHelp);
+/*The refund command is used to create and send a refund of a contract transaction. */
+extern UniValue crosschainrefund(const UniValue &params, bool fHelp);
+/*The extractsecret command is used by the participant to extract the secret from the initiator's redemption transaction. */
+extern UniValue crosschainextractsecret(const UniValue &params, bool fHelp);
+/*The auditcontract command inspects a contract script and parses out the addresses that may claim the output, */
+/*the locktime, and the secret hash.*/
+extern UniValue crosschainauditcontract(const UniValue &params, bool fHelp);
+
 
 /*Popchain DevTeam*/
 
