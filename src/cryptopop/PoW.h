@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2017-2018 The Popchain Core Developers
 
-#ifndef POW_H
-#define POW_H
+#ifndef CRYTOPOP_POW_H
+#define CRYTOPOP_POW_H
 
 #include <stdint.h>
 #include <string.h>
@@ -49,4 +49,4 @@ extern "C" {
 */
 void powFunction(uint8_t *input, uint32_t inputLen, uint8_t *Maddr, uint8_t *output);
 
-#endif
+#endif // CRYTOPOP_POW_H
