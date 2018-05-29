@@ -1,0 +1,6 @@
+usr/local/bin/pop-qt usr/bin
+share/pixmaps/pop32.xpm usr/share/pixmaps
+share/pixmaps/pop16.xpm usr/share/pixmaps
+share/pixmaps/pop128.png usr/share/pixmaps
+debian/pop-qt.desktop usr/share/applications
+debian/pop-qt.protocol usr/share/kde4/services/

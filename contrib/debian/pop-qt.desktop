@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Pop
+Comment=Pop P2P Cryptocurrency
+Comment[fr]=Pop, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Pop, eşten eşe kriptografik sanal para birimi
+Exec=pop-qt %u
+Terminal=false
+Type=Application
+Icon=pop128
+MimeType=x-scheme-handler/pop;
+Categories=Office;Finance;

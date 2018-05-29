@@ -1,0 +1,68 @@
+Source: pop
+Section: utils
+Priority: optional
+Maintainer: Holger Schinzel <holger@pop.org>
+Uploaders: Holger Schinzel <holger@pop.org>
+Build-Depends: debhelper,
+ devscripts,
+ automake,
+ libtool,
+ bash-completion,
+ libdb4.8++-dev,
+ libssl-dev,
+ pkg-config,
+ libevent-dev,
+ libboost-system1.48-dev | libboost-system-dev (>> 1.35),
+ libboost-filesystem1.48-dev | libboost-filesystem-dev (>> 1.35),
+ libboost-program-options1.48-dev | libboost-program-options-dev (>> 1.35),
+ libboost-thread1.48-dev | libboost-thread-dev (>> 1.35),
+ libboost-test1.48-dev | libboost-test-dev (>> 1.35),
+ libboost-chrono1.48-dev | libboost-chrono-dev (>> 1.35),
+ qt4-qmake,
+ libqt4-dev,
+ libqrencode-dev,
+ libprotobuf-dev, protobuf-compiler,
+ python
+Standards-Version: 3.9.2
+Homepage: https://www.pop.org/
+Vcs-Git: git://github.com/poppay/pop.git
+Vcs-Browser: https://github.com/poppay/pop
+
+Package: popd
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - daemon
+ Pop is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. Pop uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Pop Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides the daemon, popd, and the CLI tool
+ pop-cli to interact with the daemon.
+
+Package: pop-qt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer network based digital currency - Qt GUI
+ Pop is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. Pop uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Pop Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides Pop-Qt, a GUI for Pop based on Qt.
+
+Package: pop-tx
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: peer-to-peer digital currency - standalone transaction tool
+ Pop is an experimental new digital currency that enables anonymous, instant
+ payments to anyone, anywhere in the world. Pop uses peer-to-peer
+ technology to operate with no central authority: managing transactions
+ and issuing money are carried out collectively by the network. Pop Core
+ is the name of the open source software which enables the use of this currency.
+ .
+ This package provides pop-tx, a command-line transaction creation
+ tool which can be used without a pop daemon.  Some means of
+ exchanging minimal transaction data with peers is still required.

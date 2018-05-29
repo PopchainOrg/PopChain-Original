@@ -1,0 +1,22 @@
+[Unit]
+Description=Pop's distributed currency daemon
+After=network.target
+
+[Service]
+User=popcore
+Group=popcore
+
+Type=forking
+PIDFile=/var/lib/popd/popd.pid
+ExecStart=/usr/bin/popd -daemon -pid=/var/lib/popd/popd.pid \
+-conf=/etc/popcore/pop.conf -datadir=/var/lib/popd -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

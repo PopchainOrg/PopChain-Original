@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  popd The Pop Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: popd
+# processname: popd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/popd, see below
+if [ -f /etc/sysconfig/popd ]; then
+        . /etc/sysconfig/popd
+fi
+
+RETVAL=0
+
+prog=popd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/popd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/popd}
+
+# popd defaults to /usr/bin/popd, override with BITCOIND_BIN
+popd=${BITCOIND_BIN-/usr/bin/popd}
+
+# popd opts default to -disablewallet, override with BITCOIND_OPTS
+popd_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $popd $popd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
