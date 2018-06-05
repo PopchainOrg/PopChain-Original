@@ -1,7 +1,4 @@
-# Copyright (c) 2014-2015 The Bitcoin Core developers
-# Copyright (c) 2014-2017 The Dash Core developers
-# Distributed under the MIT/X11 software license, see the accompanying
-# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+# Copyright (c) 2017-2018 The Popchain Core Developers
 
 
 #
@@ -80,14 +77,14 @@ def get_rpc_proxy(url, node_number, timeout=None):
 
     return coverage.AuthServiceProxyWrapper(proxy, coverage_logfile)
 
-def get_pnsync_status(node):
-    result = node.pnsync("status")
+def get_mnsync_status(node):
+    result = node.mnsync("status")
     return result['IsSynced']
 
 def wait_to_sync(node):
     synced = False
     while not synced:
-        synced = get_pnsync_status(node)
+        synced = get_mnsync_status(node)
         time.sleep(0.5)
 
 def p2p_port(n):
@@ -139,7 +136,7 @@ def sync_mempools(rpc_connections, wait=1):
             break
         time.sleep(wait)
 
-def sync_pops(rpc_connections):
+def sync_popnodes(rpc_connections):
     for node in rpc_connections:
         wait_to_sync(node)
 

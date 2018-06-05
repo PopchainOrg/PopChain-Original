@@ -59,9 +59,9 @@ Whenever a popnode comes online or a client is syncing, they will send this mess
 
 | Field Size | Field Name | Data type | Description |
 | ---------- | ----------- | --------- | -------- |
-| 41 | vin | CTxIn | The unspent output which is holding 10000 ULD
-| # | addr | CService | Address of the main 10000 ULD unspent output
-| 33-65 | pubKeyCollateralAddress | CPubKey | CPubKey of the main 10000 ULD unspent output
+| 41 | vin | CTxIn | The unspent output which is holding 10000 PCH
+| # | addr | CService | Address of the main 10000 PCH unspent output
+| 33-65 | pubKeyCollateralAddress | CPubKey | CPubKey of the main 10000 PCH unspent output
 | 33-65 | pubKeyPopnode | CPubKey | CPubKey of the secondary signing key (For all other messaging other than announce message)
 | 71-73 | sig | char[] | Signature of this message
 | 8 | sigTime | int64_t | Time which the signature was created
@@ -163,35 +163,3 @@ User's signed inputs for a group transaction in a mixing session
 | Field Size | Field Name | Data type | Description |
 | ---------- | ----------- | --------- | -------- |
 | # | inputs | CTxIn[] | signed inputs for mixing session
-
-### MNGOVERNANCEOBJECT - "govobj"
-
-Governance Object
-
-A proposal, contract or setting.
-
-| Field Size | Field Name | Data type | Description |
-| ---------- | ----------- | --------- | -------- |
-| 32 | nHashParent | uint256 | Parent object, 0 is root
-| 4 | nRevision | int | Object revision in the system
-| 8 | nTime | int64_t | Time which this object was created
-| 32 | nCollateralHash | uint256 | Hash of the collateral fee transaction
-| 0-16384 | strData | string | Data field - can be used for anything
-| 4 | nObjectType | int | ????
-| 41 | vinPopnode | CTxIn | Unspent output for the popnode which is signing this object
-| 71-73 | vchSig | char[] | Signature of the popnode
-
-### MNGOVERNANCEOBJECTVOTE - "govobjvote"
-
-Governance Vote
-
-Popnodes use governance voting in response to new proposals, contracts, settings or finalized budgets.
-
-| Field Size | Field Name | Data type | Description |
-| ---------- | ----------- | --------- | -------- |
-| 4 | nVoteSignal | int | ???
-| 41+ | vinPopnode | CTxIn | Unspent output for the popnode which is voting
-| 32 | nParentHash | uint256 | Object which we're voting on (proposal, contract, setting or final budget)
-| 4 | nVoteOutcome | int | ???
-| 8 | nTime | int64_t | Time which the vote was created
-| 71-73 | vchSig | char[] | Signature of the popnode
