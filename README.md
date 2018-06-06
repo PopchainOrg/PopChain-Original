@@ -4,11 +4,6 @@ POPCHAIN is a ‘live-streamable’ digital contents distribution service platfo
 ---------------
 ![](https://avatars3.githubusercontent.com/u/38804864?s=200&v=4)
 
-PopChain Documentation and Usage Resources
----------------
-
-![](https://avatars0.githubusercontent.com/u/35293052?s=200&v=4)
-
 Resources may be helpful to know about Pop.
 
 Basic usage resources:
