@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "c_rc4.h"
 
@@ -13,9 +13,9 @@
 #include "common.h"
 
 /*
- * FUNCTION：one-way function RC4
- *      1. input : message
- *		2. output：return
+ * 功能：单向函数 RC4
+ * 输入：1. input ：输入消息
+ *		 2. output：输出结果
 */
 void crypto_rc4(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	/** 

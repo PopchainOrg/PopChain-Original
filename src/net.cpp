@@ -1,13 +1,7 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 
 #if defined(HAVE_CONFIG_H)
-#include "config/popchain-config.h"
+#include "config/pop-config.h"
 #endif
 
 #include "net.h"
@@ -24,6 +18,9 @@
 #include "wallet/wallet.h"
 #include "utilstrencodings.h"
 
+#include "darksend.h"
+#include "instantx.h"
+#include "popnodeman.h"
 
 #ifdef WIN32
 #include <string.h>
@@ -62,10 +59,13 @@
 #endif
 
 using namespace std;
-
+/*When the network was first implemented, there was a severe shortage of servers that could reliably accept inbound connections.
+  Many people started running the client behind NAT and they could not accept any inbound connections.
+   Meanwhile, they were consuming the available inbound connection capacity of the more limited number of machines that could accept them.
+   The client now enables uPNP traversal by default.*/
 namespace {
     const int MAX_OUTBOUND_CONNECTIONS = 8;
-    const int MAX_OUTBOUND_MASTERNODE_CONNECTIONS = 20;
+    const int MAX_OUTBOUND_POPNODE_CONNECTIONS = 20;
 
     struct ListenSocket {
         SOCKET socket;
@@ -112,7 +112,7 @@ NodeId nLastNodeId = 0;
 CCriticalSection cs_nLastNodeId;
 
 static CSemaphore *semOutbound = NULL;
-static CSemaphore *semMasternodeOutbound = NULL;
+static CSemaphore *semPopnodeOutbound = NULL;
 boost::condition_variable messageHandlerCondition;
 
 // Signals for message handling
@@ -383,12 +383,12 @@ CNode* FindNode(const CService& addr)
     return NULL;
 }
 
-CNode* ConnectNode(CAddress addrConnect, const char *pszDest, bool fConnectToMasternode)
+CNode* ConnectNode(CAddress addrConnect, const char *pszDest, bool fConnectToPopnode)
 {
     if (pszDest == NULL) {
-        // we clean masternode connections in CMasternodeMan::ProcessMasternodeConnections()
-        // so should be safe to skip this and connect to local Hot MN on CActiveMasternode::ManageState()
-        if (IsLocal(addrConnect) && !fConnectToMasternode)
+        // we clean popnode connections in CPopnodeMan::ProcessPopnodeConnections()
+        // so should be safe to skip this and connect to local Hot MN on CActivePopnode::ManageState()
+        if (IsLocal(addrConnect) && !fConnectToPopnode)
             return NULL;
 
         LOCK(cs_vNodes);
@@ -396,11 +396,11 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, bool fConnectToMas
         CNode* pnode = FindNode((CService)addrConnect);
         if (pnode)
         {
-            // we have existing connection to this node but it was not a connection to masternode,
+            // we have existing connection to this node but it was not a connection to popnode,
             // change flag and add reference so that we can correctly clear it later
-            if(fConnectToMasternode && !pnode->fMasternode) {
+            if(fConnectToPopnode && !pnode->fPopnode) {
                 pnode->AddRef();
-                pnode->fMasternode = true;
+                pnode->fPopnode = true;
             }
             return pnode;
         }
@@ -429,9 +429,9 @@ CNode* ConnectNode(CAddress addrConnect, const char *pszDest, bool fConnectToMas
         CNode* pnode = new CNode(hSocket, addrConnect, pszDest ? pszDest : "", false, true);
 
         pnode->nTimeConnected = GetTime();
-        if(fConnectToMasternode) {
+        if(fConnectToPopnode) {
             pnode->AddRef();
-            pnode->fMasternode = true;
+            pnode->fPopnode = true;
         }
 
         LOCK(cs_vNodes);
@@ -510,12 +510,12 @@ bool CNode::IsBanned(CNetAddr ip)
     return fResult;
 }
 
-bool CNode::IsBanned(CSubNet suulord)
+bool CNode::IsBanned(CSubNet supop)
 {
     bool fResult = false;
     {
         LOCK(cs_setBanned);
-        banmap_t::iterator i = setBanned.find(suulord);
+        banmap_t::iterator i = setBanned.find(supop);
         if (i != setBanned.end())
         {
             CBanEntry banEntry = (*i).second;
@@ -613,16 +613,16 @@ CCriticalSection CNode::cs_vWhitelistedRange;
 
 bool CNode::IsWhitelistedRange(const CNetAddr &addr) {
     LOCK(cs_vWhitelistedRange);
-    BOOST_FOREACH(const CSubNet& suulord, vWhitelistedRange) {
-        if (suulord.Match(addr))
+    BOOST_FOREACH(const CSubNet& supop, vWhitelistedRange) {
+        if (supop.Match(addr))
             return true;
     }
     return false;
 }
 
-void CNode::AddWhitelistedRange(const CSubNet &suulord) {
+void CNode::AddWhitelistedRange(const CSubNet &supop) {
     LOCK(cs_vWhitelistedRange);
-    vWhitelistedRange.push_back(suulord);
+    vWhitelistedRange.push_back(supop);
 }
 
 #undef X
@@ -656,7 +656,7 @@ void CNode::copyStats(CNodeStats &stats)
         nPingUsecWait = GetTimeMicros() - nPingUsecStart;
     }
 
-    // Raw ping time is in microseconds, but show it to user as whole seconds (Ulord users should be well used to small numbers with many decimal places by now :)
+    // Raw ping time is in microseconds, but show it to user as whole seconds (Pop users should be well used to small numbers with many decimal places by now :)
     stats.dPingTime = (((double)nPingUsecTime) / 1e6);
     stats.dPingMin  = (((double)nMinPingUsecTime) / 1e6);
     stats.dPingWait = (((double)nPingUsecWait) / 1e6);
@@ -751,6 +751,13 @@ int CNetMessage::readData(const char *pch, unsigned int nBytes)
 
     return nCopy;
 }
+
+
+
+
+
+
+
 
 
 // requires LOCK(cs_vSend)
@@ -1042,15 +1049,15 @@ void ThreadSocketHandler()
                 if (pnode->fDisconnect ||
                     (pnode->GetRefCount() <= 0 && pnode->vRecvMsg.empty() && pnode->nSendSize == 0 && pnode->ssSend.empty()))
                 {
-                    LogPrintf("ThreadSocketHandler -- removing node: peer=%d addr=%s nRefCount=%d fNetworkNode=%d fInbound=%d fMasternode=%d, fDisconnect=%d\n",
-                              pnode->id, pnode->addr.ToString(), pnode->GetRefCount(), pnode->fNetworkNode, pnode->fInbound, pnode->fMasternode, pnode->fDisconnect);
+                    LogPrintf("ThreadSocketHandler -- removing node: peer=%d addr=%s nRefCount=%d fNetworkNode=%d fInbound=%d fPopnode=%d, fDisconnect=%d\n",
+                              pnode->id, pnode->addr.ToString(), pnode->GetRefCount(), pnode->fNetworkNode, pnode->fInbound, pnode->fPopnode, pnode->fDisconnect);
 
                     // remove from vNodes
                     vNodes.erase(remove(vNodes.begin(), vNodes.end(), pnode), vNodes.end());
 
                     // release outbound grant (if any)
                     pnode->grantOutbound.Release();
-                    pnode->grantMasternodeOutbound.Release();
+                    pnode->grantPopnodeOutbound.Release();
 
                     // close socket and cleanup
                     pnode->CloseSocketDisconnect();
@@ -1058,7 +1065,7 @@ void ThreadSocketHandler()
                     // hold in disconnected pool until all refs are released
                     if (pnode->fNetworkNode || pnode->fInbound)
                         pnode->Release();
-                    if (pnode->fMasternode)
+                    if (pnode->fPopnode)
                         pnode->Release();
                     vNodesDisconnected.push_back(pnode);
                 }
@@ -1130,7 +1137,22 @@ void ThreadSocketHandler()
                 FD_SET(pnode->hSocket, &fdsetError);
                 hSocketMax = max(hSocketMax, pnode->hSocket);
                 have_fds = true;
- 
+
+                // Implement the following logic:
+                // * If there is data to send, select() for sending data. As this only
+                //   happens when optimistic write failed, we choose to first drain the
+                //   write buffer in this case before receiving more. This avoids
+                //   needlessly queueing received data, if the remote peer is not themselves
+                //   receiving data. This means properly utilizing TCP flow control signalling.
+                // * Otherwise, if there is no (complete) message in the receive buffer,
+                //   or there is space left in the buffer, select() for receiving data.
+                // * (if neither of the above applies, there is certainly one message
+                //   in the receiver buffer ready to be processed).
+                // Together, that means that at least one of the following is always possible,
+                // so we don't deadlock:
+                // * We send some data.
+                // * We wait for data to be received (and disconnect after timeout).
+                // * We process a message in the buffer (message handler thread).
                 {
                     TRY_LOCK(pnode->cs_vSend, lockSend);
                     if (lockSend && !pnode->vSendMsg.empty()) {
@@ -1285,6 +1307,97 @@ void ThreadSocketHandler()
 
 
 
+
+
+
+
+
+
+#ifdef USE_UPNP
+void ThreadMapPort()
+{
+    std::string port = strprintf("%u", GetListenPort());
+    const char * multicastif = 0;
+    const char * minissdpdpath = 0;
+    struct UPNPDev * devlist = 0;
+    char lanaddr[64];
+
+#ifndef UPNPDISCOVER_SUCCESS
+    /* miniupnpc 1.5 */
+    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0);
+#elif MINIUPNPC_API_VERSION < 14
+    /* miniupnpc 1.6 */
+    int error = 0;
+    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, &error);
+#else
+    /* miniupnpc 1.9.20150730 */
+    int error = 0;
+    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, 2, &error);
+#endif
+
+    struct UPNPUrls urls;
+    struct IGDdatas data;
+    int r;
+
+    r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr));
+    if (r == 1)
+    {
+        if (fDiscover) {
+            char externalIPAddress[40];
+            r = UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
+            if(r != UPNPCOMMAND_SUCCESS)
+                LogPrintf("UPnP: GetExternalIPAddress() returned %d\n", r);
+            else
+            {
+                if(externalIPAddress[0])
+                {
+                    LogPrintf("UPnP: ExternalIPAddress = %s\n", externalIPAddress);
+                    AddLocal(CNetAddr(externalIPAddress), LOCAL_UPNP);
+                }
+                else
+                    LogPrintf("UPnP: GetExternalIPAddress failed.\n");
+            }
+        }
+
+        string strDesc = "Pop Core " + FormatFullVersion();
+
+        try {
+            while (true) {
+#ifndef UPNPDISCOVER_SUCCESS
+                /* miniupnpc 1.5 */
+                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
+                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0);
+#else
+                /* miniupnpc 1.6 */
+                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
+                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
+#endif
+
+                if(r!=UPNPCOMMAND_SUCCESS)
+                    LogPrintf("AddPortMapping(%s, %s, %s) failed with code %d (%s)\n",
+                        port, port, lanaddr, r, strupnperror(r));
+                else
+                    LogPrintf("UPnP Port Mapping successful.\n");;
+
+                MilliSleep(20*60*1000); // Refresh every 20 minutes
+            }
+        }
+        catch (const boost::thread_interrupted&)
+        {
+            r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
+            LogPrintf("UPNP_DeletePortMapping() returned: %d\n", r);
+            freeUPNPDevlist(devlist); devlist = 0;
+            FreeUPNPUrls(&urls);
+            throw;
+        }
+    } else {
+        LogPrintf("No valid UPnP IGDs found\n");
+        freeUPNPDevlist(devlist); devlist = 0;
+        if (r != 0)
+            FreeUPNPUrls(&urls);
+    }
+}
+
 void MapPort(bool fUseUPnP)
 {
     static boost::thread* upnp_thread = NULL;
@@ -1364,90 +1477,6 @@ void ThreadDNSAddressSeed()
 
 
 
-#ifdef USE_UPNP
-void ThreadMapPort()
-{
-    std::string port = strprintf("%u", GetListenPort());
-    const char * multicastif = 0;
-    const char * minissdpdpath = 0;
-    struct UPNPDev * devlist = 0;
-    char lanaddr[64];
-
-#ifndef UPNPDISCOVER_SUCCESS
-    /* miniupnpc 1.5 */
-    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0);
-#elif MINIUPNPC_API_VERSION < 14
-    /* miniupnpc 1.6 */
-    int error = 0;
-    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, &error);
-#else
-    /* miniupnpc 1.9.20150730 */
-    int error = 0;
-    devlist = upnpDiscover(2000, multicastif, minissdpdpath, 0, 0, 2, &error);
-#endif
-
-    struct UPNPUrls urls;
-    struct IGDdatas data;
-    int r;
-
-    r = UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr));
-    if (r == 1)
-    {
-        if (fDiscover) {
-            char externalIPAddress[40];
-            r = UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
-            if(r != UPNPCOMMAND_SUCCESS)
-                LogPrintf("UPnP: GetExternalIPAddress() returned %d\n", r);
-            else
-            {
-                if(externalIPAddress[0])
-                {
-                    LogPrintf("UPnP: ExternalIPAddress = %s\n", externalIPAddress);
-                    AddLocal(CNetAddr(externalIPAddress), LOCAL_UPNP);
-                }
-                else
-                    LogPrintf("UPnP: GetExternalIPAddress failed.\n");
-            }
-        }
-
-        string strDesc = "Ulord Core " + FormatFullVersion();
-
-        try {
-            while (true) {
-#ifndef UPNPDISCOVER_SUCCESS
-                /* miniupnpc 1.5 */
-                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
-                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0);
-#else
-                /* miniupnpc 1.6 */
-                r = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype,
-                                    port.c_str(), port.c_str(), lanaddr, strDesc.c_str(), "TCP", 0, "0");
-#endif
-
-                if(r!=UPNPCOMMAND_SUCCESS)
-                    LogPrintf("AddPortMapping(%s, %s, %s) failed with code %d (%s)\n",
-                        port, port, lanaddr, r, strupnperror(r));
-                else
-                    LogPrintf("UPnP Port Mapping successful.\n");;
-
-                MilliSleep(20*60*1000); // Refresh every 20 minutes
-            }
-        }
-        catch (const boost::thread_interrupted&)
-        {
-            r = UPNP_DeletePortMapping(urls.controlURL, data.first.servicetype, port.c_str(), "TCP", 0);
-            LogPrintf("UPNP_DeletePortMapping() returned: %d\n", r);
-            freeUPNPDevlist(devlist); devlist = 0;
-            FreeUPNPUrls(&urls);
-            throw;
-        }
-    } else {
-        LogPrintf("No valid UPnP IGDs found\n");
-        freeUPNPDevlist(devlist); devlist = 0;
-        if (r != 0)
-            FreeUPNPUrls(&urls);
-    }
-}
 
 
 
@@ -1668,7 +1697,7 @@ void ThreadOpenAddedConnections()
 
 void ThreadMnbRequestConnections()
 {
-    // Connecting to specific addresses, no masternode connections available
+    // Connecting to specific addresses, no popnode connections available
     if (mapArgs.count("-connect") && mapMultiArgs["-connect"].size() > 0)
         return;
 
@@ -1676,7 +1705,7 @@ void ThreadMnbRequestConnections()
     {
         MilliSleep(1000);
 
-        CSemaphoreGrant grant(*semMasternodeOutbound);
+        CSemaphoreGrant grant(*semPopnodeOutbound);
         boost::this_thread::interruption_point();
 
         std::pair<CService, std::set<uint256> > p = mnodeman.PopScheduledMnbRequestConnection();
@@ -1690,15 +1719,15 @@ void ThreadMnbRequestConnections()
             pnode->AddRef();
         }
 
-        grant.MoveTo(pnode->grantMasternodeOutbound);
+        grant.MoveTo(pnode->grantPopnodeOutbound);
 
         // compile request vector
         std::vector<CInv> vToFetch;
         std::set<uint256>::iterator it = p.second.begin();
         while(it != p.second.end()) {
             if(*it != uint256()) {
-                vToFetch.push_back(CInv(MSG_MASTERNODE_ANNOUNCE, *it));
-                LogPrint("masternode", "ThreadMnbRequestConnections -- asking for mnb %s from addr=%s\n", it->ToString(), p.first.ToString());
+                vToFetch.push_back(CInv(MSG_POPNODE_ANNOUNCE, *it));
+                LogPrint("popnode", "ThreadMnbRequestConnections -- asking for mnb %s from addr=%s\n", it->ToString(), p.first.ToString());
             }
             ++it;
         }
@@ -1848,7 +1877,8 @@ bool BindListenPort(const CService &addrBind, string& strError, bool fWhiteliste
     // Disable Nagle's algorithm
     setsockopt(hListenSocket, IPPROTO_TCP, TCP_NODELAY, (void*)&nOne, sizeof(int));
 #else
- 
+    setsockopt(hListenSocket, SOL_SOCKET, SO_REUSEADDR, (const char*)&nOne, sizeof(int));
+    setsockopt(hListenSocket, IPPROTO_TCP, TCP_NODELAY, (const char*)&nOne, sizeof(int));
 #endif
 
     // Set to non-blocking, incoming connections will also inherit this
@@ -1878,14 +1908,14 @@ bool BindListenPort(const CService &addrBind, string& strError, bool fWhiteliste
     {
         int nErr = WSAGetLastError();
         if (nErr == WSAEADDRINUSE)
-            strError = strprintf(_("Unable to bind to %s on this computer. Ulord Core is probably already running."), addrBind.ToString());
+            strError = strprintf(_("Unable to bind to %s on this computer. Pop Core is probably already running."), addrBind.ToString());
         else
             strError = strprintf(_("Unable to bind to %s on this computer (bind returned error %s)"), addrBind.ToString(), NetworkErrorString(nErr));
         LogPrintf("%s\n", strError);
         CloseSocket(hListenSocket);
         return false;
     }
-    //LogPrintf("Bound to %s\n", addrBind.ToString());
+    LogPrintf("Bound to %s\n", addrBind.ToString());
 
     // Listen for incoming connections
     if (listen(hListenSocket, SOMAXCONN) == SOCKET_ERROR)
@@ -1986,9 +2016,9 @@ void StartNode(boost::thread_group& threadGroup, CScheduler& scheduler)
         semOutbound = new CSemaphore(nMaxOutbound);
     }
 
-    if (semMasternodeOutbound == NULL) {
+    if (semPopnodeOutbound == NULL) {
         // initialize semaphore
-        semMasternodeOutbound = new CSemaphore(MAX_OUTBOUND_MASTERNODE_CONNECTIONS);
+        semPopnodeOutbound = new CSemaphore(MAX_OUTBOUND_POPNODE_CONNECTIONS);
     }
 
     if (pnodeLocalHost == NULL)
@@ -2017,7 +2047,7 @@ void StartNode(boost::thread_group& threadGroup, CScheduler& scheduler)
     // Initiate outbound connections
     threadGroup.create_thread(boost::bind(&TraceThread<void (*)()>, "opencon", &ThreadOpenConnections));
 
-    // Initiate masternode connections
+    // Initiate popnode connections
     threadGroup.create_thread(boost::bind(&TraceThread<void (*)()>, "mnbcon", &ThreadMnbRequestConnections));
 
     // Process messages
@@ -2035,9 +2065,9 @@ bool StopNode()
         for (int i=0; i<MAX_OUTBOUND_CONNECTIONS; i++)
             semOutbound->post();
 
-    if (semMasternodeOutbound)
-        for (int i=0; i<MAX_OUTBOUND_MASTERNODE_CONNECTIONS; i++)
-            semMasternodeOutbound->post();
+    if (semPopnodeOutbound)
+        for (int i=0; i<MAX_OUTBOUND_POPNODE_CONNECTIONS; i++)
+            semPopnodeOutbound->post();
 
     if (fAddressesInitialized)
     {
@@ -2074,8 +2104,8 @@ public:
         vhListenSocket.clear();
         delete semOutbound;
         semOutbound = NULL;
-        delete semMasternodeOutbound;
-        semMasternodeOutbound = NULL;
+        delete semPopnodeOutbound;
+        semPopnodeOutbound = NULL;
         delete pnodeLocalHost;
         pnodeLocalHost = NULL;
 
@@ -2446,7 +2476,7 @@ CNode::CNode(SOCKET hSocketIn, const CAddress& addrIn, const std::string& addrNa
     nPingUsecStart = 0;
     nPingUsecTime = 0;
     fPingQueued = false;
-    fMasternode = false;
+    fPopnode = false;
     nMinPingUsecTime = std::numeric_limits<int64_t>::max();
 
     {
@@ -2697,7 +2727,10 @@ void DumpBanlist()
     CNode::GetBanned(banmap);
     bandb.Write(banmap);
 
-    LogPrint("net", "Flushed %d banned node ips/suulords to banlist.dat  %dms\n",
+    LogPrint("net", "Flushed %d banned node ips/supops to banlist.dat  %dms\n",
              banmap.size(), GetTimeMillis() - nStart);
 }
- 
+
+int64_t PoissonNextSend(int64_t nNow, int average_interval_seconds) {
+    return nNow + (int64_t)(log1p(GetRand(1ULL << 48) * -0.0000000000000035527136788 /* -1/2^48 */) * average_interval_seconds * -1000000.0 + 0.5);
+}

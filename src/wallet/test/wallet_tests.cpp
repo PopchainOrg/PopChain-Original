@@ -1,6 +1,4 @@
-// Copyright (c) 2012-2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "wallet/wallet.h"
 
@@ -9,7 +7,7 @@
 #include <utility>
 #include <vector>
 
-#include "test/test_ulord.h"
+#include "test/test_pop.h"
 
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
@@ -178,11 +176,11 @@ BOOST_AUTO_TEST_CASE(coin_selection_tests)
         add_coin( 3*COIN);
         add_coin( 4*COIN); // now we have 5+6+7+8+18+20+30+100+200+300+400 = 1094 cents
         BOOST_CHECK( wallet.SelectCoinsMinConf(95 * CENT, 1, 1, vCoins, setCoinsRet, nValueRet));
-        BOOST_CHECK_EQUAL(nValueRet, 1 * COIN);  // we should get 1 ULD in 1 coin
+        BOOST_CHECK_EQUAL(nValueRet, 1 * COIN);  // we should get 1 PCH in 1 coin
         BOOST_CHECK_EQUAL(setCoinsRet.size(), 1U);
 
         BOOST_CHECK( wallet.SelectCoinsMinConf(195 * CENT, 1, 1, vCoins, setCoinsRet, nValueRet));
-        BOOST_CHECK_EQUAL(nValueRet, 2 * COIN);  // we should get 2 ULD in 1 coin
+        BOOST_CHECK_EQUAL(nValueRet, 2 * COIN);  // we should get 2 PCH in 1 coin
         BOOST_CHECK_EQUAL(setCoinsRet.size(), 1U);
 
         // empty the wallet and start again, now with fractions of a cent, to test small change avoidance

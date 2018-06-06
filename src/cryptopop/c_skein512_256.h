@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#ifndef C_SKEIN512_256_H
+﻿#ifndef C_SKEIN512_256_H
 #define C_SKEIN512_256_H
 
 #include <stdint.h>
@@ -10,9 +8,9 @@ extern "C" {
 #endif
 
 	/*
-     * FUNCTION：one-way function Skein-512(256bits)
-     *      1. input : message
-     *		2. output：return
+	 * 功能：单向函数 Skein-512(256bits)
+	 * 输入：1. input ：输入消息
+	 *		 2. output：输出结果
 	*/
 	void crypto_skein512_256(uint8_t *input, uint32_t inputLen, uint8_t *output);
 

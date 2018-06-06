@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_TRANSACTIONVIEW_H
 #define BITCOIN_QT_TRANSACTIONVIEW_H
@@ -97,6 +94,14 @@ private Q_SLOTS:
     void copyTxHex();
     void openThirdPartyTxUrl(QString url);
     void updateWatchOnlyColumn(bool fHaveWatchOnly);
+    void addressWidgetCopy();
+    void addressWidgetPaste();
+    void addressWidgetCut();
+    void addressWidgetUndo();
+    void amountWidgetCopy();
+    void amountWidgetPaste();
+    void amountWidgetCut();
+    void amountWidgetUndo();
 
 Q_SIGNALS:
     void doubleClicked(const QModelIndex&);

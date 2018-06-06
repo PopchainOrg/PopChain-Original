@@ -1,5 +1,3 @@
-// Copyright (c) 2017-2018 The Popchain Core Developers
-
 #include "darksendconfig.h"
 #include "ui_darksendconfig.h"
 

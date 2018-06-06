@@ -1,9 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-
 
 #ifndef POPCHAIN_NET_H
 #define POPCHAIN_NET_H
@@ -45,11 +40,11 @@ static const int TIMEOUT_INTERVAL = 20 * 60;
 /** Minimum time between warnings printed to log. */
 static const int WARNING_INTERVAL = 10 * 60;
 /** The maximum number of entries in an 'inv' protocol message */
-static const unsigned int MAX_INV_SZ = 10000;
+static const unsigned int MAX_INV_SZ = 50000;
 /** The maximum number of new addresses to accumulate before announcing. */
-static const unsigned int MAX_ADDR_TO_SEND = 2000;
+static const unsigned int MAX_ADDR_TO_SEND = 1000;
 /** Maximum length of incoming protocol messages (no message over 2 MiB is currently acceptable). */
-static const unsigned int MAX_PROTOCOL_MESSAGE_LENGTH = 1 * 1024 * 1024;
+static const unsigned int MAX_PROTOCOL_MESSAGE_LENGTH = 2 * 1024 * 1024;
 /** Maximum length of strSubVer in `version` message */
 static const unsigned int MAX_SUBVERSION_LENGTH = 256;
 /** -listen default */
@@ -60,7 +55,16 @@ static const bool DEFAULT_UPNP = USE_UPNP;
 #else
 static const bool DEFAULT_UPNP = false;
 #endif
- 
+/** The maximum number of entries in mapAskFor */
+static const size_t MAPASKFOR_MAX_SZ = MAX_INV_SZ;
+/** The maximum number of entries in setAskFor (larger due to getdata latency)*/
+static const size_t SETASKFOR_MAX_SZ = 2 * MAX_INV_SZ;
+/** The maximum number of peer connections to maintain. */
+static const unsigned int DEFAULT_MAX_PEER_CONNECTIONS = 125;
+/** The default for -maxuploadtarget. 0 = Unlimited */
+static const uint64_t DEFAULT_MAX_UPLOAD_TARGET = 0;
+/** Default for blocks only*/
+static const bool DEFAULT_BLOCKSONLY = false;
 
 static const bool DEFAULT_FORCEDNSSEED = false;
 static const size_t DEFAULT_MAXRECEIVEBUFFER = 5 * 1000;
@@ -78,9 +82,9 @@ CNode* FindNode(const CNetAddr& ip);
 CNode* FindNode(const CSubNet& subNet);
 CNode* FindNode(const std::string& addrName);
 CNode* FindNode(const CService& ip);
-// fConnectToMasternode should be 'true' only if you want this node to allow to connect to itself
-// and/or you want it to be disconnected on CMasternodeMan::ProcessMasternodeConnections()
-CNode* ConnectNode(CAddress addrConnect, const char *pszDest = NULL, bool fConnectToMasternode = false);
+// fConnectToPopnode should be 'true' only if you want this node to allow to connect to itself
+// and/or you want it to be disconnected on CPopnodeMan::ProcessPopnodeConnections()
+CNode* ConnectNode(CAddress addrConnect, const char *pszDest = NULL, bool fConnectToPopnode = false);
 bool OpenNetworkConnection(const CAddress& addrConnect, CSemaphoreGrant *grantOutbound = NULL, const char *strDest = NULL, bool fOneShot = false);
 void MapPort(bool fUseUPnP);
 unsigned short GetListenPort();
@@ -147,7 +151,27 @@ bool IsReachable(const CNetAddr &addr);
 CAddress GetLocalAddress(const CNetAddr *paddrPeer = NULL);
 
 
- 
+extern bool fDiscover;
+extern bool fListen;
+extern uint64_t nLocalServices;
+extern uint64_t nLocalHostNonce;
+extern CAddrMan addrman;
+
+/** Maximum number of connections to simultaneously allow (aka connection slots) */
+extern int nMaxConnections;
+
+extern std::vector<CNode*> vNodes;
+extern CCriticalSection cs_vNodes;
+extern std::map<CInv, CDataStream> mapRelay;
+extern std::deque<std::pair<int64_t, CInv> > vRelayExpiration;
+extern CCriticalSection cs_mapRelay;
+extern limitedmap<uint256, int64_t> mapAlreadyAskedFor;
+
+extern std::vector<std::string> vAddedNodes;
+extern CCriticalSection cs_vAddedNodes;
+
+extern NodeId nLastNodeId;
+extern CCriticalSection cs_nLastNodeId;
 
 /** Subversion as sent to the P2P network in `version` messages */
 extern std::string strSubVersion;
@@ -292,7 +316,7 @@ class CNode
 {
 public:
     // socket
-    uint64_t nServices;
+    uint64_t nServices;  // 5 is support bloom filter and node network
     SOCKET hSocket;
     CDataStream ssSend;
     size_t nSendSize; // total size of all vSendMsg entries
@@ -309,7 +333,7 @@ public:
 
     int64_t nLastSend;
     int64_t nLastRecv;
-    int64_t nTimeConnected; //  now - nTimeConnected > 60 disconnect
+    int64_t nTimeConnected;  //now - nTimeConnected > 60 exec disconnect
     int64_t nTimeOffset;
     int64_t nLastWarningTime;
     CAddress addr;
@@ -334,10 +358,10 @@ public:
     // b) the peer may tell us in its version message that we should not relay tx invs
     //    unless it loads a bloom filter.
     bool fRelayTxes;
-    // If 'true' this node will be disconnected on CMasternodeMan::ProcessMasternodeConnections()
-    bool fMasternode;
+    // If 'true' this node will be disconnected on CPopnodeMan::ProcessPopnodeConnections()
+    bool fPopnode;
     CSemaphoreGrant grantOutbound;
-    CSemaphoreGrant grantMasternodeOutbound;
+    CSemaphoreGrant grantPopnodeOutbound;
     CCriticalSection cs_filter;
     CBloomFilter* pfilter;
     int nRefCount;
@@ -355,7 +379,7 @@ protected:
     static std::vector<CSubNet> vWhitelistedRange;
     static CCriticalSection cs_vWhitelistedRange;
 
-    // Basic fuzz-testing
+    // Basic fuzz-testing mo hu  test ,test robust
     void Fuzz(int nChance); // modifies ssSend
 
 public:
@@ -748,7 +772,7 @@ public:
     // new code.
     static void ClearBanned(); // needed for unit testing
     static bool IsBanned(CNetAddr ip);
-    static bool IsBanned(CSubNet suulord);
+    static bool IsBanned(CSubNet supop);
     static void Ban(const CNetAddr &ip, const BanReason &banReason, int64_t bantimeoffset = 0, bool sinceUnixEpoch = false);
     static void Ban(const CSubNet &subNet, const BanReason &banReason, int64_t bantimeoffset = 0, bool sinceUnixEpoch = false);
     static bool Unban(const CNetAddr &ip);
@@ -766,7 +790,7 @@ public:
     void copyStats(CNodeStats &stats);
 
     static bool IsWhitelistedRange(const CNetAddr &ip);
-    static void AddWhitelistedRange(const CSubNet &suulord);
+    static void AddWhitelistedRange(const CSubNet &supop);
 
     // Network stats
     static void RecordBytesRecv(uint64_t bytes);

@@ -1,12 +1,14 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#include "common.h"
+﻿#include "common.h"
 
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef MAC_OSX
+#include <sys/malloc.h>
+#else
 #include <malloc.h>
+#endif
 
 void view_data_u8(const char *mess, 
 		uint8_t *data, uint32_t len) {

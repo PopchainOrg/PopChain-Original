@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2018 The Popchain Core Developers
+
 
 #include <QtGlobal>
 
@@ -77,10 +77,10 @@ QT_TRANSLATE_NOOP("pop-core", ""
 "Execute command when the best block changes (%s in cmd is replaced by block "
 "hash)"),
 QT_TRANSLATE_NOOP("pop-core", ""
-"Fees (in ULD/Kb) smaller than this are considered zero fee for relaying "
+"Fees (in PCH/Kb) smaller than this are considered zero fee for relaying "
 "(default: %s)"),
 QT_TRANSLATE_NOOP("pop-core", ""
-"Fees (in ULD/Kb) smaller than this are considered zero fee for transaction "
+"Fees (in PCH/Kb) smaller than this are considered zero fee for transaction "
 "creation (default: %s)"),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Flush database activity from memory pool to disk log every <n> megabytes "
@@ -167,10 +167,10 @@ QT_TRANSLATE_NOOP("pop-core", ""
 "Unable to locate enough PrivateSend denominated funds for this transaction."),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Unable to locate enough PrivateSend non-denominated funds for this transaction "
-"that are not equal 1000 ULD."),
+"that are not equal 1000 PCH."),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Unable to locate enough funds for this transaction that are not equal 1000 "
-"ULD."),
+"PCH."),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: "
 "%s)"),
@@ -270,7 +270,7 @@ QT_TRANSLATE_NOOP("pop-core", "Error: Wallet locked, unable to create transactio
 QT_TRANSLATE_NOOP("pop-core", "Error: You already have pending entries in the PrivateSend pool"),
 QT_TRANSLATE_NOOP("pop-core", "Failed to listen on any port. Use -listen=0 if you want this."),
 QT_TRANSLATE_NOOP("pop-core", "Failed to read block"),
-QT_TRANSLATE_NOOP("pop-core", "Fee (in ULD/kB) to add to transactions you send (default: %s)"),
+QT_TRANSLATE_NOOP("pop-core", "Fee (in PCH/kB) to add to transactions you send (default: %s)"),
 QT_TRANSLATE_NOOP("pop-core", "Finalizing transaction."),
 QT_TRANSLATE_NOOP("pop-core", "Force safe mode (default: %u)"),
 QT_TRANSLATE_NOOP("pop-core", "Found enough users, signing ( waiting %s )"),
@@ -303,7 +303,7 @@ QT_TRANSLATE_NOOP("pop-core", "Invalid private key."),
 QT_TRANSLATE_NOOP("pop-core", "Invalid script detected."),
 QT_TRANSLATE_NOOP("pop-core", "KeePassHttp id for the established association"),
 QT_TRANSLATE_NOOP("pop-core", "KeePassHttp key for AES encrypted communication with KeePass"),
-QT_TRANSLATE_NOOP("pop-core", "Keep N ULD anonymized (default: %u)"),
+QT_TRANSLATE_NOOP("pop-core", "Keep N PCH anonymized (default: %u)"),
 QT_TRANSLATE_NOOP("pop-core", "Keep at most <n> unconnectable transactions in memory (default: %u)"),
 QT_TRANSLATE_NOOP("pop-core", "Last PrivateSend was too recent."),
 QT_TRANSLATE_NOOP("pop-core", "Last successful PrivateSend action was too recent."),
@@ -396,7 +396,7 @@ QT_TRANSLATE_NOOP("pop-core", "Synchronizing popnode winners..."),
 QT_TRANSLATE_NOOP("pop-core", "Synchronizing popnodes..."),
 QT_TRANSLATE_NOOP("pop-core", "Synchronizing sporks..."),
 QT_TRANSLATE_NOOP("pop-core", "This help message"),
-QT_TRANSLATE_NOOP("pop-core", "This is experimental software."),
+QT_TRANSLATE_NOOP("pop-core", "This is Pop full-node wallet client"),
 QT_TRANSLATE_NOOP("pop-core", "This is intended for regression testing tools and app development."),
 QT_TRANSLATE_NOOP("pop-core", "This is not a Popnode."),
 QT_TRANSLATE_NOOP("pop-core", "Threshold for disconnecting misbehaving peers (default: %u)"),

@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#ifndef C_SHA512_H
+﻿#ifndef C_SHA512_H
 #define C_SHA512_H
 
 #include <stdint.h>
@@ -10,9 +8,9 @@ extern "C" {
 #endif
 
 	/*
-     * FUNCTION：one-way function SHA512
-     *      1. input : message
-     *		2. output：return
+	 * 功能：单向函数 SHA512
+	 * 输入：1. input ：输入消息
+	 *		 2. output：输出结果
 	*/
 	extern void crypto_sha512(uint8_t *input, uint32_t inputLen, uint8_t *output);
 

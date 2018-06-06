@@ -1,8 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "primitives/block.h"
 
@@ -16,7 +12,7 @@ uint256 CBlockHeader::GetHash() const
 //	return SerializeHash(*this);
 	uint256 hash;
 
-	CryptoHello(this, (unsigned char *)&hash);
+	CryptoPop(this, (unsigned char *)&hash);
 //	view_data_u8("PoW 3", (unsigned char *)&hash, OUTPUT_LEN); 
 //	std::cout<<"gethex() ="<<hash.GetHex()<<std::endl;
 //	std::cout<<"tostring ="<<hash.ToString()<<std::endl; 

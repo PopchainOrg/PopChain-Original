@@ -220,17 +220,17 @@ int main(int argc, char** argv) {
   CheckGet(db, roptions, "foo", NULL);
 
   StartPhase("put");
-  leveldb_put(db, woptions, "foo", 3, "hello", 5, &err);
+  leveldb_put(db, woptions, "foo", 3, "cryptopop", 5, &err);
   CheckNoError(err);
-  CheckGet(db, roptions, "foo", "hello");
+  CheckGet(db, roptions, "foo", "cryptopop");
 
   StartPhase("compactall");
   leveldb_compact_range(db, NULL, 0, NULL, 0);
-  CheckGet(db, roptions, "foo", "hello");
+  CheckGet(db, roptions, "foo", "cryptopop");
 
   StartPhase("compactrange");
   leveldb_compact_range(db, "a", 1, "z", 1);
-  CheckGet(db, roptions, "foo", "hello");
+  CheckGet(db, roptions, "foo", "cryptopop");
 
   StartPhase("writebatch");
   {
@@ -242,7 +242,7 @@ int main(int argc, char** argv) {
     leveldb_writebatch_delete(wb, "bar", 3);
     leveldb_write(db, woptions, wb, &err);
     CheckNoError(err);
-    CheckGet(db, roptions, "foo", "hello");
+    CheckGet(db, roptions, "foo", "cryptopop");
     CheckGet(db, roptions, "bar", NULL);
     CheckGet(db, roptions, "box", "c");
     int pos = 0;
@@ -259,13 +259,13 @@ int main(int argc, char** argv) {
     CheckCondition(leveldb_iter_valid(iter));
     CheckIter(iter, "box", "c");
     leveldb_iter_next(iter);
-    CheckIter(iter, "foo", "hello");
+    CheckIter(iter, "foo", "cryptopop");
     leveldb_iter_prev(iter);
     CheckIter(iter, "box", "c");
     leveldb_iter_prev(iter);
     CheckCondition(!leveldb_iter_valid(iter));
     leveldb_iter_seek_to_last(iter);
-    CheckIter(iter, "foo", "hello");
+    CheckIter(iter, "foo", "cryptopop");
     leveldb_iter_seek(iter, "b", 1);
     CheckIter(iter, "box", "c");
     leveldb_iter_get_error(iter, &err);
@@ -313,7 +313,7 @@ int main(int argc, char** argv) {
     leveldb_delete(db, woptions, "foo", 3, &err);
     CheckNoError(err);
     leveldb_readoptions_set_snapshot(roptions, snap);
-    CheckGet(db, roptions, "foo", "hello");
+    CheckGet(db, roptions, "foo", "cryptopop");
     leveldb_readoptions_set_snapshot(roptions, NULL);
     CheckGet(db, roptions, "foo", NULL);
     leveldb_release_snapshot(db, snap);

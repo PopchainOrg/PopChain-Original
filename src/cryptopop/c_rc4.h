@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#ifndef C_RC4_H
+﻿#ifndef C_RC4_H
 #define C_RC4_H
 
 #include <stdint.h>

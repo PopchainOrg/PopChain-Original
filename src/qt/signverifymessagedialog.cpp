@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "signverifymessagedialog.h"
 #include "ui_signverifymessagedialog.h"
@@ -29,6 +25,7 @@ SignVerifyMessageDialog::SignVerifyMessageDialog(const PlatformStyle *platformSt
     platformStyle(platformStyle)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Dialog|Qt::WindowCloseButtonHint);
 
 #if QT_VERSION >= 0x040700
     ui->signatureOut_SM->setPlaceholderText(tr("Click \"Sign Message\" to generate signature"));
@@ -42,10 +39,10 @@ SignVerifyMessageDialog::SignVerifyMessageDialog(const PlatformStyle *platformSt
     ui->verifyMessageButton_VM->setIcon(QIcon());
     ui->clearButton_VM->setIcon(QIcon());
 #else
-    ui->signMessageButton_SM->setIcon(QIcon(":/icons/" + theme + "/edit"));
-    ui->clearButton_SM->setIcon(QIcon(":/icons/" + theme + "/remove"));
-    ui->verifyMessageButton_VM->setIcon(QIcon(":/icons/" + theme + "/transaction_0"));
-    ui->clearButton_VM->setIcon(QIcon(":/icons/" + theme + "/remove"));
+    // ui->signMessageButton_SM->setIcon(QIcon(":/icons/" + theme + "/edit"));
+    // ui->clearButton_SM->setIcon(QIcon(":/icons/" + theme + "/remove"));
+    // ui->verifyMessageButton_VM->setIcon(QIcon(":/icons/" + theme + "/transaction_0"));
+    // ui->clearButton_VM->setIcon(QIcon(":/icons/" + theme + "/remove"));
 #endif
 
     // These icons are needed on Mac also

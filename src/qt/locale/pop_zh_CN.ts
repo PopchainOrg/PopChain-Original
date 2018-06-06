@@ -63,11 +63,11 @@
     </message>
     <message>
         <source>These are your Pop addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这些是你要付款过去的Pop地址。在付款之前，务必要检查金额和收款地址是否正确。</translation>
+        <translation>这些是您要付款过去的Pop地址。在付款之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
         <source>These are your Pop addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
-        <translation>这些是你用来收款的Pop地址。建议在每次交易时，都使用一个新的收款地址。</translation>
+        <translation>这些是您用来收款的Pop地址。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -152,6 +152,14 @@
         <translation>此操作需要您首先使用密码解锁该钱包。</translation>
     </message>
     <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
         <source>Unlock wallet</source>
         <translation>解锁钱包</translation>
     </message>
@@ -168,16 +176,16 @@
         <translation>更改密码</translation>
     </message>
     <message>
-        <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>请输入该钱包的旧密码与新密码。</translation>
+        <source>Enter the old passphrase and new passphrase to the wallet.</source>
+        <translation>请输入钱包的旧密码与新密码。</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
         <translation>确认加密钱包</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
-        <translation>警告:如果把钱包加​​密后又忘记密码，你就会从此&lt;b&gt;失去所有的Pop了&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
+        <translation>警告:如果把钱包加​​密后又忘记密码，您就会从此&lt;b&gt;失去所有的Pop了&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -189,7 +197,7 @@
     </message>
     <message>
         <source>Pop will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your pops from being stolen by malware infecting your computer.</source>
-        <translation>Pop软体现在要关闭，以完成加密过程。请注意，加密钱包不能完全防止恶意软件入侵你的电脑盗取你的Pop。</translation>
+        <translation>Pop软体现在要关闭，以完成加密过程。请注意，加密钱包不能完全防止恶意软件入侵您的电脑盗取您的Pop。</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
@@ -224,6 +232,14 @@
         <translation>修改钱包密码成功。</translation>
     </message>
     <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
         <source>Warning: The Caps Lock key is on!</source>
         <translation>警告：大写锁定键处于打开状态！</translation>
     </message>
@@ -232,7 +248,7 @@
     <name>BitcoinGUI</name>
     <message>
         <source>Pop Core</source>
-        <translation>Pop核心</translation>
+        <translation>Pop全节点钱包</translation>
     </message>
     <message>
         <source>Wallet</source>
@@ -244,7 +260,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>概况(&amp;O)</translation>
+        <translation>概况&amp;</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -252,7 +268,7 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>发送(&amp;S)</translation>
+        <translation>转账&amp;</translation>
     </message>
     <message>
         <source>Send coins to a Pop address</source>
@@ -260,7 +276,7 @@
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>接收(&amp;R)</translation>
+        <translation>收款&amp;</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and pop: URIs)</source>
@@ -268,7 +284,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>交易记录(&amp;T)</translation>
+        <translation>交易记录&amp;</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -283,16 +299,20 @@
         <translation>退出程序</translation>
     </message>
     <message>
+        <source>&amp;Popnodes</source>
+        <translation>主节点&amp;</translation>
+    </message>
+    <message>
         <source>&amp;About Pop Core</source>
-        <translation>&amp;关于Pop核心</translation>
+        <translation>关于Pop全节点钱包&amp;</translation>
     </message>
     <message>
         <source>Show information about Pop Core</source>
-        <translation>显示关于Pop核心信息</translation>
+        <translation>显示关于Pop全节点钱包信息</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>关于 &amp;Qt</translation>
+        <translation>关于Qt&amp;</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
@@ -352,11 +372,11 @@
     </message>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>消息签名(&amp;M)...</translation>
+        <translation>签名消息(&amp;M)...</translation>
     </message>
     <message>
         <source>Sign messages with your Pop addresses to prove you own them</source>
-        <translation>用Pop地址签署讯息来证明地址是你的</translation>
+        <translation>用Pop地址签署讯息来证明地址是您的</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
@@ -392,7 +412,7 @@
     </message>
     <message>
         <source>&amp;Peers list</source>
-        <translation>&amp;节点列表</translation>
+        <translation>节点列表&amp;</translation>
     </message>
     <message>
         <source>Show peers info</source>
@@ -400,19 +420,31 @@
     </message>
     <message>
         <source>Wallet &amp;Repair</source>
-        <translation>钱包&amp;修复</translation>
+        <translation>钱包修复&amp;</translation>
     </message>
     <message>
         <source>Show wallet repair options</source>
         <translation>显示钱包修复选项</translation>
     </message>
     <message>
-        <source>Open &amp;Configuration File</source>
-        <translation>打开 &amp;配置文件</translation>
+        <source>Open Wallet &amp;Configuration File</source>
+        <translation>打开配置文件&amp;</translation>
+    </message>
+    <message>
+        <source>Open &amp;Popnode Configuration File</source>
+        <translation>打开主节点配置文件&amp;</translation>
     </message>
     <message>
         <source>Open configuration file</source>
         <translation>打开配置文件</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Show Automatic &amp;Backups</source>
@@ -424,7 +456,7 @@
     </message>
     <message>
         <source>&amp;Sending addresses...</source>
-        <translation>&amp;付款地址 </translation>
+        <translation>付款地址&amp;</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -432,7 +464,7 @@
     </message>
     <message>
         <source>&amp;Receiving addresses...</source>
-        <translation>&amp;收款地址</translation>
+        <translation>收款地址&amp;</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
@@ -443,19 +475,19 @@
         <translation>打开 &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>打开Pop：网页或付款请求</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>&amp;命令行 选项</translation>
+        <translation>命令行选项&amp;</translation>
     </message>
     <message>
         <source>Pop Core client</source>
-        <translation>Pop核心客户端</translation>
+        <translation>Pop全节点钱包客户端</translation>
     </message>
     <message numerus="yes">
-        <source>Processed %n blocks of transaction history.</source>
+        <source>Processed %n block(s) of transaction history.</source>
         <translation><numerusform>已处理了%n个区块的交易记录.</numerusform></translation>
     </message>
     <message>
@@ -464,7 +496,7 @@
     </message>
     <message>
         <source>Show the Pop Core help message to get a list with possible Pop command-line options</source>
-        <translation>打开Pop核心帮助信息取得可使用的命令行列表</translation>
+        <translation>打开Pop全节点钱包帮助信息取得可使用的命令行列表</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -488,7 +520,7 @@
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Pop network</source>
-        <translation><numerusform>%n 已连接至Pop网络</numerusform></translation>
+        <translation><numerusform>已连接%n个节点</numerusform></translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
@@ -742,7 +774,7 @@ Address: %4
     </message>
     <message>
         <source>Non-anonymized input selected. &lt;b&gt;Darksend will be disabled.&lt;/b&gt;&lt;br&gt;&lt;br&gt;If you still want to use Darksend, please deselect all non-nonymized inputs first and then check Darksend checkbox again.</source>
-        <translation>已选择非匿名输入. &lt;b&gt;匿名发送将会被禁用.&lt;/ b&gt;&lt;br&gt; &lt;br&gt;如果你仍然想使用匿名发送功能,请先取消所选的非匿名输入,然后再勾选匿名发送.</translation>
+        <translation>已选择非匿名输入. &lt;b&gt;匿名发送将会被禁用.&lt;/ b&gt;&lt;br&gt; &lt;br&gt;如果您仍然想使用匿名发送功能,请先取消所选的非匿名输入,然后再勾选匿名发送.</translation>
     </message>
     <message>
         <source>highest</source>
@@ -864,11 +896,11 @@ Address: %4
         <translation>请选择隐私等级。</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
         <translation>使用2个独立的主节点混合资金最多1000Pop</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
         <translation>使用8个独立的主节点混合资金最多1000Pop</translation>
     </message>
     <message>
@@ -876,15 +908,15 @@ Address: %4
         <translation>使用16个独立主节点</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
         <translation>此选项为最快速度，需要支付0.025Pop/1000Pop的匿名处理费用。</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
         <translation>此选项为一般速度，需要支付0.05Pop/1000Pop的匿名处理费用。</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
         <translation>0.1Pop/1000Pop的匿名处理费用。</translation>
     </message>
     <message>
@@ -990,7 +1022,7 @@ Address: %4
     <name>HelpMessageDialog</name>
     <message>
         <source>Pop Core</source>
-        <translation>Pop核心</translation>
+        <translation>Pop全节点钱包</translation>
     </message>
     <message>
         <source>version</source>
@@ -1002,7 +1034,15 @@ Address: %4
     </message>
     <message>
         <source>About Pop Core</source>
-        <translation>关于 Pop核心</translation>
+        <translation>关于Pop全节点钱包</translation>
+    </message>
+    <message>
+        <source>This is Pop full-node wallet client</source>
+        <translation>本软件为Pop全节点钱包客户端，同步完整的区块链数据，提供最完整的区块信息。&lt;br/&gt;本地验证交易数据的有效性,完全去中心化钱包，记录链上交易。&lt;br/&gt;适用于专业技术人员及区块链爱好者。</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Command-line options</source>
@@ -1050,15 +1090,15 @@ Address: %4
     </message>
     <message>
         <source>Welcome to Pop Core.</source>
-        <translation>欢迎来到Pop核心。</translation>
+        <translation>欢迎来到Pop全节点钱包。</translation>
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where Pop Core will store its data.</source>
-        <translation>此次为第一次程序启动，你可以选择储存Pop核心数据的路径。</translation>
+        <translation>此次为第一次程序启动，您可以选择储存Pop全节点钱包数据的路径。</translation>
     </message>
     <message>
         <source>Pop Core will download and store a copy of the Pop block chain. At least %1GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
-        <translation>Pop核心将会下载并存储Pop数据链。至少有%1GB的数据会保存到此路径下，并且随着时间增长。钱包文件也将存储到此路径下。</translation>
+        <translation>Pop全节点钱包将会下载并存储Pop数据链。至少有%1GB的数据会保存到此路径下，并且随着时间增长。钱包文件也将存储到此路径下。</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
@@ -1070,7 +1110,7 @@ Address: %4
     </message>
     <message>
         <source>Pop Core</source>
-        <translation>Pop核心</translation>
+        <translation>Pop全节点钱包</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -1093,7 +1133,15 @@ Address: %4
     <name>OpenURIDialog</name>
     <message>
         <source>Open URI</source>
-        <translation>打开 URI</translation>
+        <translation>打开URI</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Open payment request from URI or file</source>
@@ -1129,6 +1177,34 @@ Address: %4
     <message>
         <source>&amp;Start Pop on system login</source>
         <translation>&amp;系统登录时启动Pop程序</translation>
+    </message>
+    <message>
+        <source>&amp;Start Pop Core on system login</source>
+        <translation>开机启动&amp;</translation>
+    </message>
+    <message>
+        <source>Automatically start Pop Core after logging in to the system.</source>
+        <translation>开机启动pop</translation>
+    </message>
+    <message>
+        <source>Show Popnodes Tab</source>
+        <translation>显示主节点窗口</translation>
+    </message>
+    <message>
+        <source>Automatically open the Pop Core client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>自动打开路由器上的Pop Core客户端端口。 这只适用于您的路由器支持UPnP并且已启用。</translation>
+    </message>
+    <message>
+        <source>Used for reaching peers via:</source>
+        <translation>通过以下方式连接对等节点</translation>
+    </message>
+    <message>
+        <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services:</source>
+        <translation>使用SOCKS5代理</translation>
+    </message>
+    <message>
+        <source>Shows, if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
+        <translation>如果选择使用SOCKS5代理，可修改</translation>
     </message>
     <message>
         <source>Size of &amp;database cache</source>
@@ -1196,7 +1272,7 @@ Address: %4
     </message>
     <message>
         <source>Enable coin &amp;control features</source>
-        <translation>启动货币 &amp;控制功能</translation>
+        <translation>启动货币控制功能&amp;</translation>
     </message>
     <message>
         <source>&amp;Spend unconfirmed change</source>
@@ -1243,7 +1319,7 @@ Address: %4
         <translation>最小化到托盘(&amp;M)</translation>
     </message>
     <message>
-        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
         <translation>当窗口关闭时程序最小化而不是退出。当使用该选项时，程序只能通过在菜单中选择退出来关闭</translation>
     </message>
     <message>
@@ -1259,7 +1335,7 @@ Address: %4
         <translation>用户界面语言(&amp;L)：</translation>
     </message>
     <message>
-        <source>The user interface language can be set here. This setting will take effect after restarting Pop.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting Pop Core.</source>
         <translation>用户界面语言在这里设置。在重启Pop程序后生效。</translation>
     </message>
     <message>
@@ -1285,7 +1361,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>小数位数</translation>
     </message>
     <message>
-        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
+        <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items.&lt;br/&gt;%s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
         <translation>出现在交易的选项卡的上下文菜单项的第三方网址 (例如：区块链接查询) 。 %s的URL被替换为交易哈希。多个的URL需要竖线 | 分隔。</translation>
     </message>
     <message>
@@ -1432,7 +1508,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>数量与循环次数:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
+        <source>0 PCH / 0 Rounds</source>
         <translation>0 Pop / 0 循环数</translation>
     </message>
     <message>
@@ -1457,7 +1533,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>The denominations you submitted to the Popnode.&lt;br&gt;To mix, other users must submit the exact same denominations.</source>
-        <translation>您向主节点所提交的用以面额化混合的ULD,&lt;br&gt;当其他用户提交相同的面额化UT数量时,将开始混合.</translation>
+        <translation>您向主节点所提交的用以面额化混合的UT,&lt;br&gt;当其他用户提交相同的面额化UT数量时,将开始混合.</translation>
     </message>
     <message>
         <source>(Last Message)</source>
@@ -1762,7 +1838,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>&amp;Open</source>
-        <translation>打开(&amp;O)</translation>
+        <translation>打开调式日志&amp;</translation>
     </message>
     <message>
         <source>Startup time</source>
@@ -1793,6 +1869,18 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>当前数据块数量</translation>
     </message>
     <message>
+        <source>Memory Pool</source>
+        <translation>内存池</translation>
+    </message>
+    <message>
+        <source>Current number of transactions</source>
+        <translation>当前交易数量</translation>
+    </message>
+    <message>
+        <source>Memory usage</source>
+        <translation>内存池占用内存</translation>
+    </message>
+    <message>
         <source>Client version</source>
         <translation>客户端版本</translation>
     </message>
@@ -1807,6 +1895,14 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Number of Popnodes</source>
         <translation>主节点数量</translation>
+    </message>
+    <message>
+        <source>Pop Core</source>
+        <translation>Pop全节点钱包</translation>
+    </message>
+    <message>
+        <source>Total:%1</source>
+        <translation>总量：%1</translation>
     </message>
     <message>
         <source>&amp;Console</source>
@@ -1838,7 +1934,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>&amp;Peers</source>
-        <translation>&amp;节点</translation>
+        <translation>节点&amp;</translation>
     </message>
     <message>
         <source>Select a peer to view detailed information.</source>
@@ -1863,6 +1959,30 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Starting Height</source>
         <translation>起始高度</translation>
+    </message>
+    <message>
+        <source>Whitelisted</source>
+        <translation>位于白名单</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>否</translation>
+    </message>
+    <message>
+        <source>Starting Block</source>
+        <translation>起始区块</translation>
+    </message>
+    <message>
+        <source>Synced Headers</source>
+        <translation>已同步区块头</translation>
+    </message>
+    <message>
+        <source>Synced Blocks</source>
+        <translation>已同步区块</translation>
     </message>
     <message>
         <source>Sync Height</source>
@@ -1897,8 +2017,12 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Ping 时间</translation>
     </message>
     <message>
+        <source>Time Offset</source>
+        <translation>时间偏移</translation>
+    </message>
+    <message>
         <source>&amp;Wallet Repair</source>
-        <translation>&amp;钱包修复</translation>
+        <translation>钱包修复&amp;</translation>
     </message>
     <message>
         <source>Salvage wallet</source>
@@ -2033,7 +2157,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>&amp;Message:</source>
-        <translation>消息(&amp;M)：</translation>
+        <translation>消息：&amp;</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2048,8 +2172,24 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>使用此表单要求付款。所有字段都是&lt;b&gt;可选&lt;/b&gt;。</translation>
     </message>
     <message>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation>撤销</translation>
+    </message>
+    <message>
         <source>&amp;Label:</source>
-        <translation>标签(&amp;L)：</translation>
+        <translation>标签：&amp;</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
@@ -2057,11 +2197,11 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>&amp;Amount:</source>
-        <translation>总额(&amp;A)：</translation>
+        <translation>总额：&amp;</translation>
     </message>
     <message>
         <source>&amp;Request payment</source>
-        <translation>请求付款(&amp;R)</translation>
+        <translation>请求付款&amp;</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -2282,7 +2422,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Choose...</source>
-        <translation>选择...</translation>
+        <translation>展开选项</translation>
     </message>
     <message>
         <source>collapse fee-settings</source>
@@ -2330,7 +2470,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
-        <translation>(手续费演算法还没有准备好.通常都要等几个块才可以...)</translation>
+        <translation>(交易费根据近期的交易费计算...)</translation>
     </message>
     <message>
         <source>Confirmation time:</source>
@@ -2358,7 +2498,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>S&amp;end</source>
-        <translation>发送(&amp;E)</translation>
+        <translation>发送&amp;</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
@@ -2366,7 +2506,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
-        <translation>清除所有(&amp;A)</translation>
+        <translation>清除所有&amp;</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
@@ -2374,7 +2514,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
-        <translation>添加收款人(&amp;R)</translation>
+        <translation>添加收款人&amp;</translation>
     </message>
     <message>
         <source>Darksend</source>
@@ -2437,20 +2577,25 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>全部有效金额(不推荐)</translation>
     </message>
     <message>
+        <source>any available funds (not anonymous)</source>
+        <translation>发送</translation>
+    </message>
+    <message>
         <source>and InstantX</source>
         <translation>和 即时支付</translation>
     </message>
     <message>
         <source>%1 to %2</source>
-        <translation>%1 到 %2</translation>
+        <translation>%1到： %2</translation>
     </message>
+
     <message>
         <source>Are you sure you want to send?</source>
         <translation>您确定要发出吗？</translation>
     </message>
     <message>
         <source>are added as transaction fee</source>
-        <translation>作为交易费被添加</translation>
+        <translation>交易费</translation>
     </message>
     <message>
         <source>Total Amount = &lt;b&gt;%1&lt;/b&gt;&lt;br /&gt;= %2</source>
@@ -2459,6 +2604,18 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Confirm send coins</source>
         <translation>确认发送货币</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;(%1 of %2 entries displayed)&lt;/b&gt;</source>
+        <translation>&lt;b&gt;(显示%2个条目中的%1个)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
     </message>
     <message>
         <source>A fee %1 times higher than %2 per kB is considered an insanely high fee.</source>
@@ -2528,8 +2685,36 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>从金额中扣除费用</translation>
     </message>
     <message>
+        <source>Ok</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less pops than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>收款人承担费用。</translation>
+    </message>
+    <message>
         <source>Pay &amp;To:</source>
-        <translation>付给(&amp;T)：</translation>
+        <translation>收款人：&amp;</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation>撤销</translation>
     </message>
     <message>
         <source>The Pop address to send the payment to</source>
@@ -2557,7 +2742,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>&amp;Label:</source>
-        <translation>标签(&amp;L)：</translation>
+        <translation>标  签：&amp;</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
@@ -2565,7 +2750,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>A&amp;mount:</source>
-        <translation>金额(&amp;M)：</translation>
+        <translation>金  额：&amp;</translation>
     </message>
     <message>
         <source>Message:</source>
@@ -2600,7 +2785,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     <name>ShutdownWindow</name>
     <message>
         <source>Pop Core is shutting down...</source>
-        <translation>Pop核心正在关闭...</translation>
+        <translation>Pop全节点钱包正在关闭...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
@@ -2618,8 +2803,12 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>签名消息(&amp;S)</translation>
     </message>
     <message>
-        <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>您可以用你的地址对消息进行签名，以证明您是该地址的所有人。注意不要对模棱两可的消息签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>您可以用您的地址对消息进行签名，以证明您是该地址的所有人。注意不要对模棱两可的消息签名，以免遭受钓鱼式攻击。请确保消息内容准确的表达了您的真实意愿。</translation>
+    </message>
+    <message>
+        <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
+        <translation>输入接收者的地址，消息（确保您完全复制换行符，空格，制表符等）和签名以验证消息。 注意不要在签名中读入多余的内容，以避免中间人攻击。 此外，它不能证明任何交易的发送！</translation>
     </message>
     <message>
         <source>The Pop address to sign the message with</source>
@@ -2655,7 +2844,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Sign the message to prove you own this Pop address</source>
-        <translation>签署信息证明你拥有此Pop地址</translation>
+        <translation>签署信息证明您拥有此Pop地址</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2750,7 +2939,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     <name>SplashScreen</name>
     <message>
         <source>Pop Core</source>
-        <translation>Pop核心</translation>
+        <translation>Pop全节点钱包</translation>
     </message>
     <message>
         <source>Version %1</source>
@@ -2765,7 +2954,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Dash的开发者</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Pop基金会</translation>
     </message>
     <message>
@@ -2816,7 +3005,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>%1 confirmations</source>
-        <translation>%1 已确认</translation>
+        <translation>%1个确认</translation>
     </message>
     <message>
         <source>%1/offline (InstantX verification in progress - %2 of %3 signatures)</source>
@@ -2848,7 +3037,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message numerus="yes">
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>，通过%n多个节点广播</numerusform></translation>
+        <translation><numerusform>，通过%n个节点广播</numerusform></translation>
     </message>
     <message>
         <source>Date</source>
@@ -2932,7 +3121,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>生成的Pop在可以使用前必须有 %1 个成熟的区块。当您生成了此区块后，它将被广播到网络中以加入区块链。如果它未成功进入区块链，其状态将变更为“不接受”并且不可使用。这可能偶尔会发生，如果另一个节点比你早几秒钟成功生成一个区块。</translation>
+        <translation>生成的Pop在可以使用前必须有 %1 个成熟的区块。当您生成了此区块后，它将被广播到网络中以加入区块链。如果它未成功进入区块链，其状态将变更为“不接受”并且不可使用。这可能偶尔会发生，如果另一个节点比您早几秒钟成功生成一个区块。</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -2969,6 +3158,14 @@ https://www.transifex.com/projects/p/pop/</translation>
         <source>This pane shows a detailed description of the transaction</source>
         <translation>当前面板显示了交易的详细信息</translation>
     </message>
+    <message>
+        <source>Close</source>
+        <translation>关闭</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
 </context>
 <context>
     <name>TransactionTableModel</name>
@@ -2979,6 +3176,10 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Type</source>
         <translation>类型</translation>
+    </message>
+    <message>
+        <source>Address / Label</source>
+        <translation>地址 / 标签</translation>
     </message>
     <message>
         <source>Address</source>
@@ -3026,7 +3227,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Received with</source>
-        <translation>接收于</translation>
+        <translation>收款</translation>
     </message>
     <message>
         <source>Received from</source>
@@ -3038,7 +3239,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Sent to</source>
-        <translation>发送给</translation>
+        <translation>付款</translation>
     </message>
     <message>
         <source>Payment to yourself</source>
@@ -3074,7 +3275,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>(n/a)</source>
-        <translation>（不可用）</translation>
+        <translation>（付款到自己的地址）</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
@@ -3133,11 +3334,11 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Received with</source>
-        <translation>接收于</translation>
+        <translation>收款</translation>
     </message>
     <message>
         <source>Sent to</source>
-        <translation>发送给</translation>
+        <translation>付款</translation>
     </message>
     <message>
         <source>Darksent</source>
@@ -3176,6 +3377,22 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>输入地址或标签进行搜索</translation>
     </message>
     <message>
+        <source>Copy</source>
+        <translation>复制</translation>
+    </message>
+    <message>
+        <source>Paste</source>
+        <translation>粘贴</translation>
+    </message>
+    <message>
+        <source>Cut</source>
+        <translation>剪切</translation>
+    </message>
+    <message>
+        <source>Undo</source>
+        <translation>撤销</translation>
+    </message>
+    <message>
         <source>Min amount</source>
         <translation>最小金额</translation>
     </message>
@@ -3194,6 +3411,10 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Copy transaction ID</source>
         <translation>复制交易编号</translation>
+    </message>
+    <message>
+        <source>Copy raw transaction</source>
+        <translation>复制原始交易</translation>
     </message>
     <message>
         <source>Edit label</source>
@@ -3281,7 +3502,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>发送Pop</translation>
     </message>
     <message>
-        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 ULD.</source>
+        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.</source>
         <translation>即时支付功能目前还不支持发送如此高的金额.目前限制在%1 Pop.</translation>
     </message>
 </context>
@@ -3332,7 +3553,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. Pop Core is probably already running.</source>
-        <translation>不能获得锁定的数据目录 %s. Pop核心可能已经在运行。</translation>
+        <translation>不能获得锁定的数据目录 %s. Pop全节点钱包可能已经在运行。</translation>
     </message>
     <message>
         <source>Darksend uses exact denominated amounts to send funds, you might simply need to anonymize some more coins.</source>
@@ -3364,19 +3585,19 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. Pop Core is probably already running.</source>
-        <translation>无法绑定%s此计算机. Pop核心应该已经在运行中了.</translation>
+        <translation>无法绑定%s此计算机. Pop全节点钱包应该已经在运行中了.</translation>
     </message>
     <message>
         <source>Unable to locate enough Darksend denominated funds for this transaction.</source>
-        <translation>无法找到足够的已匿名化资金来完成交易,不足1000 ULD.</translation>
+        <translation>无法找到足够的已匿名化资金来完成交易,不足1000 PCH.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>无法找到足够的未匿名化资金来完成交易,不足1000 ULD.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>无法找到足够的未匿名化资金来完成交易,不足1000 PCH.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>警告: -paytxfee 设定了很高的金额！这可是你交易付款所要付的手续费。</translation>
+        <translation>警告: -paytxfee 设定了很高的金额！这可是您交易付款所要付的手续费。</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3384,7 +3605,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Warning: We do not appear to fully agree with our peers! You may need to upgrade, or other nodes may need to upgrade.</source>
-        <translation>警告: 我们和某些连线的节点对于区块链结的决定不同！你可能需要升级，或是需要等其它的节点升级。</translation>
+        <translation>警告: 我们和某些连线的节点对于区块链结的决定不同！您可能需要升级，或是需要等其它的节点升级。</translation>
     </message>
     <message>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
@@ -3392,7 +3613,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>警告: 钱包档wallet.dat 损坏，但资料被拯救回来了！原来的wallet.dat 会改储存在%s, 档名是wallet.{timestamp}.bak. 如果余额或交易资料有误，你应该要用备份资料复原回来。</translation>
+        <translation>警告: 钱包档wallet.dat 损坏，但资料被拯救回来了！原来的wallet.dat 会改储存在%s, 档名是wallet.{timestamp}.bak. 如果余额或交易资料有误，您应该要用备份资料复原回来。</translation>
     </message>
     <message>
         <source>You must specify a popnodeprivkey in the configuration. Please see documentation for help.</source>
@@ -3484,7 +3705,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Do you want to rebuild the block database now?</source>
-        <translation>你想要现在重建区块资料库吗？</translation>
+        <translation>您想要现在重建区块资料库吗？</translation>
     </message>
     <message>
         <source>Done loading</source>
@@ -3567,11 +3788,11 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>允许存储在这个钱包内的资金自动使用匿名发送(0-1, 默认: %u)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
         <translation>如果手续费比这个值低,就视为没有付手续费(当产生交易时)(默认: %s)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
         <translation>如果手续费比这个值低,就视为没有付手续费(当产生交易时)(默认: %s)</translation>
     </message>
     <message>
@@ -3615,8 +3836,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>此产品包括了由OpenSSL Project所开发的OpenSSL Toolkit 软件&lt;https://www.openssl.org/&gt;, 和由Eric Young 编写的加密软件, 以及由Thomas Bernard 编写的UPnP软件.</translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>无法找到足够的资金完成交易,不足1000 ULD.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>无法找到足够的资金完成交易,不足1000 PCH.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3628,7 +3849,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Warning: Please check that your computer's date and time are correct! If your clock is wrong Pop Core will not work properly.</source>
-        <translation>警告: 请检查电脑日期和时间是否正确！Pop核心没办法在时钟不准的情况下正常运作。</translation>
+        <translation>警告: 请检查电脑日期和时间是否正确！Pop全节点钱包没办法在时钟不准的情况下正常运作。</translation>
     </message>
     <message>
         <source>Whitelist peers connecting from the given netmask or IP address. Can be specified multiple times.</source>
@@ -3678,7 +3899,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Copyright (C) 2014-%i The Dash Core Developers</source>
-        <translation>版权 (C) 2017-%i The Pop Core Developers</translation>
+        <translation>版权 (C) 2017-%i Pop Foundation Ltd.</translation>
     </message>
     <message>
         <source>Could not parse -rpcbind value %s as network address</source>
@@ -3710,7 +3931,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Error loading wallet.dat: Wallet requires newer version of Pop Core</source>
-        <translation>读取钱包文件错误: 需要较为新版本的Pop核心来读取钱包</translation>
+        <translation>读取钱包文件错误: 需要较为新版本的Pop全节点钱包来读取钱包</translation>
     </message>
     <message>
         <source>Error: A fatal internal error occured, see debug.log for details</source>
@@ -3767,7 +3988,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Initialization sanity check failed. Pop Core is shutting down.</source>
-        <translation>初始化检查失败。Pop核心正在关闭。</translation>
+        <translation>初始化检查失败。Pop全节点钱包正在关闭。</translation>
     </message>
     <message>
         <source>Input is not valid.</source>
@@ -3963,8 +4184,8 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart Pop Core to complete</source>
-        <translation>錢包需要重寫: 請重新啓動Pop核心來完成
-钱包需要重写: 请重新启动Pop核心来完成</translation>
+        <translation>錢包需要重寫: 請重新啓動Pop全节点钱包來完成
+钱包需要重写: 请重新启动Pop全节点钱包来完成</translation>
     </message>
     <message>
         <source>Warning: Unsupported argument -benchmark ignored, use -debug=bench.</source>
@@ -4011,7 +4232,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>检测到无效脚本。</translation>
     </message>
     <message>
-        <source>Keep N ULD anonymized (default: %u)</source>
+        <source>Keep N PCH anonymized (default: %u)</source>
         <translation>保持定量Pop匿名化(默认: %u)</translation>
     </message>
     <message>
@@ -4156,7 +4377,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Specify your own public address</source>
-        <translation>指定你个人公开地址</translation>
+        <translation>指定您个人公开地址</translation>
     </message>
     <message>
         <source>Synchronization pending...</source>
@@ -4167,8 +4388,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>此帮助信息</translation>
     </message>
     <message>
-        <source>This is experimental software.</source>
-        <translation>这是一款实验软件.</translation>
+        <source>This is Pop full-node wallet client</source>
+        <translation>本软件为Pop全节点钱包客户端，同步完整的区块链数据，提供最完整的区块信息。本地验证交易数据的有效性,完全去中心化钱包，记录链上交易。适用于专业技术人员及区块链爱好者。</translation>
     </message>
     <message>
         <source>This is intended for regression testing tools and app development.</source>
@@ -4276,7 +4497,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
-        <translation>你需要通过使用-reindex改变-txindex来重新建立数据库</translation>
+        <translation>您需要通过使用-reindex改变-txindex来重新建立数据库</translation>
     </message>
     <message>
         <source>Your entries added successfully.</source>

@@ -176,8 +176,8 @@
         <translation>Потвърдете на шифрирането на портфейла</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
-        <translation>Внимание: Ако шифрирате вашия портфейл и загубите паролата си,  &lt;b&gt;ЩЕ ЗАГУБИТЕ ВСИЧКИ ULD МОНЕТИ!&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
+        <translation>Внимание: Ако шифрирате вашия портфейл и загубите паролата си,  &lt;b&gt;ЩЕ ЗАГУБИТЕ ВСИЧКИ PCH МОНЕТИ!&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -443,7 +443,7 @@
         <translation>Отвори &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>Отвори Pop: URI или заявка за плащане</translation>
     </message>
     <message>
@@ -864,28 +864,28 @@ Address: %4
         <translation>Моля изберете ниво на сигурност.</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Използване на 2 различни popnodes за смесване на средства до 1000 ULD</translation>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Използване на 2 различни popnodes за смесване на средства до 1000 PCH</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Използване на 8 различни popnodes за смесване на средства до 1000 ULD</translation>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Използване на 8 различни popnodes за смесване на средства до 1000 PCH</translation>
     </message>
     <message>
         <source>Use 16 separate popnodes</source>
-        <translation>Използване на 16 различни popnodes за смесване на средства до 1000 ULD</translation>
+        <translation>Използване на 16 различни popnodes за смесване на средства до 1000 PCH</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
-        <translation>Това е най-бързият вариант, анонимизиране на 1000 ULD ще ви струва около 0.025 ULD</translation>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
+        <translation>Това е най-бързият вариант, анонимизиране на 1000 PCH ще ви струва около 0.025 PCH</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
-        <translation>Това е средно бърз вариант, анонимизиране на 1000 ULD ще ви струва около 0.05 ULD</translation>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
+        <translation>Това е средно бърз вариант, анонимизиране на 1000 PCH ще ви струва около 0.05 PCH</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
-        <translation>0.1 ULD за всеки 1000 ULD които анонимизирате.</translation>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
+        <translation>0.1 PCH за всеки 1000 PCH които анонимизирате.</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1431,8 +1431,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Количество и цикли:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
-        <translation>0 ULD / 0 Цикъла</translation>
+        <source>0 PCH / 0 Rounds</source>
+        <translation>0 PCH / 0 Цикъла</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -2748,7 +2748,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Водещи Bitcoin разработчици</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Водещи Pop разработчици</translation>
     </message>
     <message>
@@ -3276,8 +3276,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Изпращане</translation>
     </message>
     <message>
-        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 ULD.</source>
-        <translation>InstantX не поддържа изпращане на толкова големи суми. Транзакциите са ограничени до %1 ULD.</translation>
+        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.</source>
+        <translation>InstantX не поддържа изпращане на толкова големи суми. Транзакциите са ограничени до %1 PCH.</translation>
     </message>
 </context>
 <context>
@@ -3390,8 +3390,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Не са намерени достатъчно Darksend деноминирани средства за тази транзакция.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Не са намерени достатъчно Darksend неденоминирани средства за тази транзакция, които не са равни на 1000 ULD.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Не са намерени достатъчно Darksend неденоминирани средства за тази транзакция, които не са равни на 1000 PCH.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3634,12 +3634,12 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Грешка: Открит е неподдържан аргумент -socks .настройка SOCKS версия вече не е възможна, само SOCKS5 прокси се поддържа.</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Такси (в ULD/Kb) по-малки от това се считат за нулева такса за прилагане (по подразбиране: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Такси (в PCH/Kb) по-малки от това се считат за нулева такса за прилагане (по подразбиране: %s)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Такси (в ULD/Kb) по-малки от това се считат за нулева такса при създаване на транзакция (по подразбиране: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Такси (в PCH/Kb) по-малки от това се считат за нулева такса при създаване на транзакция (по подразбиране: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -3721,12 +3721,12 @@ If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
 for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
 </source>
-        <translation>За използване на popd, или the -server опция към pop-qt, трябва да зададете rpcpassword в конфигурационния файл: %s Препоръчително е да използвате следната произволна парола: rpcuser=poprpc rpcpassword=%s (не е нужно да запомняте тази парола) Потребителя и паролата НЕ ТРЯБВА да са еднакви. Ако файла не съществува , създайте го с права за само за четене. Препоръчително е да създадете сигнал за уведомяване за да бъдете осведомени при проблем; Пример: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
+        <translation>За използване на popd, или the -server опция към pop-qt, трябва да зададете rpcpassword в конфигурационния файл: %s Препоръчително е да използвате следната произволна парола: rpcuser=poprpc rpcpassword=%s (не е нужно да запомняте тази парола) Потребителя и паролата НЕ ТРЯБВА да са еднакви. Ако файла не съществува , създайте го с права за само за четене. Препоръчително е да създадете сигнал за уведомяване за да бъдете осведомени при проблем; Пример: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com 
 </translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Не са намерени достатъчно  средства за тази транзакция, които не са равни на 1000 ULD.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Не са намерени достатъчно  средства за тази транзакция, които не са равни на 1000 PCH.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3839,8 +3839,8 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Грешка:Открит е неподдържан аргумент -tor, моля използвай -onion.</translation>
     </message>
     <message>
-        <source>Fee (in ULD/kB) to add to transactions you send (default: %s)</source>
-        <translation>Такси (в ULD/Kb) добавена към направената транзакция(по подразбиране: %s)</translation>
+        <source>Fee (in PCH/kB) to add to transactions you send (default: %s)</source>
+        <translation>Такси (в PCH/Kb) добавена към направената транзакция(по подразбиране: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -4207,7 +4207,7 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>KeePassHttp ключ за  AES криптирана връзка с KeePass</translation>
     </message>
     <message>
-        <source>Keep N ULD anonymized (default: %u)</source>
+        <source>Keep N PCH anonymized (default: %u)</source>
         <translation>Поддържай N Pop анонимизирани (по подразбиране: %u)</translation>
     </message>
     <message>
@@ -4391,7 +4391,7 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Това помощно съобщение</translation>
     </message>
     <message>
-        <source>This is experimental software.</source>
+        <source>This is Pop full-node wallet client</source>
         <translation>Това е експериментален софтуер.</translation>
     </message>
     <message>

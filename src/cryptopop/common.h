@@ -1,18 +1,20 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#ifndef COMMON_H
+﻿#ifndef COMMON_H
 #define COMMON_H
 
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#ifdef MAC_OSX
+#include <sys/malloc.h>
+#else
 #include <malloc.h>
+#endif
 
 #define INPUT_LEN	140
 #define OUTPUT_LEN	32
 
 // Least common multiple
-inline uint32_t lcm(uint32_t num1, uint32_t num2) {
+static inline uint32_t lcm(uint32_t num1, uint32_t num2) {
 	uint32_t m = num1, n = num2;
 	while(num2) {
 		uint32_t r = num1 % num2;
@@ -23,7 +25,7 @@ inline uint32_t lcm(uint32_t num1, uint32_t num2) {
 	return lcm;
 }
 
-inline void reduce_bit_2(uint8_t *input, uint32_t inputLen, 
+static inline void reduce_bit_2(uint8_t *input, uint32_t inputLen, 
 		uint8_t *output, uint32_t bits) {
 	uint32_t i, outputLen = (bits) >> 3;
 	uint32_t lcmBytes = lcm(inputLen, outputLen);

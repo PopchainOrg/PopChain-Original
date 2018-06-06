@@ -1,8 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_CONSENSUS_PARAMS_H
 #define BITCOIN_CONSENSUS_PARAMS_H
@@ -34,6 +30,7 @@ struct BIP9Deployment {
 };
 
 /**
+ * Popchain DevTeam
  * Parameters that influence chain consensus.
  */
 struct Params {
@@ -45,18 +42,10 @@ struct Params {
     i64 genesisReward;          // genesis reward
     i64 minerReward4;		// block reward to miners per block in the 1st 4 years
     i64 minerReward5;		// block reward to miners per block in the 2nd 4 years
-
-    // popnode reward
-    i64 mnReward1;              // block reward to popnode per block in the 1st year
-    i64 mnReward2;              // block reward to popnode per block in the 2nd year
-    i64 mnReward5;              // block reward to popnode per block in the 5th year
-
+	
     // founders reward
     i64 foundersReward;         // super block reward to founders in first 4 years
 
-    // budget
-    i64 bdgetReward4;           // super block reward to budget in the 1st 4 years
-    i64 bdgetReward5;           // super block reward to budget in the 5th year
 
     // popnode colleteral
     i64 colleteral;
@@ -66,18 +55,10 @@ struct Params {
         return 4 * 12 * nSuperblockCycle + 1;
     }
 
-    int nPopnodePaymentsStartBlock;
-    int nPopnodePaymentsIncreaseBlock;
-    int nPopnodePaymentsIncreasePeriod; // in blocks
     int nInstantSendKeepLock; // in blocks
-    int nBudgetPaymentsStartBlock;
-    int nBudgetPaymentsCycleBlocks;
-    int nBudgetPaymentsWindowBlocks;
-    int nBudgetProposalEstablishingTime; // in seconds
+
     int nSuperblockStartBlock;
     int nSuperblockCycle; // in blocks
-    int nGovernanceMinQuorum; // Min absolute vote count to trigger an action
-    int nGovernanceFilterElements;
     int nPopnodeMinimumConfirmations;
     /** Used to check majorities for block version upgrade */
     int nMajorityEnforceBlockUpgrade;

@@ -1,7 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #ifndef BITCOIN_SCRIPT_SCRIPT_H
 #define BITCOIN_SCRIPT_SCRIPT_H
@@ -38,6 +35,7 @@ std::vector<unsigned char> ToByteVector(const T& in)
 }
 
 /** Script opcodes */
+/*To support the claim operation, three script operators were added. OP_CLAIM_NAME OP_UPDATE_CLAIM OP_SUPPORT_CLAIM */
 enum opcodetype
 {
     // push value
@@ -621,6 +619,7 @@ public:
     unsigned int GetSigOpCount(const CScript& scriptSig) const;
 
     bool IsNormalPaymentScript() const;
+	bool IsCrossChainPaymentScript()const;
     bool IsPayToPublicKeyHash() const;
 
     bool IsPayToScriptHash() const;

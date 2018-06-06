@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
@@ -39,7 +35,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     TxViewDelegate(const PlatformStyle *platformStyle):
-        QAbstractItemDelegate(), unit(BitcoinUnits::ULD),
+        QAbstractItemDelegate(), unit(BitcoinUnits::PCH),
         platformStyle(platformStyle)
     {
 
@@ -292,7 +288,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
     }
 
-    // update the display unit, to not use the default ("ULD")
+    // update the display unit, to not use the default ("PCH")
     updateDisplayUnit();
 }
 

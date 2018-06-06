@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#include "c_des.h"
+﻿#include "c_des.h"
 
 #include <stdio.h>
 #include <stdint.h>
@@ -15,9 +13,9 @@
 #define DES_BLOCK_SIZE 8
 
 /*
- * FUNCTION：one-way function des
- *      1. input : message
- *		2. output：return
+ * 功能：单向函数 des
+ * 输入：1. input ：输入消息
+ *		 2. output：输出结果
 */
 void crypto_des(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	/** 

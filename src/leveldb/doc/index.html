@@ -223,7 +223,7 @@ C++ strings and null-terminated C-style strings can be easily converted
 to a Slice:
 <p>
 <pre>
-   leveldb::Slice s1 = "hello";
+   leveldb::Slice s1 = "cryptopop";
 
    std::string str("world");
    leveldb::Slice s2 = str;
@@ -231,7 +231,7 @@ to a Slice:
 A Slice can be easily converted back to a C++ string:
 <pre>
    std::string str = s1.ToString();
-   assert(str == std::string("hello"));
+   assert(str == std::string("cryptopop"));
 </pre>
 Be careful when using Slices since it is up to the caller to ensure that
 the external byte array into which the Slice points remains live while

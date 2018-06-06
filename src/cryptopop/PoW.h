@@ -1,5 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
+// Copyright (c) 2017-2018 The Popchain Core Developers
 #ifndef CRYTOPOP_POW_H
 #define CRYTOPOP_POW_H
 
@@ -36,9 +35,9 @@ extern "C" {
 	void powNistTest(const char *outFileName);
 
 	/*
-     * hash function by popchain dev team
+     * hash function
     */
-    void popHash(const uint8_t *mess, uint32_t messLen, uint8_t output[OUTPUT_LEN]);
+    void hashpop(const uint8_t *mess, uint32_t messLen, uint8_t output[OUTPUT_LEN]);
 	
 #ifdef __cplusplus
 }

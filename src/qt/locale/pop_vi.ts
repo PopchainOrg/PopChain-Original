@@ -176,8 +176,8 @@
         <translation>Xác nhận mã hoá ví</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
-        <translation>Chú ý: Nếu bạn mã hoá ví và mất mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ ULD CỦA BẠN&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
+        <translation>Chú ý: Nếu bạn mã hoá ví và mất mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ PCH CỦA BẠN&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -443,7 +443,7 @@
         <translation>Mở &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>Mở một pop: URI hoặc một yêu cầu thanh toán</translation>
     </message>
     <message>
@@ -864,28 +864,28 @@ Kiểu: %3
         <translation>Hãy chọn mức độ riêng tư.</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Sử dụng 2 popnode khác nhau để trộn số tiền lên đến 1000 ULD</translation>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Sử dụng 2 popnode khác nhau để trộn số tiền lên đến 1000 PCH</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Sử dụng 8 popnode khác nhau để trộn số tiền lên đến 1000 ULD</translation>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Sử dụng 8 popnode khác nhau để trộn số tiền lên đến 1000 PCH</translation>
     </message>
     <message>
         <source>Use 16 separate popnodes</source>
         <translation>Sử dụng 16 popnode khác nhau</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
-        <translation>Tuỳ chọn này là nhanh nhất và sẽ mất chi phí khoảng ~0.025 ULD để ẩn danh 1000 ULD</translation>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
+        <translation>Tuỳ chọn này là nhanh nhất và sẽ mất chi phí khoảng ~0.025 PCH để ẩn danh 1000 PCH</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
-        <translation>Tuỳ chọn này là tương đối nhanh và sẽ mất chi phí khoảng ~0.05 ULD để ẩn danh 1000 ULD</translation>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
+        <translation>Tuỳ chọn này là tương đối nhanh và sẽ mất chi phí khoảng ~0.05 PCH để ẩn danh 1000 PCH</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
-        <translation>0.1 ULD cho mỗi 1000 ULD bạn muốn ẩn danh.</translation>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
+        <translation>0.1 PCH cho mỗi 1000 PCH bạn muốn ẩn danh.</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1187,7 +1187,7 @@ Kiểu: %3
     </message>
     <message>
         <source>This setting determines the amount of individual popnodes that an input will be anonymized through.&lt;br/&gt;More rounds of anonymization gives a higher degree of privacy, but also costs more in fees.</source>
-        <translation>Thiết lập này xác định số tiền cho mỗi master nodes mà đầu vào thông qua đó được ẩn danh.&lt;br/&gt;Càng có nhiều vòng ẩn danh thì sẽ cho mức độ riêng tư càng cao, nhưng nó cũng tốn nhiều phí hơn.</translation>
+        <translation>Thiết lập này xác định số tiền cho mỗi pop nodes mà đầu vào thông qua đó được ẩn danh.&lt;br/&gt;Càng có nhiều vòng ẩn danh thì sẽ cho mức độ riêng tư càng cao, nhưng nó cũng tốn nhiều phí hơn.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1431,8 +1431,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Số tiền và số vòng:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
-        <translation>0 ULD / 0 Vòng</translation>
+        <source>0 PCH / 0 Rounds</source>
+        <translation>0 PCH / 0 Vòng</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -2748,7 +2748,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Nhóm phát triển Bitcoin Core</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Nhóm phát triển Pop Core</translation>
     </message>
     <message>
@@ -3276,8 +3276,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Gửi tiền</translation>
     </message>
     <message>
-        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 ULD.</source>
-        <translation>InstantX không hỗ trợ để gửi giá trị lớn đến như vậy. Giới hạn giao dịch hiện tại đến %1 ULD.</translation>
+        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.</source>
+        <translation>InstantX không hỗ trợ để gửi giá trị lớn đến như vậy. Giới hạn giao dịch hiện tại đến %1 PCH.</translation>
     </message>
 </context>
 <context>
@@ -3390,8 +3390,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Không tìm đủ ngân sách Darksend denominated cho giao dịch này.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Không tìm đủ ngân sách Darksend denominated cho giao dịch mà nó không bằng 1000 ULD</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Không tìm đủ ngân sách Darksend denominated cho giao dịch mà nó không bằng 1000 PCH</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3634,12 +3634,12 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Lỗi: Thấy tham số không được hỗ trợ -socks. Thiết lập phiên bản SOCKS là không thể được nữa, chỉ hỗ trợ proxy SOCKS5.</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Phí (tính theo ULD/Kb) nhỏ hơn số này được coi là không mất phí cho việc chuyển tiền (ngầm định: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Phí (tính theo PCH/Kb) nhỏ hơn số này được coi là không mất phí cho việc chuyển tiền (ngầm định: %s)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Phí (theo ULD/Kb) nhỏ hơn số này được coi không mất phí cho việc khởi tạo giao dịch (ngầm định: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Phí (theo PCH/Kb) nhỏ hơn số này được coi không mất phí cho việc khởi tạo giao dịch (ngầm định: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -3734,8 +3734,8 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
 </translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Không tìm được đủ ngân sách cho giao dịch mà nó không đủ 1000 ULD.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Không tìm được đủ ngân sách cho giao dịch mà nó không đủ 1000 PCH.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3847,8 +3847,8 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Lỗi: Tìm thấy tham số không được hỗ trợ -tor, thay vào đó hãy sử dụng -onion</translation>
     </message>
     <message>
-        <source>Fee (in ULD/kB) to add to transactions you send (default: %s)</source>
-        <translation>Phí (theo ULD/Kb) sẽ thêm vào các giao dịch mà bạn gửi (ngầm định: %s)</translation>
+        <source>Fee (in PCH/kB) to add to transactions you send (default: %s)</source>
+        <translation>Phí (theo PCH/Kb) sẽ thêm vào các giao dịch mà bạn gửi (ngầm định: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -4004,7 +4004,7 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
     </message>
     <message>
         <source>No Popnodes detected.</source>
-        <translation>Không tìm thấy các Master node.</translation>
+        <translation>Không tìm thấy các Pop node.</translation>
     </message>
     <message>
         <source>No compatible Popnode found.</source>
@@ -4148,7 +4148,7 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
     </message>
     <message>
         <source>Use N separate popnodes to anonymize funds  (2-8, default: %u)</source>
-        <translation>Sử dụng N masternods riêng biệt để ẩn danh khoản tiền (2-8, ngầm định: %u)</translation>
+        <translation>Sử dụng N popnods riêng biệt để ẩn danh khoản tiền (2-8, ngầm định: %u)</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
@@ -4215,8 +4215,8 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Khoá KeePassHttp cho liên lạc mã hoá AES với KeePass</translation>
     </message>
     <message>
-        <source>Keep N ULD anonymized (default: %u)</source>
-        <translation>Giữ N ULD đã được ẩn danh (ngầm định: %u)</translation>
+        <source>Keep N PCH anonymized (default: %u)</source>
+        <translation>Giữ N PCH đã được ẩn danh (ngầm định: %u)</translation>
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
@@ -4399,7 +4399,7 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Đây là thông điệp trợ giúp</translation>
     </message>
     <message>
-        <source>This is experimental software.</source>
+        <source>This is Pop full-node wallet client</source>
         <translation>Đây là phần mềm thử nghiệm.</translation>
     </message>
     <message>

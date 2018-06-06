@@ -1,8 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_PRIMITIVES_BLOCK_H
 #define BITCOIN_PRIMITIVES_BLOCK_H
@@ -24,11 +20,11 @@ public:
     // header
     static const int32_t CURRENT_VERSION=1;
     int32_t nVersion;
-    uint256 hashPrevBlock;                                                         //pre block hash
+    uint256 hashPrevBlock;
     uint256 hashMerkleRoot;
     uint256 hashClaimTrie; 							   // for claim operation
     uint32_t nTime;
-    uint32_t nBits;                                                                //pow 
+    uint32_t nBits;
 	uint256 nNonce;
 
     CBlockHeader()
@@ -77,6 +73,7 @@ public:
 };
 
 
+// Popchain DevTeam
 class CBlock : public CBlockHeader
 {
 public:
@@ -84,8 +81,6 @@ public:
     std::vector<CTransaction> vtx;
 
     // memory only
-    mutable CTxOut txoutPopnode; 			// popnode payment
-    mutable std::vector<CTxOut> voutSuperblock; 	// superblock payment
     mutable CTxOut txoutFound; 			// Found  payment
     mutable bool fChecked;
 
@@ -112,8 +107,6 @@ public:
     {
         CBlockHeader::SetNull();
         vtx.clear();
-        txoutPopnode = CTxOut();
-        voutSuperblock.clear();
         fChecked = false;
     }
 

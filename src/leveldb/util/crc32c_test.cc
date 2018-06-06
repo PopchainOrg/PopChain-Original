@@ -52,8 +52,8 @@ TEST(CRC, Values) {
 }
 
 TEST(CRC, Extend) {
-  ASSERT_EQ(Value("hello world", 11),
-            Extend(Value("hello ", 6), "world", 5));
+  ASSERT_EQ(Value("cryptopop world", 11),
+            Extend(Value("cryptopop ", 6), "world", 5));
 }
 
 TEST(CRC, Mask) {

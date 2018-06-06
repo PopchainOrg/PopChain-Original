@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "rpcconsole.h"
 #include "ui_debugwindow.h"
@@ -460,7 +456,7 @@ void RPCConsole::setClientModel(ClientModel *model)
         // Provide initial values
         ui->clientVersion->setText(model->formatFullVersion());
         ui->clientUserAgent->setText(model->formatSubVersion());
-        ui->clientName->setText(model->clientName());
+        ui->clientName->setText(tr(model->clientName().toStdString().c_str()));
         ui->buildDate->setText(model->formatBuildDate());
         ui->startupTime->setText(model->formatClientStartupTime());
         ui->networkName->setText(QString::fromStdString(Params().NetworkIDString()));
@@ -638,7 +634,14 @@ void RPCConsole::setNumBlocks(int count, const QDateTime& blockDate, double nVer
 
 void RPCConsole::setPopnodeCount(const QString &strPopnodes)
 {
-    ui->popnodeCount->setText(strPopnodes);
+    QString tes(strPopnodes);
+    if(tes.startsWith("Total:")){
+        ui->popnodeCount->setText(tr("Total:%1").arg(tes.remove("Total:")));
+    }else
+    {
+        ui->popnodeCount->setText(strPopnodes);
+    }
+    
 }
 
 void RPCConsole::setMempoolSize(long numberOfTxs, size_t dynUsage)

@@ -176,8 +176,8 @@
         <translation>Potwierdź szyfrowanie portfela</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
-        <translation>Ostrzeżenie: Jeśli zaszyfrujesz swój portfel i zgubisz swoje hasło, &lt;b&gt;STRACISZ WSZYSTKIE MONETY ULD&lt;/b&gt;</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
+        <translation>Ostrzeżenie: Jeśli zaszyfrujesz swój portfel i zgubisz swoje hasło, &lt;b&gt;STRACISZ WSZYSTKIE MONETY PCH&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -443,7 +443,7 @@
         <translation>Otwórz URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>Otwórz pop: Link lub żądanie zapłaty</translation>
     </message>
     <message>
@@ -864,28 +864,28 @@ Adres: %4
         <translation>Proszę wybrać poziom bezpieczeństwa.</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Użyj 2 oddzielnych masternodów aby wymieszać środki max. do 1000 ULD</translation>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Użyj 2 oddzielnych popnodów aby wymieszać środki max. do 1000 PCH</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Użyj 8 oddzielnych masternodów aby wymieszać środki max. do 1000 ULD</translation>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Użyj 8 oddzielnych popnodów aby wymieszać środki max. do 1000 PCH</translation>
     </message>
     <message>
         <source>Use 16 separate popnodes</source>
-        <translation>Użyj 16 oddzielnych masternodów</translation>
+        <translation>Użyj 16 oddzielnych popnodów</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
-        <translation>Ta opcja jest najszybsza i kosztuje około 0.025 ULD za zanonimizowanie 1000 ULD</translation>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
+        <translation>Ta opcja jest najszybsza i kosztuje około 0.025 PCH za zanonimizowanie 1000 PCH</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
-        <translation>Ta opcja jest w miarę szybka i kosztuje około 0.05 ULD za zanonimizowanie 1000 ULD</translation>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
+        <translation>Ta opcja jest w miarę szybka i kosztuje około 0.05 PCH za zanonimizowanie 1000 PCH</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
-        <translation>0.1 ULD za każde 1000 ULD które zanonimizujesz.</translation>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
+        <translation>0.1 PCH za każde 1000 PCH które zanonimizujesz.</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1187,7 +1187,7 @@ Adres: %4
     </message>
     <message>
         <source>This setting determines the amount of individual popnodes that an input will be anonymized through.&lt;br/&gt;More rounds of anonymization gives a higher degree of privacy, but also costs more in fees.</source>
-        <translation>Tutaj możesz ustawić liczbę masternodów, przez które transakcja zostanie przepuszczona.&lt;br/&gt;Im większa liczba masternodów tym większy poziom anonimowości, ale opłata jest również wyższa.</translation>
+        <translation>Tutaj możesz ustawić liczbę popnodów, przez które transakcja zostanie przepuszczona.&lt;br/&gt;Im większa liczba popnodów tym większy poziom anonimowości, ale opłata jest również wyższa.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1431,8 +1431,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Ilość oraz Rundy:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
-        <translation>0 ULD / 0 Rund</translation>
+        <source>0 PCH / 0 Rounds</source>
+        <translation>0 PCH / 0 Rund</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -1456,7 +1456,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>The denominations you submitted to the Popnode.&lt;br&gt;To mix, other users must submit the exact same denominations.</source>
-        <translation>Denominacje, które wysłałeś do Masternoda.&lt;br&gt;Aby zostały one wymieszane, inni użytkownicy muszą wysłać dokładnie takie same denominacje. </translation>
+        <translation>Denominacje, które wysłałeś do popnoda.&lt;br&gt;Aby zostały one wymieszane, inni użytkownicy muszą wysłać dokładnie takie same denominacje. </translation>
     </message>
     <message>
         <source>(Last Message)</source>
@@ -1813,7 +1813,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Number of Popnodes</source>
-        <translation>Liczba masternodów</translation>
+        <translation>Liczba popnodów</translation>
     </message>
     <message>
         <source>&amp;Console</source>
@@ -2748,7 +2748,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Deweloperzy Bitcoin Core</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Deweloperzy Pop Core</translation>
     </message>
     <message>
@@ -3276,8 +3276,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Wyślij płatność</translation>
     </message>
     <message>
-        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 ULD.</source>
-        <translation>InstantX jescze nie może przesłać tak wysokich kwot. Obecnie transakcje są ograniczone tylko do %1 ULD:</translation>
+        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.</source>
+        <translation>InstantX jescze nie może przesłać tak wysokich kwot. Obecnie transakcje są ograniczone tylko do %1 PCH:</translation>
     </message>
 </context>
 <context>
@@ -3390,8 +3390,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Nie znaleziono wystarczających denominowanych środków Darksend do wykonania tej transakcji.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Nie znaleziono wystarczającej ilości nie zdenominowanych środków Darksend dla tej transakcji, które nie równają się 1000 ULD</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Nie znaleziono wystarczającej ilości nie zdenominowanych środków Darksend dla tej transakcji, które nie równają się 1000 PCH</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3615,7 +3615,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie dodatkowe funckje Pop (Masternody, Darksend, InstanX, Budżetowanie) (0-1, domyślnie: %u)</translation>
+        <translation>Wyłącz wszystkie dodatkowe funckje Pop (popnody, Darksend, InstanX, Budżetowanie) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3634,12 +3634,12 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Błąd: niewspierany argument, znaleziono -socks. Ustawienie wersji SOCKS nie jest już możliwa, wspierane są tylkobramki  proxy SOCKS5.</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Opłaty (ULD/Kb) za retransmisje mniejsze niż ta, uważane są za równoznaczne z brakiem opłat (domyślnie: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Opłaty (PCH/Kb) za retransmisje mniejsze niż ta, uważane są za równoznaczne z brakiem opłat (domyślnie: %s)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Opłaty (ULD/Kb) mniejsze niż ta, są uważane są za równoznaczne z brakiem opłat za stworzenie transakcji (domyślnie: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Opłaty (PCH/Kb) mniejsze niż ta, są uważane są za równoznaczne z brakiem opłat za stworzenie transakcji (domyślnie: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -3733,8 +3733,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
 </translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Niemożliwe jest zlokalizowanie wystarczającej ilości środków dla tej transakcji, które nie są równe 1000 ULD.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Niemożliwe jest zlokalizowanie wystarczającej ilości środków dla tej transakcji, które nie są równe 1000 PCH.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3847,8 +3847,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Błąd: Znaleziono niewspierany argument -tor, użyj -onion.</translation>
     </message>
     <message>
-        <source>Fee (in ULD/kB) to add to transactions you send (default: %s)</source>
-        <translation>Opłata (ULD/kB) do dodania do transakcji, którą chcesz wysłać (domyślnie: %s)</translation>
+        <source>Fee (in PCH/kB) to add to transactions you send (default: %s)</source>
+        <translation>Opłata (PCH/kB) do dodania do transakcji, którą chcesz wysłać (domyślnie: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -3968,11 +3968,11 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Loading popnode cache...</source>
-        <translation>Ładuję pamięć podręczną masternoda...</translation>
+        <translation>Ładuję pamięć podręczną popnoda...</translation>
     </message>
     <message>
         <source>Loading popnode payment cache...</source>
-        <translation>Ładuję pamięć podręczną płatności masternodów...</translation>
+        <translation>Ładuję pamięć podręczną płatności popnodów...</translation>
     </message>
     <message>
         <source>Lock is already in place.</source>
@@ -3980,7 +3980,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Lock popnodes from popnode configuration file (default: %u)</source>
-        <translation>Zamknij masternody z pliku konfiguracji (domyślnie: %u)</translation>
+        <translation>Zamknij popnody z pliku konfiguracji (domyślnie: %u)</translation>
     </message>
     <message>
         <source>Maintain at most &lt;n&gt; connections to peers (default: %u)</source>
@@ -4004,15 +4004,15 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>No Popnodes detected.</source>
-        <translation>Nie wykryto żadnego Masternoda.</translation>
+        <translation>Nie wykryto żadnego popnoda.</translation>
     </message>
     <message>
         <source>No compatible Popnode found.</source>
-        <translation>Nie znalezione zadnego kompatybilnego Masternoda.</translation>
+        <translation>Nie znalezione zadnego kompatybilnego popnoda.</translation>
     </message>
     <message>
         <source>Not in the Popnode list.</source>
-        <translation>Nie istnieje na liście masternodów.</translation>
+        <translation>Nie istnieje na liście popnodów.</translation>
     </message>
     <message>
         <source>Number of automatic wallet backups (default: 10)</source>
@@ -4084,7 +4084,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Specify popnode configuration file (default: %s)</source>
-        <translation>Ustaw plik konfiguracji masternoda (domyślnie: %s)</translation>
+        <translation>Ustaw plik konfiguracji popnoda (domyślnie: %s)</translation>
     </message>
     <message>
         <source>Specify pid file (default: %s)</source>
@@ -4100,15 +4100,15 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Submitted following entries to popnode: %u / %d</source>
-        <translation>Następujące wpisy zostały przesłane do masternoda: %u / %d</translation>
+        <translation>Następujące wpisy zostały przesłane do popnoda: %u / %d</translation>
     </message>
     <message>
         <source>Submitted to popnode, waiting for more entries ( %u / %d ) %s</source>
-        <translation>Zapisano do masternoda, czekam na więcej wejść ( %u / %d ) %s</translation>
+        <translation>Zapisano do popnoda, czekam na więcej wejść ( %u / %d ) %s</translation>
     </message>
     <message>
         <source>Submitted to popnode, waiting in queue %s</source>
-        <translation>Przesłano do masterdnoda, czekaj na swoją kolej %s</translation>
+        <translation>Przesłano do popdnoda, czekaj na swoją kolej %s</translation>
     </message>
     <message>
         <source>Synchronization failed</source>
@@ -4124,11 +4124,11 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>
-        <translation>Synchronizuję zwycięskie masternody...</translation>
+        <translation>Synchronizuję zwycięskie popnody...</translation>
     </message>
     <message>
         <source>Synchronizing popnodes...</source>
-        <translation>Synchronizuję masternody...</translation>
+        <translation>Synchronizuję popnody...</translation>
     </message>
     <message>
         <source>Synchronizing sporks...</source>
@@ -4148,7 +4148,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Use N separate popnodes to anonymize funds  (2-8, default: %u)</source>
-        <translation>Użyj N oddzielnych masternodów aby zanonimizować fundusze (2-8, domyślnie: %u)</translation>
+        <translation>Użyj N oddzielnych popnodów aby zanonimizować fundusze (2-8, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Use UPnP to map the listening port (default: %u)</source>
@@ -4172,7 +4172,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Invalid popnodeprivkey. Please see documenation.</source>
-        <translation>Nieprawidłowy klucz prywatny masternoda. Przeczytaj dokumentację.</translation>
+        <translation>Nieprawidłowy klucz prywatny popnoda. Przeczytaj dokumentację.</translation>
     </message>
     <message>
         <source>(must be 9888 for mainnet)</source>
@@ -4180,7 +4180,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Can't find random Popnode.</source>
-        <translation>Nie można znaleźć przypadkowego masternoda.</translation>
+        <translation>Nie można znaleźć przypadkowego popnoda.</translation>
     </message>
     <message>
         <source>Can't mix while sync in progress.</source>
@@ -4215,7 +4215,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Klucz KeePassHttp dla zaszyfrowanego metodą AES połączenia z KeePass</translation>
     </message>
     <message>
-        <source>Keep N ULD anonymized (default: %u)</source>
+        <source>Keep N PCH anonymized (default: %u)</source>
         <translation>Utrzymuj N zanonimizowanych pop (domyślnie: %u)</translation>
     </message>
     <message>
@@ -4248,15 +4248,15 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Popnode options:</source>
-        <translation>Opcje masternodów:</translation>
+        <translation>Opcje popnodów:</translation>
     </message>
     <message>
         <source>Popnode queue is full.</source>
-        <translation>Kolejka masternodów jest pełna.</translation>
+        <translation>Kolejka popnodów jest pełna.</translation>
     </message>
     <message>
         <source>Popnode:</source>
-        <translation>Masternod:</translation>
+        <translation>popnod:</translation>
     </message>
     <message>
         <source>Missing input transaction information.</source>
@@ -4360,7 +4360,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     </message>
     <message>
         <source>Set the popnode private key</source>
-        <translation>Ustaw klucz prywatny masternoda</translation>
+        <translation>Ustaw klucz prywatny popnoda</translation>
     </message>
     <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>
@@ -4399,7 +4399,7 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Ten komunikat pomocny</translation>
     </message>
     <message>
-        <source>This is experimental software.</source>
+        <source>This is Pop full-node wallet client</source>
         <translation>Jest to oprogramowanie testowe.</translation>
     </message>
     <message>

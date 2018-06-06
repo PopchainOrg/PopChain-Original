@@ -1,11 +1,7 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-// Copyright (c) 2017-2018 The Popchain Core Development Team
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #if defined(HAVE_CONFIG_H)
-#include "config/popchain-config.h"
+#include "config/pop-config.h"
 #endif
 
 #include "tinyformat.h"
@@ -27,6 +23,18 @@ int64_t GetTime()
     return now;
 }
 
+void SetMockTime(int64_t nMockTimeIn)
+{
+    nMockTime = nMockTimeIn;
+}
+
+int64_t GetTimeMillis()
+{
+    int64_t now = (boost::posix_time::microsec_clock::universal_time() -
+                   boost::posix_time::ptime(boost::gregorian::date(1970,1,1))).total_milliseconds();
+    assert(now > 0);
+    return now;
+}
 
 int64_t GetTimeMicros()
 {
@@ -70,20 +78,6 @@ std::string DateTimeStrFormat(const char* pszFormat, int64_t nTime)
     ss.imbue(loc);
     ss << boost::posix_time::from_time_t(nTime);
     return ss.str();
-}
-
-
-void SetMockTime(int64_t nMockTimeIn)
-{
-    nMockTime = nMockTimeIn;
-}
-
-int64_t GetTimeMillis()
-{
-    int64_t now = (boost::posix_time::microsec_clock::universal_time() -
-                   boost::posix_time::ptime(boost::gregorian::date(1970,1,1))).total_milliseconds();
-    assert(now > 0);
-    return now;
 }
 
 std::string DurationToDHMS(int64_t nDurationTime)

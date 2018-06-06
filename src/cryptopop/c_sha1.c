@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#include "c_sha1.h"
+﻿#include "c_sha1.h"
 
 #include <stdint.h>
 #include <string.h>
@@ -9,9 +7,9 @@
 #include "common.h"
 
 /*
- * FUNCTION：one-way function SHA1
- *      1. input : message
- *		2. output：return
+ * 功能：单向函数 SHA1
+ * 输入：1. input ：输入消息
+ *		 2. output：输出结果
 */
 void crypto_sha1(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	uint32_t i;

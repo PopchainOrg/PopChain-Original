@@ -1,13 +1,11 @@
-// Copyright (c) 2012 Pieter Wuille
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "addrman.h"
 
 #include "hash.h"
 #include "serialize.h"
 #include "streams.h"
-
+// addr manager user hash table .
 int CAddrInfo::GetTriedBucket(const uint256& nKey) const
 {
     uint64_t hash1 = (CHashWriter(SER_GETHASH, 0) << nKey << GetKey()).GetHash().GetCheapHash();

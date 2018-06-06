@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "sendcoinsentry.h"
 #include "ui_sendcoinsentry.h"
@@ -16,6 +12,7 @@
 
 #include <QApplication>
 #include <QClipboard>
+#include <QAction>
 
 SendCoinsEntry::SendCoinsEntry(const PlatformStyle *platformStyle, QWidget *parent) :
     QStackedWidget(parent),
@@ -47,6 +44,37 @@ SendCoinsEntry::SendCoinsEntry(const PlatformStyle *platformStyle, QWidget *pare
     // just a label for displaying pop address(es)
     ui->payTo_is->setFont(GUIUtil::fixedPitchFont());
 
+    // "payTo" mouse right click menu
+    QAction *payToActCopy = new QAction(tr("Copy"), this);
+    connect(payToActCopy,SIGNAL(triggered(bool)), this, SLOT(payToCopy()));
+    ui->payTo->addAction(payToActCopy);
+    QAction *payToActPaste = new QAction(tr("Paste"), this);
+    connect(payToActPaste,SIGNAL(triggered(bool)), this, SLOT(payToPaste()));
+    ui->payTo->addAction(payToActPaste);
+    QAction *payToActCut = new QAction(tr("Cut"), this);
+    connect(payToActCut,SIGNAL(triggered(bool)), this, SLOT(payToCut()));
+    ui->payTo->addAction(payToActCut);
+    QAction *payToActUndo = new QAction(tr("Undo"), this);
+    connect(payToActUndo,SIGNAL(triggered(bool)), this, SLOT(payToUndo()));
+    ui->payTo->addAction(payToActUndo);
+
+    // "addAsLabel" mouse right click menu
+    QAction *addAsLabelActCopy = new QAction(tr("Copy"), this);
+    connect(addAsLabelActCopy,SIGNAL(triggered(bool)), this, SLOT(addAsLabelCopy()));
+    ui->addAsLabel->addAction(addAsLabelActCopy);
+    QAction *addAsLabelActPaste = new QAction(tr("Paste"), this);
+    connect(addAsLabelActPaste,SIGNAL(triggered(bool)), this, SLOT(addAsLabelPaste()));
+    ui->addAsLabel->addAction(addAsLabelActPaste);
+    QAction *addAsLabelActCut = new QAction(tr("Cut"), this);
+    connect(addAsLabelActCut,SIGNAL(triggered(bool)), this, SLOT(addAsLabelCut()));
+    ui->addAsLabel->addAction(addAsLabelActCut);
+    QAction *addAsLabelActUndo = new QAction(tr("Undo"), this);
+    connect(addAsLabelActUndo,SIGNAL(triggered(bool)), this, SLOT(addAsLabelUndo()));
+    ui->addAsLabel->addAction(addAsLabelActUndo);
+
+
+
+
     // Connect signals
     connect(ui->payAmount, SIGNAL(valueChanged()), this, SIGNAL(payAmountChanged()));
     connect(ui->checkboxSubtractFeeFromAmount, SIGNAL(toggled(bool)), this, SIGNAL(subtractFeeFromAmountChanged()));
@@ -59,6 +87,49 @@ SendCoinsEntry::~SendCoinsEntry()
 {
     delete ui;
 }
+
+void SendCoinsEntry::payToCopy()
+{
+    ui->payTo->copy();
+
+}
+
+void SendCoinsEntry::payToPaste()
+{
+    ui->payTo->paste();
+}
+
+void SendCoinsEntry::payToCut()
+{
+    ui->payTo->cut();
+}
+
+void SendCoinsEntry::payToUndo()
+{
+    ui->payTo->undo();
+}
+
+void SendCoinsEntry::addAsLabelCopy()
+{
+    ui->addAsLabel->copy();
+
+}
+
+void SendCoinsEntry::addAsLabelPaste()
+{
+    ui->addAsLabel->paste();
+}
+
+void SendCoinsEntry::addAsLabelCut()
+{
+    ui->addAsLabel->cut();
+}
+
+void SendCoinsEntry::addAsLabelUndo()
+{
+    ui->addAsLabel->undo();
+}
+
 
 void SendCoinsEntry::on_pasteButton_clicked()
 {
@@ -113,7 +184,7 @@ void SendCoinsEntry::clear()
     ui->memoTextLabel_s->clear();
     ui->payAmount_s->clear();
 
-    // update the display unit, to not use the default ("ULD")
+    // update the display unit, to not use the default ("PCH")
     updateDisplayUnit();
 }
 

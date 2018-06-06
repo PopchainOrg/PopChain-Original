@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #ifndef ONE_WAY_FUNCTION_H
 #define ONE_WAY_FUNCTION_H

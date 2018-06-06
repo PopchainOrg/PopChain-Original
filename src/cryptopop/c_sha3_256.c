@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#include "c_sha3_256.h"
+﻿#include "c_sha3_256.h"
 
 #include <stdint.h>
 #include <string.h>

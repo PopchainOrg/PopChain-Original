@@ -1,8 +1,4 @@
-// Copyright (c) 2014 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "networkstyle.h"
 
@@ -79,8 +75,8 @@ NetworkStyle::NetworkStyle(const QString &appName, const int iconColorHueShift, 
         QImage appIconImg = appIconPixmap.toImage();
         QImage splashImageImg = splashImagePixmap.toImage();
 
-        rotateColors(appIconImg, iconColorHueShift, iconColorSaturationReduction);
-        rotateColors(splashImageImg, iconColorHueShift, iconColorSaturationReduction);
+        // rotateColors(appIconImg, iconColorHueShift, iconColorSaturationReduction);
+        // rotateColors(splashImageImg, iconColorHueShift, iconColorSaturationReduction);
 
         //convert back to QPixmap
 #if QT_VERSION >= 0x040700

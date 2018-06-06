@@ -86,14 +86,14 @@ class BloomTest {
 };
 
 TEST(BloomTest, EmptyFilter) {
-  ASSERT_TRUE(! Matches("hello"));
+  ASSERT_TRUE(! Matches("cryptopop"));
   ASSERT_TRUE(! Matches("world"));
 }
 
 TEST(BloomTest, Small) {
-  Add("hello");
+  Add("cryptopop");
   Add("world");
-  ASSERT_TRUE(Matches("hello"));
+  ASSERT_TRUE(Matches("cryptopop"));
   ASSERT_TRUE(Matches("world"));
   ASSERT_TRUE(! Matches("x"));
   ASSERT_TRUE(! Matches("foo"));

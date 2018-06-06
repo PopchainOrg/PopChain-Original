@@ -1,9 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef POPCHAIN_CLAIMTRIE_H
-#define POPCHAIN_CLAIMTRIE_H
+#ifndef POP_CLAIMTRIE_H
+#define POP_CLAIMTRIE_H
 
 #include "amount.h"
 #include "serialize.h"
@@ -593,4 +591,4 @@ private:
     int getNumBlocksOfContinuousOwnership(const std::string& name) const;
 };
 
-#endif // POPCHAIN_CLAIMTRIE_H
+#endif // POP_CLAIMTRIE_H

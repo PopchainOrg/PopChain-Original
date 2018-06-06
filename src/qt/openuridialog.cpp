@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2013 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "openuridialog.h"
 #include "ui_openuridialog.h"
@@ -17,8 +13,11 @@ OpenURIDialog::OpenURIDialog(QWidget *parent) :
     ui(new Ui::OpenURIDialog)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Dialog|Qt::WindowCloseButtonHint);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
+    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 #if QT_VERSION >= 0x040700
-    ui->uriEdit->setPlaceholderText("pop:");
+    ui->uriEdit->setPlaceholderText("Pop:");
 #endif
 }
 
@@ -50,5 +49,5 @@ void OpenURIDialog::on_selectFileButton_clicked()
     if(filename.isEmpty())
         return;
     QUrl fileUri = QUrl::fromLocalFile(filename);
-    ui->uriEdit->setText("pop:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
+    ui->uriEdit->setText("Pop:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
 }

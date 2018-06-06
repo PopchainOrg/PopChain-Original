@@ -1,7 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "policy/fees.h"
 #include "policy/policy.h"
@@ -368,7 +365,7 @@ void CBlockPolicyEstimator::processTransaction(const CTxMemPoolEntry& entry, boo
         return;
     }
 
-    // Fees are stored and reported as ULD-per-kb:
+    // Fees are stored and reported as PCH-per-kb:
     CFeeRate feeRate(entry.GetFee(), entry.GetTxSize());
 
     // Want the priority of the tx at confirmation. However we don't know
@@ -414,7 +411,7 @@ void CBlockPolicyEstimator::processBlockTx(unsigned int nBlockHeight, const CTxM
         return;
     }
 
-    // Fees are stored and reported as ULD-per-kb:
+    // Fees are stored and reported as PCH-per-kb:
     CFeeRate feeRate(entry.GetFee(), entry.GetTxSize());
 
     // Want the priority of the tx at confirmation.  The priority when it
@@ -503,7 +500,7 @@ CFeeRate CBlockPolicyEstimator::estimateFee(int confTarget)
     return CFeeRate(median);
 }
 
-CFeeRate CBlockPolicyEstimator::estimateSmartFee(unsigned int confTarget, unsigned int *answerFoundAtTarget, const CTxMemPool& pool)
+CFeeRate CBlockPolicyEstimator::estimateSmartFee(int confTarget, int *answerFoundAtTarget, const CTxMemPool& pool)
 {
     if (answerFoundAtTarget)
         *answerFoundAtTarget = confTarget;

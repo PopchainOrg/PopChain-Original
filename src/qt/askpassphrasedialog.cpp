@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "askpassphrasedialog.h"
 #include "ui_askpassphrasedialog.h"
@@ -37,6 +33,9 @@ AskPassphraseDialog::AskPassphraseDialog(Mode mode, QWidget *parent) :
     ui->passEdit1->installEventFilter(this);
     ui->passEdit2->installEventFilter(this);
     ui->passEdit3->installEventFilter(this);
+    this->setWindowFlags(Qt::Dialog|Qt::WindowCloseButtonHint);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Ok"));
+    ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     switch(mode)
     {
@@ -113,7 +112,7 @@ void AskPassphraseDialog::accept()
             break;
         }
         QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm wallet encryption"),
-                 tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR ULD</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
+                 tr("Warning: If you encrypt your wallet and lose your passphrase, you will <b>LOSE ALL OF YOUR PCH</b>!") + "<br><br>" + tr("Are you sure you wish to encrypt your wallet?"),
                  QMessageBox::Yes|QMessageBox::Cancel,
                  QMessageBox::Cancel);
         if(retval == QMessageBox::Yes)
@@ -181,20 +180,41 @@ void AskPassphraseDialog::accept()
         {
             if(model->changePassphrase(oldpass, newpass1))
             {
-                QMessageBox::information(this, tr("Wallet encrypted"),
-                                     tr("Wallet passphrase was successfully changed."));
+                // QMessageBox::information(this, tr("Wallet encrypted"),
+                //                      tr("Wallet passphrase was successfully changed."));
+                QMessageBox message(QMessageBox::NoIcon,  tr("Wallet encrypted"), tr("Wallet passphrase was successfully changed."),QMessageBox::Ok, 0); 
+                if(NULL!=message.button(QMessageBox::Ok))
+                {
+                    message.button(QMessageBox::Ok)->setText(tr("Ok"));
+                    message.button(QMessageBox::Ok)->setStyleSheet("background-color:#515b78;border:0;border-radius:3px;color:#ffffff;font-size:12px;font-weight:normal;height: 26px;padding-left:25px;padding-right:25px;padding-top:5px;padding-bottom:5px;margin-right: 10px;");
+ 
+                }
+                message.exec();
                 QDialog::accept(); // Success
             }
             else
             {
-                QMessageBox::critical(this, tr("Wallet encryption failed"),
-                                     tr("The passphrase entered for the wallet decryption was incorrect."));
+                QMessageBox message(QMessageBox::NoIcon,  tr("Wallet encryption failed"), tr("The passphrase entered for the wallet decryption was incorrect."),QMessageBox::Ok, 0); 
+                if(NULL!=message.button(QMessageBox::Ok))
+                {
+                    message.button(QMessageBox::Ok)->setText(tr("Ok"));
+                    message.button(QMessageBox::Ok)->setStyleSheet("background-color:#515b78;border:0;border-radius:3px;color:#ffffff;font-size:12px;font-weight:normal;height: 26px;padding-left:25px;padding-right:25px;padding-top:5px;padding-bottom:5px;margin-right: 10px;");
+ 
+                }
+                message.exec();
             }
         }
         else
         {
-            QMessageBox::critical(this, tr("Wallet encryption failed"),
-                                 tr("The supplied passphrases do not match."));
+            QMessageBox message(QMessageBox::NoIcon,  tr("Wallet encryption failed"), tr("The supplied passphrases do not match."),QMessageBox::Ok, 0); 
+            if(NULL!=message.button(QMessageBox::Ok))
+            {
+                message.button(QMessageBox::Ok)->setText(tr("Ok"));
+                message.button(QMessageBox::Ok)->setStyleSheet("background-color:#515b78;border:0;border-radius:3px;color:#ffffff;font-size:12px;font-weight:normal;height: 26px;padding-left:25px;padding-right:25px;padding-top:5px;padding-bottom:5px;margin-right: 10px;");
+
+            }
+            message.exec();
+
         }
         break;
     }

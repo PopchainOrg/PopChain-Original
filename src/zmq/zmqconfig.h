@@ -1,12 +1,10 @@
-// Copyright (c) 2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
-#ifndef BITCOIN_ZMQ_ZMQCONFIG_H
-#define BITCOIN_ZMQ_ZMQCONFIG_H
+#ifndef POP_ZMQ_ZMQCONFIG_H
+#define POP_ZMQ_ZMQCONFIG_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/ulord-config.h"
+#include "config/pop-config.h"
 #endif
 
 #include <stdarg.h>
@@ -21,4 +19,4 @@
 
 void zmqError(const char *str);
 
-#endif // BITCOIN_ZMQ_ZMQCONFIG_H
+#endif // POP_ZMQ_ZMQCONFIG_H

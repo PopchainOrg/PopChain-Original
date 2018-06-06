@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2013 The Bitcoin Core developers
-// Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+/// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "receiverequestdialog.h"
 #include "ui_receiverequestdialog.h"
@@ -166,7 +163,7 @@ void ReceiveRequestDialog::update()
         {
             ui->lblQRCode->setText(tr("Resulting URI too long, try to reduce the text for label / message."));
         } else {
-            QRcode *code = QRcode_encodeString(uri.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+            QRcode *code = QRcode_encodeString(info.address.toUtf8().constData(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
             if (!code)
             {
                 ui->lblQRCode->setText(tr("Error encoding URI into QR Code."));

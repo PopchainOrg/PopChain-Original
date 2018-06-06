@@ -1,10 +1,6 @@
-// Copyright (c) 2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include "claimtrie.h"
 #include "rpcserver.h"
 
 #include "base58.h"
@@ -244,15 +240,16 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Ulord Core server.");
+            "\nStop Pop Core server.");
     // Event loop will exit after current HTTP requests have been handled, so
     // this reply will get back to the client.
     StartShutdown();
-    return "Ulord Core server stopping";
+    return "Pop Core server stopping";
 }
 
 /**
  * Call Table
+ * Popchain DevTeam
  */
 static const CRPCCommand vRPCCommands[] =
 { //  category              name                      actor (function)         okSafeMode
@@ -343,6 +340,16 @@ static const CRPCCommand vRPCCommands[] =
     { "hidden",             "resendwallettransactions", &resendwallettransactions, true},
 #endif
 
+    /* Pop features */
+    { "pop",               "popnode",             &popnode,             true  },
+    { "pop",               "popnodelist",         &popnodelist,         true  },
+    { "pop",               "popnodebroadcast",    &popnodebroadcast,    true  },
+    { "pop",               "mnsync",                 &mnsync,                 true  },
+    { "pop",               "spork",                  &spork,                  true  },
+    { "pop",               "getpoolinfo",            &getpoolinfo,            true  },
+#ifdef ENABLE_WALLET
+    { "pop",               "privatesend",            &privatesend,            false },
+
     /* Wallet */
     { "wallet",             "keepass",                &keepass,                true },
     { "wallet",             "instantsendtoaddress",   &instantsendtoaddress,   false },
@@ -388,15 +395,31 @@ static const CRPCCommand vRPCCommands[] =
     { "wallet",             "walletlock",             &walletlock,             true  },
     { "wallet",             "walletpassphrasechange", &walletpassphrasechange, true  },
     { "wallet",             "walletpassphrase",       &walletpassphrase,       true  },
-    /*Popchain DevTeam*/
+
+	/*claimtrie*/
+    { "Claimtrie",          "claimname",              &claimname,              true  },  
+    { "Claimtrie",          "updateclaim",            &updateclaim,            true  },  
+    { "Claimtrie",          "abandonclaim",           &abandonclaim,           true  },  
+    { "Claimtrie",          "listnameclaims",         &listnameclaims,         true  },  
+    { "Claimtrie",          "supportclaim",           &supportclaim,           true  },  
+    { "Claimtrie",          "abandonsupport",         &abandonsupport,         true  },  
+    { "Claimtrie",          "getclaimsintrie",        &getclaimsintrie,        true  },  
+    { "Claimtrie",          "getclaimtrie",           &getclaimtrie,           true  },  
+    { "Claimtrie",          "getvalueforname",        &getvalueforname,        true  },  
+    { "Claimtrie",          "getclaimsforname",       &getclaimsforname,       true  },  
+    { "Claimtrie",          "gettotalclaimednames",   &gettotalclaimednames,   true  },  
+    { "Claimtrie",          "gettotalclaims",         &gettotalclaims,         true  },  
+    { "Claimtrie",          "gettotalvalueofclaims",  &gettotalvalueofclaims,  true  },  
+    { "Claimtrie",          "getclaimsfortx",         &getclaimsfortx,         true  },  
+    { "Claimtrie",          "getnameproof",           &getnameproof,           true  },  
+    { "Claimtrie",          "getclaimbyid",           &getclaimbyid,           true  },
     /* atomic swap contract of transaction about RPC */
     { "hidden",	            "crosschaininitial",      &crosschaininitial,      true  },
     { "hidden",             "crosschainparticipate",  &crosschainparticipate,  true  },
     { "hidden",             "crosschainredeem",       &crosschainredeem,       true  },
     { "hidden",             "crosschainrefund",       &crosschainrefund,       true  },
     { "hidden",             "crosschainextractsecret",&crosschainextractsecret,true  },
-    { "hidden",             "crosschainauditcontract",&crosschainauditcontract,true  },
-    /*Popchain DevTeam*/
+  //{ "hidden",             "crosschainauditcontract",&crosschainauditcontract,true  },
 #endif // ENABLE_WALLET
 };
 
@@ -573,7 +596,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> ulord-cli " + methodname + " " + args + "\n";
+    return "> pop-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(const std::string& methodname, const std::string& args)

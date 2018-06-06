@@ -1,8 +1,4 @@
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "base58.h"
 #include "chain.h"
@@ -29,7 +25,6 @@
 using namespace std;
 
 void EnsureWalletIsUnlocked();
-bool EnsureWalletIsAvailable(bool avoidException);
 
 std::string static EncodeDumpTime(int64_t nTime) {
     return DateTimeStrFormat("%Y-%m-%dT%H:%M:%SZ", nTime);
@@ -81,10 +76,10 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
     
     if (fHelp || params.size() < 1 || params.size() > 3)
         throw runtime_error(
-            "importprivkey \"ulordprivkey\" ( \"label\" rescan )\n"
+            "importprivkey \"popprivkey\" ( \"label\" rescan )\n"
             "\nAdds a private key (as returned by dumpprivkey) to your wallet.\n"
             "\nArguments:\n"
-            "1. \"ulordprivkey\"   (string, required) The private key (see dumpprivkey)\n"
+            "1. \"popprivkey\"   (string, required) The private key (see dumpprivkey)\n"
             "2. \"label\"            (string, optional, default=\"\") An optional label\n"
             "3. rescan               (boolean, optional, default=true) Rescan the wallet for transactions\n"
             "\nNote: This call can take minutes to complete if rescan is true.\n"
@@ -233,7 +228,7 @@ UniValue importaddress(const UniValue& params, bool fHelp)
         std::vector<unsigned char> data(ParseHex(params[0].get_str()));
         ImportScript(CScript(data.begin(), data.end()), strLabel, fP2SH);
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ulord address or script");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pop address or script");
     }
 
     if (fRescan)
@@ -417,11 +412,11 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
     
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "dumpprivkey \"ulordaddress\"\n"
-            "\nReveals the private key corresponding to 'ulordaddress'.\n"
+            "dumpprivkey \"popaddress\"\n"
+            "\nReveals the private key corresponding to 'popaddress'.\n"
             "Then the importprivkey can be used with this output\n"
             "\nArguments:\n"
-            "1. \"ulordaddress\"   (string, required) The ulord address for the private key\n"
+            "1. \"popaddress\"   (string, required) The pop address for the private key\n"
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
             "\nExamples:\n"
@@ -437,7 +432,7 @@ UniValue dumpprivkey(const UniValue& params, bool fHelp)
     string strAddress = params[0].get_str();
     CBitcoinAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ulord address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pop address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
@@ -487,7 +482,7 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     std::sort(vKeyBirth.begin(), vKeyBirth.end());
 
     // produce output
-    file << strprintf("# Wallet dump created by Ulord Core %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
+    file << strprintf("# Wallet dump created by Pop Core %s (%s)\n", CLIENT_BUILD, CLIENT_DATE);
     file << strprintf("# * Created on %s\n", EncodeDumpTime(GetTime()));
     file << strprintf("# * Best block at time of backup was %i (%s),\n", chainActive.Height(), chainActive.Tip()->GetBlockHash().ToString());
     file << strprintf("#   mined on %s\n", EncodeDumpTime(chainActive.Tip()->GetBlockTime()));

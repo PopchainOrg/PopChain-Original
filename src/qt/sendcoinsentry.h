@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_SENDCOINSENTRY_H
 #define BITCOIN_QT_SENDCOINSENTRY_H
@@ -61,6 +58,15 @@ private Q_SLOTS:
     void on_addressBookButton_clicked();
     void on_pasteButton_clicked();
     void updateDisplayUnit();
+    void payToCopy();
+    void payToPaste();
+    void payToCut();
+    void payToUndo();
+    void addAsLabelCopy();
+    void addAsLabelPaste();
+    void addAsLabelCut();
+    void addAsLabelUndo();
+
 
 private:
     SendCoinsRecipient recipient;

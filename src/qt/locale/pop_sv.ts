@@ -164,8 +164,8 @@
         <translation>Bekräfta plånbokskryptering</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
-        <translation>Varning: Om du krypterar din plånbok och förlorar din lösenfras kommer du att &lt;b&gt;FÖRLORA ALLA DINA ULD&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
+        <translation>Varning: Om du krypterar din plånbok och förlorar din lösenfras kommer du att &lt;b&gt;FÖRLORA ALLA DINA PCH&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -404,7 +404,7 @@
         <translation>Öppna &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>Öppna en Pop-URI eller betalningsbegäran</translation>
     </message>
     <message>
@@ -758,28 +758,28 @@ Adress: %4
         <translation>Vänligen välj en integritetsnivå.</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Använd 2 enskilda popnoder för att mixa medel upp till 1000 ULD</translation>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Använd 2 enskilda popnoder för att mixa medel upp till 1000 PCH</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
-        <translation>Använd 8 enskilda popnoder för att mixa medel upp till 1000 ULD.</translation>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
+        <translation>Använd 8 enskilda popnoder för att mixa medel upp till 1000 PCH.</translation>
     </message>
     <message>
         <source>Use 16 separate popnodes</source>
         <translation>Använd 16 enskilda popnoder</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
-        <translation>Detta alternativ är det snabbaste och kommer att kosta omkring ~0,025 ULD för att anonymisera 1000 ULD</translation>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
+        <translation>Detta alternativ är det snabbaste och kommer att kosta omkring ~0,025 PCH för att anonymisera 1000 PCH</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
-        <translation>Detta alternativ är relativt snabbt och kommer att kosta omkring 0,05 ULD för att anonymisera 1000 ULD</translation>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
+        <translation>Detta alternativ är relativt snabbt och kommer att kosta omkring 0,05 PCH för att anonymisera 1000 PCH</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
-        <translation>0,1 ULD per 1000 ULD du anonymiserar.</translation>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
+        <translation>0,1 PCH per 1000 PCH du anonymiserar.</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1238,8 +1238,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Mängd och omgångar:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
-        <translation>0 ULD/0 omgångar</translation>
+        <source>0 PCH / 0 Rounds</source>
+        <translation>0 PCH/0 omgångar</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -2140,7 +2140,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Bitcoin Core-utvecklarna</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Pop Core-utvecklarna</translation>
     </message>
     <message>
@@ -2726,8 +2726,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Kunde inte hitta tillräckliga Darksend-denominationsmedel för denna transaktion.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Kunde inte hitta tillräckliga Darksend-icke-denominationsmedel för denna transaktion som inte är likvärdiga 1000 ULD.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Kunde inte hitta tillräckliga Darksend-icke-denominationsmedel för denna transaktion som inte är likvärdiga 1000 PCH.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3111,7 +3111,7 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <source>Set the popnode private key</source>
-        <translation>Ställ in masternodprivatnyckeln</translation>
+        <translation>Ställ in popnodprivatnyckeln</translation>
     </message>
     <message>
         <source>Show all debugging options (usage: --help -help-debug)</source>

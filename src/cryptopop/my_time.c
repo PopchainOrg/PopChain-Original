@@ -1,8 +1,9 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 //  Windows
+
 #ifdef _WIN32
 
-#include <Windows.h>
+#include <windows.h>
 
 double get_wall_time() {
     LARGE_INTEGER time, freq;

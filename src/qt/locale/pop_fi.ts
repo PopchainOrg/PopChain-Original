@@ -176,7 +176,7 @@
         <translation>Vahvista lompakon salaus</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ULD&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PCH&lt;/b&gt;!</source>
         <translation>Varoitus: Jos salaat lompakon ja unohdat salasanan, &lt;b&gt;MENETÄT KAIKKI UTisi&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -443,7 +443,7 @@
         <translation>Avaa &amp;URI...</translation>
     </message>
     <message>
-        <source>Open a pop: URI or payment request</source>
+        <source>Open a Pop: URI or payment request</source>
         <translation>Avaa Pop: URI tai maksupyyntö</translation>
     </message>
     <message>
@@ -864,11 +864,11 @@ Osoite: %4
         <translation>Valitse yksityisyyden taso.</translation>
     </message>
     <message>
-        <source>Use 2 separate popnodes to mix funds up to 1000 ULD</source>
+        <source>Use 2 separate popnodes to mix funds up to 1000 PCH</source>
         <translation>Käytä 2 erillistä popnodea sekoittaaksesi varoja</translation>
     </message>
     <message>
-        <source>Use 8 separate popnodes to mix funds up to 1000 ULD</source>
+        <source>Use 8 separate popnodes to mix funds up to 1000 PCH</source>
         <translation>Käytä 8 erillistä popnodea sekoittaaksesi varoja</translation>
     </message>
     <message>
@@ -876,16 +876,16 @@ Osoite: %4
         <translation>Käytä 16 erillistä popnodea</translation>
     </message>
     <message>
-        <source>This option is the quickest and will cost about ~0.025 ULD to anonymize 1000 ULD</source>
-        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 ULD kun anonymisoidaan 1000 ULD</translation>
+        <source>This option is the quickest and will cost about ~0.025 PCH to anonymize 1000 PCH</source>
+        <translation>Tämä vaihtoehto on nopein ja maksaa noin ~0.025 PCH kun anonymisoidaan 1000 PCH</translation>
     </message>
     <message>
-        <source>This option is moderately fast and will cost about 0.05 ULD to anonymize 1000 ULD</source>
-        <translation>Tämä vaihtoehto on keskinopea ja maksaa noin ~0.05 ULD kun anonymisoidaan 1000 ULD</translation>
+        <source>This option is moderately fast and will cost about 0.05 PCH to anonymize 1000 PCH</source>
+        <translation>Tämä vaihtoehto on keskinopea ja maksaa noin ~0.05 PCH kun anonymisoidaan 1000 PCH</translation>
     </message>
     <message>
-        <source>0.1 ULD per 1000 ULD you anonymize.</source>
-        <translation>0.1 ULD maksu per 1000 ULD jonka anonymisoit.</translation>
+        <source>0.1 PCH per 1000 PCH you anonymize.</source>
+        <translation>0.1 PCH maksu per 1000 PCH jonka anonymisoit.</translation>
     </message>
     <message>
         <source>This is the slowest and most secure option. Using maximum anonymity will cost</source>
@@ -1432,8 +1432,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Määrä ja Kierrokset:</translation>
     </message>
     <message>
-        <source>0 ULD / 0 Rounds</source>
-        <translation>0 ULD / 0 Kierrosta</translation>
+        <source>0 PCH / 0 Rounds</source>
+        <translation>0 PCH / 0 Kierrosta</translation>
     </message>
     <message>
         <source>Submitted Denom:</source>
@@ -2753,7 +2753,7 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Bitcoin Core kehittäjät</translation>
     </message>
     <message>
-        <source>The Pop Core developers</source>
+        <source>Pop Foundation Ltd.</source>
         <translation>Pop Core kehittäjät</translation>
     </message>
     <message>
@@ -3281,8 +3281,8 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Lähetä Popeja</translation>
     </message>
     <message>
-        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 ULD.</source>
-        <translation>InstantX ei tue näin korkeaa lähetysmäärää vielä. Siirtotapahtumat on tällä hetkellä rajoitettu %1 ULD.</translation>
+        <source>InstantX doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.</source>
+        <translation>InstantX ei tue näin korkeaa lähetysmäärää vielä. Siirtotapahtumat on tällä hetkellä rajoitettu %1 PCH.</translation>
     </message>
 </context>
 <context>
@@ -3395,8 +3395,8 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Ei tarpeeksi Darksend anonymisoituja varoja tälle siirtotapahtumalle.</translation>
     </message>
     <message>
-        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Ei tarpeeksi Darksend ei-anonymisoituja varoja tälle siirtotapahtumalle, joka ei ole 1000 ULD.</translation>
+        <source>Unable to locate enough Darksend non-denominated funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Ei tarpeeksi Darksend ei-anonymisoituja varoja tälle siirtotapahtumalle, joka ei ole 1000 PCH.</translation>
     </message>
     <message>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
@@ -3639,12 +3639,12 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Virhe: Ei tuettu argumentti -socks. SOCKS version asettaminen ei ole enää mahdollista, vain SOCKS5 proxyt ovat tuettuja.</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
-        <translation>Siirtomaksut (ULD/Kb) jotka ovat pienempiä kuin tämä, tulkitaan nollamaksuksi välityksessä (oletus: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for relaying (default: %s)</source>
+        <translation>Siirtomaksut (PCH/Kb) jotka ovat pienempiä kuin tämä, tulkitaan nollamaksuksi välityksessä (oletus: %s)</translation>
     </message>
     <message>
-        <source>Fees (in ULD/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
-        <translation>Siirtomaksut (ULD/Kb) jotka ovat pienempiä kuin tämä, tulkitaan nollamaksuksi siirtotapahtuman luonnissa (oletus: %s)</translation>
+        <source>Fees (in PCH/Kb) smaller than this are considered zero fee for transaction creation (default: %s)</source>
+        <translation>Siirtomaksut (PCH/Kb) jotka ovat pienempiä kuin tämä, tulkitaan nollamaksuksi siirtotapahtuman luonnissa (oletus: %s)</translation>
     </message>
     <message>
         <source>Flush database activity from memory pool to disk log every &lt;n&gt; megabytes (default: %u)</source>
@@ -3741,8 +3741,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
 </translation>
     </message>
     <message>
-        <source>Unable to locate enough funds for this transaction that are not equal 1000 ULD.</source>
-        <translation>Ei tarpeeksi varoja tälle siirtotapahtumalle, joka ei ole 1000 ULD.</translation>
+        <source>Unable to locate enough funds for this transaction that are not equal 1000 PCH.</source>
+        <translation>Ei tarpeeksi varoja tälle siirtotapahtumalle, joka ei ole 1000 PCH.</translation>
     </message>
     <message>
         <source>Use separate SOCKS5 proxy to reach peers via Tor hidden services (default: %s)</source>
@@ -3855,8 +3855,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>Virhe: Ei tuettu argumentti -tor löytyi, käytä -onion.</translation>
     </message>
     <message>
-        <source>Fee (in ULD/kB) to add to transactions you send (default: %s)</source>
-        <translation>Lisättävä siirtomaksu (ULD/Kb) siirtotapahtumaan jonka lähetät (oletus: %s)</translation>
+        <source>Fee (in PCH/kB) to add to transactions you send (default: %s)</source>
+        <translation>Lisättävä siirtomaksu (PCH/Kb) siirtotapahtumaan jonka lähetät (oletus: %s)</translation>
     </message>
     <message>
         <source>Finalizing transaction.</source>
@@ -4223,8 +4223,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>KeePassHttp avain AES salattuun viestintään</translation>
     </message>
     <message>
-        <source>Keep N ULD anonymized (default: %u)</source>
-        <translation>Pidä N ULD anonymisoituna (oletus: %u)</translation>
+        <source>Keep N PCH anonymized (default: %u)</source>
+        <translation>Pidä N PCH anonymisoituna (oletus: %u)</translation>
     </message>
     <message>
         <source>Keep at most &lt;n&gt; unconnectable transactions in memory (default: %u)</source>
@@ -4407,7 +4407,7 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>Tämä ohjeviesti</translation>
     </message>
     <message>
-        <source>This is experimental software.</source>
+        <source>This is Pop full-node wallet client</source>
         <translation>Tämä on kokeellinen ohjelmisto.</translation>
     </message>
     <message>

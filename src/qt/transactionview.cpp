@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "transactionview.h"
 
@@ -52,24 +49,25 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     hlayout->setContentsMargins(0,0,0,0);
     if (platformStyle->getUseExtraSpacing()) {
         hlayout->setSpacing(0);
-        hlayout->addSpacing(6);
+        hlayout->addSpacing(0);
     } else {
-        hlayout->setSpacing(1);
-        hlayout->addSpacing(5);
+//        hlayout->setSpacing(1);
+        hlayout->setSpacing(0);
+        hlayout->addSpacing(0);
     }
     QString theme = GUIUtil::getThemeName();
     watchOnlyWidget = new QComboBox(this);
-    watchOnlyWidget->setFixedWidth(24);
-    watchOnlyWidget->addItem("", TransactionFilterProxy::WatchOnlyFilter_All);
-    watchOnlyWidget->addItem(QIcon(":/icons/" + theme + "/eye_plus"), "", TransactionFilterProxy::WatchOnlyFilter_Yes);
-    watchOnlyWidget->addItem(QIcon(":/icons/" + theme + "/eye_minus"), "", TransactionFilterProxy::WatchOnlyFilter_No);
+    watchOnlyWidget->setFixedWidth(64);
+//    watchOnlyWidget->addItem(QIcon(":/icons/" + theme + "/eye"), " ", TransactionFilterProxy::WatchOnlyFilter_All);
+    watchOnlyWidget->addItem(QIcon(":/icons/" + theme + "/eye_plus"), " ", TransactionFilterProxy::WatchOnlyFilter_No);
+    watchOnlyWidget->addItem(QIcon(":/icons/" + theme + "/eye_minus"), " ", TransactionFilterProxy::WatchOnlyFilter_Yes);
     hlayout->addWidget(watchOnlyWidget);
 
     dateWidget = new QComboBox(this);
     if (platformStyle->getUseExtraSpacing()) {
-        dateWidget->setFixedWidth(120);
+        dateWidget->setFixedWidth(80);
     } else {
-        dateWidget->setFixedWidth(120);
+        dateWidget->setFixedWidth(80);
     }
     dateWidget->addItem(tr("All"), All);
     dateWidget->addItem(tr("Today"), Today);
@@ -111,6 +109,8 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     addressWidget->setPlaceholderText(tr("Enter address or label to search"));
 #endif
     addressWidget->setObjectName("addressWidget");
+    addressWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+
     hlayout->addWidget(addressWidget);
 
     amountWidget = new QLineEdit(this);
@@ -125,6 +125,9 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     amountWidget->setValidator(new QDoubleValidator(0, 1e20, 8, this));
     amountWidget->setObjectName("amountWidget");
     hlayout->addWidget(amountWidget);
+
+    amountWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
+
 
     QVBoxLayout *vlayout = new QVBoxLayout(this);
     vlayout->setContentsMargins(0,0,0,0);
@@ -150,6 +153,35 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     view->installEventFilter(this);
 
     transactionView = view;
+
+    // "addressWidget" mouse right click menu
+    QAction *addressWidgetActCopy = new QAction(tr("Copy"), this);
+    connect(addressWidgetActCopy,SIGNAL(triggered(bool)), this, SLOT(addressWidgetCopy()));
+    addressWidget->addAction(addressWidgetActCopy);
+    QAction *addressWidgetActPaste = new QAction(tr("Paste"), this);
+    connect(addressWidgetActPaste,SIGNAL(triggered(bool)), this, SLOT(addressWidgetPaste()));
+    addressWidget->addAction(addressWidgetActPaste);
+    QAction *addressWidgetActCut = new QAction(tr("Cut"), this);
+    connect(addressWidgetActCut,SIGNAL(triggered(bool)), this, SLOT(addressWidgetCut()));
+    addressWidget->addAction(addressWidgetActCut);
+    QAction *addressWidgetActUndo = new QAction(tr("Undo"), this);
+    connect(addressWidgetActUndo,SIGNAL(triggered(bool)), this, SLOT(addressWidgetUndo()));
+    addressWidget->addAction(addressWidgetActUndo);
+
+    // "amountWidget" mouse right click menu
+    QAction *amountWidgetActCopy = new QAction(tr("Copy"), this);
+    connect(amountWidgetActCopy,SIGNAL(triggered(bool)), this, SLOT(amountWidgetCopy()));
+    amountWidget->addAction(amountWidgetActCopy);
+    QAction *amountWidgetActPaste = new QAction(tr("Paste"), this);
+    connect(amountWidgetActPaste,SIGNAL(triggered(bool)), this, SLOT(amountWidgetPaste()));
+    amountWidget->addAction(amountWidgetActPaste);
+    QAction *amountWidgetActCut = new QAction(tr("Cut"), this);
+    connect(amountWidgetActCut,SIGNAL(triggered(bool)), this, SLOT(amountWidgetCut()));
+    amountWidget->addAction(amountWidgetActCut);
+    QAction *amountWidgetActUndo = new QAction(tr("Undo"), this);
+    connect(amountWidgetActUndo,SIGNAL(triggered(bool)), this, SLOT(amountWidgetUndo()));
+    amountWidget->addAction(amountWidgetActUndo);
+
 
     // Actions
     QAction *copyAddressAction = new QAction(tr("Copy address"), this);
@@ -191,6 +223,47 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     connect(copyTxHexAction, SIGNAL(triggered()), this, SLOT(copyTxHex()));
     connect(editLabelAction, SIGNAL(triggered()), this, SLOT(editLabel()));
     connect(showDetailsAction, SIGNAL(triggered()), this, SLOT(showDetails()));
+}
+void TransactionView::addressWidgetCopy()
+{
+    addressWidget->copy();
+
+}
+
+void TransactionView::addressWidgetPaste()
+{
+    addressWidget->paste();
+}
+
+void TransactionView::addressWidgetCut()
+{
+    addressWidget->cut();
+}
+
+void TransactionView::addressWidgetUndo()
+{
+    addressWidget->undo();
+}
+
+void TransactionView::amountWidgetCopy()
+{
+    amountWidget->copy();
+
+}
+
+void TransactionView::amountWidgetPaste()
+{
+    amountWidget->paste();
+}
+
+void TransactionView::amountWidgetCut()
+{
+    amountWidget->cut();
+}
+
+void TransactionView::amountWidgetUndo()
+{
+    amountWidget->undo();
 }
 
 void TransactionView::setModel(WalletModel *model)

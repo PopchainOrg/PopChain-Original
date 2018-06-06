@@ -1,7 +1,4 @@
-// Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 //
 // Data for paymentservertests.cpp
@@ -436,7 +433,7 @@ d2hj739GDLz0b5KuJ2SG6VknMRQM976w/m2qlq0ccVGaaZ2zMIGfpzL3p6adwx/5\
 ";
 
 //
-// Payment request with amount overflow (amount is set to 21000001 ULD)
+// Payment request with amount overflow (amount is set to 21000001 PCH)
 //
 const char* paymentrequest5_cert2_BASE64 =
 "\

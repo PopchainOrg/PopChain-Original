@@ -1,9 +1,7 @@
-// Copyright (c) 2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
-#ifndef POPCOIN_BENCH_H
-#define POPCOIN_BENCH_H
+#ifndef BITCOIN_BENCH_BENCH_H
+#define BITCOIN_BENCH_BENCH_H
 
 #include <map>
 #include <string>
@@ -69,4 +67,4 @@ namespace benchmark {
 #define BENCHMARK(n) \
     benchmark::BenchRunner BOOST_PP_CAT(bench_, BOOST_PP_CAT(__LINE__, n))(BOOST_PP_STRINGIZE(n), n);
 
-#endif // POPCOIN_BENCH_H
+#endif // BITCOIN_BENCH_BENCH_H

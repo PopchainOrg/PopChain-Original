@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
 #include "config/pop-config.h"
@@ -70,7 +66,7 @@ void OptionsModel::Init(bool resetSettings)
 
     // Display
     if (!settings.contains("nDisplayUnit"))
-        settings.setValue("nDisplayUnit", BitcoinUnits::ULD);
+        settings.setValue("nDisplayUnit", BitcoinUnits::PCH);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -82,7 +78,7 @@ void OptionsModel::Init(bool resetSettings)
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
     if (!settings.contains("digits"))
-        settings.setValue("digits", "2");
+        settings.setValue("digits", "6");
     if (!settings.contains("theme"))
         settings.setValue("theme", "");
 

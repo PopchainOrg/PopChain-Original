@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 //
 // Wraps dumb protocol buffer paymentRequest

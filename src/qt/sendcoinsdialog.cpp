@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "sendcoinsdialog.h"
 #include "ui_sendcoinsdialog.h"
@@ -46,9 +42,9 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *platformStyle, QWidget *pa
         ui->clearButton->setIcon(QIcon());
         ui->sendButton->setIcon(QIcon());
     } else {
-        ui->addButton->setIcon(QIcon(":/icons/" + theme + "/add"));
-        ui->clearButton->setIcon(QIcon(":/icons/" + theme + "/remove"));
-        ui->sendButton->setIcon(QIcon(":/icons/" + theme + "/send_white"));
+//        ui->addButton->setIcon(QIcon(":/icons/" + theme + "/add"));
+//        ui->clearButton->setIcon(QIcon(":/icons/" + theme + "/remove"));
+//        ui->sendButton->setIcon(QIcon(":/icons/" + theme + "/send_white"));
     }
 
     GUIUtil::setupAddressWidget(ui->lineEditCoinControlChange, this);
@@ -146,7 +142,9 @@ SendCoinsDialog::SendCoinsDialog(const PlatformStyle *platformStyle, QWidget *pa
     ui->sliderSmartFee->setValue(settings.value("nSmartFeeSliderPosition").toInt());
     ui->customFee->setValue(settings.value("nTransactionFee").toLongLong());
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
-    ui->checkBoxFreeTx->setChecked(settings.value("fSendFreeTransactions").toBool());
+    ui->checkBoxFreeTx->setChecked(false);
+    ui->checkBoxFreeTx->hide();
+    ui->labelFreeTx->hide();
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
 }
 
@@ -269,7 +267,7 @@ void SendCoinsDialog::on_sendButton_clicked()
         ).arg(strNearestAmount));
     } else {
         recipients[0].inputType = ALL_COINS;
-        strFunds = tr("using") + " <b>" + tr("any available funds (not anonymous)") + "</b>";
+        strFunds = QString("  ") + tr("any available funds (not anonymous)") + "</b>";
     }
 
     if(ui->checkUseInstantSend->isChecked()) {
@@ -410,16 +408,17 @@ void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee,
     questionString.append(tr("<b>(%1 of %2 entries displayed)</b>").arg(displayedEntries).arg(messageEntries));
 
     // Display message box
-    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm send coins"),
-        questionString.arg(formatted.join("<br />")),
-        QMessageBox::Yes | QMessageBox::Cancel,
-        QMessageBox::Cancel);
-
+    QMessageBox box(QMessageBox::Question, tr("Confirm send coins"),questionString.arg(formatted.join("<br />")),QMessageBox::Yes|QMessageBox::Cancel,this);
+    // box.setStandardButtons(QMessageBox::Yes|QMessageBox::Cancel);
+    box.setButtonText(QMessageBox::Yes,tr("Ok"));
+    box.setButtonText(QMessageBox::Cancel,tr("Cancel"));
+    int retval = box.exec();
     if(retval != QMessageBox::Yes)
     {
         fNewRecipientAllowed = true;
         return;
     }
+
 
     // now send the prepared transaction
     WalletModel::SendCoinsReturn sendStatus = model->sendCoins(currentTransaction);
@@ -672,6 +671,8 @@ void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
 
 void SendCoinsDialog::on_buttonChooseFee_clicked()
 {
+    ui->checkBoxFreeTx->hide();
+    ui->labelFreeTx->hide();
     minimizeFeeSection(false);
 }
 
@@ -749,8 +750,8 @@ void SendCoinsDialog::updateSmartFeeLabel()
     if(!model || !model->getOptionsModel())
         return;
 
-    unsigned int nBlocksToConfirm = defaultConfirmTarget - ui->sliderSmartFee->value();
-    unsigned int estimateFoundAtBlocks = nBlocksToConfirm;
+    int nBlocksToConfirm = defaultConfirmTarget - ui->sliderSmartFee->value();
+    int estimateFoundAtBlocks = nBlocksToConfirm;
     CFeeRate feeRate = mempool.estimateSmartFee(nBlocksToConfirm, &estimateFoundAtBlocks);
     if (feeRate <= CFeeRate(0)) // not enough data => minfee
     {

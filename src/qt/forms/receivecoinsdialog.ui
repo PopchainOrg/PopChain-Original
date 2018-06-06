@@ -7,10 +7,10 @@
     <x>0</x>
     <y>0</y>
     <width>776</width>
-    <height>387</height>
+    <height>422</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,1">
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0">
    <item>
     <widget class="QFrame" name="frame2">
      <property name="sizePolicy">
@@ -63,6 +63,9 @@
         </item>
         <item row="4" column="2">
          <widget class="QLineEdit" name="reqLabel">
+          <property name="contextMenuPolicy">
+           <enum>Qt::ActionsContextMenu</enum>
+          </property>
           <property name="toolTip">
            <string>An optional label to associate with the new receiving address.</string>
           </property>
@@ -70,6 +73,9 @@
         </item>
         <item row="6" column="2">
          <widget class="QLineEdit" name="reqMessage">
+          <property name="contextMenuPolicy">
+           <enum>Qt::ActionsContextMenu</enum>
+          </property>
           <property name="toolTip">
            <string>An optional message to attach to the payment request, which will be displayed when the request is opened.&lt;br&gt;Note: The message will not be sent with the payment over the Pop network.</string>
           </property>
@@ -133,7 +139,7 @@
            <widget class="QPushButton" name="receiveButton">
             <property name="minimumSize">
              <size>
-              <width>150</width>
+              <width>120</width>
               <height>0</height>
              </size>
             </property>
@@ -149,6 +155,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>120</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="toolTip">
              <string>Clear all fields of the form.</string>
@@ -259,6 +271,12 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>Show the selected request (does the same as double clicking an entry)</string>
           </property>
@@ -274,6 +292,12 @@
          <widget class="QPushButton" name="removeRequestButton">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="toolTip">
            <string>Remove the selected entries from the list</string>
@@ -325,8 +349,6 @@
   <tabstop>showRequestButton</tabstop>
   <tabstop>removeRequestButton</tabstop>
  </tabstops>
- <resources>
-  <include location="../pop.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

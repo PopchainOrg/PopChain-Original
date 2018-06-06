@@ -1,6 +1,4 @@
-// Copyright (c) 2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "bench.h"
 
@@ -47,7 +45,7 @@ bool State::KeepRunning()
         // so benchmarks that run very quickly get consistent results.
         if ((count+1)%timeCheckCount != 0) {
             ++count;
-            return true;
+            return true; // keep going
         }
         now = gettimedouble();
         double elapsedOne = (now - lastTime)/timeCheckCount;
@@ -58,7 +56,7 @@ bool State::KeepRunning()
     lastTime = now;
     ++count;
 
-    if (now - beginTime < maxElapsed) return true;
+    if (now - beginTime < maxElapsed) return true; // Keep going
 
     --count;
 

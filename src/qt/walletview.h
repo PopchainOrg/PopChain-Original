@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_QT_WALLETVIEW_H
 #define BITCOIN_QT_WALLETVIEW_H
@@ -119,7 +116,7 @@ public Q_SLOTS:
     /** Show progress dialog e.g. for rescan */
     void showProgress(const QString &title, int nProgress);
 
-    /** Update selected ULD amount from transactionview */
+    /** Update selected PCH amount from transactionview */
     void trxAmount(QString amount);
 
 Q_SIGNALS:

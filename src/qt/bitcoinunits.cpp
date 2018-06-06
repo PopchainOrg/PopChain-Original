@@ -1,8 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "bitcoinunits.h"
 #include "chainparams.h"
@@ -20,9 +16,9 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(ULD);
-    unitlist.append(mULD);
-    unitlist.append(uULD);
+    unitlist.append(PCH);
+    unitlist.append(mUT);
+    unitlist.append(uUT);
     unitlist.append(duffs);
     return unitlist;
 }
@@ -31,9 +27,9 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case ULD:
-    case mULD:
-    case uULD:
+    case PCH:
+    case mUT:
+    case uUT:
     case duffs:
         return true;
     default:
@@ -47,9 +43,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case ULD: return QString("ULD");
-            case mULD: return QString("mULD");
-            case uULD: return QString::fromUtf8("μULD");
+            case PCH: return QString("PCH");
+            case mUT: return QString("mUT");
+            case uUT: return QString::fromUtf8("μUT");
             case duffs: return QString("duffs");
             default: return QString("???");
         }
@@ -58,9 +54,9 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case ULD: return QString("tULD");
-            case mULD: return QString("mtULD");
-            case uULD: return QString::fromUtf8("μtULD");
+            case PCH: return QString("tUT");
+            case mUT: return QString("mtUT");
+            case uUT: return QString::fromUtf8("μtUT");
             case duffs: return QString("tduffs");
             default: return QString("???");
         }
@@ -73,9 +69,9 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case ULD: return QString("Pop");
-            case mULD: return QString("Milli-Pop (1 / 1" THIN_SP_UTF8 "000)");
-            case uULD: return QString("Micro-Pop (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case PCH: return QString("Pop");
+            case mUT: return QString("Milli-Pop (1 / 1" THIN_SP_UTF8 "000)");
+            case uUT: return QString("Micro-Pop (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             case duffs: return QString("Ten Nano-Pop (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
@@ -84,9 +80,9 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case ULD: return QString("TestPops");
-            case mULD: return QString("Milli-TestPop (1 / 1" THIN_SP_UTF8 "000)");
-            case uULD: return QString("Micro-TestPop (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case PCH: return QString("TestPops");
+            case mUT: return QString("Milli-TestPop (1 / 1" THIN_SP_UTF8 "000)");
+            case uUT: return QString("Micro-TestPop (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             case duffs: return QString("Ten Nano-TestPop (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
@@ -97,9 +93,9 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case ULD:  return 100000000;
-    case mULD: return 100000;
-    case uULD: return 100;
+    case PCH:  return 100000000;
+    case mUT: return 100000;
+    case uUT: return 100;
     case duffs: return 1;
     default:   return 100000000;
     }
@@ -109,9 +105,9 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case ULD: return 8;
-    case mULD: return 5;
-    case uULD: return 2;
+    case PCH: return 8;
+    case mUT: return 5;
+    case uUT: return 2;
     case duffs: return 0;
     default: return 0;
     }

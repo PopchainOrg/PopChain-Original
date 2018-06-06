@@ -47,7 +47,7 @@ static void TestKey(const std::string& key,
 class FormatTest { };
 
 TEST(FormatTest, InternalKey_EncodeDecode) {
-  const char* keys[] = { "", "k", "hello", "longggggggggggggggggggggg" };
+  const char* keys[] = { "", "k", "cryptopop", "longggggggggggggggggggggg" };
   const uint64_t seq[] = {
     1, 2, 3,
     (1ull << 8) - 1, 1ull << 8, (1ull << 8) + 1,
@@ -57,7 +57,7 @@ TEST(FormatTest, InternalKey_EncodeDecode) {
   for (int k = 0; k < sizeof(keys) / sizeof(keys[0]); k++) {
     for (int s = 0; s < sizeof(seq) / sizeof(seq[0]); s++) {
       TestKey(keys[k], seq[s], kTypeValue);
-      TestKey("hello", 1, kTypeDeletion);
+      TestKey("cryptopop", 1, kTypeDeletion);
     }
   }
 }
@@ -85,7 +85,7 @@ TEST(FormatTest, InternalKeyShortSeparator) {
   // When user keys are different, but correctly ordered
   ASSERT_EQ(IKey("g", kMaxSequenceNumber, kValueTypeForSeek),
             Shorten(IKey("foo", 100, kTypeValue),
-                    IKey("hello", 200, kTypeValue)));
+                    IKey("cryptopop", 200, kTypeValue)));
 
   // When start user key is prefix of limit user key
   ASSERT_EQ(IKey("foo", 100, kTypeValue),

@@ -1,6 +1,4 @@
-// Copyright 2014 BitPay Inc.
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include <string.h>
 #include <vector>

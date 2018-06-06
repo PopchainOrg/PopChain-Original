@@ -299,7 +299,7 @@ TEST(CorruptionTest, SequenceNumberRecovery) {
 }
 
 TEST(CorruptionTest, CorruptedDescriptor) {
-  ASSERT_OK(db_->Put(WriteOptions(), "foo", "hello"));
+  ASSERT_OK(db_->Put(WriteOptions(), "foo", "cryptopop"));
   DBImpl* dbi = reinterpret_cast<DBImpl*>(db_);
   dbi->TEST_CompactMemTable();
   dbi->TEST_CompactRange(0, NULL, NULL);
@@ -312,7 +312,7 @@ TEST(CorruptionTest, CorruptedDescriptor) {
   Reopen();
   std::string v;
   ASSERT_OK(db_->Get(ReadOptions(), "foo", &v));
-  ASSERT_EQ("hello", v);
+  ASSERT_EQ("cryptopop", v);
 }
 
 TEST(CorruptionTest, CompactionInputError) {

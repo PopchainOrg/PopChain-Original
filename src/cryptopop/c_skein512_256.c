@@ -1,6 +1,4 @@
-﻿// Copyright (c) 2017-2018 The Popchain Core Developers
-
-#include "c_skein512_256.h"
+﻿#include "c_skein512_256.h"
 
 #include <stdio.h>
 #include <stdint.h>

@@ -799,12 +799,12 @@ class TableTest { };
 
 TEST(TableTest, ApproximateOffsetOfPlain) {
   TableConstructor c(BytewiseComparator());
-  c.Add("k01", "hello");
-  c.Add("k02", "hello2");
+  c.Add("k01", "cryptopop");
+  c.Add("k02", "cryptopop2");
   c.Add("k03", std::string(10000, 'x'));
   c.Add("k04", std::string(200000, 'x'));
   c.Add("k05", std::string(300000, 'x'));
-  c.Add("k06", "hello3");
+  c.Add("k06", "cryptopop3");
   c.Add("k07", std::string(100000, 'x'));
   std::vector<std::string> keys;
   KVMap kvmap;
@@ -842,9 +842,9 @@ TEST(TableTest, ApproximateOffsetOfCompressed) {
   Random rnd(301);
   TableConstructor c(BytewiseComparator());
   std::string tmp;
-  c.Add("k01", "hello");
+  c.Add("k01", "cryptopop");
   c.Add("k02", test::CompressibleString(&rnd, 0.25, 10000, &tmp));
-  c.Add("k03", "hello3");
+  c.Add("k03", "cryptopop3");
   c.Add("k04", test::CompressibleString(&rnd, 0.25, 10000, &tmp));
   std::vector<std::string> keys;
   KVMap kvmap;

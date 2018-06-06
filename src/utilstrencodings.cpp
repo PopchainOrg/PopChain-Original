@@ -1,8 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
-// Copyright (c) 2017-2018 The Popchain Core Development Team
+// Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "utilstrencodings.h"
 
@@ -23,6 +19,16 @@ static const string SAFE_CHARS[] =
     CHARS_ALPHA_NUM + " .,;-_?@" // SAFE_CHARS_UA_COMMENT
 };
 
+string SanitizeString(const string& str, int rule)
+{
+    string strResult;
+    for (std::string::size_type i = 0; i < str.size(); i++)
+    {
+        if (SAFE_CHARS[rule].find(str[i]) != std::string::npos)
+            strResult.push_back(str[i]);
+    }
+    return strResult;
+}
 
 const signed char p_util_hexdigit[256] =
 { -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
@@ -76,17 +82,6 @@ vector<unsigned char> ParseHex(const char* psz)
         vch.push_back(n);
     }
     return vch;
-}
-
-string SanitizeString(const string& str, int rule)
-{
-    string strResult;
-    for (std::string::size_type i = 0; i < str.size(); i++)
-    {
-        if (SAFE_CHARS[rule].find(str[i]) != std::string::npos)
-            strResult.push_back(str[i]);
-    }
-    return strResult;
 }
 
 vector<unsigned char> ParseHex(const string& str)

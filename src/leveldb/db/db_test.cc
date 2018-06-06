@@ -1145,7 +1145,7 @@ TEST(DBTest, ApproximateSizes_MixOfSmallAndLarge) {
 }
 
 TEST(DBTest, IteratorPinsRef) {
-  Put("foo", "hello");
+  Put("foo", "cryptopop");
 
   // Get iterator that will yield the current contents of the DB.
   Iterator* iter = db_->NewIterator(ReadOptions());
@@ -1160,7 +1160,7 @@ TEST(DBTest, IteratorPinsRef) {
   iter->SeekToFirst();
   ASSERT_TRUE(iter->Valid());
   ASSERT_EQ("foo", iter->key().ToString());
-  ASSERT_EQ("hello", iter->value().ToString());
+  ASSERT_EQ("cryptopop", iter->value().ToString());
   iter->Next();
   ASSERT_TRUE(!iter->Valid());
   delete iter;

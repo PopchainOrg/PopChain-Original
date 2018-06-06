@@ -1,7 +1,4 @@
-// Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
 #include "config/pop-config.h"
@@ -42,6 +39,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
     mapper(0)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::Dialog|Qt::WindowCloseButtonHint);
 
     /* Main elements init */
     ui->databaseCache->setMinimum(nMinDbCache);

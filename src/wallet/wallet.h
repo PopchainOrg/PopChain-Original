@@ -1,9 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2014-2017 The Dash Core developers
 // Copyright (c) 2017-2018 The Popchain Core Developers
-// Distributed under the MIT software license, see the accompanying
-// file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef BITCOIN_WALLET_WALLET_H
 #define BITCOIN_WALLET_WALLET_H
@@ -39,7 +34,7 @@ extern CAmount maxTxFee;
 extern unsigned int nTxConfirmTarget;
 extern bool bSpendZeroConfChange;
 extern bool fSendFreeTransactions;
-
+extern bool EnsureWalletIsAvailable(bool avoidException);
 extern bool fLargeWorkForkFound;
 extern bool fLargeWorkInvalidChainFound;
 
@@ -98,7 +93,7 @@ enum AvailableCoinsType
     ONLY_DENOMINATED = 2,
     ONLY_NOT1000IFMN = 3,
     ONLY_NONDENOMINATED_NOT1000IFMN = 4,
-    ONLY_1000 = 5, // find masternode outputs including locked ones (use with caution)
+    ONLY_1000 = 5, // find popnode outputs including locked ones (use with caution)
     ONLY_PRIVATESEND_COLLATERAL = 6
 };
 
@@ -668,8 +663,8 @@ public:
     bool SelectCoinsDark(CAmount nValueMin, CAmount nValueMax, std::vector<CTxIn>& vecTxInRet, CAmount& nValueRet, int nPrivateSendRoundsMin, int nPrivateSendRoundsMax) const;
     bool SelectCoinsGrouppedByAddresses(std::vector<CompactTallyItem>& vecTallyRet, bool fSkipDenominated = true, bool fAnonymizable = true) const;
 
-    /// Get 1000ULD output and keys which can be used for the Masternode
-    bool GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet, std::string strTxHash = "", std::string strOutputIndex = "");
+    /// Get 1000UT output and keys which can be used for the Popnode
+    bool GetPopnodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet, std::string strTxHash = "", std::string strOutputIndex = "");
     /// Extract txin information and keys from output
     bool GetVinAndKeysFromOutput(COutput out, CTxIn& txinRet, CPubKey& pubKeyRet, CKey& keyRet);
 
