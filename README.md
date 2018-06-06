@@ -13,7 +13,7 @@ Basic usage resources:
 
 Contact us:
 
-* [Contact](contact@popchain.org)
+* contact@popchain.org
 
 
 Building PopChain
@@ -56,9 +56,4 @@ The master branch is constantly updated and developed, while stable
 and versionized executables will be published once mainnet is published.
 
 Issues and commit changes are welcome.
-
-Testing
--------
-
-Tests are placed in /tests directory.
 
