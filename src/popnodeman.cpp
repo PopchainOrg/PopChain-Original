@@ -13,7 +13,6 @@
 #include <sstream>
 /** Popnode manager */
 CPopnodeMan mnodeman;
-CService ucenterservice;
 
 const std::string CPopnodeMan::SERIALIZATION_VERSION_STRING = "CPopnodeMan-Version-4";
 const int mstnd_iReqBufLen = 500;
@@ -101,99 +100,6 @@ void CPopnodeIndex::RebuildIndex()
     }
 }
 
-void showbuf(const char * buf, int len)
-{
-	int i = 0, count = 0;
-	
-	for (i = 0; i < len; ++i)
-	{
-		printf("%02x ", (uint8_t)buf[i]);
-		count++;
-		if(count % 8 == 0)
-			printf("    ");
-		if(count % 16 == 0)
-			printf("\n");
-	}
-	printf("\n");
-}
-
-/*void GetRequestMsg(std::string & str)
-{
-	mstnodequest   mstquest(111,MST_QUEST_ONE);
-    mstquest.SetMasterAddr(std::string("NdsRM9waShDUT3TqhgdsGCzqH33Wwb8zDB") );
-    std::ostringstream os;
-    boost::archive::binary_oarchive oa(os);
-    oa<<mstquest;
-	str = os.str();
-}*/
-
-bool SendRequestNsg(SOCKET sock, CPopnode &mn, mstnodequest &mstquest)
-{
-	std::string strReq;
-	char cbuf[mstnd_iReqBufLen];
-	memset(cbuf,0,sizeof(cbuf));
-	int buflength = 0;
-	
-	CBitcoinAddress address(mn.pubKeyCollateralAddress.GetID());
-	
-	mstquest.SetMasterAddr(address.ToString()/*std::string("uRr71rfTD1nvpmxaSxou5ATvqGriXCysrL")*/);
-	mstquest._timeStamps = GetTime();
-	
-	//std::cout << "check popnode addr " << mstquest._masteraddr << std::endl;
-	LogPrintf("CheckActiveMaster: start check popnode %s\n", mstquest._masteraddr);
-	
-    std::ostringstream os;
-    boost::archive::binary_oarchive oa(os);
-    oa<<mstquest;
-	strReq = os.str();
-	
-	buflength = strReq.length();
-	if(buflength + mstnd_iReqMsgHeadLen > mstnd_iReqBufLen)
-		return error("SendRequestNsg : buff size error, string length is %d, need to increase buff size", buflength + mstnd_iReqMsgHeadLen);
-	unsigned int n = HNSwapl(buflength);
-	memcpy(cbuf, &n, mstnd_iReqMsgHeadLen);
-	memcpy(cbuf + mstnd_iReqMsgHeadLen, strReq.c_str(), buflength);
-	buflength += mstnd_iReqMsgHeadLen;
-
-	//showbuf(cbuf, buflength);
-		
-	int nBytes = send(sock, cbuf, buflength, 0);
-	if(nBytes != buflength)
-		return false;
-	return true;
-}
-
-extern const std::string strMessageMagic;
-bool VerifymsnRes(const mstnoderes & res, const mstnodequest & qst)
-{
-	CPubKey pubkeyFromSig;
-	std::vector<unsigned char> vchSigRcv;
-	vchSigRcv = ParseHex(res._signstr);
-		
-	CPubKey pubkeyLocal(ParseHex(mstnd_SigPubkey));
-		
-	CHashWriter ss(SER_GETHASH, 0);
-    ss << strMessageMagic;
-    ss << qst._masteraddr;
-	ss << qst._timeStamps;
-	uint256 reqhash = ss.GetHash();
-		
-	if(!pubkeyFromSig.RecoverCompact(reqhash, vchSigRcv)) {
-		LogPrintf("VerifymsnRes:Error recovering public key.");
-		return false;
-	}
-	
-	if(pubkeyFromSig.GetID() != pubkeyLocal.GetID()) {
-        LogPrintf("Keys don't match: pubkey=%s, pubkeyFromSig=%s, hash=%s, vchSig=%s",
-                    pubkeyLocal.GetID().ToString().c_str(), pubkeyFromSig.GetID().ToString().c_str(), ss.GetHash().ToString().c_str(),
-                    EncodeBase64(&vchSigRcv[0], vchSigRcv.size()));
-		/*std::cout << "Keys don't match: pubkey = " << pubkeyLocal.GetID().ToString() << " ,pubkeyFromSig = " << pubkeyFromSig.GetID().ToString()
-			<< std::endl << "wordHash = " << reqhash.ToString()
-			<< std::endl << "vchSig = " << EncodeBase64(&vchSigRcv[0], vchSigRcv.size()) << std::endl;*/
-        return false;
-    }
-	return true;
-}
 
 CPopnodeMan::CPopnodeMan()
 : cs(),
@@ -214,107 +120,6 @@ CPopnodeMan::CPopnodeMan()
   nDsqCount(0)
 {}
 
-bool CPopnodeMan::CheckActiveMaster(CPopnode &mn)
-{
-	//return false;
-    // Activation validation of the primary node.
-    // It is still in the testing phase, and the code will be developed after the test.
-
-	if (!sporkManager.IsSporkActive(SPORK_18_REQUIRE_MASTER_VERIFY_FLAG))
-	{
-		return true;
-	}
-
-    bool proxyConnectionFailed = false;
-    SOCKET hSocket;
-    if(ConnectSocket(ucenterservice, hSocket, DEFAULT_CONNECT_TIMEOUT, &proxyConnectionFailed))
-    {
-        if (!IsSelectableSocket(hSocket)) {
-            LogPrintf("CPopnodeMan::CheckActiveMaster: Cannot create connection: non-selectable socket created (fd >= FD_SETSIZE ?)\n");
-            CloseSocket(hSocket);
-            return /*false*/true;
-        }
-
-		mstnodequest mstquest(111,MST_QUEST_ONE);		
-		if(!SendRequestNsg(hSocket, mn, mstquest))
-		{
-			CloseSocket(hSocket);
-			return error("CPopnodeMan::CheckActiveMaster: send RequestMsgType error");
-		}
-
-		char cbuf[mstnd_iReqBufLen];
-		memset(cbuf,0,sizeof(cbuf));
-		int nBytes = 0;
-
-		int64_t nTimeLast = GetTime();
-		while(nBytes <= 0)
-		{
-			nBytes = recv(hSocket, cbuf, sizeof(cbuf), 0);
-			if((GetTime() - nTimeLast) >= mstnd_iReqMsgTimeout)
-			{
-				CloseSocket(hSocket);
-				LogPrintf("CPopnodeMan::CheckActiveMaster: Passed because wait for ack message timeout\n");
-				return /*error("CPopnodeMan::CheckActiveMaster: recv CMstNodeData timeout")*/true;
-			}
-		}
-		if(nBytes > mstnd_iReqBufLen)
-		{
-			CloseSocket(hSocket);
-			return error("CPopnodeMan::CheckActiveMaster: msg have too much bytes %d, need increase rcv buf size", nBytes);
-		}
-		
-		int msglen = 0;
-		memcpy(&msglen, cbuf, mstnd_iReqMsgHeadLen);
-		msglen = HNSwapl(msglen);
-
-		if(msglen != nBytes - mstnd_iReqMsgHeadLen)
-		{
-			CloseSocket(hSocket);
-			return error("CPopnodeMan::CheckActiveMaster: receive a error msg length is %d, recv bytes is %d", msglen, nBytes);
-		}
-		
-		std::string str(cbuf + mstnd_iReqMsgHeadLen, msglen);
-
-		mstnoderes  mstres;
-		std::istringstream strstream(str);
-		boost::archive::binary_iarchive ia(strstream);
-		ia >> mstres;
-
-		if(mstres._num > 0)
-		{
-			if(!VerifymsnRes(mstres, mstquest))
-			{
-				CloseSocket(hSocket);
-				return error("CPopnodeMan::CheckActiveMaster: receive a error msg can't verify");;
-			}
-			std::vector<CMstNodeData> vecnode;
-		    CMstNodeData  mstnode;
-			for (int i = 0; i < mstres._num; ++i)
-			{
-				ia >> mstnode;
-				//std::cout << "mstnode "<<mstnode._masteraddr<< " validflag " << mstnode._validflag << " hostname  "<<mstnode._hostname << "  "<< mstnode._hostip << std::endl;
-				if(mstnode._validflag <= 0)
-				{
-					CloseSocket(hSocket);
-					return error("receive a invalid validflag by mstnode %s, validflag %d", mstnode._masteraddr.c_str(), mstnode._validflag);
-				}
-				vecnode.push_back(mstnode);
-			}
-			//std::cout << "PopNode check success *********************" << std::endl;
-			LogPrintf("CPopnodeMan::CheckActiveMaster: PopNode %s check success\n", mstquest._masteraddr);
-			CloseSocket(hSocket);
-			return true;
-		}
-        else 
-        {
-            return false;
-        }    
-    }
-	CloseSocket(hSocket);
-	LogPrintf("CPopnodeMan::CheckActiveMaster: Passed because could't connect to center server\n");
-	return /*false*/true;
-}
-
 bool CPopnodeMan::Add(CPopnode &mn)
 {
     LOCK(cs);
@@ -322,17 +127,6 @@ bool CPopnodeMan::Add(CPopnode &mn)
     //bool bActive = true;
     if (pmn == NULL) {
         LogPrint("popnode", "CPopnodeMan::Add -- Adding new Popnode: addr=%s, %i now\n", mn.addr.ToString(), size() + 1);
-        /*if (sporkManager.IsSporkActive(SPORK_18_REQUIRE_MASTER_VERIFY_FLAG))
-        { 
-             bActive = CheckActiveMaster(mn);
-        } 
-        if ( bActive )
-        {
-            vPopnodes.push_back(mn);
-            indexPopnodes.AddPopnodeVIN(mn.vin);
-            fPopnodesAdded = true;
-            return true;
-        }*/
         vPopnodes.push_back(mn);
         indexPopnodes.AddPopnodeVIN(mn.vin);
         fPopnodesAdded = true;
@@ -368,13 +162,6 @@ void CPopnodeMan::AskForMN(CNode* pnode, const CTxIn &vin)
     mWeAskedForPopnodeListEntry[vin.prevout][pnode->addr] = GetTime() + DSEG_UPDATE_SECONDS;
 
     pnode->PushMessage(NetMsgType::DSEG, vin);
-}
-
-void CPopnodeMan::SetRegisteredCheckInterval(int time)
-{
-	BOOST_FOREACH(CPopnode& mn, vPopnodes) {
-        mn.SetRegisteredCheckInterval(time);
-    }
 }
 
 

@@ -139,8 +139,6 @@ class CPopnode
 private:
     // critical section to protect the inner data structures
     mutable CCriticalSection cs;
-
-	int MNM_REGISTERED_CHECK_SECONDS   = 60 * 60;
 	
 public:
     enum state {
@@ -267,8 +265,6 @@ public:
     bool IsWatchdogExpired() { return nActiveState == POPNODE_WATCHDOG_EXPIRED; }
     bool IsNewStartRequired() { return nActiveState == POPNODE_NEW_START_REQUIRED; }
 	bool IsRegistered() { return nActiveState == POPNODE_NO_REGISTERED; }
-
-	void SetRegisteredCheckInterval(int time) { MNM_REGISTERED_CHECK_SECONDS = time * 60; }
 
     static bool IsValidStateForAutoStart(int nActiveStateIn)
     {

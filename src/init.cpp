@@ -1811,28 +1811,6 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
         }
     }
 
-	// resolve ucenter domain to ip
-    if (Params().NetworkIDString() == CBaseChainParams::MAIN)
-    {
-        std::vector<CNetAddr> vIPs;
-
-        if (LookupHost(Params().ucenter().c_str(), vIPs))
-        {
-        	if (vIPs.empty())
-                return InitError(_("ucenter ip resolving failed, IPs empty."));
-
-            for (const CNetAddr &ip : vIPs)
-            {
-                LogPrintf("\t\t\t--------------%s==============\t\t\n", ip.ToString());
-				ucenterservice = CService(ip, 5009);
-            }
-        }
-		else
-            return InitError(_("ucenter ip resolving failed, LookupHost returned false."));
-
-		LogPrintf("Pop center service: %s \n", ucenterservice.ToStringIPPort());
-    }
-
     LogPrintf("Using popnode config file %s\n", GetPopnodeConfigFile().string());
 
     if(GetBoolArg("-mnconflock", true) && pwalletMain && (popnodeConfig.getCount() > 0)) {

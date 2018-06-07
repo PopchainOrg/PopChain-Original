@@ -304,16 +304,6 @@ void CActivePopnode::ManageStateLocal()
             return;
         }
 
-		// check if it is registered on the Pop center server
-		CPopnode mn(mnb);
-		if(!mnodeman.CheckActiveMaster(mn))
-		{
-			nState = ACTIVE_POPNODE_NOT_CAPABLE;
-			strNotCapableReason = strprintf(_("%s didn't registered on Pop Center"), mn.vin.prevout.ToStringShort());
-			LogPrintf("CPopnodeBroadcast::ManageStateLocal -- Didn't registered on Pop Center, popnode=%s\n", mn.vin.prevout.ToStringShort());
-			return;
-		}
-
         fPingerEnabled = true;
         nState = ACTIVE_POPNODE_STARTED;
 

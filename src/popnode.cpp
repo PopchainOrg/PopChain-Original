@@ -293,18 +293,6 @@ void CPopnode::Check(bool fForce)
         return;
     }
 
-	if(GetTime() - nTimeLastCheckedRegistered > MNM_REGISTERED_CHECK_SECONDS)
-	{
-		nTimeLastCheckedRegistered = GetTime();
-		//CPopnode mn(*this);
-		if(!mnodeman.CheckActiveMaster(*this))
-		{
-			nActiveState = POPNODE_NO_REGISTERED;
-			LogPrint("popnode", "CPopnode::Check -- Popnode %s is in %s state now\n", vin.prevout.ToStringShort(), GetStateString());
-			return;
-		}
-	}
-
     nActiveState = POPNODE_ENABLED; // OK
     if(nActiveStatePrev != nActiveState) {
         LogPrint("popnode", "CPopnode::Check -- Popnode %s is in %s state now\n", vin.prevout.ToStringShort(), GetStateString());
@@ -655,14 +643,6 @@ bool CPopnodeBroadcast::CheckOutpoint(int& nDos)
             }
         }
     }
-
-	// check if it is registered on the Pop center server
-	CPopnode mn(*this);
-	if(!mnodeman.CheckActiveMaster(mn))
-	{
-		LogPrintf("CPopnodeBroadcast::CheckOutpoint -- Failed to find Popnode in the PopCenter's popnode list, popnode=%s\n", mn.vin.prevout.ToStringShort());
-		return false;
-	}
 
     return true;
 }
