@@ -254,10 +254,7 @@ public:
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
         vFixedSeeds.clear();
         vSeeds.clear();		
-        vSeeds.push_back(CDNSSeedData("pop.one", "seed1.pop.one"));
-		vSeeds.push_back(CDNSSeedData("pop.one", "seed2.pop.one"));  
-		vSeeds.push_back(CDNSSeedData("pop.one", "seed3.pop.one"));
-		uCenter = "ucenter.pop.one";                           // for popnode verify
+        vSeeds.push_back(CDNSSeedData("pop.xxx", "seed1.pop.xxx"));
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
@@ -357,10 +354,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("pop.one","testnet-seed1.pop.one"));
-	    //vSeeds.push_back(CDNSSeedData("pop.io","testnet-seed1.pop.io"));
-	    //vSeeds.push_back(CDNSSeedData("fcash.cc","testnet-seed1.fcash.cc"));
-        uCenter = "test-ucenter.pop.one";                           // currently ignored
+        //vSeeds.push_back(CDNSSeedData("pop.xxx","testnet-seed1.pop.xxx"));
 
         // Testnet Pop addresses start with 'u'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
