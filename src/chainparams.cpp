@@ -294,18 +294,18 @@ public:
         strNetworkID = "test";
 
         // reward setting
-        consensus.premine = int64_t(1e8 * COIN);                            // premine
+        consensus.premine = int64_t(1e7 * COIN);                            // premine
         consensus.genesisReward = int64_t(1 * COIN);                        // genesis                                                           
-        consensus.minerReward4 = int64_t(112.966 * COIN);                   // miners
+        consensus.minerReward4 = int64_t(300 * COIN);                   // miners
         consensus.minerReward5 = int64_t(535.103 * COIN);
-        consensus.foundersReward = int64_t(4166666.667 * COIN);             // founders
+        consensus.foundersReward = int64_t(200000 * COIN);             // founders
 
         consensus.colleteral = int64_t(1e4 * COIN);                         // popnode colleteral
 
         consensus.nSubsidyHalvingInterval = 840960;
         consensus.nInstantSendKeepLock = 6;
-        consensus.nSuperblockStartBlock = 10; 				 // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
-        consensus.nSuperblockCycle = 13; 				 // Superblocks can be issued hourly on testnet
+        consensus.nSuperblockStartBlock = 30; 				 // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
+        consensus.nSuperblockCycle = 50; 				 // Superblocks can be issued hourly on testnet
         consensus.nPopnodeMinimumConfirmations = 2;
         consensus.nMajorityEnforceBlockUpgrade = 51;
         consensus.nMajorityRejectBlockOutdated = 75;
