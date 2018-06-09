@@ -40,7 +40,7 @@ private:
 
     // Last time when we received some popnode asset ...
     int64_t nTimeLastPopnodeList;
-    int64_t nTimeLastPaymentVote;
+
     // ... or failed
     int64_t nTimeLastFailure;
 

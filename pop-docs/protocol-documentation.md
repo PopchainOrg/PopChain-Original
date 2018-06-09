@@ -49,52 +49,6 @@ Bitcoin Public Key https://bitcoin.org/en/glossary/public-key
 | ---------- | ----------- | --------- | -------- |
 | 33-65 | vch | char[] | The public portion of a keypair which can be used to verify signatures made with the private portion of the keypair.
 
-## Message Types
-
-### MNANNOUNCE - "mnb"
-
-CPopnodeBroadcast
-
-Whenever a popnode comes online or a client is syncing, they will send this message which describes the popnode entry and how to validate messages from it.
-
-| Field Size | Field Name | Data type | Description |
-| ---------- | ----------- | --------- | -------- |
-| 41 | vin | CTxIn | The unspent output which is holding 10000 PCH
-| # | addr | CService | Address of the main 10000 PCH unspent output
-| 33-65 | pubKeyCollateralAddress | CPubKey | CPubKey of the main 10000 PCH unspent output
-| 33-65 | pubKeyPopnode | CPubKey | CPubKey of the secondary signing key (For all other messaging other than announce message)
-| 71-73 | sig | char[] | Signature of this message
-| 8 | sigTime | int64_t | Time which the signature was created
-| 4 | nProtocolVersion | int | The protocol version of the popnode
-| # | lastPing | CPopnodePing | The last known ping of the popnode
-| 8 | nLastDsq | int64_t | The last time the popnode sent a DSQ message (for mixing) (DEPRECATED)
-
-### MNPING - "mnp"
-
-CPopnodePing
-
-Every few minutes, popnodes ping the network with a message that propagates the whole network.
-
-| Field Size | Field Name | Data type | Description |
-| ---------- | ----------- | --------- | -------- |
-| 41 | vin | CTxIn | The unspent output of the popnode which is signing the message
-| 32 | blockHash | uint256 | Current chaintip blockhash minus 12
-| 8 | sigTime | int64_t | Signature time for this ping
-| 71-73 | vchSig | char[] | Signature of this message by popnode (verifiable via pubKeyPopnode)
-
-### POPNODEPAYMENTVOTE - "mnw"
-
-CPopnodePaymentVote
-
-When a new block is found on the network, a popnode quorum will be determined and those 10 selected popnodes will issue a popnode payment vote message to pick the next winning node.
-
-| Field Size | Field Name | Data type | Description |
-| ---------- | ----------- | --------- | -------- |
-| 41 | vinPopnode | CTxIn | The unspent output of the popnode which is signing the message
-| 4 | nBlockHeight | int | The blockheight which the payee should be paid
-| ? | payeeAddress | CScript | The address to pay to
-| 71-73 | sig | char[] | Signature of the popnode which is signing the message
-
 ### DSTX - "dstx"
 
 CDarksendBroadcastTx

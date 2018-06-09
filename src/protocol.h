@@ -223,8 +223,6 @@ extern const char *TXLOCKREQUEST;
 extern const char *TXLOCKVOTE;
 extern const char *SPORK;
 extern const char *GETSPORKS;
-extern const char *POPNODEPAYMENTVOTE;
-extern const char *POPNODEPAYMENTSYNC;
 extern const char *MNANNOUNCE;
 extern const char *MNPING;
 extern const char *DSACCEPT;

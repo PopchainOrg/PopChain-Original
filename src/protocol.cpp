@@ -37,9 +37,6 @@ const char *TXLOCKREQUEST="ix";
 const char *TXLOCKVOTE="txlvote";
 const char *SPORK="spork";
 const char *GETSPORKS="getsporks";
-const char *POPNODEPAYMENTVOTE="mnw";
-const char *POPNODEPAYMENTBLOCK="mnwb";
-const char *POPNODEPAYMENTSYNC="mnget";
 const char *MNBUDGETSYNC="mnvs"; // depreciated since 12.1
 const char *MNBUDGETVOTE="mvote"; // depreciated since 12.1
 const char *MNBUDGETPROPOSAL="mprop"; // depreciated since 12.1
@@ -72,8 +69,6 @@ static const char* ppszTypeName[] =
     NetMsgType::TXLOCKREQUEST,
     NetMsgType::TXLOCKVOTE,
     NetMsgType::SPORK,
-    NetMsgType::POPNODEPAYMENTVOTE,
-    NetMsgType::POPNODEPAYMENTBLOCK, // reusing, was MNSCANERROR previousely, was NOT used in 12.0, we need this for inv
     NetMsgType::MNBUDGETVOTE, // depreciated since 12.1
     NetMsgType::MNBUDGETPROPOSAL, // depreciated since 12.1
     NetMsgType::MNBUDGETFINAL, // depreciated since 12.1
@@ -117,9 +112,6 @@ const static std::string allNetMessageTypes[] = {
     NetMsgType::TXLOCKVOTE,
     NetMsgType::SPORK,
     NetMsgType::GETSPORKS,
-    NetMsgType::POPNODEPAYMENTVOTE,
-    // NetMsgType::POPNODEPAYMENTBLOCK, // there is no message for this, only inventory
-    NetMsgType::POPNODEPAYMENTSYNC,
     NetMsgType::MNANNOUNCE,
     NetMsgType::MNPING,
     NetMsgType::DSACCEPT,

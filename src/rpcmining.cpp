@@ -386,8 +386,6 @@ UniValue getblocktemplate(const UniValue& params, bool fHelp)
             "      \"script\" : \"xxxx\",            (string) payee scriptPubKey\n"
             "      \"amount\": n                   (numeric) required amount to pay\n"
             "  },\n"
-            "  \"popnode_payments_started\" :  true|false, (boolean) true, if popnode payments started\n"
-            "  \"popnode_payments_enforced\" : true|false, (boolean) true, if popnode payments are enforced\n"
             "  \"superblock\" : [                  (array) required superblock payees that must be included in the next block\n"
             "      {\n"
             "         \"payee\" : \"xxxx\",          (string) payee address\n"

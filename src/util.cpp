@@ -272,8 +272,6 @@ bool LogAcceptCategory(const char* category)
                 ptrCategory->insert(string("popnode"));
                 ptrCategory->insert(string("spork"));
                 ptrCategory->insert(string("keepass"));
-                ptrCategory->insert(string("mnpayments"));
-                ptrCategory->insert(string("gobject"));
             }
         }
         const set<string>& setCategories = *ptrCategory.get();
