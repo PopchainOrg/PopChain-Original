@@ -3599,10 +3599,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Vincular a la dirección dada para escuchar conexiones JSON-RPC. Use la notación [servidor]:puerto de IPv6. Esta opción se puede indicar múltiples veces (predeterminado: vincular a todos los interfaces)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Cambiar el comportamiento de votos de presupuesto finalizado automático. mode=auto: Votar sólo a la coincidencia exacta del presupuesto finalizado para mi presupuesto generado. (cadena de texto, predeterminado: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Limitar continuamente las transacciones gratuitas a &lt;n&gt;*1000 bytes por minuto (predeterminado:%u)</translation>
     </message>
@@ -3615,8 +3611,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Borrar todas las transacciones del monedero y recuperar únicamente aquellas partes de la cadena de bloques a través de -rescan en el inicio</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Desactivar todas las funciones asociadas a Pop (Nodos Maestros, Darksend, InstantX, Presupuesto) (0-1, predeterminado: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Desactivar todas las funciones asociadas a Pop (Nodos Maestros, Darksend, InstantX) (0-1, predeterminado: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3965,10 +3961,6 @@ por ejemplo: alertnotify=echo %%s | mail -s "Alerta de Pop" admin@foo.com
         <translation>Escuchar a las conexiones en el &lt;port&gt; (predeterminado: %u ó testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Cargando caché del presupuesto...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Cargando caché de nodos maestros...</translation>
     </message>
@@ -4119,10 +4111,6 @@ por ejemplo: alertnotify=echo %%s | mail -s "Alerta de Pop" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>La sincronización finalizó</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Sincronizando presupuestos...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

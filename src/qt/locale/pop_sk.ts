@@ -3597,10 +3597,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Spojiť s danou adresou pre počúvanie JSON-RPC spojení. Použite zápis [host]:port pre IPv6. Táto možnosť môže byt zadaná niekoľko krát (predvolené: spojiť so všetkými rozhraniami)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Zmeniť vlastnosť hlasovania automaticky dokončených rozpočtov. mód=auto: Hlasovať iba pre konkrétny dokončený rozpočet, ktorý sa zhoduje mojím vygenerovaným rozpočtom. (reťazec, predvolené: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Nepretržite vyhodnocuj a limituj transakcie bez poplatku na &lt;n&gt;*1000 bajtov za minútu (predvolené:%u)</translation>
     </message>
@@ -3613,8 +3609,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Vymazať všetky transakcie z peňaženky a pri spustení znova získať z reťazca blokov iba tie získané pomocou -rescan</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Vypnúť všetky funkcie špecifické pre Pop (Popnode, Darksend, InstantX, Rozpočty) (0-1, predvolené: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Vypnúť všetky funkcie špecifické pre Pop (Popnode, Darksend, InstantX) (0-1, predvolené: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3963,10 +3959,6 @@ napríklad: alertnotify=echo %%s | mail -s "Pop Upozornenie" admin@foo.com
         <translation>Počúvať pripojenia na &lt;port&gt; (predvolené: %u alebo testovacia sieť: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Načíta sa vyrovnávacia pamäť rozpočtu...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Načíta sa vyrovnávacia pamäť popnode...</translation>
     </message>
@@ -4117,10 +4109,6 @@ napríklad: alertnotify=echo %%s | mail -s "Pop Upozornenie" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>Synchronizácia dokončená</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronizujú sa rozpočty...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

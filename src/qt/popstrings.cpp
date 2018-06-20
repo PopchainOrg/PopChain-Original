@@ -33,9 +33,6 @@ QT_TRANSLATE_NOOP("pop-core", ""
 "Cannot obtain a lock on data directory %s. Pop Core is probably already "
 "running."),
 QT_TRANSLATE_NOOP("pop-core", ""
-"Change automatic finalized budget voting behavior. mode=auto: Vote for only "
-"exact finalized budget match to my generated budget. (string, default: auto)"),
-QT_TRANSLATE_NOOP("pop-core", ""
 "Continuously rate-limit free transactions to <n>*1000 bytes per minute "
 "(default:%u)"),
 QT_TRANSLATE_NOOP("pop-core", ""
@@ -49,7 +46,7 @@ QT_TRANSLATE_NOOP("pop-core", ""
 "blockchain through -rescan on startup"),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Disable all Pop specific functionality (Popnodes, PrivateSend, InstantSend, "
-"Budgeting) (0-1, default: %u)"),
+") (0-1, default: %u)"),
 QT_TRANSLATE_NOOP("pop-core", ""
 "Distributed under the MIT software license, see the accompanying file "
 "COPYING or <http://www.opensource.org/licenses/mit-license.php>."),
@@ -313,7 +310,6 @@ QT_TRANSLATE_NOOP("pop-core", "Listen for JSON-RPC connections on <port> (defaul
 QT_TRANSLATE_NOOP("pop-core", "Listen for connections on <port> (default: %u or testnet: %u)"),
 QT_TRANSLATE_NOOP("pop-core", "Loading addresses..."),
 QT_TRANSLATE_NOOP("pop-core", "Loading block index..."),
-QT_TRANSLATE_NOOP("pop-core", "Loading budget cache..."),
 QT_TRANSLATE_NOOP("pop-core", "Loading popnode cache..."),
 QT_TRANSLATE_NOOP("pop-core", "Loading popnode payment cache..."),
 QT_TRANSLATE_NOOP("pop-core", "Loading wallet... (%3.2f %%)"),
@@ -391,7 +387,6 @@ QT_TRANSLATE_NOOP("pop-core", "Submitted to popnode, waiting in queue %s"),
 QT_TRANSLATE_NOOP("pop-core", "Synchronization failed"),
 QT_TRANSLATE_NOOP("pop-core", "Synchronization finished"),
 QT_TRANSLATE_NOOP("pop-core", "Synchronization pending..."),
-QT_TRANSLATE_NOOP("pop-core", "Synchronizing budgets..."),
 QT_TRANSLATE_NOOP("pop-core", "Synchronizing popnode winners..."),
 QT_TRANSLATE_NOOP("pop-core", "Synchronizing popnodes..."),
 QT_TRANSLATE_NOOP("pop-core", "Synchronizing sporks..."),

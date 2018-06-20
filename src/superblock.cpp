@@ -125,7 +125,6 @@ CAmount CSuperblock::GetPaymentsLimit(int nBlockHeight)
 bool CSuperblock::IsFounderValid(const CTransaction& txNew, int nBlockHeight, CAmount blockReward)
 {
     // founder reward check
-    // it's ok to use founders address as budget address ?
      LogPrint("gobject", "IsFounderValid nBlockHeight = %d \n",
              nBlockHeight);
     const Consensus::Params& cp = Params().GetConsensus();

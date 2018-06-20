@@ -3598,10 +3598,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Liên kết với địa chỉ cụ thể để lắng nghe các kết nối JSON-RPC. Sử dụng cách viết [địa chỉ máy]:cổng cho IPv6. Tùy chọn này có thể được chỉ định nhiều lần (ngầm định: bind cho tất cả các giao diện)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Thay đổi hành vi bỏ phiếu ngân sách cuối cùng tự động. mode = auto: Chỉ bỏ phiếu cho ngân sách cuối cùng tương ứng chính xác với ngân sách được cấp phát của tôi. (string, ngầm định: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Liên tục giới hạn tỷ lệ miễn phí giao dịch về &lt;n&gt;*1000 byte cho mỗi phút (ngầm định:%u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Xoá hết tất cả các giao dịch ví và chỉ phục hồi những phần đó của blockchain qua -rescan khi khởi động</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Tắt tất cả các chức năng đặc trưng của Pop (Popnode, Darksend, InstantX, Lập ngân sách) (0-1, ngầm định: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Tắt tất cả các chức năng đặc trưng của Pop (Popnode, Darksend, InstantX) (0-1, ngầm định: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3963,10 +3959,6 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Lắng nghe kết nối từ &lt;cổng&gt; (ngầm định: %u hoặc mạng thử: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Đang nạp bộ đệm ngân sách...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Đang tải cache cho popnode...</translation>
     </message>
@@ -4117,10 +4109,6 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>Đồng bộ đã hoàn thành</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Đang đồng bộ ngân sách...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

@@ -186,7 +186,7 @@ public:
 
         consensus.nSubsidyHalvingInterval = 840960;                     // 4 years, 24 * 60 / 2.5 * 365 * 4 
         consensus.nInstantSendKeepLock = 24;
-        consensus.nSuperblockStartBlock = 100;                          // The block at which 12.1 goes live (end of final 12.0 budget cycle)
+        consensus.nSuperblockStartBlock = 100;
         consensus.nSuperblockCycle = 576 * 30; 				            // ~(60*24*30)/2.6, actual number of blocks per month is 200700 / 12 = 16725
         consensus.nPopnodeMinimumConfirmations = 15;
         consensus.nMajorityEnforceBlockUpgrade = 750;
@@ -304,7 +304,7 @@ public:
 
         consensus.nSubsidyHalvingInterval = 840960;
         consensus.nInstantSendKeepLock = 6;
-        consensus.nSuperblockStartBlock = 30; 				 // NOTE: Should satisfy nSuperblockStartBlock > nBudgetPeymentsStartBlock
+        consensus.nSuperblockStartBlock = 30;
         consensus.nSuperblockCycle = 50; 				 // Superblocks can be issued hourly on testnet
         consensus.nPopnodeMinimumConfirmations = 2;
         consensus.nMajorityEnforceBlockUpgrade = 51;

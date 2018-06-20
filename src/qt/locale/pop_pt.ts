@@ -3860,10 +3860,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Escutar ligações na &lt;port&gt; (default: %u or testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Carregando cache de orçamentos...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>A carregar a cache de popnodes...</translation>
     </message>
@@ -4006,10 +4002,6 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Submitted to popnode, waiting in queue %s</source>
         <translation>Apresentado ao popnode, esperando na fila %s </translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>A sincronizar orçamentos...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

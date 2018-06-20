@@ -3603,10 +3603,6 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Kytkeydy annettuun osoitteeseen kuunnellaksesi JSON-RPC yhteyksiä. Käytä [host]:port merkintätapaa IPv6:lle. Tämä asetus voidaan määrittää useita kertoja  (oletus: kytkeydy kaikkiin rajapintoihin)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Vaihda automaattisesti viimeistellyn budjetin äänestyskäyttäytyminen. mode=auto: Äänestä vain tarkkaan viimeisteltyä budjettia joka täsmää itse tekemääni budjettiin. (string, oletus: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Rajoita jatkuvasti yhtäaikaiset ilmaiset siirtotapahtumat &lt;n&gt;*1000 tavuun per minuutti (oletus: %u)</translation>
     </message>
@@ -3619,8 +3615,8 @@ Näillä toiminnoilla voit korjata korruptoituneen lohkoketjun tai puuttuvat/van
         <translation>Poista kaikki lompakon siirtotapahtumat ja palauta vain nuo osat lohkoketjusta -rescan valinnan avulla käynnistyksessä</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Kytke pois käytöstä kaikki Pop:in erityistoiminnot (Popnodet, Darksend, InstantX, Budjetointi) (0-1, oletus: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Kytke pois käytöstä kaikki Pop:in erityistoiminnot (Popnodet, Darksend, InstantX) (0-1, oletus: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3971,10 +3967,6 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>Kuuntele yhteyksiä portissa &lt;port&gt; (oletus: %u tai testiverkossa: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Ladataan budjetti välimuistia...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Ladataan popnode välimuistia...</translation>
     </message>
@@ -4125,10 +4117,6 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>Synkronointi valmis</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synkronoidaan budjetit...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

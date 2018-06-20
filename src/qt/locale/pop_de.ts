@@ -3598,10 +3598,6 @@ Dies kann passieren, wenn einige Pop aus ihrer Wallet bereits ausgegeben wurden.
         <translation>Für JSON-RPC Verbindugen an die angegebene Adresse binden. Für IPv6 "[Host]:Port"-Schreibweise verwenden. Diese Option kann mehrmals eingetragen werden. (Standard: an alle verbinden)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Wahlverhalten für Abschlussbudget ändern. mode=auto: nur wählen, wenn Abschlussbudget genau meinem generierten Budget entspricht. (Standard: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Anzahl der freien Transaktionen auf &lt;n&gt; * 1000 Byte pro Minute begrenzen (Standard: %u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ Dies kann passieren, wenn einige Pop aus ihrer Wallet bereits ausgegeben wurden.
         <translation>Lösche alle Wallet-Transaktionen stelle nur diese mittels -rescan beim nächsten Start des Wallets wieder her.</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Deaktiviere all Pop-spezifischen Funktionen (Popnodes, Darksend, InstantX, Budgeting) (0-1, Standard: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Deaktiviere all Pop-spezifischen Funktionen (Popnodes, Darksend, InstantX) (0-1, Standard: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3964,14 +3960,6 @@ Pop Core wird heruntergefahren.</translation>
         <translation>&lt;port&gt; nach Verbindungen abhören (Standard: %u oder Testnetz: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Lade Budget-Cache...</translation>
-    </message>
-    <message>
-        <source>Loading popnode cache...</source>
-        <translation>Lade Popnode-Cache...</translation>
-    </message>
-    <message>
         <source>Loading popnode payment cache...</source>
         <translation>Lade Popnode Zahlungs-Cache...</translation>
     </message>
@@ -4118,10 +4106,6 @@ Pop Core wird heruntergefahren.</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>Synchronisation beendet</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronisiere Budgets...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

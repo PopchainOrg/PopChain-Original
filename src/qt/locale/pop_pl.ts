@@ -3598,10 +3598,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Zwiąż z danym adresem oraz wpisz łączących się peerów na białą liste. Użyj notacji [host]:port dla IPv6. Opcja ta może być ustawiana wielokrotnie (domyślnie: połącz z wszystkimi interfejsami)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Zmeń automatyczne głosowanie. mode=auto: Głosuj tylko na konkretny kompletny budżet, porównaj z wygenerowanym budżetem. (linijka, domyślnie: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Ciągle ograniczaj darmowe transakcje do &lt;n&gt;*1000 bitów na minutę (domyślnie:%u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Usuń wszystkie transakcje portfela i odzyskaj tylko te części blockchainu - zeskanuj powonie na starcie.</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie dodatkowe funckje Pop (popnody, Darksend, InstanX, Budżetowanie) (0-1, domyślnie: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie dodatkowe funckje Pop (popnody, Darksend, InstanX) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3963,10 +3959,6 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Nasłuchuj połączeń na &lt;port&gt; (domyślnie: %u lub testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Ładuje pamięć podręczną budżetu...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Ładuję pamięć podręczną popnoda...</translation>
     </message>
@@ -4117,10 +4109,6 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
     <message>
         <source>Synchronization finished</source>
         <translation>Synchronizacja zakończona</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronizuję budżet...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

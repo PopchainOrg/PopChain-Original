@@ -3598,10 +3598,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Привязаться к указанному адресу для прослушивания JSON-RPC соединений. Используйте [хост]:порт для IPv6. Эту опцию можно указывать несколько раз (по умолчанию: привязаться ко всем интерфейсам)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Изменить поведение автоматического голосования за итоговые бюджеты. Режим auto: Голосовать только за итоговый бюджет, совпадающий со сгенерированным мной. (строковое, по умолчанию: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Постоянно ограничивать бесплатные транзакции до &lt;n&gt;*1000 байт в минуту (по умолчанию:%u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Удалить все трансакции из кошелька и при рестарте с помощью -rescan восстановить только те, которые есть в цепочке блоков</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Отключить всю функциональность, относящуюся к  Pop (Мастерноды, Darksend, InstantX, бюджеты) (0-1, по умолчанию: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Отключить всю функциональность, относящуюся к  Pop (Мастерноды, Darksend, InstantX) (0-1, по умолчанию: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3964,10 +3960,6 @@ rpcpassword=%s
         <translation>Принимать входящие подключения на порт &lt;port&gt; (по умолчанию: %u или testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Загрузка кэша бюджетов...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Загрузка кэша мастернод...</translation>
     </message>
@@ -4118,10 +4110,6 @@ rpcpassword=%s
     <message>
         <source>Synchronization finished</source>
         <translation>Синхронизация завершена</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Синхронизация бюджетов...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

@@ -3598,10 +3598,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Свързват с даден адрес, за да слушат за JSON-RPC връзки. Използвайте [host]: port нотация за IPv6. Тази опция може да бъде променяна многократно (по подразбиране: свързват с всички интерфейси)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Променете автоматичното финализиране гласуването на бюджет. Режим = Auto: Гласувайте само за точно финализиран съвпадащ с моят генериран бюджет. (string,, по подразбиране: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Непрекъснат лимит на безплатните транзакции до &lt;n&gt;*1000 байта в минута (по подразбиране:%u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Изтриване на всички транзакции на портфейла и  възстановява само тези части на блок веригата чрез -rescan при стартиране</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Изключване на всички специфични Pop функции (Popnodes, Darksend, InstantX, Budgeting) (0-1, по подразбиране: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Изключване на всички специфични Pop функции (Popnodes, Darksend, InstantX) (0-1, по подразбиране: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3955,10 +3951,6 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Слушане за входящи връзки на &lt;port&gt; (по подразбиране:%u или за тестовата мрежа: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Зареждане на бюджетния кеш...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Зареждане на popnode кеш...</translation>
     </message>
@@ -4109,10 +4101,6 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>Синхронизацията е завършена</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Синхронизиране на бюджетите ...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

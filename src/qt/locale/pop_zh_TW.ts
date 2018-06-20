@@ -3722,10 +3722,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>同步完成</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>正在跟預算案進行同步...</translation>
-    </message>
-    <message>
         <source>Synchronizing popnodes...</source>
         <translation>正在跟主節點網絡進行同步...</translation>
     </message>

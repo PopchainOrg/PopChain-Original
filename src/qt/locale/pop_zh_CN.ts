@@ -3776,8 +3776,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>删除钱包里的所有交易信息, 并且在下次启动时, 使用 -rescan 来从区块链中恢复</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>禁止所有Pop附加功能(主节点, 匿名发送, 即时发送, 预算) (0-1, default: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>禁止所有Pop附加功能(主节点, 匿名发送, 即时发送) (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Enable instantx, show confirmations for locked transactions (bool, default: %s)</source>
@@ -4043,10 +4043,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Listen for connections on &lt;port&gt; (default: %u 或 testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>正在读取预算缓存...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>正在读取主节点缓存...</translation>
     </message>
@@ -4157,10 +4153,6 @@ https://www.transifex.com/projects/p/pop/</translation>
     <message>
         <source>Synchronization finished</source>
         <translation>同步完成</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>正在同步预算...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>

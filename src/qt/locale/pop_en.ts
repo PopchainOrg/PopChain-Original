@@ -4589,11 +4589,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6. This option can be specified multiple times (default: bind to all interfaces)</translation>
     </message>
     <message>
-        <location line="+7"/>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</translation>
-    </message>
-    <message>
         <location line="+3"/>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</translation>
@@ -4610,8 +4605,8 @@ https://www.transifex.com/projects/p/pop/</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -5041,11 +5036,6 @@ for example: alertnotify=echo %%s | mail -s &quot;Pop Alert&quot; admin@foo.com
         <translation>Listen for connections on &lt;port&gt; (default: %u or testnet: %u)</translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>Loading budget cache...</source>
-        <translation>Loading budget cache...</translation>
-    </message>
-    <message>
         <location line="+1"/>
         <source>Loading popnode cache...</source>
         <translation>Loading popnode cache...</translation>
@@ -5234,11 +5224,6 @@ for example: alertnotify=echo %%s | mail -s &quot;Pop Alert&quot; admin@foo.com
         <location line="+1"/>
         <source>Synchronization finished</source>
         <translation>Synchronization finished</translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronizing budgets...</translation>
     </message>
     <message>
         <location line="+1"/>

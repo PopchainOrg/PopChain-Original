@@ -3598,10 +3598,6 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Se lier à l'adresse indiquée pour écouter des connections JSON-RPC. Utilisez la notation [hôte]:port pour l'IPv6. Ce paramètre peut être utilisée à plusieurs reprises (par défaut: se lie a toutes les interfaces)</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Change le comportement d'un vote de budget finalisé automatique. mode=auto: Vote uniquement pour le budget finalisé qui correspond a mon budget généré. (string, par défaut : auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Limiter continuellement les transactions gratuites à &lt;n&gt;*1000 octets par minute (par défaut : %u)</translation>
     </message>
@@ -3614,8 +3610,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Effacer toutes les transactions du portefeuille et récupère celle qui font partie de la chaine de blocs via -rescan au démarrage</translation>
     </message>
     <message>
-        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX, Budgeting) (0-1, default: %u)</source>
-        <translation>Désactivez toutes les fonctionnalités liées à Pop (Popnode, Darksend, InstantX, Budgetisation) (0-1, par défaut: %u)</translation>
+        <source>Disable all Pop specific functionality (Popnodes, Darksend, InstantX) (0-1, default: %u)</source>
+        <translation>Désactivez toutes les fonctionnalités liées à Pop (Popnode, Darksend, InstantX) (0-1, par défaut: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -3964,10 +3960,6 @@ Pour exemple: alertnotify=echo %%s | mail -s "Alerte Pop" admin@foo.com
         <translation>Écouter les connexions sur &lt;port&gt; (par défaut: %u ou testnet: %u)</translation>
     </message>
     <message>
-        <source>Loading budget cache...</source>
-        <translation>Chargement du cache de budget...</translation>
-    </message>
-    <message>
         <source>Loading popnode cache...</source>
         <translation>Chargement du cache de popnode...</translation>
     </message>
@@ -4118,10 +4110,6 @@ Pour exemple: alertnotify=echo %%s | mail -s "Alerte Pop" admin@foo.com
     <message>
         <source>Synchronization finished</source>
         <translation>La synchronisation est terminée</translation>
-    </message>
-    <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronisation des budgets...</translation>
     </message>
     <message>
         <source>Synchronizing popnode winners...</source>
