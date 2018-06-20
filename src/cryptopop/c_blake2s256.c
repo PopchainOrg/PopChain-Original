@@ -6,7 +6,7 @@
 
 #include "common.h"
 
-void crypto_blake2s256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
+void cryptopop_blake2s256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	uint8_t result[BLAKE2S_OUTBYTES];
 	
 	BLAKE2S_CTX ctx;

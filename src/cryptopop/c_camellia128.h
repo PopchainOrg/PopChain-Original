@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-	void crypto_camellia128(uint8_t *input, uint32_t inputLen, uint8_t *output);
+    void cryptopop_camellia128(uint8_t *input, uint32_t inputLen, uint8_t *output);
 
 #ifdef __cplusplus
 }

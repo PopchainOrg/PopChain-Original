@@ -34,23 +34,23 @@
 #include "c_haval5_256.h"
 #include "c_skein512_256.h"
 
-OneWayFunctionInfor funcInfor[FUNCTION_NUM] = {
-	"SHA3-256", 			crypto_sha3_256,
-	"SHA1", 				crypto_sha1,
-	"SHA256", 				crypto_sha256,
-	"SHA512", 				crypto_sha512,
-	"Whirlpool", 			crypto_whirlpool,
-	"RIPEMD-160", 			crypto_ripemd160,
-	"BLAKE2s(256bits)", 	crypto_blake2s256,
-	"AES(128bits)", 		crypto_aes128,
-	"DES", 					crypto_des,
-	"RC4", 					crypto_rc4,
-	"Camellia(128bits)", 	crypto_camellia128,
-	"CRC32", 				crypto_crc32,
-	"HMAC(MD5)", 			crypto_hmac_md5,
-	"GOST R 34.11-94", 		crypto_gost, 
-	"HAVAL-256/5", 			crypto_haval5_256,
-	"Skein-512(256bits)", 	crypto_skein512_256
+OneWayFunctionlist cryptoFunc[FUNCTION_NUM] = {
+    "SHA3-256", 			cryptopop_sha3_256,
+    "SHA1", 				cryptopop_sha1,
+    "SHA256", 				cryptopop_sha256,
+    "SHA512", 				cryptopop_sha512,
+    "Whirlpool", 			cryptopop_whirlpool,
+    "RIPEMD-160", 			cryptopop_ripemd160,
+    "BLAKE2s(256bits)", 	cryptopop_blake2s256,
+    "AES(128bits)", 		cryptopop_aes128,
+    "DES", 					cryptopop_des,
+    "RC4", 					cryptopop_rc4,
+    "Camellia(128bits)", 	cryptopop_camellia128,
+    "CRC32", 				cryptopop_crc32,
+    "HMAC(MD5)", 			cryptopop_hmac_md5,
+    "GOST R 34.11-94", 		cryptopop_gost,
+    "HAVAL-256/5", 			cryptopop_haval5_256,
+    "Skein-512(256bits)", 	cryptopop_skein512_256
 };
 
 void initOneWayFunction() {
@@ -71,8 +71,8 @@ void testOneWayFunction(const char *mess, uint32_t messLen, const int64_t iterNu
 	printf("Test message: %s\n", mess);
 	for (int i = 0; i < FUNCTION_NUM; ++i) {
 		printf("%02d ", i);
-		funcInfor[i].func(input, messLen, output[i]);
-		view_data_u8(funcInfor[i].funcName, output[i], OUTPUT_LEN);
+        cryptoFunc[i].func(input, messLen, output[i]);
+        view_data_u8(cryptoFunc[i].funcName, output[i], OUTPUT_LEN);
 	}
 	printf("*********************************************************************************************\n");
 	
@@ -89,18 +89,18 @@ void testOneWayFunction(const char *mess, uint32_t messLen, const int64_t iterNu
 	printf("\n");
 	
 	for (int i = 0; i < FUNCTION_NUM; ++i) {
-		printf("%02d %-18s\t", i, funcInfor[i].funcName);
+        printf("%02d %-18s\t", i, cryptoFunc[i].funcName);
 		for (uint32_t ix = 0; ix < threadNumTypes; ++ix) {
 			omp_set_num_threads(threadNumArr[ix]);
 			double startTime = get_wall_time();
 			if (threadNumArr[ix] == 1) {
 				for (j = 0; j < iterNum; ++j) {
-					funcInfor[i].func(input, messLen, result + j * OUTPUT_LEN);
+                    cryptoFunc[i].func(input, messLen, result + j * OUTPUT_LEN);
 				}
 			} else {
 				#pragma omp parallel for firstprivate(input), private(j) shared(result)
 				for (j = 0; j < iterNum; ++j) {
-					funcInfor[i].func(input, messLen, result + j * OUTPUT_LEN);
+                    cryptoFunc[i].func(input, messLen, result + j * OUTPUT_LEN);
 				}
 			}
 			double endTime = get_wall_time();

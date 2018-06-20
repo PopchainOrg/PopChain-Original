@@ -7,7 +7,7 @@
 #include "common.h"
 
 // SHA3-256
-void crypto_sha3_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
+void cryptopop_sha3_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	unsigned char result[OUTPUT_LEN];
 	
 	KECCAK1600_CTX ctx;

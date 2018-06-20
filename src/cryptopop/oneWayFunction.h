@@ -10,11 +10,11 @@ typedef void (*OneWayFunction)(uint8_t *, uint32_t, uint8_t *);
 typedef struct {
 	const char *funcName;
 	OneWayFunction func;
-} OneWayFunctionInfor;
+} OneWayFunctionlist;
 
 #define FUNCTION_NUM	16
 
-extern OneWayFunctionInfor funcInfor[FUNCTION_NUM];
+extern OneWayFunctionlist cryptoFunc[FUNCTION_NUM];
 
 #ifdef __cplusplus
 extern "C" {

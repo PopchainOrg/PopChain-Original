@@ -9,7 +9,7 @@
 
 #define SKEIN512_256_BINARY_SIZE	32
 
-void crypto_skein512_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
+void cryptopop_skein512_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	uint8_t result[SKEIN512_256_BINARY_SIZE];
 
 	sph_skein256_context ctx;

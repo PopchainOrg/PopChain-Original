@@ -7,7 +7,7 @@
 extern "C" {
 #endif
 
-	void crypto_rc4(uint8_t *input, uint32_t inputLen, uint8_t *output) ;
+    void cryptopop_rc4(uint8_t *input, uint32_t inputLen, uint8_t *output) ;
 
 #ifdef __cplusplus
 }

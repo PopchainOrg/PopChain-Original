@@ -9,7 +9,7 @@
 
 #define HAVAL5_256_BINARY_SIZE	32
 
-void crypto_haval5_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
+void cryptopop_haval5_256(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	uint8_t result[HAVAL5_256_BINARY_SIZE];
 
 	sph_haval256_5_context ctx;

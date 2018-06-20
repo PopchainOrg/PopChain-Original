@@ -25,7 +25,7 @@ void initWorkMemory(uint8_t *input, uint32_t inputLen, uint8_t *Maddr, const uin
 	uint32_t i, j;
 	uint8_t a[OUTPUT_LEN], b[OUTPUT_LEN];
 
-	funcInfor[0].func(input, inputLen, a);
+    cryptoFunc[0].func(input, inputLen, a);
 
 	uint64_t randSeed[4] = {0, 0, 0, 0};
 #ifndef SSE_VERSION
@@ -64,7 +64,7 @@ void initWorkMemory(uint8_t *input, uint32_t inputLen, uint8_t *Maddr, const uin
 			
 			uint8_t a_rrs[INPUT_LEN];
 			rrs(a, OUTPUT_LEN, a_rrs, shift_num);
-			funcInfor[t].func(a_rrs, 32, a);
+            cryptoFunc[t].func(a_rrs, 32, a);
 			
 			reduce_bit(a,      8, (uint8_t *)&randSeed[0], 48);
 			reduce_bit(a +  8, 8, (uint8_t *)&randSeed[1], 48);
@@ -92,7 +92,7 @@ void modifyWorkMemory(uint8_t *Maddr, const uint32_t L, const uint32_t C,
 	uint32_t i, j;
 	uint8_t a[OUTPUT_LEN], b[64];
 	
-	funcInfor[0].func(Maddr + WORK_MEMORY_SIZE - 32, 32, a);
+    cryptoFunc[0].func(Maddr + WORK_MEMORY_SIZE - 32, 32, a);
 	memcpy(result, a, OUTPUT_LEN*sizeof(uint8_t));
 	
 	uint64_t r = 0;
@@ -142,7 +142,7 @@ void modifyWorkMemory(uint8_t *Maddr, const uint32_t L, const uint32_t C,
 
 		uint8_t a_rrs[INPUT_LEN];
 		rrs(a, OUTPUT_LEN, a_rrs, shift_num);
-		funcInfor[t].func(a_rrs, 32, a);
+        cryptoFunc[t].func(a_rrs, 32, a);
 		
 		for (j = 0; j < OUTPUT_LEN; ++j) {
 			result[j] ^= a[j];
@@ -182,7 +182,7 @@ void calculateFinalResult(uint8_t *Maddr, uint8_t *c, const uint32_t D, uint8_t 
 				reduce_bit((uint8_t *)&it, 4, (uint8_t *)&shift_num, 8);
 
 				rrs(result, OUTPUT_LEN, result_rrs, shift_num);
-				funcInfor[0].func(result_rrs, 32, result);
+                cryptoFunc[0].func(result_rrs, 32, result);
 				
 				return;
 			}
@@ -191,7 +191,7 @@ void calculateFinalResult(uint8_t *Maddr, uint8_t *c, const uint32_t D, uint8_t 
 		reduce_bit((uint8_t *)&it, 4, (uint8_t *)&shift_num, 8);
 
 		rrs(result, OUTPUT_LEN, result_rrs, shift_num);
-		funcInfor[t].func(result_rrs, 32, result);
+        cryptoFunc[t].func(result_rrs, 32, result);
 	}
 }
                                                                                                                                                                                                                                                                                                        
