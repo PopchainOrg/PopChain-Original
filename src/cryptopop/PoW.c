@@ -410,7 +410,7 @@ void powFunction(uint8_t *input, uint32_t inputLen, uint8_t *Maddr, uint8_t *out
     uint8_t c[OUTPUT_LEN];
     
     // Step 1: Initialize working memory.
-    initWorkMemory(input, inputLen, Maddr, 128);
+    initWorkMemory(input, inputLen, Maddr, 64);
     // view_data_u8("Maddr", Maddr, OUTPUT_LEN);
     
     // Step 2: Modify the working memory contents.

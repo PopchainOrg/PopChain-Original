@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#ifdef SSE_VERSION
 #include <immintrin.h>
 
 struct vrand48_data {
@@ -54,6 +55,7 @@ inline void vrand64(uint8_t *b, struct vrand48_data *buffer) {
 	_mm_store_si128((__m128i *)b, vresult0);
 	_mm_store_si128((__m128i *)(b + 16), vresult1);
 }
+#endif
 
 struct my_rand48_data {
     uint64_t __x;       	/* Current state.  */
