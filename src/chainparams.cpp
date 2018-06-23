@@ -238,8 +238,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x69de4474f3172f2366a11b9d5a2b9138fb5bbb0b77713d42fdfe69fc64a34162"));
 
 
-        // Pop addresses start with 'U'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,68);
+        // Pop addresses start with 'P'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,56);
         // Pop script addresses start with 'S'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,63);
         // Pop private keys start with '5' or 'K' or 'L'(as in Bitcoin)
@@ -356,8 +356,8 @@ public:
         vSeeds.clear();
         //vSeeds.push_back(CDNSSeedData("pop.xxx","testnet-seed1.pop.xxx"));
 
-        // Testnet Pop addresses start with 'u'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,130);
+        // Testnet Pop addresses start with 'p'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,118);
         // Testnet Pop script addresses start with 's'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125);
         // Testnet private keys start with '9' or 'c'(as in Bitcoin)
