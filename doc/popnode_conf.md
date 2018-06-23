@@ -1,7 +1,7 @@
 Popnode config
 =======================
 
-Pop Core allows controlling multiple remote popnodes from a single wallet. The wallet needs to have a valid collateral output of 10000 coins for each popnode and uses a configuration file named `popnode.conf` which can be found in the following data directory (depending on your operating system):
+Pop Core allows controlling multiple remote popnodes from a single wallet. The wallet uses a configuration file named `popnode.conf` which can be found in the following data directory (depending on your operating system):
  * Windows: %APPDATA%\PopCore\
  * Mac OS: ~/Library/Application Support/PopCore/
  * Unix/Linux: ~/.popcore/
