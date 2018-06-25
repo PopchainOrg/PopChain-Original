@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#ifndef BITCOIN_CRYPTO_COMMON_H
-#define BITCOIN_CRYPTO_COMMON_H
+#ifndef POP_CRYPTO_COMMON_H
+#define POP_CRYPTO_COMMON_H
 
 #if defined(HAVE_CONFIG_H)
 #include "pop-config.h"
@@ -61,4 +61,4 @@ void static inline WriteBE64(unsigned char* ptr, uint64_t x)
     *((uint64_t*)ptr) = htobe64(x);
 }
 
-#endif // BITCOIN_CRYPTO_COMMON_H
+#endif // POP_CRYPTO_COMMON_H
