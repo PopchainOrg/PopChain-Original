@@ -227,16 +227,15 @@ public:
         nMaxTipAge = 6 * 60 * 60; // ~144 blocks behind -> 2 x fork detection time, was 24 * 60 * 60 in bitcoin
         nPruneAfterHeight = 100000;
         arith_uint256 nTempBit =  UintToArith256( consensus.powLimit);
-        genesis = CreateGenesisBlock1(1526947274, uint256S("0x0000e865ca57d789ba58154ed7f29decd569ce91289d870bf54f824dea09971c"), nTempBit.GetCompact(), 1, consensus.genesisReward);
+        genesis = CreateGenesisBlock1(1529900309, uint256S("00000e2ab47d1cbc2447109cf47e5a20153f9e6038f375cc956a1574c245d5df"), nTempBit.GetCompact(), 1, consensus.genesisReward);
 #ifdef GENESIS_GENERATION
         arith_uint256 a("0x000009b173000000000000000000000000000000000000000000000000000000");
         std::cout << "\tpow:\t" << a.GetCompact()  << " "<< nTempBit.GetCompact() << std::endl;
         //findGenesis(&genesis, "main");
 #endif
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0000079b37c3c290dc81e95bca28aa7df5636145ae35ebee86e10cc3cce96fb2"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000747aad802a9081bd47533cf105a6e7203ca6313155adf41bd11bf0f01f"));
         assert(genesis.hashMerkleRoot == uint256S("0x69de4474f3172f2366a11b9d5a2b9138fb5bbb0b77713d42fdfe69fc64a34162"));
-
 
         // Pop addresses start with 'P'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,56);
@@ -268,8 +267,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (   0, uint256S("0x0000079b37c3c290dc81e95bca28aa7df5636145ae35ebee86e10cc3cce96fb2")),
-            1526704298,                       // * UNIX timestamp of last checkpoint block
+            (   0, uint256S("0x000000747aad802a9081bd47533cf105a6e7203ca6313155adf41bd11bf0f01f")),
+            1529900309,                       // * UNIX timestamp of last checkpoint block
             0,                                // * total number of transactions between genesis and last checkpoint
                                               //   (the tx=... number in the SetBestChain debug.log lines)
             0                                 // * estimated number of transactions per day after checkpoint
@@ -342,14 +341,14 @@ public:
         nPruneAfterHeight = 1000;
 	    
    		arith_uint256 nTempBit =  UintToArith256( consensus.powLimit); 
-        genesis = CreateGenesisBlock(1528217388, uint256S("0000948b0d877924f6371e52adde4649caa367821c2c8473b3ec31b7aa370016"), nTempBit.GetCompact(), 1,  1 * COIN);
+        genesis = CreateGenesisBlock(1529894661, uint256S("0000374f752799accf0ae43870b1764e17fc0e4a45ebd19adb80597bf0c30097"), nTempBit.GetCompact(), 1,  1 * COIN);
 #ifdef GENESIS_GENERATION
         arith_uint256 a("0x000fffffff000000000000000000000000000000000000000000000000000000");
         std::cout << "pow limit : " << a.GetCompact()<< " "<< nTempBit.GetCompact() << std::endl;
         //findGenesis(&genesis, "testnet");
 #endif
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("00065185c3ffa77ff797ea3141fba9b1ab76a0f336863dec1199042ca5560fc4"));
+        assert(consensus.hashGenesisBlock == uint256S("00077ade31e190b0dccd194c02c8e84bf77db7d037d8a8c3c2c82f89145e3e0a"));
         assert(genesis.hashMerkleRoot == uint256S("6f73646aa71aeec2163e047e0028e2c4313f3e88d4fb3e1ade176c56e1a148c4"));
 
         vFixedSeeds.clear();
@@ -383,8 +382,8 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (0, uint256S("00065185c3ffa77ff797ea3141fba9b1ab76a0f336863dec1199042ca5560fc4")),
-            1528217388,     // * UNIX timestamp of last checkpoint block
+            (0, uint256S("00077ade31e190b0dccd194c02c8e84bf77db7d037d8a8c3c2c82f89145e3e0a")),
+            1529894661,     // * UNIX timestamp of last checkpoint block
             0,              // * total number of transactions between genesis and last checkpoint
                             //   (the tx=... number in the SetBestChain debug.log lines)
             0               // * estimated number of transactions per day after checkpoint
@@ -393,7 +392,7 @@ public:
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
             "uTZGwu5TsrswPUEb9QciyhH9xpmRy4Rfq6",
-	    	"ubwJhHMSVPVCHr3PNPgieNYpWvuWG5XvcQ"
+	    "ubwJhHMSVPVCHr3PNPgieNYpWvuWG5XvcQ"
         };
     }
 };
@@ -450,13 +449,13 @@ public:
         nDefaultPort = 29888;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock1(1526946000, uint256S("0x0000ec7bfb02cb74cc021bbc03773834a65f8a16655212b5abc8841efbea0000"), 0x200f0f0f, 1, 1 * COIN);
+        genesis = CreateGenesisBlock1(1529894661, uint256S("0x000088c293aca9524f1c4e4de0dfcc3bf4aa6d9ec2e4338d59368242d8950000"), 0x200f0f0f, 1, 1 * COIN);
 #ifdef GENESIS_GENERATION
         //findGenesis(&genesis, "regtest");
 #endif
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0c1417be9488c5bc9c2974a8c2edf89089fdf9fa3e0e4a0d4c668ab973fcf8b4"));
-        assert(genesis.hashMerkleRoot == uint256S("0x69de4474f3172f2366a11b9d5a2b9138fb5bbb0b77713d42fdfe69fc64a34162"));
+        assert(consensus.hashGenesisBlock == uint256S("01bb1c4d83e5cd73ad4fe568fa2b50469d33def5703dca7e90e06f32f273b95d"));
+        assert(genesis.hashMerkleRoot == uint256S("69de4474f3172f2366a11b9d5a2b9138fb5bbb0b77713d42fdfe69fc64a34162"));
 
         vFixedSeeds.clear();                                             //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();                                                  //! Regtest mode doesn't have any DNS seeds.
@@ -471,7 +470,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            (0, uint256S("0x09af15de1b9587ffd44cc1c29955c368482f2aa654f9fb62ed68d26f03134011")),
+            (0, uint256S("01bb1c4d83e5cd73ad4fe568fa2b50469d33def5703dca7e90e06f32f273b95d")),
             0,
             0,
             0
@@ -548,3 +547,4 @@ std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const
     assert(i >= 0 && i < int(vFoundersRewardAddress.size()));
     return vFoundersRewardAddress[i];
 }
+
