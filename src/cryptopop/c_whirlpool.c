@@ -6,6 +6,11 @@
 
 #include "common.h"
 
+/*
+     * FUNCTION: one-way function cryptopop_whirlpool
+     *      1. input : input message, msglength
+     *		2. output: Whirlpool message
+*/
 void cryptopop_whirlpool(uint8_t *input, uint32_t inputLen, uint8_t *output) {
 	uint8_t result[WHIRLPOOL_DIGEST_LENGTH];
 
