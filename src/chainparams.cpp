@@ -276,8 +276,8 @@ public:
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
-            "USu35JzWCXSvgvDL1utfFzb52zR1fdkfZ9", /* main-index: 0*/
-            "US2b9XyE5fCu8DNXhC4xwU7wo7b4uMNy4q", /* main-index: 1*/
+            "PoWvpLL3iDxm2GJSZQRspzRawEFEs3BbG8", /* main-index: 0*/
+            "PcjJdnb9Fp35TRTAz61vp6MPXTv3ApcMhj", /* main-index: 1*/
 	    };
     }
 };
@@ -391,8 +391,8 @@ public:
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
         vFoundersRewardAddress = {
-            "uTZGwu5TsrswPUEb9QciyhH9xpmRy4Rfq6",
-	    "ubwJhHMSVPVCHr3PNPgieNYpWvuWG5XvcQ"
+            "pbFyUjHfZB8BBivQS1LXh8EaJNH5jjGbzk",
+	    "pbvTm479A2XTp2nCa8Z9qwAhindNbKarrX"
         };
     }
 };
@@ -489,7 +489,7 @@ public:
         base58Prefixes[EXT_COIN_TYPE]  = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         // Founders reward script expects a vector of 2-of-3 multisig addresses
-        vFoundersRewardAddress = {"u2FwcEhFdNXuFMv1tcYwaBJtYVtMj8b1uTg"};
+        vFoundersRewardAddress = {"pbFyUjHfZB8BBivQS1LXh8EaJNH5jjGbzk"};
    }
 };
 static CRegTestParams regTestParams;
