@@ -74,7 +74,7 @@ BITCOIN_CORE_H = \
   addressindex.h \
   spentindex.h \
   addrman.h \
-  alert.h \
+  warn.h \
   amount.h \
   arith_uint256.h \
   base58.h \
@@ -198,7 +198,7 @@ libbitcoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CP
 libbitcoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
-  alert.cpp \
+  warn.cpp \
   bloom.cpp \
   chain.cpp \
   checkpoints.cpp \
