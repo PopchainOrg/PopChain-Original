@@ -4,7 +4,7 @@
 
 #include "nameclaim.h"
 #include "addrman.h"
-#include "alert.h"
+#include "warn.h"
 #include "arith_uint256.h"
 #include "chainparams.h"
 #include "checkpoints.h"
