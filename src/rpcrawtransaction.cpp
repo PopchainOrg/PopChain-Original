@@ -908,6 +908,14 @@ UniValue atomicswapfirsttx(const UniValue &params, bool fHelp)
 			"\nCreate a transaction\n"
 			+ HelpExampleCli("atomicswapfirsttx", "\"pUwZn7LXgJTpkYdKQQj4L5b2vUJRPTYV4X\" 0.1")
 		);
+
+	LOCK(cs_main);
+	
+    //check params size is zero or not
+    if ((params[0].get_str().size() <= 0)||(params[1].get_str().size() <= 0)){
+			throw JSONRPCError(RPC_INVALID_PARAMS, "Error:the parameter size can't be zero");
+		}
+
 }
 
 #endif
