@@ -6,7 +6,7 @@
 #include "guiconstants.h"
 #include "peertablemodel.h"
 
-#include "alert.h"
+#include "warn.h"
 #include "chainparams.h"
 #include "checkpoints.h"
 #include "clientversion.h"
