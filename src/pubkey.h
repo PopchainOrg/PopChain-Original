@@ -146,6 +146,11 @@ public:
 	{
 		return Hash160(vch, vch + size());
 	}
+	//! Get the 160-bit hash of this public key.
+	uint160 GetHash160()const
+	{
+		return Hash160(vch, vch + size());
+	}	
     //! Get the 256-bit hash of this public key.
     uint256 GetHash() const
     {

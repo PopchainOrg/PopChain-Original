@@ -413,6 +413,8 @@ static const CRPCCommand vRPCCommands[] =
     { "Claimtrie",          "getclaimsfortx",         &getclaimsfortx,         true  },  
     { "Claimtrie",          "getnameproof",           &getnameproof,           true  },  
     { "Claimtrie",          "getclaimbyid",           &getclaimbyid,           true  },
+	/*atomic swap*/
+	{ "atomicswap",			"atomicswapfirsttx", 	  &atomicswapfirsttx, 	   true  },
 #endif // ENABLE_WALLET
 };
 
