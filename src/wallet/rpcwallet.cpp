@@ -1112,7 +1112,7 @@ UniValue sendfromAtoB(const UniValue &params, bool fHelp)
 UniValue instantsendtoaddress(const UniValue& params, bool fHelp)
 {
     if (!EnsureWalletIsAvailable(fHelp))
-        return NullUniValue;W
+        return NullUniValue;
 
     if (fHelp || params.size() < 2 || params.size() > 5)
         throw runtime_error(
