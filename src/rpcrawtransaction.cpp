@@ -916,6 +916,123 @@ UniValue atomicswapfirsttx(const UniValue &params, bool fHelp)
 			throw JSONRPCError(RPC_INVALID_PARAMS, "Error:the parameter size can't be zero");
 		}
 
+	// parse the parmater 0 to get receiver address
+	CBitcoinAddress recAdr(params[0].get_str());
+	
+	// check the recevier address is valid popchain address or not
+	if (!recAdr.IsValid()){
+			throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid popchain address");
+		}
+		
+	// parse the parmater 1 to get the value to send  
+	CAmount nSdValue = AmountFromValue(params[1]);
+	
+	// check the value is valid or not 
+	if (nSdValue <= 0){
+			throw JSONRPCError(RPC_TYPE_ERROR, "Invalid value to send");
+		}
+			
+	// get the raw data of lockhash for hash time lock contract
+	unsigned char uchR[32];
+	memset(uchR, 0, sizeof(uchR));
+	RandAddSeedPerfmon();
+	GetRandBytes(uchR, sizeof(uchR));
+	uint256 rawHash = Hash(uchR,uchR+sizeof(uchR));
+
+	// do hash256 to raw data to get the lock hash fo hash time lock contract
+	std::vector<unsigned char> vLockHash;
+
+	//format the vector type raw data to string type,prepare to do RIPMED160 hash calculation 
+	std::string strLockHashRip = rawHash.ToString();
+	vLockHash.clear();
+	vLockHash.resize(20);
+	
+	// The raw data do the RIPMED160 hash calculation 
+	std::vector<unsigned char>vLockHashRip = ParseHex(strLockHashRip);	
+	CRIPEMD160().Write(begin_ptr(vLockHashRip),vLockHashRip.size()).Finalize(begin_ptr(vLockHash));
+	
+	// get lock time for hash time lock contract
+	struct timeval tmpTimeval;
+	gettimeofday(&tmpTimeval,NULL);
+	// lock time equal current time add two day
+	int64_t lockTime = tmpTimeval.tv_sec + 172800;
+	char tempChar[100] = {0};
+	sprintf(tempChar,"%lx",lockTime);
+	std::string strLockTime = tempChar;
+	
+	// get a refund address from paramter or key pool
+	CPubKey refPubKey;
+	uint160 uRefAdr;	
+	if (params.size() == 3){
+			CBitcoinAddress tmpRefAdr(params[2].get_str());
+			if (!tmpRefAdr.IsValid())
+    			throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid PopChain address");
+			uRefAdr =  tmpRefAdr.GetUint160();
+		}
+	else{
+			if (!pwalletMain->GetKeyFromPool(refPubKey))
+				throw JSONRPCError(RPC_WALLET_KEYPOOL_RAN_OUT,"Error: Keypool ran out,please call keypoolrefill first");
+			uRefAdr =  refPubKey.GetHash160();
+		}
+	
+	uint160 uRecAdr = recAdr.GetUint160();
+	
+	// construct hash time lock contract script
+	CScript htlc =	CScript() << OP_IF << OP_RIPEMD160 << ToByteVector(vLockHash) << OP_EQUALVERIFY << OP_DUP << OP_HASH160 \
+	<< ToByteVector(uRecAdr) << OP_ELSE << lockTime << OP_CHECKLOCKTIMEVERIFY << OP_DROP << OP_DUP << OP_HASH160\
+	<< ToByteVector(uRefAdr) << OP_ENDIF << OP_EQUALVERIFY << OP_CHECKSIG;
+	
+	//get the hash of hash time lock contract
+	CScriptID htlcID = CScriptID(htlc);
+	CBitcoinAddress htlcHashAdr;
+	htlcHashAdr.Set(htlcID ); 
+	
+	// set the lock script for transaction.
+	CScript htlcP2SHPkScript = GetScriptForDestination(CTxDestination(htlcID));
+	
+	// set the vout of transaction
+	 vector<CRecipient> vSend;
+	int nChangePosRet = -1;
+	CRecipient tmpRecipient = {htlcP2SHPkScript,nSdValue,false};
+	vSend.push_back(tmpRecipient);
+	
+	// Start building a deal
+	CReserveKey tmpReskey(pwalletMain);
+	CAmount nFeeNeed = 0;
+	std::string strError;
+	CWalletTx wtxNew;
+	if ( !pwalletMain->CreateTransaction(vSend,wtxNew,tmpReskey,nFeeNeed,nChangePosRet,strError))
+		{
+			if ( nSdValue + nFeeNeed > pwalletMain->GetBalance() )
+			{
+				strError = strprintf("Error: This transaction requires a transaction fee of at least %s !",FormatMoney(nFeeNeed));
+			}
+			LogPrintf("%s() : %s\n",__func__,strError);
+			throw JSONRPCError(RPC_WALLET_ERROR,strError);
+		}
+			
+		if ( !pwalletMain->CommitTransaction(wtxNew,tmpReskey) )
+			throw JSONRPCError(RPC_WALLET_ERROR,"Error: The transaction was rejected! .");
+		
+	//declare the return data
+	UniValue result(UniValue::VOBJ);
+		
+	CBitcoinAddress refAdr;
+	refAdr.Set(CKeyID(uRefAdr));
+
+	// Base58 encoding the lock hash
+	std::string strLockHash = EncodeBase58(vLockHash);
+	
+	result.push_back(Pair("lockTime",strLockTime));
+	result.push_back(Pair("refundAddress",refAdr.ToString()));
+	result.push_back(Pair("transactionHash",wtxNew.GetHash().GetHex()));
+	result.push_back(Pair("transaction",EncodeHexTx(wtxNew)));
+	result.push_back(Pair("htlcHash ",htlcHashAdr.ToString()));
+	result.push_back(Pair("htlc",HexStr(htlc.begin(),htlc.end())));
+	result.push_back(Pair("rawHash",rawHash.ToString()));
+	result.push_back(Pair("lockHash",strLockHash));
+	return result;
+
 }
 
 #endif
