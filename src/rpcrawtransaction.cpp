@@ -888,3 +888,26 @@ UniValue sendrawtransaction(const UniValue& params, bool fHelp)
     return hashTx.GetHex();
 }
 
+#ifdef ENABLE_WALLET
+UniValue atomicswapfirsttx(const UniValue &params, bool fHelp)
+{
+	if (fHelp || params.size() !=2)
+		throw runtime_error(
+			"atomicswapfirsttx \"address\" amount\n"
+			"\nCreate the start atomic swap transaction spending the given inputs.\n"
+			"\nArguments:\n"
+			"1. \"address\"  (string,required) The PopChain address to to send to .\n"
+			"2. \"amount\"	 (numeric,required) The amount in " + CURRENCY_UNIT + " to send. eg 0.01\n"
+			"\nResult:\n"
+			"\"htlc\"			 (string) The hash time lock contract in hex\n"
+			"\"transactionhash\"   (string, required) The transaction hash\n"
+			"\"transaction\"	 (string) hex string of the transaction\n"
+			"\"rawhash\"		 (string) The raw data of hashlock in hex\n"
+			"\"lockhash\"		 (string) The lock hash in hex\n"
+			"\nExamples:\n"
+			"\nCreate a transaction\n"
+			+ HelpExampleCli("atomicswapfirsttx", "\"pUwZn7LXgJTpkYdKQQj4L5b2vUJRPTYV4X\" 0.1")
+		);
+}
+
+#endif

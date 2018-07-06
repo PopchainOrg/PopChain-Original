@@ -326,7 +326,8 @@ extern UniValue getclaimsfortx(const UniValue& params, bool fHelp);
 extern UniValue proofToJSON(const CClaimTrieProof& proof);
 extern UniValue getnameproof(const UniValue& params, bool fHelp);
 
-
+/*atomic swap*/
+extern UniValue atomicswapfirsttx(const UniValue &params, bool fHelp);
 
 bool StartRPC();
 void InterruptRPC();
