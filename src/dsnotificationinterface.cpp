@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers 
 
 #include "dsnotificationinterface.h"
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 #include "popnodeman.h"
 #include "popnode-payments.h"
