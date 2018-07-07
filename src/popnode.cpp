@@ -3,7 +3,7 @@
 
 #include "activepopnode.h"
 #include "consensus/validation.h"
-#include "darksend.h"
+#include "popsend.h"
 #include "init.h"
 #include "popnode.h"
 #include "popnode-payments.h"
