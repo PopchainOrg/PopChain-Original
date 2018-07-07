@@ -8,7 +8,7 @@
 #include "timedata.h"
 #include "wallet/wallet.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 
 #include <stdint.h>
