@@ -19,7 +19,7 @@
 #include "wallet/wallet.h" // for CWallet::GetRequiredFee()
 #endif
 
-#include "darksend.h"
+#include "popsend.h"
 
 #include <boost/thread.hpp>
 

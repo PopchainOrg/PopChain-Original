@@ -41,7 +41,7 @@
 #endif
 
 #include "activepopnode.h"
-#include "darksend.h"
+#include "popsend.h"
 #include "dsnotificationinterface.h"
 #include "flat-database.h"
 #include "instantx.h"

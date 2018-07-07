@@ -101,7 +101,7 @@ BITCOIN_CORE_H = \
   consensus/validation.h \
   core_io.h \
   core_memusage.h \
-  darksend.h \
+  popsend.h \
   dsnotificationinterface.h \
   darksend-relay.h \
   ratecheckbuffer.h \
@@ -253,7 +253,7 @@ libbitcoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
 libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_wallet_a_SOURCES = \
   activepopnode.cpp \
-  darksend.cpp \
+  popsend.cpp \
   dsnotificationinterface.cpp \
   darksend-relay.cpp \
   instantx.cpp \

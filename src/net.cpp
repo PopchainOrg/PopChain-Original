@@ -18,7 +18,7 @@
 #include "wallet/wallet.h"
 #include "utilstrencodings.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 #include "popnodeman.h"
 

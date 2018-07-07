@@ -15,7 +15,7 @@
 #include "utilitydialog.h"
 #include "walletmodel.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 #include "darksendconfig.h"
 #include "popnode-sync.h"

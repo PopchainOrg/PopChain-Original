@@ -35,7 +35,7 @@
 #include "validationinterface.h"
 #include "versionbits.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 #include "popnode-payments.h"
 #include "popnode-sync.h"

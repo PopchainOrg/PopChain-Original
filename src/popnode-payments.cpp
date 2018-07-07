@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "activepopnode.h"
-#include "darksend.h"
+#include "popsend.h"
 #include "superblock.h"
 #include "popnode-payments.h"
 #include "popnode-sync.h"

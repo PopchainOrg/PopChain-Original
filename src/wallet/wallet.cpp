@@ -22,7 +22,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "instantx.h"
 #include "keepass.h"
 #include "spork.h"

@@ -2,7 +2,7 @@
 
 #include "activepopnode.h"
 #include "addrman.h"
-#include "darksend.h"
+#include "popsend.h"
 #include "popnode-payments.h"
 #include "popnode-sync.h"
 #include "popnodeman.h"
