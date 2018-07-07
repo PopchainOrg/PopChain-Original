@@ -15,7 +15,7 @@
 #include "ui_interface.h"
 #include "util.h"
 
-#include "darksend.h"
+#include "popsend.h"
 #include "popnodeman.h"
 #include "popnode-sync.h"
 
