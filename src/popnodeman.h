@@ -159,7 +159,7 @@ public:
     std::map<uint256, CPopnodePing> mapSeenPopnodePing;
     // Keep track of all verifications I've seen
     std::map<uint256, CPopnodeVerification> mapSeenPopnodeVerification;
-    // keep track of dsq count to prevent popnodes from gaming darksend queue
+    // keep track of dsq count to prevent popnodes from gaming popsend queue
     int64_t nDsqCount;
 
 
