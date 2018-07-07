@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#include "darksend.h"
+#include "popsend.h"
 #include "main.h"
 #include "spork.h"
 
