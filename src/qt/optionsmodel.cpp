@@ -20,7 +20,7 @@
 #include "wallet/walletdb.h"
 #endif
 
-#include "darksend.h"
+#include "popsend.h"
 #ifdef ENABLE_WALLET
 #include "popnodeconfig.h"
 #endif
