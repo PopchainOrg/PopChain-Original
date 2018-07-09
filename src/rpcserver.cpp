@@ -345,7 +345,7 @@ static const CRPCCommand vRPCCommands[] =
     { "pop",               "popnodelist",         &popnodelist,         true  },
     { "pop",               "popnodebroadcast",    &popnodebroadcast,    true  },
     { "pop",               "mnsync",                 &mnsync,                 true  },
-    { "pop",               "spork",                  &spork,                  true  },
+    { "pop",               "fork",                  &fork,                  true  },
     { "pop",               "getpoolinfo",            &getpoolinfo,            true  },
 #ifdef ENABLE_WALLET
     { "pop",               "privatesend",            &privatesend,            false },
