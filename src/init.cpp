@@ -53,7 +53,7 @@
 #include "popnodeman.h"
 #include "popnodeconfig.h"
 #include "netfulfilledman.h"
-#include "spork.h"
+#include "fork.h"
 
 #include <stdint.h>
 #include <stdio.h>
@@ -520,7 +520,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-limitdescendantsize=<n>", strprintf("Do not accept transactions if any ancestor would have more than <n> kilobytes of in-mempool descendants (default: %u).", DEFAULT_DESCENDANT_SIZE_LIMIT));
     }
     string debugCategories = "addrman, alert, bench, coindb, db, lock, rand, rpc, selectcoins, mempool, mempoolrej, net, proxy, prune, http, libevent, tor, zmq, "
-                             "pop (or specifically: privatesend, instantsend, popnode, spork, keepass)"; // Don't translate these and qt below
+                             "pop (or specifically: privatesend, instantsend, popnode, fork, keepass)"; // Don't translate these and qt below
     if (mode == HMM_BITCOIN_QT)
         debugCategories += ", qt";
     strUsage += HelpMessageOpt("-debug=<category>", strprintf(_("Output debugging information (default: %u, supplying <category> is optional)"), 0) + ". " +
@@ -1207,10 +1207,10 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
             threadGroup.create_thread(&ThreadScriptCheck);
     }
 
-    if (mapArgs.count("-sporkkey")) // spork priv key
+    if (mapArgs.count("-forkkey")) // fork priv key
     {
-        if (!sporkManager.SetPrivKey(GetArg("-sporkkey", "")))
-            return InitError(_("Unable to sign spork message, wrong key?"));
+        if (!forkManager.SetPrivKey(GetArg("-forkkey", "")))
+            return InitError(_("Unable to sign fork message, wrong key?"));
     }
 
     // Start the lightweight task scheduler thread
