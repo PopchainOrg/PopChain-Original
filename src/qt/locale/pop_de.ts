@@ -4116,8 +4116,8 @@ Pop Core wird heruntergefahren.</translation>
         <translation>Synchronisiere Popnodes...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Synchronisiere Sporks...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Synchronisiere Forks...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4428,8 +4428,8 @@ Pop Core wird heruntergefahren.</translation>
         <translation>Kann auf diesem Computer nicht an %s binden (von bind zurückgegebener Fehler: %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Die Spork-Nachricht konnte nicht signiert werden. Wurde der Key falsch gesetzt?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Die Fork-Nachricht konnte nicht signiert werden. Wurde der Key falsch gesetzt?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
