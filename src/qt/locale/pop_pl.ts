@@ -4119,8 +4119,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Synchronizuję popnody...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Synchronizuję sporki...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Synchronizuję forki...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4431,8 +4431,8 @@ Zaleca się również aby ustawić alarm powiadomień tzw. alertnotify, aby dać
         <translation>Nie udało się powiązać do %s na tym komputerze (powiązanie zwróciło błąd %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Niemożliwe podpisanie wiadomości spork, nieprawidłowy klucz?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Niemożliwe podpisanie wiadomości fork, nieprawidłowy klucz?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
