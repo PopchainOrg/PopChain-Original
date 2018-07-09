@@ -4121,8 +4121,8 @@ por ejemplo: alertnotify=echo %%s | mail -s "Alerta de Pop" admin@foo.com
         <translation>Sincronizando nodos maestros...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Sincronizando sporks...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Sincronizando forks...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4433,8 +4433,8 @@ por ejemplo: alertnotify=echo %%s | mail -s "Alerta de Pop" admin@foo.com
         <translation>No es posible enlazar con %s en este sistema (bind ha dado el error %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>No fue posible firmar el mensaje de spork, ¿clave incorrecta?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>No fue posible firmar el mensaje de fork, ¿clave incorrecta?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
