@@ -9,7 +9,7 @@
 #include "popnode-sync.h"
 #include "popnodeman.h"
 #include "netfulfilledman.h"
-#include "spork.h"
+#include "fork.h"
 #include "util.h"
 
 class CPopnodeSync;
@@ -161,7 +161,7 @@ std::string CPopnodeSync::GetAssetName()
     switch(nRequestedPopnodeAssets)
     {
         case(POPNODE_SYNC_INITIAL):      return "POPNODE_SYNC_INITIAL";
-        case(POPNODE_SYNC_SPORKS):       return "POPNODE_SYNC_SPORKS";
+        case(POPNODE_SYNC_FORKS):       return "POPNODE_SYNC_FORKS";
         case(POPNODE_SYNC_LIST):         return "POPNODE_SYNC_LIST";
         case(POPNODE_SYNC_FAILED):       return "POPNODE_SYNC_FAILED";
         case POPNODE_SYNC_FINISHED:      return "POPNODE_SYNC_FINISHED";
@@ -179,10 +179,10 @@ void CPopnodeSync::SwitchToNextAsset()
             break;
         case(POPNODE_SYNC_INITIAL):
             ClearFulfilledRequests();
-            nRequestedPopnodeAssets = POPNODE_SYNC_SPORKS;
+            nRequestedPopnodeAssets = POPNODE_SYNC_FORKS;
             LogPrintf("CPopnodeSync::SwitchToNextAsset -- Starting %s\n", GetAssetName());
             break;
-        case(POPNODE_SYNC_SPORKS):
+        case(POPNODE_SYNC_FORKS):
             nTimeLastPopnodeList = GetTime();
             nRequestedPopnodeAssets = POPNODE_SYNC_LIST;
             LogPrintf("CPopnodeSync::SwitchToNextAsset -- Starting %s\n", GetAssetName());
@@ -208,7 +208,7 @@ std::string CPopnodeSync::GetSyncStatus()
 {
     switch (popnodeSync.nRequestedPopnodeAssets) {
         case POPNODE_SYNC_INITIAL:       return _("Synchronization pending...");
-        case POPNODE_SYNC_SPORKS:        return _("Synchronizing sporks...");
+        case POPNODE_SYNC_FORKS:        return _("Synchronizing forks...");
         case POPNODE_SYNC_LIST:          return _("Synchronizing popnodes...");
         case POPNODE_SYNC_FAILED:        return _("Synchronization failed");
         case POPNODE_SYNC_FINISHED:      return _("Synchronization finished");
@@ -238,7 +238,7 @@ void CPopnodeSync::ClearFulfilledRequests()
 
     BOOST_FOREACH(CNode* pnode, vNodes)
     {
-        netfulfilledman.RemoveFulfilledRequest(pnode->addr, "spork-sync");
+        netfulfilledman.RemoveFulfilledRequest(pnode->addr, "fork-sync");
         netfulfilledman.RemoveFulfilledRequest(pnode->addr, "popnode-list-sync");
         netfulfilledman.RemoveFulfilledRequest(pnode->addr, "full-sync");
     }
@@ -271,9 +271,9 @@ void CPopnodeSync::ProcessTick()
     LogPrintf("CPopnodeSync::ProcessTick -- nTick %d nRequestedPopnodeAssets %d nRequestedPopnodeAttempt %d nSyncProgress %f\n", nTick, nRequestedPopnodeAssets, nRequestedPopnodeAttempt, nSyncProgress);
     uiInterface.NotifyAdditionalDataSyncProgressChanged(nSyncProgress);
 
-    // sporks synced but blockchain is not, wait until we're almost at a recent block to continue
+    // forks synced but blockchain is not, wait until we're almost at a recent block to continue
     if(Params().NetworkIDString() != CBaseChainParams::REGTEST &&
-            !IsBlockchainSynced() && nRequestedPopnodeAssets > POPNODE_SYNC_SPORKS)
+            !IsBlockchainSynced() && nRequestedPopnodeAssets > POPNODE_SYNC_FORKS)
     {
         LogPrintf("CPopnodeSync::ProcessTick -- nTick %d nRequestedPopnodeAssets %d nRequestedPopnodeAttempt %d -- blockchain is not synced yet\n", nTick, nRequestedPopnodeAssets, nRequestedPopnodeAttempt);
         nTimeLastPopnodeList = GetTime();
@@ -281,7 +281,7 @@ void CPopnodeSync::ProcessTick()
     }
 
     if(nRequestedPopnodeAssets == POPNODE_SYNC_INITIAL ||
-        (nRequestedPopnodeAssets == POPNODE_SYNC_SPORKS && IsBlockchainSynced()))
+        (nRequestedPopnodeAssets == POPNODE_SYNC_FORKS && IsBlockchainSynced()))
     {
         SwitchToNextAsset();
     }
@@ -300,7 +300,7 @@ void CPopnodeSync::ProcessTick()
         if(Params().NetworkIDString() == CBaseChainParams::REGTEST)
         {
             if(nRequestedPopnodeAttempt <= 2) {
-                pnode->PushMessage(NetMsgType::GETSPORKS); //get current network sporks
+                pnode->PushMessage(NetMsgType::GETFORKS); //get current network forks
             } else if(nRequestedPopnodeAttempt < 4) {
                 mnodeman.DsegUpdate(pnode);
             } else if(nRequestedPopnodeAttempt < 6) {
@@ -325,15 +325,15 @@ void CPopnodeSync::ProcessTick()
             // Make sure this peer is presumably at the same height
             if(!CheckNodeHeight(pnode, true)) continue;
 
-            // SPORK : ALWAYS ASK FOR SPORKS AS WE SYNC (we skip this mode now)
+            // FORK : ALWAYS ASK FOR FORKS AS WE SYNC (we skip this mode now)
 
-            if(!netfulfilledman.HasFulfilledRequest(pnode->addr, "spork-sync")) {
+            if(!netfulfilledman.HasFulfilledRequest(pnode->addr, "fork-sync")) {
                 // only request once from each peer
-                netfulfilledman.AddFulfilledRequest(pnode->addr, "spork-sync");
-                // get current network sporks
-                pnode->PushMessage(NetMsgType::GETSPORKS);
-                LogPrintf("CPopnodeSync::ProcessTick -- nTick %d nRequestedPopnodeAssets %d -- requesting sporks from peer %d\n", nTick, nRequestedPopnodeAssets, pnode->id);
-                continue; // always get sporks first, switch to the next node without waiting for the next tick
+                netfulfilledman.AddFulfilledRequest(pnode->addr, "fork-sync");
+                // get current network forks
+                pnode->PushMessage(NetMsgType::GETFORKS);
+                LogPrintf("CPopnodeSync::ProcessTick -- nTick %d nRequestedPopnodeAssets %d -- requesting forks from peer %d\n", nTick, nRequestedPopnodeAssets, pnode->id);
+                continue; // always get forks first, switch to the next node without waiting for the next tick
             }
 
             // MNLIST : SYNC POPNODE LIST FROM OTHER CONNECTED CLIENTS
