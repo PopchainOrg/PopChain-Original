@@ -270,7 +270,7 @@ bool LogAcceptCategory(const char* category)
                 ptrCategory->insert(string("privatesend"));
                 ptrCategory->insert(string("instantsend"));
                 ptrCategory->insert(string("popnode"));
-                ptrCategory->insert(string("spork"));
+                ptrCategory->insert(string("fork"));
                 ptrCategory->insert(string("keepass"));
             }
         }

@@ -4111,8 +4111,8 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Синхронизиране на popnodes ...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Синхронизиране на sporks...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Синхронизиране на forks...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4423,8 +4423,8 @@ for example: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Не може да се свърже с %s на този компютър (връща грешка %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Неуспешно подписване на spork-съобщение. Грешен ключ?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Неуспешно подписване на fork-съобщение. Грешен ключ?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

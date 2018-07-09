@@ -4119,8 +4119,8 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Đang đồng bộ các popnode...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Đang đồng bộ các sporks...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Đang đồng bộ các forks...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4431,7 +4431,7 @@ ví dụ: alertnotify=echo %%s | mail -s "Pop Alert" admin@foo.com
         <translation>Không thể để ràng buộc vào %s trên máy tính này (bind trả lại lỗi %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
+        <source>Unable to sign fork message, wrong key?</source>
         <translation>Không thể ký vào thông điệp phân nhánh, sai khoá?</translation>
     </message>
     <message>

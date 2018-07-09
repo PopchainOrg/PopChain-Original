@@ -35,8 +35,8 @@ const char *SENDHEADERS="sendheaders";
 // Pop message types
 const char *TXLOCKREQUEST="ix";
 const char *TXLOCKVOTE="txlvote";
-const char *SPORK="spork";
-const char *GETSPORKS="getsporks";
+const char *FORK="fork";
+const char *GETFORKS="getforks";
 const char *MNQUORUM="mn quorum"; // not implemented
 const char *MNANNOUNCE="mnb";
 const char *MNPING="mnp";
@@ -63,7 +63,7 @@ static const char* ppszTypeName[] =
     // NOTE: include non-implmented here, we must keep this list in sync with enum in protocol.h
     NetMsgType::TXLOCKREQUEST,
     NetMsgType::TXLOCKVOTE,
-    NetMsgType::SPORK,
+    NetMsgType::FORK,
     NetMsgType::MNQUORUM, // not implemented
     NetMsgType::MNANNOUNCE,
     NetMsgType::MNPING,
@@ -101,8 +101,8 @@ const static std::string allNetMessageTypes[] = {
     // NOTE: do NOT include non-implmented here, we want them to be "Unknown command" in ProcessMessage()
     NetMsgType::TXLOCKREQUEST,
     NetMsgType::TXLOCKVOTE,
-    NetMsgType::SPORK,
-    NetMsgType::GETSPORKS,
+    NetMsgType::FORK,
+    NetMsgType::GETFORKS,
     NetMsgType::MNANNOUNCE,
     NetMsgType::MNPING,
     NetMsgType::DSACCEPT,

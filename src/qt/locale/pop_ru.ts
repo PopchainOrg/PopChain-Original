@@ -4120,7 +4120,7 @@ rpcpassword=%s
         <translation>Синхронизация списка мастернод...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
+        <source>Synchronizing forks...</source>
         <translation>Синхронизация спорков...</translation>
     </message>
     <message>
@@ -4432,8 +4432,8 @@ rpcpassword=%s
         <translation>Невозможно привязаться к %s на этом компьютере (привязка вернула ошибку %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Не удалось подписать spork-сообщение. Неправильный ключ?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Не удалось подписать fork-сообщение. Неправильный ключ?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

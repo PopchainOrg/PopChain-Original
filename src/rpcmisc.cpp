@@ -10,7 +10,7 @@
 #include "timedata.h"
 #include "txmempool.h"
 #include "util.h"
-#include "spork.h"
+#include "fork.h"
 #include "utilstrencodings.h"
 #ifdef ENABLE_WALLET
 #include "popnode-sync.h"
@@ -118,7 +118,7 @@ UniValue debug(const UniValue& params, bool fHelp)
         throw runtime_error(
             "debug ( 0|1|addrman|alert|bench|coindb|db|lock|rand|rpc|selectcoins|mempool"
             "|mempoolrej|net|proxy|prune|http|libevent|tor|zmq|"
-            "pop|privatesend|instantsend|popnode|spork|keepass)\n"
+            "pop|privatesend|instantsend|popnode|fork|keepass)\n"
             "Change debug category on the fly. Specify single category or use comma to specify many.\n"
             "\nExamples:\n"
             + HelpExampleCli("debug", "pop")
@@ -214,36 +214,36 @@ public:
 #endif
 
 /*
-    Used for updating/reading spork settings on the network
+    Used for updating/reading fork settings on the network
 */
-UniValue spork(const UniValue& params, bool fHelp)
+UniValue fork(const UniValue& params, bool fHelp)
 {
     if(params.size() == 1 && params[0].get_str() == "show"){
         UniValue ret(UniValue::VOBJ);
-        for(int nSporkID = SPORK_START; nSporkID <= SPORK_END; nSporkID++){
-            if(sporkManager.GetSporkNameByID(nSporkID) != "Unknown")
-                ret.push_back(Pair(sporkManager.GetSporkNameByID(nSporkID), sporkManager.GetSporkValue(nSporkID)));
+        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
+            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
+                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.GetForkValue(nForkID)));
         }
         return ret;
     } else if(params.size() == 1 && params[0].get_str() == "active"){
         UniValue ret(UniValue::VOBJ);
-        for(int nSporkID = SPORK_START; nSporkID <= SPORK_END; nSporkID++){
-            if(sporkManager.GetSporkNameByID(nSporkID) != "Unknown")
-                ret.push_back(Pair(sporkManager.GetSporkNameByID(nSporkID), sporkManager.IsSporkActive(nSporkID)));
+        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
+            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
+                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.IsForkActive(nForkID)));
         }
         return ret;
     } else if (params.size() == 2){
-        int nSporkID = sporkManager.GetSporkIDByName(params[0].get_str());
-        if(nSporkID == -1){
-            return "Invalid spork name";
+        int nForkID = forkManager.GetForkIDByName(params[0].get_str());
+        if(nForkID == -1){
+            return "Invalid fork name";
         }
 
-        // SPORK VALUE
+        // FORK VALUE
         int64_t nValue = params[1].get_int64();
 
-        //broadcast new spork
-        if(sporkManager.UpdateSpork(nSporkID, nValue)){
-            sporkManager.ExecuteSpork(nSporkID, nValue);
+        //broadcast new fork
+        if(forkManager.UpdateFork(nForkID, nValue)){
+            forkManager.ExecuteFork(nForkID, nValue);
             return "success";
         } else {
             return "failure";
@@ -252,9 +252,9 @@ UniValue spork(const UniValue& params, bool fHelp)
     }
 
     throw runtime_error(
-        "spork <name> [<value>]\n"
-        "<name> is the corresponding spork name, or 'show' to show all current spork settings, active to show which sporks are active"
-        "<value> is a epoch datetime to enable or disable spork"
+        "fork <name> [<value>]\n"
+        "<name> is the corresponding fork name, or 'show' to show all current fork settings, active to show which forks are active"
+        "<value> is a epoch datetime to enable or disable fork"
         + HelpRequiringPassphrase());
 }
 

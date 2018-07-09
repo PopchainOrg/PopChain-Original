@@ -5237,8 +5237,8 @@ for example: alertnotify=echo %%s | mail -s &quot;Pop Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Synchronizing sporks...</source>
-        <translation>Synchronizing sporks...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Synchronizing forks...</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -5627,8 +5627,8 @@ for example: alertnotify=echo %%s | mail -s &quot;Pop Alert&quot; admin@foo.com
     </message>
     <message>
         <location line="+1"/>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Unable to sign spork message, wrong key?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Unable to sign fork message, wrong key?</translation>
     </message>
     <message>
         <location line="+1"/>

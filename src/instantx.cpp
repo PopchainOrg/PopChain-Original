@@ -9,7 +9,7 @@
 #include "popnodeman.h"
 #include "net.h"
 #include "protocol.h"
-#include "spork.h"
+#include "fork.h"
 #include "sync.h"
 #include "txmempool.h"
 #include "util.h"
@@ -41,7 +41,7 @@ CInstantSend instantsend;
 void CInstantSend::ProcessMessage(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)
 {
     if(fLiteMode) return; // disable all Pop specific functionality
-    if(!sporkManager.IsSporkActive(SPORK_2_INSTANTSEND_ENABLED)) return;
+    if(!forkManager.IsForkActive(FORK_2_INSTANTSEND_ENABLED)) return;
 
     // Ignore any InstantSend messages until popnode list is synced
     if(!popnodeSync.IsPopnodeListSynced()) return;
@@ -692,7 +692,7 @@ bool CInstantSend::GetTxLockVote(const uint256& hash, CTxLockVote& txLockVoteRet
 bool CInstantSend::IsInstantSendReadyToLock(const uint256& txHash)
 {
     if(!fEnableInstantSend || fLargeWorkForkFound || fLargeWorkInvalidChainFound ||
-        !sporkManager.IsSporkActive(SPORK_2_INSTANTSEND_ENABLED)) return false;
+        !forkManager.IsForkActive(FORK_2_INSTANTSEND_ENABLED)) return false;
 
     LOCK(cs_instantsend);
     // There must be a successfully verified lock request
@@ -704,7 +704,7 @@ bool CInstantSend::IsInstantSendReadyToLock(const uint256& txHash)
 bool CInstantSend::IsLockedInstantSendTransaction(const uint256& txHash)
 {
     if(!fEnableInstantSend || fLargeWorkForkFound || fLargeWorkInvalidChainFound ||
-        !sporkManager.IsSporkActive(SPORK_2_INSTANTSEND_ENABLED)) return false;
+        !forkManager.IsForkActive(FORK_2_INSTANTSEND_ENABLED)) return false;
 
     LOCK(cs_instantsend);
 
@@ -730,7 +730,7 @@ int CInstantSend::GetTransactionLockSignatures(const uint256& txHash)
 {
     if(!fEnableInstantSend) return -1;
     if(fLargeWorkForkFound || fLargeWorkInvalidChainFound) return -2;
-    if(!sporkManager.IsSporkActive(SPORK_2_INSTANTSEND_ENABLED)) return -3;
+    if(!forkManager.IsForkActive(FORK_2_INSTANTSEND_ENABLED)) return -3;
 
     LOCK(cs_instantsend);
 
@@ -899,7 +899,7 @@ bool CTxLockRequest::IsValid(bool fRequireUnspent) const
         nValueIn += coins.vout[txin.prevout.n].nValue;
     }
 
-    if(nValueOut > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
+    if(nValueOut > forkManager.GetForkValue(FORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
         LogPrint("instantsend", "CTxLockRequest::IsValid -- Transaction value too high: nValueOut=%d, tx=%s", nValueOut, ToString());
         return false;
     }

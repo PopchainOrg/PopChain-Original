@@ -12,7 +12,7 @@ class CPopnodeSync;
 
 static const int POPNODE_SYNC_FAILED          = -1;
 static const int POPNODE_SYNC_INITIAL         = 0;
-static const int POPNODE_SYNC_SPORKS          = 1;
+static const int POPNODE_SYNC_FORKS          = 1;
 static const int POPNODE_SYNC_LIST            = 2;
 static const int POPNODE_SYNC_FINISHED        = 999;
 

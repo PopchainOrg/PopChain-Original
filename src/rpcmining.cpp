@@ -15,7 +15,7 @@
 #include "net.h"
 #include "pow.h"
 #include "rpcserver.h"
-#include "spork.h"
+#include "fork.h"
 #include "txmempool.h"
 #include "util.h"
 #ifdef ENABLE_WALLET

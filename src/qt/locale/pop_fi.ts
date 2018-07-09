@@ -4127,8 +4127,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>Synkronoidaan popnodet...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
-        <translation>Synkronoidaan sporkit...</translation>
+        <source>Synchronizing forks...</source>
+        <translation>Synkronoidaan forkit...</translation>
     </message>
     <message>
         <source>This is not a Popnode.</source>
@@ -4439,8 +4439,8 @@ esimerkiksi: alertnotify=echo %%s | mail -s "Pop Hälytys" admin@foo.com
         <translation>Ei voida yhdistää %s tässä tietokoneessa (yhdistäminen palautti virheen %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>En voida allekirjoittaa spork viestiä, väärä avain?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>En voida allekirjoittaa fork viestiä, väärä avain?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

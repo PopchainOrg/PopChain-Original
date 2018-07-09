@@ -3767,8 +3767,8 @@ Più URL vengono separati da una barra verticale |.</translation>
         <translation>Incapace di legare al %s su questo computer (legare restituito l'errore %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Impossibile firmare messaggio Spork, chiave sbagliato?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Impossibile firmare messaggio Fork, chiave sbagliato?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>

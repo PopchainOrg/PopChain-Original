@@ -3178,8 +3178,8 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>Kan inte binda %s till denna dator (bindande återgav ett fel %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
-        <translation>Kan inte sporka meddelandet, fel nyckel?</translation>
+        <source>Unable to sign fork message, wrong key?</source>
+        <translation>Kan inte forka meddelandet, fel nyckel?</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
