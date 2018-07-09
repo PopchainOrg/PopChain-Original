@@ -221,8 +221,8 @@ extern const char *SENDHEADERS;
 // TODO: add description
 extern const char *TXLOCKREQUEST;
 extern const char *TXLOCKVOTE;
-extern const char *SPORK;
-extern const char *GETSPORKS;
+extern const char *FORK;
+extern const char *GETFORKS;
 extern const char *MNANNOUNCE;
 extern const char *MNPING;
 extern const char *DSACCEPT;
@@ -338,7 +338,7 @@ enum {
     // NOTE: declare non-implmented here, we must keep this enum consistent and backwards compatible
     MSG_TXLOCK_REQUEST,
     MSG_TXLOCK_VOTE,
-    MSG_SPORK,
+    MSG_FORK,
     MSG_POPNODE_QUORUM, // not implemented
     MSG_POPNODE_ANNOUNCE,
     MSG_POPNODE_PING,
