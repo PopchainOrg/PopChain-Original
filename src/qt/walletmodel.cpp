@@ -19,7 +19,7 @@
 
 #include "popsend.h"
 #include "instantx.h"
-#include "spork.h"
+#include "fork.h"
 
 #include <stdint.h>
 
@@ -293,8 +293,8 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
         CWalletTx *newTx = transaction.getTransaction();
         CReserveKey *keyChange = transaction.getPossibleKeyChange();
 
-        if(recipients[0].fUseInstantSend && total > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN){
-            Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+        if(recipients[0].fUseInstantSend && total > forkManager.GetForkValue(FORK_5_INSTANTSEND_MAX_VALUE)*COIN){
+            Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.").arg(forkManager.GetForkValue(FORK_5_INSTANTSEND_MAX_VALUE)),
                          CClientUIInterface::MSG_ERROR);
             return TransactionCreationFailed;
         }
@@ -305,8 +305,8 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             transaction.reassignAmounts(nChangePosRet);
 
         if(recipients[0].fUseInstantSend) {
-            if(newTx->GetValueOut() > sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
-                Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.").arg(sporkManager.GetSporkValue(SPORK_5_INSTANTSEND_MAX_VALUE)),
+            if(newTx->GetValueOut() > forkManager.GetForkValue(FORK_5_INSTANTSEND_MAX_VALUE)*COIN) {
+                Q_EMIT message(tr("Send Coins"), tr("InstantSend doesn't support sending values that high yet. Transactions are currently limited to %1 PCH.").arg(forkManager.GetForkValue(FORK_5_INSTANTSEND_MAX_VALUE)),
                              CClientUIInterface::MSG_ERROR);
                 return TransactionCreationFailed;
             }
