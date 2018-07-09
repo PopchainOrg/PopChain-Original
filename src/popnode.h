@@ -7,7 +7,7 @@
 #include "key.h"
 #include "main.h"
 #include "net.h"
-#include "spork.h"
+#include "fork.h"
 #include "timedata.h"
 
 class CPopnode;
@@ -279,7 +279,7 @@ public:
         if(nActiveState == POPNODE_ENABLED) {
             return true;
         }
-        if(!sporkManager.IsSporkActive(SPORK_14_REQUIRE_SENTINEL_FLAG) &&
+        if(!forkManager.IsForkActive(FORK_14_REQUIRE_SENTINEL_FLAG) &&
            (nActiveState == POPNODE_WATCHDOG_EXPIRED)) {
             return true;
         }
