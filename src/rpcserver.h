@@ -269,7 +269,7 @@ extern UniValue verifytxoutproof(const UniValue& params, bool fHelp);
 
 extern UniValue privatesend(const UniValue& params, bool fHelp);
 extern UniValue getpoolinfo(const UniValue& params, bool fHelp);
-extern UniValue spork(const UniValue& params, bool fHelp);
+extern UniValue fork(const UniValue& params, bool fHelp);
 extern UniValue popnode(const UniValue& params, bool fHelp);
 extern UniValue popnodelist(const UniValue& params, bool fHelp);
 extern UniValue popnodebroadcast(const UniValue& params, bool fHelp);
