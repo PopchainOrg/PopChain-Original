@@ -1035,4 +1035,42 @@ UniValue atomicswapfirsttx(const UniValue &params, bool fHelp)
 
 }
 
+UniValue atomicswapsecondtx(const UniValue &params, bool fHelp)
+{
+	if (fHelp || params.size() < 3 || params.size() > 4)
+		throw runtime_error(
+			"atomicswapsecondtx \"address\"amount \"lockhash \n"
+			"\nCreate reback atomic swap transaction spending the given inputs .\n"
+			"\nArguments:\n"
+			"1. \"address1\"  (string,required) The PopChain address to send .\n"
+			"2. \"amount\"	  (numeric,required) The amount in " + CURRENCY_UNIT + " to send. eg 0.01\n"
+			"3. \"lockhash \" (string,required) The lock hash in hex. \n"
+			"4. \"address2\"  (string,optional) The PopChain address to refund	.\n"
+			"\nResult:\n"
+			"\"lockTime\"		 (string) The lock time\n"
+			"\"refundAddress\"	 (string) The refund address encode by base58\n"
+			"\"transactionhash\" (string) The transaction hash\n"
+			"\"transaction\"	 (string) hex string of the transaction\n"
+			"\"htlcHash\"		 (string) The hash of hash time lock contract encode by base58\n"
+			"\"htlc\"			 (string) The hash time lock contract in hex\n"
+			"\nExamples:\n"
+			+ HelpExampleCli("atomicswapsecondtx", "\"pUwZn7LXgJTpkYdKQQj4L5b2vUJRPTYV4X\" 0.1\" rcdug3scZ3uVqMox6w3nLm9m8zE")
+		);
+	
+	LOCK(cs_main);
+	
+	//check params size is zero or not
+	if ((params[0].get_str().size() <= 0)||(params[1].get_str().size() <= 0)||(params[2].get_str().size() <= 0)){
+			throw JSONRPCError(RPC_INVALID_PARAMS, "Error:the parameter size can't be zero");
+		}
+
+
+	//declare the return data
+	UniValue result(UniValue::VOBJ);
+	
+	return result;
+
+	
+}
+
 #endif

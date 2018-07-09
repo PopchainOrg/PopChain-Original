@@ -328,6 +328,7 @@ extern UniValue getnameproof(const UniValue& params, bool fHelp);
 
 /*atomic swap*/
 extern UniValue atomicswapfirsttx(const UniValue &params, bool fHelp);
+extern UniValue atomicswapsecondtx(const UniValue &params, bool fHelp);
 
 bool StartRPC();
 void InterruptRPC();
