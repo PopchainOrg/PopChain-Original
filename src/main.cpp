@@ -29,7 +29,7 @@
 #include "ui_interface.h"
 #include "undo.h"
 #include "util.h"
-#include "spork.h"
+#include "fork.h"
 #include "utilmoneystr.h"
 #include "utilstrencodings.h"
 #include "validationinterface.h"
@@ -3924,7 +3924,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
 
     // PCH : CHECK TRANSACTIONS FOR INSTANTSEND
 
-    if(sporkManager.IsSporkActive(SPORK_3_INSTANTSEND_BLOCK_FILTERING)) {
+    if(forkManager.IsForkActive(FORK_3_INSTANTSEND_BLOCK_FILTERING)) {
         // We should never accept block which conflicts with completed transaction lock,
         // that's why this is in CheckBlock unlike coinbase payee/amount.
         // Require other nodes to comply, send them some data in case they are missing it.
@@ -3949,7 +3949,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             }
         }
     } else {
-        LogPrintf("CheckBlock(PCH): spork is off, skipping transaction locking checks\n");
+        LogPrintf("CheckBlock(PCH): fork is off, skipping transaction locking checks\n");
     }
 
     // END PCH
@@ -5185,8 +5185,8 @@ bool static AlreadyHave(const CInv& inv) EXCLUSIVE_LOCKS_REQUIRED(cs_main)
     case MSG_TXLOCK_VOTE:
         return instantsend.AlreadyHave(inv.hash);
 
-    case MSG_SPORK:
-        return mapSporks.count(inv.hash);
+    case MSG_FORK:
+        return mapForks.count(inv.hash);
 
     case MSG_POPNODE_ANNOUNCE:
         return mnodeman.mapSeenPopnodeBroadcast.count(inv.hash) && !mnodeman.IsMnbRecoveryRequested(inv.hash);
@@ -5350,12 +5350,12 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
                     }
                 }
 
-                if (!pushed && inv.type == MSG_SPORK) {
-                    if(mapSporks.count(inv.hash)) {
+                if (!pushed && inv.type == MSG_FORK) {
+                    if(mapForks.count(inv.hash)) {
                         CDataStream ss(SER_NETWORK, PROTOCOL_VERSION);
                         ss.reserve(1000);
-                        ss << mapSporks[inv.hash];
-                        pfrom->PushMessage(NetMsgType::SPORK, ss);
+                        ss << mapForks[inv.hash];
+                        pfrom->PushMessage(NetMsgType::FORK, ss);
                         pushed = true;
                     }
                 }
@@ -6493,7 +6493,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             darkSendPool.ProcessMessage(pfrom, strCommand, vRecv);
             mnodeman.ProcessMessage(pfrom, strCommand, vRecv);
             instantsend.ProcessMessage(pfrom, strCommand, vRecv);
-            sporkManager.ProcessSpork(pfrom, strCommand, vRecv);
+            forkManager.ProcessFork(pfrom, strCommand, vRecv);
             popnodeSync.ProcessMessage(pfrom, strCommand, vRecv);
         }
         else
