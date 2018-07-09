@@ -4163,7 +4163,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>正在同步主节点...</translation>
     </message>
     <message>
-        <source>Synchronizing sporks...</source>
+        <source>Synchronizing forks...</source>
         <translation>同步分叉...</translation>
     </message>
     <message>
@@ -4420,7 +4420,7 @@ https://www.transifex.com/projects/p/pop/</translation>
         <translation>无法绑定%s此计算机 (绑定返回错误 %s)</translation>
     </message>
     <message>
-        <source>Unable to sign spork message, wrong key?</source>
+        <source>Unable to sign fork message, wrong key?</source>
         <translation>无法签署交叉信息，错误的密钥？</translation>
     </message>
     <message>
