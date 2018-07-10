@@ -47,18 +47,6 @@ void CActivePopnode::ManageState()
     SendPopnodePing();
 }
 
-std::string CActivePopnode::GetStateString() const
-{
-    switch (nState) {
-        case ACTIVE_POPNODE_INIT:         return "INITIAL";
-        case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "SYNC_IN_PROCESS";
-        case ACTIVE_POPNODE_INPUT_TOO_NEW:   return "INPUT_TOO_NEW";
-        case ACTIVE_POPNODE_NOT_CAPABLE:     return "NOT_CAPABLE";
-        case ACTIVE_POPNODE_STARTED:         return "STARTED";
-        default:                                return "UNKNOWN";
-    }
-}
-
 std::string CActivePopnode::GetStatus() const
 {
     switch (nState) {
@@ -68,6 +56,18 @@ std::string CActivePopnode::GetStatus() const
         case ACTIVE_POPNODE_NOT_CAPABLE:     return "Not capable popnode: " + strNotCapableReason;
         case ACTIVE_POPNODE_STARTED:         return "Popnode successfully started";
         default:                                return "Unknown";
+    }
+}
+
+std::string CActivePopnode::GetStateString() const
+{
+    switch (nState) {
+        case ACTIVE_POPNODE_INIT:         return "INITIAL";
+        case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "SYNC_IN_PROCESS";
+        case ACTIVE_POPNODE_INPUT_TOO_NEW:   return "INPUT_TOO_NEW";
+        case ACTIVE_POPNODE_NOT_CAPABLE:     return "NOT_CAPABLE";
+        case ACTIVE_POPNODE_STARTED:         return "STARTED";
+        default:                                return "UNKNOWN";
     }
 }
 
@@ -229,47 +229,6 @@ LogPrintf("GetLocal() = %c, IsValidNetAddr = %c \n", GetLocal(service, &pnode->a
     LogPrint("popnode", "CActivePopnode::ManageStateInitial -- End status = %s, type = %s, pinger enabled = %d\n", GetStatus(), GetTypeString(), fPingerEnabled);
 }
 
-void CActivePopnode::ManageStateRemote()
-{
-    LogPrint("popnode", "CActivePopnode::ManageStateRemote -- Start status = %s, type = %s, pinger enabled = %d, pubKeyPopnode.GetID() = %s\n", 
-             GetStatus(), fPingerEnabled, GetTypeString(), pubKeyPopnode.GetID().ToString());
-
-    mnodeman.CheckPopnode(pubKeyPopnode);
-    popnode_info_t infoMn = mnodeman.GetPopnodeInfo(pubKeyPopnode);
-    if(infoMn.fInfoValid) {
-        if(infoMn.nProtocolVersion != PROTOCOL_VERSION) {
-            nState = ACTIVE_POPNODE_NOT_CAPABLE;
-            strNotCapableReason = "Invalid protocol version";
-            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
-            return;
-        }
-        if(service != infoMn.addr) {
-            nState = ACTIVE_POPNODE_NOT_CAPABLE;
-            strNotCapableReason = "Specified IP doesn't match our external address.";
-            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
-            return;
-        }
-        if(!CPopnode::IsValidStateForAutoStart(infoMn.nActiveState)) {
-            nState = ACTIVE_POPNODE_NOT_CAPABLE;
-            strNotCapableReason = strprintf("Popnode in %s state", CPopnode::StateToString(infoMn.nActiveState));
-            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
-            return;
-        }
-        if(nState != ACTIVE_POPNODE_STARTED) {
-            LogPrintf("CActivePopnode::ManageStateRemote -- STARTED!\n");
-            vin = infoMn.vin;
-            service = infoMn.addr;
-            fPingerEnabled = true;
-            nState = ACTIVE_POPNODE_STARTED;
-        }
-    }
-    else {
-        nState = ACTIVE_POPNODE_NOT_CAPABLE;
-        strNotCapableReason = "Popnode not in popnode list";
-        LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
-    }
-}
-
 void CActivePopnode::ManageStateLocal()
 {
     LogPrint("popnode", "CActivePopnode::ManageStateLocal -- status = %s, type = %s, pinger enabled = %d\n", GetStatus(), GetTypeString(), fPingerEnabled);
@@ -317,3 +276,45 @@ void CActivePopnode::ManageStateLocal()
         mnb.Relay();
     }
 }
+
+void CActivePopnode::ManageStateRemote()
+{
+    LogPrint("popnode", "CActivePopnode::ManageStateRemote -- Start status = %s, type = %s, pinger enabled = %d, pubKeyPopnode.GetID() = %s\n", 
+             GetStatus(), GetTypeString(), fPingerEnabled, pubKeyPopnode.GetID().ToString());
+
+    mnodeman.CheckPopnode(pubKeyPopnode);
+    popnode_info_t infoMn = mnodeman.GetPopnodeInfo(pubKeyPopnode);
+    if(infoMn.fInfoValid) {
+        if(infoMn.nProtocolVersion != PROTOCOL_VERSION) {
+            nState = ACTIVE_POPNODE_NOT_CAPABLE;
+            strNotCapableReason = "Invalid protocol version";
+            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
+            return;
+        }
+        if(service != infoMn.addr) {
+            nState = ACTIVE_POPNODE_NOT_CAPABLE;
+            strNotCapableReason = "Specified IP doesn't match our external address.";
+            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
+            return;
+        }
+        if(!CPopnode::IsValidStateForAutoStart(infoMn.nActiveState)) {
+            nState = ACTIVE_POPNODE_NOT_CAPABLE;
+            strNotCapableReason = strprintf("Popnode in %s state", CPopnode::StateToString(infoMn.nActiveState));
+            LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
+            return;
+        }
+        if(nState != ACTIVE_POPNODE_STARTED) {
+            LogPrintf("CActivePopnode::ManageStateRemote -- STARTED!\n");
+            vin = infoMn.vin;
+            service = infoMn.addr;
+            fPingerEnabled = true;
+            nState = ACTIVE_POPNODE_STARTED;
+        }
+    }
+    else {
+        nState = ACTIVE_POPNODE_NOT_CAPABLE;
+        strNotCapableReason = "Popnode not in popnode list";
+        LogPrintf("CActivePopnode::ManageStateRemote -- %s: %s\n", GetStateString(), strNotCapableReason);
+    }
+}
+
