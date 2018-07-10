@@ -9,7 +9,7 @@
 
 class CActivePopnode;
 
-static const int ACTIVE_POPNODE_INITIAL          = 0; // initial state
+static const int ACTIVE_POPNODE_INIT          = 0; // initial state
 static const int ACTIVE_POPNODE_SYNC_IN_PROCESS  = 1;
 static const int ACTIVE_POPNODE_INPUT_TOO_NEW    = 2;
 static const int ACTIVE_POPNODE_NOT_CAPABLE      = 3;
@@ -57,7 +57,7 @@ public:
           keyPopnode(),
           vin(),
           service(),
-          nState(ACTIVE_POPNODE_INITIAL)
+          nState(ACTIVE_POPNODE_INIT)
     {}
 
     /// Manage state of active Popnode
