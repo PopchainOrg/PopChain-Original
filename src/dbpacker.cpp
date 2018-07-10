@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#include "dbwrapper.h"
+#include "dbpacker.h"
 
 #include "util.h"
 #include "random.h"
@@ -13,18 +13,18 @@
 #include <memenv.h>
 #include <stdint.h>
 
-void HandleError(const leveldb::Status& status) throw(dbwrapper_error)
+void HandleError(const leveldb::Status& status) throw(dbpacker_error)
 {
     if (status.ok())
         return;
     LogPrintf("%s\n", status.ToString());
     if (status.IsCorruption())
-        throw dbwrapper_error("Database corrupted");
+        throw dbpacker_error("Database corrupted");
     if (status.IsIOError())
-        throw dbwrapper_error("Database I/O error");
+        throw dbpacker_error("Database I/O error");
     if (status.IsNotFound())
-        throw dbwrapper_error("Database entry missing");
-    throw dbwrapper_error("Unknown database error");
+        throw dbpacker_error("Database entry missing");
+    throw dbpacker_error("Unknown database error");
 }
 
 static leveldb::Options GetOptions(size_t nCacheSize)
@@ -43,7 +43,7 @@ static leveldb::Options GetOptions(size_t nCacheSize)
     return options;
 }
 
-CDBWrapper::CDBWrapper(const boost::filesystem::path& path, size_t nCacheSize, bool fMemory, bool fWipe, bool obfuscate)
+CDBPacker::CDBPacker(const boost::filesystem::path& path, size_t nCacheSize, bool fMemory, bool fWipe, bool obfuscate)
 {
     penv = NULL;
     readoptions.verify_checksums = true;
@@ -88,7 +88,7 @@ CDBWrapper::CDBWrapper(const boost::filesystem::path& path, size_t nCacheSize, b
     LogPrintf("Using obfuscation key for %s: %s\n", path.string(), GetObfuscateKeyHex());
 }
 
-CDBWrapper::~CDBWrapper()
+CDBPacker::~CDBPacker()
 {
     delete pdb;
     pdb = NULL;
@@ -100,7 +100,7 @@ CDBWrapper::~CDBWrapper()
     options.env = NULL;
 }
 
-bool CDBWrapper::WriteBatch(CDBBatch& batch, bool fSync) throw(dbwrapper_error)
+bool CDBPacker::WriteBatch(CDBBatch& batch, bool fSync) throw(dbpacker_error)
 {
     leveldb::Status status = pdb->Write(fSync ? syncoptions : writeoptions, &batch.batch);
     HandleError(status);
@@ -111,15 +111,15 @@ bool CDBWrapper::WriteBatch(CDBBatch& batch, bool fSync) throw(dbwrapper_error)
 //
 // We must use a string constructor which specifies length so that we copy
 // past the null-terminator.
-const std::string CDBWrapper::OBFUSCATE_KEY_KEY("\000obfuscate_key", 14);
+const std::string CDBPacker::OBFUSCATE_KEY_KEY("\000obfuscate_key", 14);
 
-const unsigned int CDBWrapper::OBFUSCATE_KEY_NUM_BYTES = 8;
+const unsigned int CDBPacker::OBFUSCATE_KEY_NUM_BYTES = 8;
 
 /**
  * Returns a string (consisting of 8 random bytes) suitable for use as an
  * obfuscating XOR key.
  */
-std::vector<unsigned char> CDBWrapper::CreateObfuscateKey() const
+std::vector<unsigned char> CDBPacker::CreateObfuscateKey() const
 {
     unsigned char buff[OBFUSCATE_KEY_NUM_BYTES];
     GetRandBytes(buff, OBFUSCATE_KEY_NUM_BYTES);
@@ -127,19 +127,19 @@ std::vector<unsigned char> CDBWrapper::CreateObfuscateKey() const
 
 }
 
-bool CDBWrapper::IsEmpty()
+bool CDBPacker::IsEmpty()
 {
     boost::scoped_ptr<CDBIterator> it(NewIterator());
     it->SeekToFirst();
     return !(it->Valid());
 }
 
-const std::vector<unsigned char>& CDBWrapper::GetObfuscateKey() const
+const std::vector<unsigned char>& CDBPacker::GetObfuscateKey() const
 {
     return obfuscate_key;
 }
 
-std::string CDBWrapper::GetObfuscateKeyHex() const
+std::string CDBPacker::GetObfuscateKeyHex() const
 {
     return HexStr(obfuscate_key);
 }
