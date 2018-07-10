@@ -151,7 +151,7 @@ bool CClaimTrie::empty() const
 
 template<typename K> bool CClaimTrie::keyTypeEmpty(char keyType, K& dummy) const
 {
-    boost::scoped_ptr<CDBIterator> pcursor(const_cast<CDBWrapper*>(&db)->NewIterator());
+    boost::scoped_ptr<CDBIterator> pcursor(const_cast<CDBPacker*>(&db)->NewIterator());
     pcursor->SeekToFirst();
     
     while (pcursor->Valid())
@@ -1130,7 +1130,7 @@ bool CClaimTrie::ReadFromDisk(bool check)
         LogPrintf("%s: Couldn't read the best block's hash\n", __func__);
     if (!db.Read(CURRENT_HEIGHT, nCurrentHeight))
         LogPrintf("%s: Couldn't read the current height\n", __func__);
-    boost::scoped_ptr<CDBIterator> pcursor(const_cast<CDBWrapper*>(&db)->NewIterator());
+    boost::scoped_ptr<CDBIterator> pcursor(const_cast<CDBPacker*>(&db)->NewIterator());
     pcursor->SeekToFirst();
     
     while (pcursor->Valid())
