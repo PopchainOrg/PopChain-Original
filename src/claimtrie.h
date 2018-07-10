@@ -7,7 +7,7 @@
 #include "serialize.h"
 #include "uint256.h"
 #include "util.h"
-#include "dbwrapper.h"
+#include "dbpacker.h"
 #include "primitives/transaction.h"
 
 #include <string>
@@ -336,7 +336,7 @@ public:
     
     friend class CClaimTrieCache;
     
-    CDBWrapper db;
+    CDBPacker db;
     int nCurrentHeight;
     int nExpirationTime;
     int nProportionalDelayFactor;
