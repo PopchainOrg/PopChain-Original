@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#include "dbwrapper.h"
+#include "dbpacker.h"
 #include "uint256.h"
 #include "random.h"
 #include "test/test_pop.h"
@@ -23,36 +23,36 @@ bool is_null_key(const vector<unsigned char>& key) {
     return isnull;
 }
  
-BOOST_FIXTURE_TEST_SUITE(dbwrapper_tests, BasicTestingSetup)
+BOOST_FIXTURE_TEST_SUITE(dbpacker_tests, BasicTestingSetup)
                        
-BOOST_AUTO_TEST_CASE(dbwrapper)
+BOOST_AUTO_TEST_CASE(dbpacker)
 {
     // Perform tests both obfuscated and non-obfuscated.
     for (int i = 0; i < 2; i++) {
         bool obfuscate = (bool)i;
         path ph = temp_directory_path() / unique_path();
-        CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
+        CDBPacker dbp(ph, (1 << 20), true, false, obfuscate);
         char key = 'k';
         uint256 in = GetRandHash();
         uint256 res;
 
         // Ensure that we're doing real obfuscation when obfuscate=true
-        BOOST_CHECK(obfuscate != is_null_key(dbw.GetObfuscateKey()));
+        BOOST_CHECK(obfuscate != is_null_key(dbp.GetObfuscateKey()));
 
-        BOOST_CHECK(dbw.Write(key, in));
-        BOOST_CHECK(dbw.Read(key, res));
+        BOOST_CHECK(dbp.Write(key, in));
+        BOOST_CHECK(dbp.Read(key, res));
         BOOST_CHECK_EQUAL(res.ToString(), in.ToString());
     }
 }
 
 // Test batch operations
-BOOST_AUTO_TEST_CASE(dbwrapper_batch)
+BOOST_AUTO_TEST_CASE(dbpacker_batch)
 {
     // Perform tests both obfuscated and non-obfuscated.
     for (int i = 0; i < 2; i++) {
         bool obfuscate = (bool)i;
         path ph = temp_directory_path() / unique_path();
-        CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
+        CDBPacker dbp(ph, (1 << 20), true, false, obfuscate);
 
         char key = 'i';
         uint256 in = GetRandHash();
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(dbwrapper_batch)
         uint256 in3 = GetRandHash();
 
         uint256 res;
-        CDBBatch batch(&dbw.GetObfuscateKey());
+        CDBBatch batch(&dbp.GetObfuscateKey());
 
         batch.Write(key, in);
         batch.Write(key2, in2);
@@ -71,35 +71,35 @@ BOOST_AUTO_TEST_CASE(dbwrapper_batch)
         // Remove key3 before it's even been written
         batch.Erase(key3);
 
-        dbw.WriteBatch(batch);
+        dbp.WriteBatch(batch);
 
-        BOOST_CHECK(dbw.Read(key, res));
+        BOOST_CHECK(dbp.Read(key, res));
         BOOST_CHECK_EQUAL(res.ToString(), in.ToString());
-        BOOST_CHECK(dbw.Read(key2, res));
+        BOOST_CHECK(dbp.Read(key2, res));
         BOOST_CHECK_EQUAL(res.ToString(), in2.ToString());
 
         // key3 never should've been written
-        BOOST_CHECK(dbw.Read(key3, res) == false);
+        BOOST_CHECK(dbp.Read(key3, res) == false);
     }
 }
 
-BOOST_AUTO_TEST_CASE(dbwrapper_iterator)
+BOOST_AUTO_TEST_CASE(dbpacker_iterator)
 {
     // Perform tests both obfuscated and non-obfuscated.
     for (int i = 0; i < 2; i++) {
         bool obfuscate = (bool)i;
         path ph = temp_directory_path() / unique_path();
-        CDBWrapper dbw(ph, (1 << 20), true, false, obfuscate);
+        CDBPacker dbp(ph, (1 << 20), true, false, obfuscate);
 
         // The two keys are intentionally chosen for ordering
         char key = 'j';
         uint256 in = GetRandHash();
-        BOOST_CHECK(dbw.Write(key, in));
+        BOOST_CHECK(dbp.Write(key, in));
         char key2 = 'k';
         uint256 in2 = GetRandHash();
-        BOOST_CHECK(dbw.Write(key2, in2));
+        BOOST_CHECK(dbp.Write(key2, in2));
 
-        boost::scoped_ptr<CDBIterator> it(const_cast<CDBWrapper*>(&dbw)->NewIterator());
+        boost::scoped_ptr<CDBIterator> it(const_cast<CDBPacker*>(&dbp)->NewIterator());
 
         // Be sure to seek past the obfuscation key (if it exists)
         it->Seek(key);
@@ -132,36 +132,36 @@ BOOST_AUTO_TEST_CASE(existing_data_no_obfuscate)
     create_directories(ph);
 
     // Set up a non-obfuscated wrapper to write some initial data.
-    CDBWrapper* dbw = new CDBWrapper(ph, (1 << 10), false, false, false);
+    CDBPacker* dbp = new CDBPacker(ph, (1 << 10), false, false, false);
     char key = 'k';
     uint256 in = GetRandHash();
     uint256 res;
 
-    BOOST_CHECK(dbw->Write(key, in));
-    BOOST_CHECK(dbw->Read(key, res));
+    BOOST_CHECK(dbp->Write(key, in));
+    BOOST_CHECK(dbp->Read(key, res));
     BOOST_CHECK_EQUAL(res.ToString(), in.ToString());
 
     // Call the destructor to free leveldb LOCK
-    delete dbw;
+    delete dbp;
 
     // Now, set up another wrapper that wants to obfuscate the same directory
-    CDBWrapper odbw(ph, (1 << 10), false, false, true);
+    CDBPacker odbp(ph, (1 << 10), false, false, true);
 
     // Check that the key/val we wrote with unobfuscated wrapper exists and 
     // is readable.
     uint256 res2;
-    BOOST_CHECK(odbw.Read(key, res2));
+    BOOST_CHECK(odbp.Read(key, res2));
     BOOST_CHECK_EQUAL(res2.ToString(), in.ToString());
 
-    BOOST_CHECK(!odbw.IsEmpty()); // There should be existing data
-    BOOST_CHECK(is_null_key(odbw.GetObfuscateKey())); // The key should be an empty string
+    BOOST_CHECK(!odbp.IsEmpty()); // There should be existing data
+    BOOST_CHECK(is_null_key(odbp.GetObfuscateKey())); // The key should be an empty string
 
     uint256 in2 = GetRandHash();
     uint256 res3;
  
     // Check that we can write successfully
-    BOOST_CHECK(odbw.Write(key, in2));
-    BOOST_CHECK(odbw.Read(key, res3));
+    BOOST_CHECK(odbp.Write(key, in2));
+    BOOST_CHECK(odbp.Read(key, res3));
     BOOST_CHECK_EQUAL(res3.ToString(), in2.ToString());
 }
                         
@@ -173,46 +173,46 @@ BOOST_AUTO_TEST_CASE(existing_data_reindex)
     create_directories(ph);
 
     // Set up a non-obfuscated wrapper to write some initial data.
-    CDBWrapper* dbw = new CDBWrapper(ph, (1 << 10), false, false, false);
+    CDBPacker* dbp = new CDBPacker(ph, (1 << 10), false, false, false);
     char key = 'k';
     uint256 in = GetRandHash();
     uint256 res;
 
-    BOOST_CHECK(dbw->Write(key, in));
-    BOOST_CHECK(dbw->Read(key, res));
+    BOOST_CHECK(dbp->Write(key, in));
+    BOOST_CHECK(dbp->Read(key, res));
     BOOST_CHECK_EQUAL(res.ToString(), in.ToString());
 
     // Call the destructor to free leveldb LOCK
-    delete dbw;
+    delete dbp;
 
     // Simulate a -reindex by wiping the existing data store
-    CDBWrapper odbw(ph, (1 << 10), false, true, true);
+    CDBPacker odbp(ph, (1 << 10), false, true, true);
 
     // Check that the key/val we wrote with unobfuscated wrapper doesn't exist
     uint256 res2;
-    BOOST_CHECK(!odbw.Read(key, res2));
-    BOOST_CHECK(!is_null_key(odbw.GetObfuscateKey()));
+    BOOST_CHECK(!odbp.Read(key, res2));
+    BOOST_CHECK(!is_null_key(odbp.GetObfuscateKey()));
 
     uint256 in2 = GetRandHash();
     uint256 res3;
  
     // Check that we can write successfully
-    BOOST_CHECK(odbw.Write(key, in2));
-    BOOST_CHECK(odbw.Read(key, res3));
+    BOOST_CHECK(odbp.Write(key, in2));
+    BOOST_CHECK(odbp.Read(key, res3));
     BOOST_CHECK_EQUAL(res3.ToString(), in2.ToString());
 }
 
 BOOST_AUTO_TEST_CASE(iterator_ordering)
 {
     path ph = temp_directory_path() / unique_path();
-    CDBWrapper dbw(ph, (1 << 20), true, false, false);
+    CDBPacker dbp(ph, (1 << 20), true, false, false);
     for (int x=0x00; x<256; ++x) {
         uint8_t key = x;
         uint32_t value = x*x;
-        BOOST_CHECK(dbw.Write(key, value));
+        BOOST_CHECK(dbp.Write(key, value));
     }
 
-    boost::scoped_ptr<CDBIterator> it(const_cast<CDBWrapper*>(&dbw)->NewIterator());
+    boost::scoped_ptr<CDBIterator> it(const_cast<CDBPacker*>(&dbp)->NewIterator());
     for (int c=0; c<2; ++c) {
         int seek_start;
         if (c == 0)
@@ -276,7 +276,7 @@ BOOST_AUTO_TEST_CASE(iterator_string_ordering)
     char buf[10];
 
     path ph = temp_directory_path() / unique_path();
-    CDBWrapper dbw(ph, (1 << 20), true, false, false);
+    CDBPacker dbp(ph, (1 << 20), true, false, false);
     for (int x=0x00; x<10; ++x) {
         for (int y = 0; y < 10; y++) {
             sprintf(buf, "%d", x);
@@ -284,11 +284,11 @@ BOOST_AUTO_TEST_CASE(iterator_string_ordering)
             for (int z = 0; z < y; z++)
                 key += key;
             uint32_t value = x*x;
-            BOOST_CHECK(dbw.Write(key, value));
+            BOOST_CHECK(dbp.Write(key, value));
         }
     }
 
-    boost::scoped_ptr<CDBIterator> it(const_cast<CDBWrapper*>(&dbw)->NewIterator());
+    boost::scoped_ptr<CDBIterator> it(const_cast<CDBPacker*>(&dbp)->NewIterator());
     for (int c=0; c<2; ++c) {
         int seek_start;
         if (c == 0)
