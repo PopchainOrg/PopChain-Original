@@ -165,7 +165,7 @@ UniValue popnode(const UniValue& params, bool fHelp)
 
     if (strCommand == "debug")
     {
-        if(activePopnode.nState != ACTIVE_POPNODE_INITIAL || !popnodeSync.IsBlockchainSynced())
+        if(activePopnode.nState != ACTIVE_POPNODE_INIT || !popnodeSync.IsBlockchainSynced())
             return activePopnode.GetStatus();
 
         CTxIn vin;
@@ -189,7 +189,7 @@ UniValue popnode(const UniValue& params, bool fHelp)
         }
 
         if(activePopnode.nState != ACTIVE_POPNODE_STARTED){
-            activePopnode.nState = ACTIVE_POPNODE_INITIAL; // TODO: consider better way
+            activePopnode.nState = ACTIVE_POPNODE_INIT; // TODO: consider better way
             activePopnode.ManageState();
         }
 
