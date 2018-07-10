@@ -1,8 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#include "amount.h"
-
 #include "tinyformat.h"
+#include "amount.h"
 
 const std::string CURRENCY_UNIT = "PCH";
 
@@ -12,6 +11,11 @@ CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
         nSatoshisPerK = nFeePaid*1000/nSize;
     else
         nSatoshisPerK = 0;
+}
+
+std::string CFeeRate::ToString() const
+{
+    return strprintf("%d.%08d %s/kB", nSatoshisPerK / COIN, nSatoshisPerK % COIN, CURRENCY_UNIT);
 }
 
 CAmount CFeeRate::GetFee(size_t nSize) const
@@ -24,7 +28,3 @@ CAmount CFeeRate::GetFee(size_t nSize) const
     return nFee;
 }
 
-std::string CFeeRate::ToString() const
-{
-    return strprintf("%d.%08d %s/kB", nSatoshisPerK / COIN, nSatoshisPerK % COIN, CURRENCY_UNIT);
-}
