@@ -4,7 +4,7 @@
 #define BITCOIN_TXDB_H
 
 #include "coins.h"
-#include "dbwrapper.h"
+#include "dbpacker.h"
 
 #include <map>
 #include <string>
@@ -36,7 +36,7 @@ static const int64_t nMinDbCache = 4;
 class CCoinsViewDB : public CCoinsView
 {
 protected:
-    CDBWrapper db;
+    CDBPacker db;
 public:
     CCoinsViewDB(size_t nCacheSize, bool fMemory = false, bool fWipe = false);
 
@@ -48,7 +48,7 @@ public:
 };
 
 /** Access to the block database (blocks/index/) */
-class CBlockTreeDB : public CDBWrapper
+class CBlockTreeDB : public CDBPacker
 {
 public:
     CBlockTreeDB(size_t nCacheSize, bool fMemory = false, bool fWipe = false);
