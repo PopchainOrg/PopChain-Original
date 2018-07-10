@@ -54,10 +54,10 @@ double CAddrInfo::GetChance(int64_t nNow) const
     int64_t nSinceLastSeen = nNow - nTime;
     int64_t nSinceLastTry = nNow - nLastTry;
 
-    if (nSinceLastSeen < 0)
-        nSinceLastSeen = 0;
-    if (nSinceLastTry < 0)
+	if (nSinceLastTry < 0)
         nSinceLastTry = 0;
+	if (nSinceLastSeen < 0)
+        nSinceLastSeen = 0;
 
     // deprioritize very recent attempts away
     if (nSinceLastTry < 60 * 10)
@@ -94,6 +94,20 @@ CAddrInfo* CAddrMan::Create(const CAddress& addr, const CNetAddr& addrSource, in
     return &mapInfo[nId];
 }
 
+void CAddrMan::Delete(int nId)
+{
+    assert(mapInfo.count(nId) != 0);
+    CAddrInfo& info = mapInfo[nId];
+    assert(!info.fInTried);
+    assert(info.nRefCount == 0);
+
+    SwapRandom(info.nRandomPos, vRandom.size() - 1);
+    vRandom.pop_back();
+    mapAddr.erase(info);
+    mapInfo.erase(nId);
+    nNew--;
+}
+
 void CAddrMan::SwapRandom(unsigned int nRndPos1, unsigned int nRndPos2)
 {
     if (nRndPos1 == nRndPos2)
@@ -112,20 +126,6 @@ void CAddrMan::SwapRandom(unsigned int nRndPos1, unsigned int nRndPos2)
 
     vRandom[nRndPos1] = nId2;
     vRandom[nRndPos2] = nId1;
-}
-
-void CAddrMan::Delete(int nId)
-{
-    assert(mapInfo.count(nId) != 0);
-    CAddrInfo& info = mapInfo[nId];
-    assert(!info.fInTried);
-    assert(info.nRefCount == 0);
-
-    SwapRandom(info.nRandomPos, vRandom.size() - 1);
-    vRandom.pop_back();
-    mapAddr.erase(info);
-    mapInfo.erase(nId);
-    nNew--;
 }
 
 void CAddrMan::ClearNew(int nUBucket, int nUBucketPos)
@@ -189,55 +189,6 @@ void CAddrMan::MakeTried(CAddrInfo& info, int nId)
     vvTried[nKBucket][nKBucketPos] = nId;
     nTried++;
     info.fInTried = true;
-}
-
-void CAddrMan::Good_(const CService& addr, int64_t nTime)
-{
-    int nId;
-    CAddrInfo* pinfo = Find(addr, &nId);
-
-    // if not found, bail out
-    if (!pinfo)
-        return;
-
-    CAddrInfo& info = *pinfo;
-
-    // check whether we are talking about the exact same CService (including same port)
-    if (info != addr)
-        return;
-
-    // update info
-    info.nLastSuccess = nTime;
-    info.nLastTry = nTime;
-    info.nAttempts = 0;
-    // nTime is not updated here, to avoid leaking information about
-    // currently-connected peers.
-
-    // if it is already in the tried set, don't do anything else
-    if (info.fInTried)
-        return;
-
-    // find a bucket it is in now
-    int nRnd = GetRandInt(ADDRMAN_NEW_BUCKET_COUNT);
-    int nUBucket = -1;
-    for (unsigned int n = 0; n < ADDRMAN_NEW_BUCKET_COUNT; n++) {
-        int nB = (n + nRnd) % ADDRMAN_NEW_BUCKET_COUNT;
-        int nBpos = info.GetBucketPosition(nKey, true, nB);
-        if (vvNew[nB][nBpos] == nId) {
-            nUBucket = nB;
-            break;
-        }
-    }
-
-    // if no bucket is found, something bad happened;
-    // TODO: maybe re-add the node, but for now, just bail out
-    if (nUBucket == -1)
-        return;
-
-    LogPrint("addrman", "Moving %s to tried\n", addr.ToString());
-
-    // move nId to the tried tables
-    MakeTried(info, nId);
 }
 
 bool CAddrMan::Add_(const CAddress& addr, const CNetAddr& source, int64_t nTimePenalty)
@@ -308,25 +259,6 @@ bool CAddrMan::Add_(const CAddress& addr, const CNetAddr& source, int64_t nTimeP
     return fNew;
 }
 
-void CAddrMan::Attempt_(const CService& addr, int64_t nTime)
-{
-    CAddrInfo* pinfo = Find(addr);
-
-    // if not found, bail out
-    if (!pinfo)
-        return;
-
-    CAddrInfo& info = *pinfo;
-
-    // check whether we are talking about the exact same CService (including same port)
-    if (info != addr)
-        return;
-
-    // update info
-    info.nLastTry = nTime;
-    info.nAttempts++;
-}
-
 CAddrInfo CAddrMan::Select_(bool newOnly)
 {
     if (size() == 0)
@@ -373,6 +305,75 @@ CAddrInfo CAddrMan::Select_(bool newOnly)
         }
     }
 }
+
+void CAddrMan::Attempt_(const CService& addr, int64_t nTime)
+{
+    CAddrInfo* pinfo = Find(addr);
+
+    // if not found, bail out
+    if (!pinfo)
+        return;
+
+    CAddrInfo& info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    info.nLastTry = nTime;
+    info.nAttempts++;
+}
+
+void CAddrMan::Good_(const CService& addr, int64_t nTime)
+{
+    int nId;
+    CAddrInfo* pinfo = Find(addr, &nId);
+
+    // if not found, bail out
+    if (!pinfo)
+        return;
+
+    CAddrInfo& info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    info.nLastSuccess = nTime;
+    info.nLastTry = nTime;
+    info.nAttempts = 0;
+    // nTime is not updated here, to avoid leaking information about
+    // currently-connected peers.
+
+    // if it is already in the tried set, don't do anything else
+    if (info.fInTried)
+        return;
+
+    // find a bucket it is in now
+    int nRnd = GetRandInt(ADDRMAN_NEW_BUCKET_COUNT);
+    int nUBucket = -1;
+    for (unsigned int n = 0; n < ADDRMAN_NEW_BUCKET_COUNT; n++) {
+        int nB = (n + nRnd) % ADDRMAN_NEW_BUCKET_COUNT;
+        int nBpos = info.GetBucketPosition(nKey, true, nB);
+        if (vvNew[nB][nBpos] == nId) {
+            nUBucket = nB;
+            break;
+        }
+    }
+
+    // if no bucket is found, something bad happened;
+    // TODO: maybe re-add the node, but for now, just bail out
+    if (nUBucket == -1)
+        return;
+
+    LogPrint("addrman", "Moving %s to tried\n", addr.ToString());
+
+    // move nId to the tried tables
+    MakeTried(info, nId);
+}
+
 
 #ifdef DEBUG_ADDRMAN
 int CAddrMan::Check_()
@@ -452,6 +453,26 @@ int CAddrMan::Check_()
 }
 #endif
 
+void CAddrMan::Connected_(const CService& addr, int64_t nTime)
+{
+    CAddrInfo* pinfo = Find(addr);
+
+    // if not found, bail out
+    if (!pinfo)
+        return;
+
+    CAddrInfo& info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    int64_t nUpdateInterval = 20 * 60;
+    if (nTime - info.nTime > nUpdateInterval)
+        info.nTime = nTime;
+}
+
 void CAddrMan::GetAddr_(std::vector<CAddress>& vAddr)
 {
     unsigned int nNodes = ADDRMAN_GETADDR_MAX_PCT * vRandom.size() / 100;
@@ -473,22 +494,3 @@ void CAddrMan::GetAddr_(std::vector<CAddress>& vAddr)
     }
 }
 
-void CAddrMan::Connected_(const CService& addr, int64_t nTime)
-{
-    CAddrInfo* pinfo = Find(addr);
-
-    // if not found, bail out
-    if (!pinfo)
-        return;
-
-    CAddrInfo& info = *pinfo;
-
-    // check whether we are talking about the exact same CService (including same port)
-    if (info != addr)
-        return;
-
-    // update info
-    int64_t nUpdateInterval = 20 * 60;
-    if (nTime - info.nTime > nUpdateInterval)
-        info.nTime = nTime;
-}
