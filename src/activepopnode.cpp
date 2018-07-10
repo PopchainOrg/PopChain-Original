@@ -26,7 +26,7 @@ void CActivePopnode::ManageState()
     }
 
     if(nState == ACTIVE_POPNODE_SYNC_IN_PROCESS) {
-        nState = ACTIVE_POPNODE_INITIAL;
+        nState = ACTIVE_POPNODE_INIT;
     }
 
     LogPrint("popnode", "CActivePopnode::ManageState -- status = %s, type = %s, pinger enabled = %d\n", GetStatus(), GetTypeString(), fPingerEnabled);
@@ -50,7 +50,7 @@ void CActivePopnode::ManageState()
 std::string CActivePopnode::GetStateString() const
 {
     switch (nState) {
-        case ACTIVE_POPNODE_INITIAL:         return "INITIAL";
+        case ACTIVE_POPNODE_INIT:         return "INITIAL";
         case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "SYNC_IN_PROCESS";
         case ACTIVE_POPNODE_INPUT_TOO_NEW:   return "INPUT_TOO_NEW";
         case ACTIVE_POPNODE_NOT_CAPABLE:     return "NOT_CAPABLE";
@@ -62,7 +62,7 @@ std::string CActivePopnode::GetStateString() const
 std::string CActivePopnode::GetStatus() const
 {
     switch (nState) {
-        case ACTIVE_POPNODE_INITIAL:         return "Node just started, not yet activated";
+        case ACTIVE_POPNODE_INIT:         return "Node just started, not yet activated";
         case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "Sync in progress. Must wait until sync is complete to start Popnode";
         case ACTIVE_POPNODE_INPUT_TOO_NEW:   return strprintf("Popnode input must have at least %d confirmations", Params().GetConsensus().nPopnodeMinimumConfirmations);
         case ACTIVE_POPNODE_NOT_CAPABLE:     return "Not capable popnode: " + strNotCapableReason;
