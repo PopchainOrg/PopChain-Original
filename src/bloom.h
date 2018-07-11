@@ -12,8 +12,8 @@ class CTransaction;
 class uint256;
 
 //! 20,000 items with fp rate < 0.1% or 10,000 items and <0.0001%
-static const unsigned int MAX_HASH_FUNCS = 50;
 static const unsigned int MAX_BLOOM_FILTER_SIZE = 36000; // bytes
+static const unsigned int MAX_HASH_FUNCS = 50;
 
 /**
  * First two bits of nFlags control how much IsRelevantAndUpdate actually updates
@@ -43,8 +43,8 @@ class CBloomFilter
 {
 private:
     std::vector<unsigned char> vData;
+    bool isFull;
     bool isEmpty;
-	bool isFull;
     unsigned int nHashFuncs;
     unsigned int nTweak;
     unsigned char nFlags;
@@ -65,8 +65,8 @@ public:
      * It should generally always be a random value (and is largely only exposed for unit testing)
      * nFlags should be one of the BLOOM_UPDATE_* enums (not _MASK)
      */
-    CBloomFilter() : isFull(true), isEmpty(false), nHashFuncs(0), nTweak(0), nFlags(0) {}
     CBloomFilter(unsigned int nElements, double nFPRate, unsigned int nTweak, unsigned char nFlagsIn);
+    CBloomFilter() : isFull(true), isEmpty(false), nHashFuncs(0), nTweak(0), nFlags(0) {}
 
     ADD_SERIALIZE_METHODS;
 
