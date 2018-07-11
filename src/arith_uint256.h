@@ -249,8 +249,8 @@ public:
 class arith_uint256 : public base_uint<256> {
 public:
     arith_uint256() {}
+	arith_uint256(uint64_t b) : base_uint<256>(b) {}
     arith_uint256(const base_uint<256>& b) : base_uint<256>(b) {}
-    arith_uint256(uint64_t b) : base_uint<256>(b) {}
     explicit arith_uint256(const std::string& str) : base_uint<256>(str) {}
 
     /**
@@ -275,12 +275,11 @@ public:
      */
     arith_uint256& SetCompact(uint32_t nCompact, bool *pfNegative = NULL, bool *pfOverflow = NULL);
     uint32_t GetCompact(bool fNegative = false) const;
-
-    friend uint256 ArithToUint256(const arith_uint256 &);
     friend arith_uint256 UintToArith256(const uint256 &);
+    friend uint256 ArithToUint256(const arith_uint256 &);
 };
 
-uint256 ArithToUint256(const arith_uint256 &);
 arith_uint256 UintToArith256(const uint256 &);
+uint256 ArithToUint256(const arith_uint256 &);
 
 #endif // BITCOIN_ARITH_UINT256_H
