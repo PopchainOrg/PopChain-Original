@@ -148,15 +148,15 @@ std::string base_uint<BITS>::GetHex() const
 }
 
 template <unsigned int BITS>
-void base_uint<BITS>::SetHex(const char* psz)
-{
-    *this = UintToArith256(uint256S(psz));
-}
-
-template <unsigned int BITS>
 void base_uint<BITS>::SetHex(const std::string& str)
 {
     SetHex(str.c_str());
+}
+
+template <unsigned int BITS>
+void base_uint<BITS>::SetHex(const char* psz)
+{
+    *this = UintToArith256(uint256S(psz));
 }
 
 template <unsigned int BITS>
@@ -241,13 +241,6 @@ uint32_t arith_uint256::GetCompact(bool fNegative) const
     return nCompact;
 }
 
-uint256 ArithToUint256(const arith_uint256 &a)
-{
-    uint256 b;
-    for(int x=0; x<a.WIDTH; ++x)
-        WriteLE32(b.begin() + x*4, a.pn[x]);
-    return b;
-}
 arith_uint256 UintToArith256(const uint256 &a)
 {
     arith_uint256 b;
@@ -255,3 +248,12 @@ arith_uint256 UintToArith256(const uint256 &a)
         b.pn[x] = ReadLE32(a.begin() + x*4);
     return b;
 }
+
+uint256 ArithToUint256(const arith_uint256 &a)
+{
+    uint256 b;
+    for(int x=0; x<a.WIDTH; ++x)
+        WriteLE32(b.begin() + x*4, a.pn[x]);
+    return b;
+}
+
