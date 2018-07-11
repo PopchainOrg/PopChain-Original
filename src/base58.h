@@ -131,8 +131,9 @@ public:
     bool SetString(const char* pszSecret);
     bool SetString(const std::string& strSecret);
 
-    CBitcoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }
-    CBitcoinSecret() {}
+	CBitcoinSecret() {}
+
+    CBitcoinSecret(const CKey& vchSecret) { SetKey(vchSecret); }   
 };
 
 template<typename K, int Size, CChainParams::Base58Type Type> class CBitcoinExtKeyBase : public CBase58Data
@@ -153,6 +154,8 @@ public:
         return ret;
     }
 
+	CBitcoinExtKeyBase() {}
+
     CBitcoinExtKeyBase(const K &key) {
         SetKey(key);
     }
@@ -161,11 +164,10 @@ public:
         SetString(strBase58c.c_str(), Params().Base58Prefix(Type).size());
     }
 
-    CBitcoinExtKeyBase() {}
 };
 
-typedef CBitcoinExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
 typedef CBitcoinExtKeyBase<CExtPubKey, 74, CChainParams::EXT_PUBLIC_KEY> CBitcoinExtPubKey;
+typedef CBitcoinExtKeyBase<CExtKey, 74, CChainParams::EXT_SECRET_KEY> CBitcoinExtKey;
 
 CTxDestination DecodeDestination(const std::string &str);
 #endif // BITCOIN_BASE58_H
