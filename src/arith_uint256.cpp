@@ -16,23 +16,6 @@ base_uint<BITS>::base_uint(const std::string& str)
 }
 
 template <unsigned int BITS>
-base_uint<BITS>& base_uint<BITS>::operator<<=(unsigned int shift)
-{
-    base_uint<BITS> a(*this);
-    for (int i = 0; i < WIDTH; i++)
-        pn[i] = 0;
-    int k = shift / 32;
-    shift = shift % 32;
-    for (int i = 0; i < WIDTH; i++) {
-        if (i + k + 1 < WIDTH && shift != 0)
-            pn[i + k + 1] |= (a.pn[i] >> (32 - shift));
-        if (i + k < WIDTH)
-            pn[i + k] |= (a.pn[i] << shift);
-    }
-    return *this;
-}
-
-template <unsigned int BITS>
 base_uint<BITS>& base_uint<BITS>::operator>>=(unsigned int shift)
 {
     base_uint<BITS> a(*this);
@@ -45,6 +28,23 @@ base_uint<BITS>& base_uint<BITS>::operator>>=(unsigned int shift)
             pn[i - k - 1] |= (a.pn[i] << (32 - shift));
         if (i - k >= 0)
             pn[i - k] |= (a.pn[i] >> shift);
+    }
+    return *this;
+}
+
+template <unsigned int BITS>
+base_uint<BITS>& base_uint<BITS>::operator<<=(unsigned int shift)
+{
+    base_uint<BITS> a(*this);
+    for (int i = 0; i < WIDTH; i++)
+        pn[i] = 0;
+    int k = shift / 32;
+    shift = shift % 32;
+    for (int i = 0; i < WIDTH; i++) {
+        if (i + k + 1 < WIDTH && shift != 0)
+            pn[i + k + 1] |= (a.pn[i] >> (32 - shift));
+        if (i + k < WIDTH)
+            pn[i + k] |= (a.pn[i] << shift);
     }
     return *this;
 }
@@ -182,8 +182,8 @@ unsigned int base_uint<BITS>::bits() const
 
 // Explicit instantiations for base_uint<256>
 template base_uint<256>::base_uint(const std::string&);
-template base_uint<256>& base_uint<256>::operator<<=(unsigned int);
 template base_uint<256>& base_uint<256>::operator>>=(unsigned int);
+template base_uint<256>& base_uint<256>::operator<<=(unsigned int);
 template base_uint<256>& base_uint<256>::operator*=(uint32_t b32);
 template base_uint<256>& base_uint<256>::operator*=(const base_uint<256>& b);
 template base_uint<256>& base_uint<256>::operator/=(const base_uint<256>& b);
