@@ -89,17 +89,17 @@ public:
         return *this;
     }
 
-    base_uint& operator^=(const base_uint& b)
-    {
-        for (int i = 0; i < WIDTH; i++)
-            pn[i] ^= b.pn[i];
-        return *this;
-    }
-
     base_uint& operator&=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] &= b.pn[i];
+        return *this;
+    }
+
+    base_uint& operator^=(const base_uint& b)
+    {
+        for (int i = 0; i < WIDTH; i++)
+            pn[i] ^= b.pn[i];
         return *this;
     }
 
@@ -123,9 +123,6 @@ public:
         pn[1] |= (unsigned int)(b >> 32);
         return *this;
     }
-
-    base_uint& operator<<=(unsigned int shift);
-    base_uint& operator>>=(unsigned int shift);
 
     base_uint& operator+=(const base_uint& b)
     {
@@ -160,7 +157,9 @@ public:
         *this += -b;
         return *this;
     }
-
+	
+    base_uint& operator<<=(unsigned int shift);
+    base_uint& operator>>=(unsigned int shift);
     base_uint& operator*=(uint32_t b32);
     base_uint& operator*=(const base_uint& b);
     base_uint& operator/=(const base_uint& b);
@@ -174,14 +173,6 @@ public:
         return *this;
     }
 
-    const base_uint operator++(int)
-    {
-        // postfix operator
-        const base_uint ret = *this;
-        ++(*this);
-        return ret;
-    }
-
     base_uint& operator--()
     {
         // prefix operator
@@ -189,6 +180,14 @@ public:
         while (--pn[i] == (uint32_t)-1 && i < WIDTH-1)
             i++;
         return *this;
+    }
+
+    const base_uint operator++(int)
+    {
+        // postfix operator
+        const base_uint ret = *this;
+        ++(*this);
+        return ret;
     }
 
     const base_uint operator--(int)
