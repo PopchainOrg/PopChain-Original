@@ -12,10 +12,10 @@
 #define BITCOIN_BASE58_H
 
 #include "chainparams.h"
-#include "key.h"
 #include "pubkey.h"
-#include "script/script.h"
+#include "key.h"
 #include "script/standard.h"
+#include "script/script.h"
 #include "support/allocators/zeroafterfree.h"
 
 #include <string>
@@ -86,10 +86,11 @@ public:
     int CompareTo(const CBase58Data& b58) const;
 
     bool operator==(const CBase58Data& b58) const { return CompareTo(b58) == 0; }
+	bool operator>=(const CBase58Data& b58) const { return CompareTo(b58) >= 0; }
     bool operator<=(const CBase58Data& b58) const { return CompareTo(b58) <= 0; }
-    bool operator>=(const CBase58Data& b58) const { return CompareTo(b58) >= 0; }
-    bool operator< (const CBase58Data& b58) const { return CompareTo(b58) <  0; }
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
+    bool operator< (const CBase58Data& b58) const { return CompareTo(b58) <  0; }
+    
 };
 
 /** base58-encoded Pop addresses.
