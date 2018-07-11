@@ -38,22 +38,22 @@ public:
             pn[i] = b.pn[i];
     }
 
+	base_uint(uint64_t b)
+	   {
+		   pn[0] = (unsigned int)b;
+		   pn[1] = (unsigned int)(b >> 32);
+		   for (int i = 2; i < WIDTH; i++)
+			   pn[i] = 0;
+	   }
+	
+	explicit base_uint(const std::string& str);
+
     base_uint& operator=(const base_uint& b)
     {
         for (int i = 0; i < WIDTH; i++)
             pn[i] = b.pn[i];
         return *this;
     }
-
-    base_uint(uint64_t b)
-    {
-        pn[0] = (unsigned int)b;
-        pn[1] = (unsigned int)(b >> 32);
-        for (int i = 2; i < WIDTH; i++)
-            pn[i] = 0;
-    }
-
-    explicit base_uint(const std::string& str);
 
     bool operator!() const
     {
@@ -79,8 +79,6 @@ public:
         ret++;
         return ret;
     }
-
-    double getdouble() const;
 
     base_uint& operator=(uint64_t b)
     {
@@ -201,8 +199,10 @@ public:
         return ret;
     }
 
+	double getdouble() const;
+	bool EqualTo(uint64_t b) const;
     int CompareTo(const base_uint& b) const;
-    bool EqualTo(uint64_t b) const;
+    
 
     friend inline const base_uint operator+(const base_uint& a, const base_uint& b) { return base_uint(a) += b; }
     friend inline const base_uint operator-(const base_uint& a, const base_uint& b) { return base_uint(a) -= b; }
