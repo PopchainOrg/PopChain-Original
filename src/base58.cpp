@@ -234,11 +234,6 @@ bool CBitcoinAddress::Set(const CTxDestination& dest)
     return boost::apply_visitor(CBitcoinAddressVisitor(this), dest);
 }
 
-bool CBitcoinAddress::IsValid() const
-{
-    return IsValid(Params());
-}
-
 bool CBitcoinAddress::IsValid(const CChainParams& params) const
 {
     bool fCorrectSize = vchData.size() == 20;
@@ -246,7 +241,13 @@ bool CBitcoinAddress::IsValid(const CChainParams& params) const
                          vchVersion == params.Base58Prefix(CChainParams::SCRIPT_ADDRESS);
     return fCorrectSize && fKnownVersion;
 }
-uint160 CBitcoinAddress::GetData()const
+
+bool CBitcoinAddress::IsValid() const
+{
+    return IsValid(Params());
+}
+
+uint160 CBitcoinAddress::GetData() const
 {
 	if (!IsValid())
         return uint160();
@@ -254,7 +255,7 @@ uint160 CBitcoinAddress::GetData()const
     memcpy(&id, &vchData[0], 20);
     return id;
 }
-uint160 CBitcoinAddress::GetUint160()const
+uint160 CBitcoinAddress::GetUint160() const
 {
 	if (!IsValid())
         return uint160();
@@ -310,6 +311,10 @@ bool CBitcoinAddress::IsScript() const
     return IsValid() && vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS);
 }
 
+CTxDestination DecodeDestination(const std::string &str) {                                                                                                                                                                                                                   
+         return CBitcoinAddress(str).Get();
+}
+
 void CBitcoinSecret::SetKey(const CKey& vchSecret)
 {
     assert(vchSecret.IsValid());
@@ -343,6 +348,3 @@ bool CBitcoinSecret::SetString(const std::string& strSecret)
     return SetString(strSecret.c_str());
 }
 
-CTxDestination DecodeDestination(const std::string &str) {                                                                                                                                                                                                                   
-         return CBitcoinAddress(str).Get();
-}
