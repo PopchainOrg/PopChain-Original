@@ -23,7 +23,7 @@
 #include <boost/foreach.hpp>
 
 using namespace std;
-
+void ImportAddress(const CBitcoinAddress& address, const string& strLabel);
 std::string static EncodeDumpTime(int64_t nTime) {
     return DateTimeStrFormat("%Y-%m-%dT%H:%M:%SZ", nTime);
 }
@@ -146,8 +146,6 @@ UniValue importprivkey(const UniValue& params, bool fHelp)
 
     return NullUniValue;
 }
-
-void ImportAddress(const CBitcoinAddress& address, const string& strLabel);
 void ImportScript(const CScript& script, const string& strLabel, bool isRedeemScript)
 {
     if (!isRedeemScript && ::IsMine(*pwalletMain, script) == ISMINE_SPENDABLE)
