@@ -10,6 +10,9 @@
 class CKeyStore;
 class CScript;
 
+/** used for bitflags of isminetype */
+typedef uint8_t isminefilter;
+
 /** IsMine() return codes */
 enum isminetype
 {
@@ -24,8 +27,7 @@ enum isminetype
     ISMINE_SUPPORT= 16,
     ISMINE_ALL = ISMINE_WATCH_ONLY | ISMINE_SPENDABLE | ISMINE_CLAIM | ISMINE_SUPPORT
 };
-/** used for bitflags of isminetype */
-typedef uint8_t isminefilter;
+
 
 isminetype IsMine(const CKeyStore& keystore, const CScript& scriptPubKey);
 isminetype IsMine(const CKeyStore& keystore, const CTxDestination& dest);
