@@ -16,20 +16,19 @@ typedef vector<unsigned char> valtype;
 
 namespace {
 
-inline bool set_success(ScriptError* ret)
-{
-    if (ret)
-        *ret = SCRIPT_ERR_OK;
-    return true;
-}
-
 inline bool set_error(ScriptError* ret, const ScriptError serror)
 {
     if (ret)
         *ret = serror;
     return false;
 }
-
+    
+inline bool set_success(ScriptError* ret)
+{
+    if (ret)
+        *ret = SCRIPT_ERR_OK;
+    return true;
+}
 } // anon namespace
 
 bool CastToBool(const valtype& vch)
