@@ -9,9 +9,9 @@
 
 class uint256;
 
-const unsigned int WALLET_CRYPTO_KEY_SIZE = 32;
-const unsigned int WALLET_CRYPTO_SALT_SIZE = 8;
 
+const unsigned int WALLET_CRYPTO_SALT_SIZE = 8;
+const unsigned int WALLET_CRYPTO_KEY_SIZE = 32;
 /**
  * Private key encryption is done based on a CMasterKey,
  * which holds a salt and random encryption key.
