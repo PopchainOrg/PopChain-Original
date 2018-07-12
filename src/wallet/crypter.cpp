@@ -33,8 +33,6 @@ bool CCrypter::SetKeyFromPassphrase(const SecureString& strKeyData, const std::v
     return true;
 }
 
-
-
 bool CCrypter::Encrypt(const CKeyingMaterial& vchPlaintext, std::vector<unsigned char> &vchCiphertext)
 {
     if (!fKeySet)
@@ -72,6 +70,17 @@ bool CCrypter::SetKey(const CKeyingMaterial& chNewKey, const std::vector<unsigne
     fKeySet = true;
     return true;
 }
+
+static bool EncryptSecret(const CKeyingMaterial& vMasterKey, const CKeyingMaterial &vchPlaintext, const uint256& nIV, std::vector<unsigned char> &vchCiphertext)
+{
+    CCrypter cKeyCrypter;
+    std::vector<unsigned char> chIV(WALLET_CRYPTO_KEY_SIZE);
+    memcpy(&chIV[0], &nIV, WALLET_CRYPTO_KEY_SIZE);
+    if(!cKeyCrypter.SetKey(vMasterKey, chIV))
+        return false;
+    return cKeyCrypter.Encrypt(*((const CKeyingMaterial*)&vchPlaintext), vchCiphertext);
+}
+
 bool CCrypter::Decrypt(const std::vector<unsigned char>& vchCiphertext, CKeyingMaterial& vchPlaintext)
 {
     if (!fKeySet)
@@ -98,19 +107,6 @@ bool CCrypter::Decrypt(const std::vector<unsigned char>& vchCiphertext, CKeyingM
     vchPlaintext.resize(nPLen + nFLen);
     return true;
 }
-
-
-static bool EncryptSecret(const CKeyingMaterial& vMasterKey, const CKeyingMaterial &vchPlaintext, const uint256& nIV, std::vector<unsigned char> &vchCiphertext)
-{
-    CCrypter cKeyCrypter;
-    std::vector<unsigned char> chIV(WALLET_CRYPTO_KEY_SIZE);
-    memcpy(&chIV[0], &nIV, WALLET_CRYPTO_KEY_SIZE);
-    if(!cKeyCrypter.SetKey(vMasterKey, chIV))
-        return false;
-    return cKeyCrypter.Encrypt(*((const CKeyingMaterial*)&vchPlaintext), vchCiphertext);
-}
-
-
 // General secure AES 256 CBC encryption routine
 bool EncryptAES256(const SecureString& sKey, const SecureString& sPlaintext, const std::string& sIV, std::string& sCiphertext)
 {
