@@ -6,9 +6,9 @@
 #include "script/standard.h"
 
 #include <stdint.h>
-
-class CKeyStore;
 class CScript;
+class CKeyStore;
+
 
 /** used for bitflags of isminetype */
 typedef uint8_t isminefilter;
