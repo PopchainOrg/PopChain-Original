@@ -24,11 +24,11 @@
 
 using namespace std;
 
-void EnsureWalletIsUnlocked();
-
 std::string static EncodeDumpTime(int64_t nTime) {
     return DateTimeStrFormat("%Y-%m-%dT%H:%M:%SZ", nTime);
 }
+
+void EnsureWalletIsUnlocked();
 
 int64_t static DecodeDumpTime(const std::string &str) {
     static const boost::posix_time::ptime epoch = boost::posix_time::from_time_t(0);
