@@ -183,7 +183,16 @@ bool DecryptAES256(const SecureString& sKey, const std::string& sCiphertext, con
     return true;
 }
 
-
+bool CCryptoKeyStore::SetCrypted()
+{
+    LOCK(cs_KeyStore);
+    if (fUseCrypto)
+        return true;
+    if (!mapKeys.empty())
+        return false;
+    fUseCrypto = true;
+    return true;
+}
 static bool DecryptKey(const CKeyingMaterial& vMasterKey, const std::vector<unsigned char>& vchCryptedSecret, const CPubKey& vchPubKey, CKey& key)
 {
     CKeyingMaterial vchSecret;
@@ -196,18 +205,6 @@ static bool DecryptKey(const CKeyingMaterial& vMasterKey, const std::vector<unsi
     key.Set(vchSecret.begin(), vchSecret.end(), vchPubKey.IsCompressed());
     return key.VerifyPubKey(vchPubKey);
 }
-
-bool CCryptoKeyStore::SetCrypted()
-{
-    LOCK(cs_KeyStore);
-    if (fUseCrypto)
-        return true;
-    if (!mapKeys.empty())
-        return false;
-    fUseCrypto = true;
-    return true;
-}
-
 bool CCryptoKeyStore::Lock(bool fAllowMixing)
 {
     if (!SetCrypted())
