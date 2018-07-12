@@ -165,14 +165,7 @@ void ImportScript(const CScript& script, const string& strLabel, bool isRedeemSc
     }
 }
 
-void ImportAddress(const CBitcoinAddress& address, const string& strLabel)
-{
-    CScript script = GetScriptForDestination(address.Get());
-    ImportScript(script, strLabel, false);
-    // add to address book or update label
-    if (address.IsValid())
-        pwalletMain->SetAddressBook(address.Get(), strLabel, "receive");
-}
+
 // import address will find private key if have import if not not import
 UniValue importaddress(const UniValue& params, bool fHelp)
 {
@@ -238,6 +231,15 @@ UniValue importaddress(const UniValue& params, bool fHelp)
     }
 
     return NullUniValue;
+}
+
+void ImportAddress(const CBitcoinAddress& address, const string& strLabel)
+{
+    CScript script = GetScriptForDestination(address.Get());
+    ImportScript(script, strLabel, false);
+    // add to address book or update label
+    if (address.IsValid())
+        pwalletMain->SetAddressBook(address.Get(), strLabel, "receive");
 }
 
 UniValue importpubkey(const UniValue& params, bool fHelp)
