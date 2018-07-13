@@ -213,51 +213,6 @@ public:
 };
 #endif
 
-/*
-    Used for updating/reading fork settings on the network
-*/
-UniValue fork(const UniValue& params, bool fHelp)
-{
-    if(params.size() == 1 && params[0].get_str() == "show"){
-        UniValue ret(UniValue::VOBJ);
-        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
-            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
-                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.GetForkValue(nForkID)));
-        }
-        return ret;
-    } else if(params.size() == 1 && params[0].get_str() == "active"){
-        UniValue ret(UniValue::VOBJ);
-        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
-            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
-                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.IsForkActive(nForkID)));
-        }
-        return ret;
-    } else if (params.size() == 2){
-        int nForkID = forkManager.GetForkIDByName(params[0].get_str());
-        if(nForkID == -1){
-            return "Invalid fork name";
-        }
-
-        // FORK VALUE
-        int64_t nValue = params[1].get_int64();
-
-        //broadcast new fork
-        if(forkManager.UpdateFork(nForkID, nValue)){
-            forkManager.ExecuteFork(nForkID, nValue);
-            return "success";
-        } else {
-            return "failure";
-        }
-
-    }
-
-    throw runtime_error(
-        "fork <name> [<value>]\n"
-        "<name> is the corresponding fork name, or 'show' to show all current fork settings, active to show which forks are active"
-        "<value> is a epoch datetime to enable or disable fork"
-        + HelpRequiringPassphrase());
-}
-
 UniValue validateaddress(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -315,6 +270,52 @@ UniValue validateaddress(const UniValue& params, bool fHelp)
     }
     return ret;
 }
+
+/*
+    Used for updating/reading fork settings on the network
+*/
+UniValue fork(const UniValue& params, bool fHelp)
+{
+    if(params.size() == 1 && params[0].get_str() == "show"){
+        UniValue ret(UniValue::VOBJ);
+        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
+            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
+                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.GetForkValue(nForkID)));
+        }
+        return ret;
+    } else if(params.size() == 1 && params[0].get_str() == "active"){
+        UniValue ret(UniValue::VOBJ);
+        for(int nForkID = FORK_START; nForkID <= FORK_END; nForkID++){
+            if(forkManager.GetForkNameByID(nForkID) != "Unknown")
+                ret.push_back(Pair(forkManager.GetForkNameByID(nForkID), forkManager.IsForkActive(nForkID)));
+        }
+        return ret;
+    } else if (params.size() == 2){
+        int nForkID = forkManager.GetForkIDByName(params[0].get_str());
+        if(nForkID == -1){
+            return "Invalid fork name";
+        }
+
+        // FORK VALUE
+        int64_t nValue = params[1].get_int64();
+
+        //broadcast new fork
+        if(forkManager.UpdateFork(nForkID, nValue)){
+            forkManager.ExecuteFork(nForkID, nValue);
+            return "success";
+        } else {
+            return "failure";
+        }
+
+    }
+
+    throw runtime_error(
+        "fork <name> [<value>]\n"
+        "<name> is the corresponding fork name, or 'show' to show all current fork settings, active to show which forks are active"
+        "<value> is a epoch datetime to enable or disable fork"
+        + HelpRequiringPassphrase());
+}
+
 
 /**
  * Used by addmultisigaddress / createmultisig:
