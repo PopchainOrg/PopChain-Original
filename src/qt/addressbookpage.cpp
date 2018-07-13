@@ -151,14 +151,15 @@ void AddressBookPage::setModel(AddressTableModel *model)
     selectionChanged();
 }
 
-void AddressBookPage::on_copyAddress_clicked()
-{
-    GUIUtil::copyEntryData(ui->tableView, AddressTableModel::Address);
-}
 
 void AddressBookPage::onCopyLabelAction()
 {
     GUIUtil::copyEntryData(ui->tableView, AddressTableModel::Label);
+}
+
+void AddressBookPage::on_copyAddress_clicked()
+{
+    GUIUtil::copyEntryData(ui->tableView, AddressTableModel::Address);
 }
 
 void AddressBookPage::onEditAction()
