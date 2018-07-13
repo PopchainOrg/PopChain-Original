@@ -170,11 +170,13 @@ public:
 class CAddrMan
 {
 private:
-    //! critical section to protect the inner data structures
-    mutable CCriticalSection cs;
+    
 
     //! secret key to randomize bucket select with
     uint256 nKey;
+	
+	//! critical section to protect the inner data structures
+	mutable CCriticalSection cs;
 
     //! last used nId
     int nIdCount;
