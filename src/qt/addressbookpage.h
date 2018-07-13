@@ -38,6 +38,7 @@ public:
         ForEditing  /**< Open address book for editing */
     };
 
+	// address page
     explicit AddressBookPage(const PlatformStyle *platformStyle, Mode mode, Tabs tab, QWidget *parent);
     ~AddressBookPage();
 
