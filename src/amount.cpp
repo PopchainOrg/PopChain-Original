@@ -5,13 +5,6 @@
 
 const std::string CURRENCY_UNIT = "PCH";
 
-CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
-{
-    if (nSize > 0)
-        nSatoshisPerK = nFeePaid*1000/nSize;
-    else
-        nSatoshisPerK = 0;
-}
 
 std::string CFeeRate::ToString() const
 {
@@ -26,5 +19,13 @@ CAmount CFeeRate::GetFee(size_t nSize) const
         nFee = nSatoshisPerK;
 
     return nFee;
+}
+
+CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
+{
+    if (nSize > 0)
+        nSatoshisPerK = nFeePaid*1000/nSize;
+    else
+        nSatoshisPerK = 0;
 }
 
