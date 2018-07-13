@@ -100,6 +100,7 @@ void WalletTxToJSON(const CWalletTx& wtx, UniValue& entry)
         entry.push_back(Pair(item.first, item.second));
 }
 
+// Data formatting
 string AccountFromValue(const UniValue& value)
 {
     string strAccount = value.get_str();
