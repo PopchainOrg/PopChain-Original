@@ -31,8 +31,9 @@ class Arena {
   }
 
  private:
-  char* AllocateFallback(size_t bytes);
+ 
   char* AllocateNewBlock(size_t block_bytes);
+  char* AllocateFallback(size_t bytes);
 
   // Allocation state
   char* alloc_ptr_;
