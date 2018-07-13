@@ -13,8 +13,11 @@
 #include <QFont>
 #include <QDebug>
 
-const QString AddressTableModel::Send = "S";
 const QString AddressTableModel::Receive = "R";
+const QString AddressTableModel::Send = "S";
+
+struct AddressTableEntry;
+struct AddressTableEntryLessThan;
 
 struct AddressTableEntry
 {
