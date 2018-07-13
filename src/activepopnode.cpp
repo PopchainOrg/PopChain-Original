@@ -47,6 +47,18 @@ void CActivePopnode::ManageState()
     SendPopnodePing();
 }
 
+std::string CActivePopnode::GetStateString() const
+{
+    switch (nState) {
+        case ACTIVE_POPNODE_INIT:         return "INITIAL";
+        case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "SYNC_IN_PROCESS";
+        case ACTIVE_POPNODE_INPUT_TOO_NEW:   return "INPUT_TOO_NEW";
+        case ACTIVE_POPNODE_NOT_CAPABLE:     return "NOT_CAPABLE";
+        case ACTIVE_POPNODE_STARTED:         return "STARTED";
+        default:                                return "UNKNOWN";
+    }
+}
+
 std::string CActivePopnode::GetStatus() const
 {
     switch (nState) {
@@ -59,17 +71,6 @@ std::string CActivePopnode::GetStatus() const
     }
 }
 
-std::string CActivePopnode::GetStateString() const
-{
-    switch (nState) {
-        case ACTIVE_POPNODE_INIT:         return "INITIAL";
-        case ACTIVE_POPNODE_SYNC_IN_PROCESS: return "SYNC_IN_PROCESS";
-        case ACTIVE_POPNODE_INPUT_TOO_NEW:   return "INPUT_TOO_NEW";
-        case ACTIVE_POPNODE_NOT_CAPABLE:     return "NOT_CAPABLE";
-        case ACTIVE_POPNODE_STARTED:         return "STARTED";
-        default:                                return "UNKNOWN";
-    }
-}
 
 std::string CActivePopnode::GetTypeString() const
 {
