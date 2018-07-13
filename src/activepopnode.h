@@ -64,6 +64,7 @@ public:
     void ManageState();
 
     std::string GetStateString() const;
+	// get status
     std::string GetStatus() const;
     std::string GetTypeString() const;
 
