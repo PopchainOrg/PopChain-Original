@@ -61,14 +61,16 @@ public:
      */
     QString addRow(const QString &type, const QString &label, const QString &address);
 
+	 /* Look up row index of an address in the model.
+       Return -1 if not found.
+     */
+    int lookupAddress(const QString &address) const;
+	 
     /* Look up label for address in address book, if not found return empty string.
      */
     QString labelForAddress(const QString &address) const;
 
-    /* Look up row index of an address in the model.
-       Return -1 if not found.
-     */
-    int lookupAddress(const QString &address) const;
+   
 
     EditStatus getEditStatus() const { return editStatus; }
 
