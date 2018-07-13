@@ -147,6 +147,7 @@ CRPCConvertTable::CRPCConvertTable()
     }
 }
 
+// commandline parameters
 static CRPCConvertTable rpcCvtTable;
 
 /** Non-RFC4627 JSON parser, accepts internal values (such as numbers, true, false, null)
