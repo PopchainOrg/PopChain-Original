@@ -89,7 +89,9 @@ public:
         READWRITE(vchSig);
     }
 
+	// init
     void SetNull();
+	
     bool IsNull() const;
     uint256 GetHash() const;
     bool IsInEffect() const;
