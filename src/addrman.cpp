@@ -13,6 +13,7 @@ int CAddrInfo::GetTriedBucket(const uint256& nKey) const
     return hash2 % ADDRMAN_TRIED_BUCKET_COUNT;
 }
 
+// get new bucket
 int CAddrInfo::GetNewBucket(const uint256& nKey, const CNetAddr& src) const
 {
     std::vector<unsigned char> vchSourceGroupKey = src.GetGroup();
@@ -47,28 +48,6 @@ bool CAddrInfo::IsTerrible(int64_t nNow) const
     return false;
 }
 
-double CAddrInfo::GetChance(int64_t nNow) const
-{
-    double fChance = 1.0;
-
-    int64_t nSinceLastSeen = nNow - nTime;
-    int64_t nSinceLastTry = nNow - nLastTry;
-
-	if (nSinceLastTry < 0)
-        nSinceLastTry = 0;
-	if (nSinceLastSeen < 0)
-        nSinceLastSeen = 0;
-
-    // deprioritize very recent attempts away
-    if (nSinceLastTry < 60 * 10)
-        fChance *= 0.01;
-
-    // deprioritize 66% after each failed attempt, but at most 1/28th to avoid the search taking forever or overly penalizing outages.
-    fChance *= pow(0.66, std::min(nAttempts, 8));
-
-    return fChance;
-}
-
 CAddrInfo* CAddrMan::Find(const CNetAddr& addr, int* pnId)
 {
     std::map<CNetAddr, int>::iterator it = mapAddr.find(addr);
@@ -92,6 +71,28 @@ CAddrInfo* CAddrMan::Create(const CAddress& addr, const CNetAddr& addrSource, in
     if (pnId)
         *pnId = nId;
     return &mapInfo[nId];
+}
+
+double CAddrInfo::GetChance(int64_t nNow) const
+{
+    double fChance = 1.0;
+
+    int64_t nSinceLastSeen = nNow - nTime;
+    int64_t nSinceLastTry = nNow - nLastTry;
+
+	if (nSinceLastTry < 0)
+        nSinceLastTry = 0;
+	if (nSinceLastSeen < 0)
+        nSinceLastSeen = 0;
+
+    // deprioritize very recent attempts away
+    if (nSinceLastTry < 60 * 10)
+        fChance *= 0.01;
+
+    // deprioritize 66% after each failed attempt, but at most 1/28th to avoid the search taking forever or overly penalizing outages.
+    fChance *= pow(0.66, std::min(nAttempts, 8));
+
+    return fChance;
 }
 
 void CAddrMan::Delete(int nId)
