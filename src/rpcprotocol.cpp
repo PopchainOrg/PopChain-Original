@@ -65,13 +65,6 @@ static const std::string COOKIEAUTH_USER = "__cookie__";
 /** Default name for auth cookie file */
 static const std::string COOKIEAUTH_FILE = ".cookie";
 
-boost::filesystem::path GetAuthCookieFile()
-{
-    boost::filesystem::path path(GetArg("-rpccookiefile", COOKIEAUTH_FILE));
-    if (!path.is_complete()) path = GetDataDir() / path;
-    return path;
-}
-
 bool GenerateAuthCookie(std::string *cookie_out)
 {
     unsigned char rand_pwd[32];
@@ -96,6 +89,14 @@ bool GenerateAuthCookie(std::string *cookie_out)
         *cookie_out = cookie;
     return true;
 }
+
+boost::filesystem::path GetAuthCookieFile()
+{
+    boost::filesystem::path path(GetArg("-rpccookiefile", COOKIEAUTH_FILE));
+    if (!path.is_complete()) path = GetDataDir() / path;
+    return path;
+}
+
 
 bool GetAuthCookie(std::string *cookie_out)
 {
