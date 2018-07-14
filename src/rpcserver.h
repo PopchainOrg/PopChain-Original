@@ -34,6 +34,7 @@ namespace RPCServer
 class CRPCCommand;
 class CBlockIndex;
 class CNetAddr;
+class CRPCCommand;
 
 class JSONRequest
 {
