@@ -405,44 +405,6 @@ UniValue importwallet(const UniValue& params, bool fHelp)
     return NullUniValue;
 }
 
-UniValue dumpprivkey(const UniValue& params, bool fHelp)
-{
-    if (!EnsureWalletIsAvailable(fHelp))
-        return NullUniValue;
-    
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
-            "dumpprivkey \"popaddress\"\n"
-            "\nReveals the private key corresponding to 'popaddress'.\n"
-            "Then the importprivkey can be used with this output\n"
-            "\nArguments:\n"
-            "1. \"popaddress\"   (string, required) The pop address for the private key\n"
-            "\nResult:\n"
-            "\"key\"                (string) The private key\n"
-            "\nExamples:\n"
-            + HelpExampleCli("dumpprivkey", "\"myaddress\"")
-            + HelpExampleCli("importprivkey", "\"mykey\"")
-            + HelpExampleRpc("dumpprivkey", "\"myaddress\"")
-        );
-
-    LOCK2(cs_main, pwalletMain->cs_wallet);
-
-    EnsureWalletIsUnlocked();
-
-    string strAddress = params[0].get_str();
-    CBitcoinAddress address;
-    if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pop address");
-    CKeyID keyID;
-    if (!address.GetKeyID(keyID))
-        throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
-    CKey vchSecret;
-    if (!pwalletMain->GetKey(keyID, vchSecret))
-        throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
-    return CBitcoinSecret(vchSecret).ToString();
-}
-
-
 UniValue dumpwallet(const UniValue& params, bool fHelp)
 {
     if (!EnsureWalletIsAvailable(fHelp))
@@ -507,3 +469,41 @@ UniValue dumpwallet(const UniValue& params, bool fHelp)
     file.close();
     return NullUniValue;
 }
+
+UniValue dumpprivkey(const UniValue& params, bool fHelp)
+{
+    if (!EnsureWalletIsAvailable(fHelp))
+        return NullUniValue;
+    
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+            "dumpprivkey \"popaddress\"\n"
+            "\nReveals the private key corresponding to 'popaddress'.\n"
+            "Then the importprivkey can be used with this output\n"
+            "\nArguments:\n"
+            "1. \"popaddress\"   (string, required) The pop address for the private key\n"
+            "\nResult:\n"
+            "\"key\"                (string) The private key\n"
+            "\nExamples:\n"
+            + HelpExampleCli("dumpprivkey", "\"myaddress\"")
+            + HelpExampleCli("importprivkey", "\"mykey\"")
+            + HelpExampleRpc("dumpprivkey", "\"myaddress\"")
+        );
+
+    LOCK2(cs_main, pwalletMain->cs_wallet);
+
+    EnsureWalletIsUnlocked();
+
+    string strAddress = params[0].get_str();
+    CBitcoinAddress address;
+    if (!address.SetString(strAddress))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Pop address");
+    CKeyID keyID;
+    if (!address.GetKeyID(keyID))
+        throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");
+    CKey vchSecret;
+    if (!pwalletMain->GetKey(keyID, vchSecret))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Private key for address " + strAddress + " is not known");
+    return CBitcoinSecret(vchSecret).ToString();
+}
+
