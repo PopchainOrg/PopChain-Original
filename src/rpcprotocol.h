@@ -76,10 +76,11 @@ enum RPCErrorCode
 UniValue JSONRPCReplyObj(const UniValue& result, const UniValue& error, const UniValue& id);
 std::string JSONRPCReply(const UniValue& result, const UniValue& error, const UniValue& id);
 std::string JSONRPCRequest(const std::string& strMethod, const UniValue& params, const UniValue& id);
-
-UniValue JSONRPCError(int code, const std::string& message);
 /** Delete RPC authentication cookie from disk */
 void DeleteAuthCookie();
+
+UniValue JSONRPCError(int code, const std::string& message);
+
 
 /** Get name of RPC authentication cookie file */
 boost::filesystem::path GetAuthCookieFile();
