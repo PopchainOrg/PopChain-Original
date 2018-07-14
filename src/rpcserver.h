@@ -21,7 +21,7 @@
 #include "claimtrie.h"
 #include <stdint.h>
 
-class CRPCCommand;
+
 
 namespace RPCServer
 {
@@ -31,6 +31,7 @@ namespace RPCServer
     void OnPostCommand(boost::function<void (const CRPCCommand&)> slot);
 }
 
+class CRPCCommand;
 class CBlockIndex;
 class CNetAddr;
 
