@@ -26,8 +26,10 @@
 using namespace RPCServer;
 using namespace std;
 
-static bool fRPCRunning = false;
+
 static bool fRPCInWarmup = true;
+static bool fRPCRunning = false;
+
 static std::string rpcWarmupStatus("RPC server started");
 static CCriticalSection cs_rpcWarmup;
 /* Timer-creating functions */
