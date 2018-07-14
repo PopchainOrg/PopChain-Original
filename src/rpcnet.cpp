@@ -21,23 +21,6 @@
 
 using namespace std;
 
-UniValue getconnectioncount(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 0)
-        throw runtime_error(
-            "getconnectioncount\n"
-            "\nReturns the number of connections to other nodes.\n"
-            "\nResult:\n"
-            "n          (numeric) The connection count\n"
-            "\nExamples:\n"
-            + HelpExampleCli("getconnectioncount", "")
-            + HelpExampleRpc("getconnectioncount", "")
-        );
-
-    LOCK2(cs_main, cs_vNodes);
-
-    return (int)vNodes.size();
-}
 
 UniValue ping(const UniValue& params, bool fHelp)
 {
@@ -60,6 +43,24 @@ UniValue ping(const UniValue& params, bool fHelp)
     }
 
     return NullUniValue;
+}
+
+UniValue getconnectioncount(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw runtime_error(
+            "getconnectioncount\n"
+            "\nReturns the number of connections to other nodes.\n"
+            "\nResult:\n"
+            "n          (numeric) The connection count\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getconnectioncount", "")
+            + HelpExampleRpc("getconnectioncount", "")
+        );
+
+    LOCK2(cs_main, cs_vNodes);
+
+    return (int)vNodes.size();
 }
 
 static void CopyNodeStats(std::vector<CNodeStats>& vstats)
