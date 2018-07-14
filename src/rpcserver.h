@@ -35,6 +35,7 @@ class CRPCCommand;
 class CBlockIndex;
 class CNetAddr;
 class CRPCCommand;
+class JSONRequest;
 
 class JSONRequest
 {
