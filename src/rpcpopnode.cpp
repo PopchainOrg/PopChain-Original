@@ -18,6 +18,35 @@
 
 void EnsureWalletIsUnlocked();
 
+
+UniValue getpoolinfo(const UniValue& params, bool fHelp)
+{
+    if (fHelp || params.size() != 0)
+        throw std::runtime_error(
+            "getpoolinfo\n"
+            "Returns an object containing mixing pool related information.\n");
+
+    UniValue obj(UniValue::VOBJ);
+    obj.push_back(Pair("state",             darkSendPool.GetStateString()));
+    obj.push_back(Pair("mixing_mode",       fPrivateSendMultiSession ? "multi-session" : "normal"));
+    obj.push_back(Pair("queue",             darkSendPool.GetQueueSize()));
+    obj.push_back(Pair("entries",           darkSendPool.GetEntriesCount()));
+    obj.push_back(Pair("status",            darkSendPool.GetStatus()));
+
+    if (darkSendPool.pSubmittedToPopnode) {
+        obj.push_back(Pair("outpoint",      darkSendPool.pSubmittedToPopnode->vin.prevout.ToStringShort()));
+        obj.push_back(Pair("addr",          darkSendPool.pSubmittedToPopnode->addr.ToString()));
+    }
+
+    if (pwalletMain) {
+        obj.push_back(Pair("keys_left",     pwalletMain->nKeysLeftSinceAutoBackup));
+        obj.push_back(Pair("warnings",      pwalletMain->nKeysLeftSinceAutoBackup < PRIVATESEND_KEYS_THRESHOLD_WARNING
+                                                ? "WARNING: keypool is almost depleted!" : ""));
+    }
+
+    return obj;
+}
+
 UniValue privatesend(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -56,33 +85,6 @@ UniValue privatesend(const UniValue& params, bool fHelp)
     return "Unknown command, please see \"help privatesend\"";
 }
 
-UniValue getpoolinfo(const UniValue& params, bool fHelp)
-{
-    if (fHelp || params.size() != 0)
-        throw std::runtime_error(
-            "getpoolinfo\n"
-            "Returns an object containing mixing pool related information.\n");
-
-    UniValue obj(UniValue::VOBJ);
-    obj.push_back(Pair("state",             darkSendPool.GetStateString()));
-    obj.push_back(Pair("mixing_mode",       fPrivateSendMultiSession ? "multi-session" : "normal"));
-    obj.push_back(Pair("queue",             darkSendPool.GetQueueSize()));
-    obj.push_back(Pair("entries",           darkSendPool.GetEntriesCount()));
-    obj.push_back(Pair("status",            darkSendPool.GetStatus()));
-
-    if (darkSendPool.pSubmittedToPopnode) {
-        obj.push_back(Pair("outpoint",      darkSendPool.pSubmittedToPopnode->vin.prevout.ToStringShort()));
-        obj.push_back(Pair("addr",          darkSendPool.pSubmittedToPopnode->addr.ToString()));
-    }
-
-    if (pwalletMain) {
-        obj.push_back(Pair("keys_left",     pwalletMain->nKeysLeftSinceAutoBackup));
-        obj.push_back(Pair("warnings",      pwalletMain->nKeysLeftSinceAutoBackup < PRIVATESEND_KEYS_THRESHOLD_WARNING
-                                                ? "WARNING: keypool is almost depleted!" : ""));
-    }
-
-    return obj;
-}
 
 // Popchain DevTeam
 UniValue popnode(const UniValue& params, bool fHelp)
