@@ -48,8 +48,6 @@ public:
     void parse(const UniValue& valRequest);
 };
 
-/** Query whether RPC is running */
-bool IsRPCRunning();
 
 /**
  * Set the RPC warmup status.  When this is done, all RPC calls will error out
@@ -58,6 +56,10 @@ bool IsRPCRunning();
 void SetRPCWarmupStatus(const std::string& newStatus);
 /* Mark warmup as done.  RPC calls will be processed from now on.  */
 void SetRPCWarmupFinished();
+
+/** Query whether RPC is running */
+bool IsRPCRunning();
+
 
 /* returns the current warmup state.  */
 bool RPCIsInWarmup(std::string *statusOut);
