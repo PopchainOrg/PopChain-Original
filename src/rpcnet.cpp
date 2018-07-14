@@ -170,55 +170,6 @@ UniValue getpeerinfo(const UniValue& params, bool fHelp)
     return ret;
 }
 
-UniValue addnode(const UniValue& params, bool fHelp)
-{
-    string strCommand;
-    if (params.size() == 2)
-        strCommand = params[1].get_str();
-    if (fHelp || params.size() != 2 ||
-        (strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
-        throw runtime_error(
-            "addnode \"node\" \"add|remove|onetry\"\n"
-            "\nAttempts add or remove a node from the addnode list.\n"
-            "Or try a connection to a node once.\n"
-            "\nArguments:\n"
-            "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
-            "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
-            "\nExamples:\n"
-            + HelpExampleCli("addnode", "\"192.168.0.6:9888\" \"onetry\"")
-            + HelpExampleRpc("addnode", "\"192.168.0.6:9888\", \"onetry\"")
-        );
-
-    string strNode = params[0].get_str();
-
-    if (strCommand == "onetry")
-    {
-        CAddress addr;
-        OpenNetworkConnection(addr, NULL, strNode.c_str());
-        return NullUniValue;
-    }
-
-    LOCK(cs_vAddedNodes);
-    vector<string>::iterator it = vAddedNodes.begin();
-    for(; it != vAddedNodes.end(); it++)
-        if (strNode == *it)
-            break;
-
-    if (strCommand == "add")
-    {
-        if (it != vAddedNodes.end())
-            throw JSONRPCError(RPC_CLIENT_NODE_ALREADY_ADDED, "Error: Node already added");
-        vAddedNodes.push_back(strNode);
-    }
-    else if(strCommand == "remove")
-    {
-        if (it == vAddedNodes.end())
-            throw JSONRPCError(RPC_CLIENT_NODE_NOT_ADDED, "Error: Node has not been added.");
-        vAddedNodes.erase(it);
-    }
-
-    return NullUniValue;
-}
 
 UniValue disconnectnode(const UniValue& params, bool fHelp)
 {
@@ -357,6 +308,57 @@ UniValue getaddednodeinfo(const UniValue& params, bool fHelp)
 
     return ret;
 }
+
+UniValue addnode(const UniValue& params, bool fHelp)
+{
+    string strCommand;
+    if (params.size() == 2)
+        strCommand = params[1].get_str();
+    if (fHelp || params.size() != 2 ||
+        (strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
+        throw runtime_error(
+            "addnode \"node\" \"add|remove|onetry\"\n"
+            "\nAttempts add or remove a node from the addnode list.\n"
+            "Or try a connection to a node once.\n"
+            "\nArguments:\n"
+            "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
+            "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
+            "\nExamples:\n"
+            + HelpExampleCli("addnode", "\"192.168.0.6:9888\" \"onetry\"")
+            + HelpExampleRpc("addnode", "\"192.168.0.6:9888\", \"onetry\"")
+        );
+
+    string strNode = params[0].get_str();
+
+    if (strCommand == "onetry")
+    {
+        CAddress addr;
+        OpenNetworkConnection(addr, NULL, strNode.c_str());
+        return NullUniValue;
+    }
+
+    LOCK(cs_vAddedNodes);
+    vector<string>::iterator it = vAddedNodes.begin();
+    for(; it != vAddedNodes.end(); it++)
+        if (strNode == *it)
+            break;
+
+    if (strCommand == "add")
+    {
+        if (it != vAddedNodes.end())
+            throw JSONRPCError(RPC_CLIENT_NODE_ALREADY_ADDED, "Error: Node already added");
+        vAddedNodes.push_back(strNode);
+    }
+    else if(strCommand == "remove")
+    {
+        if (it == vAddedNodes.end())
+            throw JSONRPCError(RPC_CLIENT_NODE_NOT_ADDED, "Error: Node has not been added.");
+        vAddedNodes.erase(it);
+    }
+
+    return NullUniValue;
+}
+
 
 UniValue getnettotals(const UniValue& params, bool fHelp)
 {
