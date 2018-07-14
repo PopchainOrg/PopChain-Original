@@ -78,6 +78,8 @@ std::string JSONRPCReply(const UniValue& result, const UniValue& error, const Un
 std::string JSONRPCRequest(const std::string& strMethod, const UniValue& params, const UniValue& id);
 
 UniValue JSONRPCError(int code, const std::string& message);
+/** Delete RPC authentication cookie from disk */
+void DeleteAuthCookie();
 
 /** Get name of RPC authentication cookie file */
 boost::filesystem::path GetAuthCookieFile();
@@ -85,7 +87,6 @@ boost::filesystem::path GetAuthCookieFile();
 bool GenerateAuthCookie(std::string *cookie_out);
 /** Read the RPC authentication cookie from disk */
 bool GetAuthCookie(std::string *cookie_out);
-/** Delete RPC authentication cookie from disk */
-void DeleteAuthCookie();
+
 
 #endif // BITCOIN_RPCPROTOCOL_H
