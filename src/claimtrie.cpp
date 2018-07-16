@@ -1636,21 +1636,6 @@ bool CClaimTrieCache::addClaim(const std::string& name, const COutPoint& outPoin
     return addClaimToQueues(name, newClaim);
 }
 
-bool CClaimTrieCache::undoSpendClaim(const std::string& name, const COutPoint& outPoint, uint160 claimId, CAmount nAmount, int nHeight, int nValidAtHeight) const
-{
-    LogPrintf("%s: name: %s, txhash: %s, nOut: %d, claimId: %s, nAmount: %d, nHeight: %d, nValidAtHeight: %d, nCurrentHeight: %d\n", __func__, name, outPoint.hash.GetHex(), outPoint.n, claimId.GetHex(), nAmount, nHeight, nValidAtHeight, nCurrentHeight);
-    CClaimValue claim(outPoint, claimId, nAmount, nHeight, nValidAtHeight);
-    if (nValidAtHeight < nCurrentHeight)
-    {
-        nameOutPointType entry(name, claim.outPoint);
-        addToExpirationQueue(claim.nHeight + base->nExpirationTime, entry);
-        return insertClaimIntoTrie(name, claim, false);
-    }
-    else
-    {
-        return addClaimToQueues(name, claim);
-    }
-}
 
 bool CClaimTrieCache::addClaimToQueues(const std::string& name, CClaimValue& claim) const
 {
@@ -1705,6 +1690,22 @@ bool CClaimTrieCache::removeClaimFromQueue(const std::string& name, const COutPo
     }
     LogPrintf("%s: An inconsistency was found in the claim queue. Please report this to the developers:\nFound in named queue but not in height queue: name: %s, txid: %s, nOut: %d, nValidAtHeight: %d, current height: %d\n", __func__, name, outPoint.hash.GetHex(), outPoint.n, itQueueName->nHeight, nCurrentHeight);
     return false;
+}
+
+bool CClaimTrieCache::undoSpendClaim(const std::string& name, const COutPoint& outPoint, uint160 claimId, CAmount nAmount, int nHeight, int nValidAtHeight) const
+{
+    LogPrintf("%s: name: %s, txhash: %s, nOut: %d, claimId: %s, nAmount: %d, nHeight: %d, nValidAtHeight: %d, nCurrentHeight: %d\n", __func__, name, outPoint.hash.GetHex(), outPoint.n, claimId.GetHex(), nAmount, nHeight, nValidAtHeight, nCurrentHeight);
+    CClaimValue claim(outPoint, claimId, nAmount, nHeight, nValidAtHeight);
+    if (nValidAtHeight < nCurrentHeight)
+    {
+        nameOutPointType entry(name, claim.outPoint);
+        addToExpirationQueue(claim.nHeight + base->nExpirationTime, entry);
+        return insertClaimIntoTrie(name, claim, false);
+    }
+    else
+    {
+        return addClaimToQueues(name, claim);
+    }
 }
 
 bool CClaimTrieCache::undoAddClaim(const std::string& name, const COutPoint& outPoint, int nHeight) const
