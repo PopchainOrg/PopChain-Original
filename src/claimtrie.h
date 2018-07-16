@@ -206,8 +206,8 @@ struct outPointHeightType
 struct nameOutPointHeightType
 {
     std::string name;
+	int nHeight;
     COutPoint outPoint;
-    int nHeight;
 
     nameOutPointHeightType() {}
 
