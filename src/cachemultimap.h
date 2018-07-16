@@ -144,6 +144,22 @@ public:
         return (it != mapIndex.end());
     }
 	
+    void Erase(const K& key)
+    {
+        map_it mit = mapIndex.find(key);
+        if(mit == mapIndex.end()) {
+            return;
+        }
+        it_map_t& mapIt = mit->second;
+
+        for(it_map_it it = mapIt.begin(); it != mapIt.end(); ++it) {
+            listItems.erase(it->second);
+            --nCurrentSize;
+        }
+
+        mapIndex.erase(mit);
+    }
+	
     void Erase(const K& key, const V& value)
     {
         map_it mit = mapIndex.find(key);
@@ -164,22 +180,6 @@ public:
         if(mapIt.size() < 1) {
             mapIndex.erase(mit);
         }
-    }
-
-    void Erase(const K& key)
-    {
-        map_it mit = mapIndex.find(key);
-        if(mit == mapIndex.end()) {
-            return;
-        }
-        it_map_t& mapIt = mit->second;
-
-        for(it_map_it it = mapIt.begin(); it != mapIt.end(); ++it) {
-            listItems.erase(it->second);
-            --nCurrentSize;
-        }
-
-        mapIndex.erase(mit);
     }
 
     const list_t& GetItemList() const {
