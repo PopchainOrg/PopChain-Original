@@ -15,16 +15,16 @@
 template<typename K, typename V>
 struct CacheItem
 {
+	K key;
+    V value;
+
     CacheItem()
     {}
 
     CacheItem(const K& keyIn, const V& valueIn)
     : key(keyIn),
       value(valueIn)
-    {}
-
-    K key;
-    V value;
+	{}
 
     ADD_SERIALIZE_METHODS;
 
