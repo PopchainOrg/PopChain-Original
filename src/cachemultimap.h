@@ -45,10 +45,10 @@ private:
     size_type nMaxSize;
 
     size_type nCurrentSize;
+	
+    map_t mapIndex;
 
     list_t listItems;
-
-    map_t mapIndex;
 
 public:
     CacheMultiMap(size_type nMaxSizeIn = 0)
