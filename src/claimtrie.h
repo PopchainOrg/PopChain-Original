@@ -159,16 +159,17 @@ public:
         READWRITE(claims);
         READWRITE(nHeightOfLastTakeover);
     }
-    
-    bool operator==(const CClaimTrieNode& other) const
-    {
-        return hash == other.hash && claims == other.claims;
-    }
 
     bool operator!=(const CClaimTrieNode& other) const
     {
         return !(*this == other);
     }
+	
+    bool operator==(const CClaimTrieNode& other) const
+    {
+        return hash == other.hash && claims == other.claims;
+    }
+
 };
 
 struct nodenamecompare
@@ -183,8 +184,8 @@ struct nodenamecompare
 
 struct outPointHeightType
 {
-    COutPoint outPoint;
-    int nHeight;
+	int nHeight;
+	COutPoint outPoint;
 
     outPointHeightType() {}
 
