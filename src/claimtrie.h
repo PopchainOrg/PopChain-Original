@@ -89,9 +89,9 @@ public:
 class CSupportValue
 {
 public:
-    COutPoint outPoint;
     uint160 supportedClaimId;
     CAmount nAmount;
+	COutPoint outPoint;
     int nHeight;
     int nValidAtHeight;
     
@@ -114,14 +114,14 @@ public:
         READWRITE(nValidAtHeight);
     }
 
-    bool operator==(const CSupportValue& other) const
-    {
-        return outPoint == other.outPoint && supportedClaimId == other.supportedClaimId && nAmount == other.nAmount && nHeight == other.nHeight && nValidAtHeight == other.nValidAtHeight;
-    }
-
     bool operator!=(const CSupportValue& other) const
     {
         return !(*this == other);
+    }
+
+    bool operator==(const CSupportValue& other) const
+    {
+        return outPoint == other.outPoint && supportedClaimId == other.supportedClaimId && nAmount == other.nAmount && nHeight == other.nHeight && nValidAtHeight == other.nValidAtHeight;
     }
 };
 
