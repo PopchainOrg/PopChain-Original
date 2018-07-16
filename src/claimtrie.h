@@ -428,12 +428,13 @@ public:
 class CClaimTrieProof
 {
 public:
-    CClaimTrieProof() {};
-    CClaimTrieProof(std::vector<CClaimTrieProofNode> nodes, bool hasValue, COutPoint outPoint, int nHeightOfLastTakeover) : nodes(nodes), hasValue(hasValue), outPoint(outPoint), nHeightOfLastTakeover(nHeightOfLastTakeover) {}
-    std::vector<CClaimTrieProofNode> nodes;
+	std::vector<CClaimTrieProofNode> nodes;
     bool hasValue;
     COutPoint outPoint;
     int nHeightOfLastTakeover;
+    CClaimTrieProof() {};
+    CClaimTrieProof(std::vector<CClaimTrieProofNode> nodes, bool hasValue, COutPoint outPoint, int nHeightOfLastTakeover) : nodes(nodes), hasValue(hasValue), outPoint(outPoint), nHeightOfLastTakeover(nHeightOfLastTakeover) {}
+    
 };
 
 class CClaimTrieCache
