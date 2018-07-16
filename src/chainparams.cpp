@@ -22,22 +22,23 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
-#include "utiltime.h"
+#include <new>
 #include <random>
 #include <cmath>
 #include <iomanip>
 #include <util.h>
-#include <new>
 #include <chrono>
 #include <thread>
 #include <mutex>
 #include "random.h"
+#include "utiltime.h"
 
 #include <sys/time.h>
 
+typedef long long ll;
 typedef uint32_t uint;
 typedef CBlockHeader ch;
-typedef long long ll;
+
 
 static std::mutex mtx;
 
