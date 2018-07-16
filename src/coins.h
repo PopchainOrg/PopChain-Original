@@ -90,6 +90,9 @@ public:
         nVersion = tx.nVersion;
         ClearUnspendable();
     }
+	
+	//! empty constructor
+	   CCoins() : fCoinBase(false), vout(0), nHeight(0), nVersion(0) { }
 
     //! construct a CCoins from a CTransaction, at a given height
     CCoins(const CTransaction &tx, int nHeightIn) {
@@ -102,10 +105,7 @@ public:
         nHeight = 0;
         nVersion = 0;
     }
-
-    //! empty constructor
-    CCoins() : fCoinBase(false), vout(0), nHeight(0), nVersion(0) { }
-
+ 
     //!remove spent outputs at the end of vout
     void Cleanup() {
         while (vout.size() > 0 && vout.back().IsNull())
