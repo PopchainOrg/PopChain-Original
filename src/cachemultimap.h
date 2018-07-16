@@ -209,6 +209,19 @@ public:
     }
 
 private:
+	void RebuildIndex()
+    {
+        mapIndex.clear();
+        for(list_it lit = listItems.begin(); lit != listItems.end(); ++lit) {
+            item_t& item = *lit;
+            map_it mit = mapIndex.find(item.key);
+            if(mit == mapIndex.end()) {
+                mit = mapIndex.insert(std::pair<K,it_map_t>(item.key, it_map_t())).first;
+            }
+            it_map_t& mapIt = mit->second;
+            mapIt[item.value] = lit;
+        }
+    }
     void PruneLast()
     {
         if(nCurrentSize < 1) {
@@ -235,19 +248,6 @@ private:
         --nCurrentSize;
     }
 
-    void RebuildIndex()
-    {
-        mapIndex.clear();
-        for(list_it lit = listItems.begin(); lit != listItems.end(); ++lit) {
-            item_t& item = *lit;
-            map_it mit = mapIndex.find(item.key);
-            if(mit == mapIndex.end()) {
-                mit = mapIndex.insert(std::pair<K,it_map_t>(item.key, it_map_t())).first;
-            }
-            it_map_t& mapIt = mit->second;
-            mapIt[item.value] = lit;
-        }
-    }
 };
 
 #endif /* CACHEMULTIMAP_H_ */
