@@ -127,6 +127,10 @@ public:
     //! Create a new check queue
     CCheckQueue(unsigned int nBatchSizeIn) : nIdle(0), nTotal(0), fAllOk(true), nTodo(0), fQuit(false), nBatchSize(nBatchSizeIn) {}
 
+	~CCheckQueue()
+	{
+	}
+
     //! Worker thread
     void Thread()
     {
@@ -152,10 +156,6 @@ public:
             condWorker.notify_one();
         else if (vChecks.size() > 1)
             condWorker.notify_all();
-    }
-
-    ~CCheckQueue()
-    {
     }
 
     bool IsIdle()
