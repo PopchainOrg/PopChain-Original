@@ -21,7 +21,11 @@
 #include "claimtrie.h"
 #include <stdint.h>
 
-
+//class CRPCCommand;
+class CBlockIndex;
+class CNetAddr;
+class CRPCCommand;
+class JSONRequest; 
 
 namespace RPCServer
 {
@@ -30,12 +34,6 @@ namespace RPCServer
     void OnPreCommand(boost::function<void (const CRPCCommand&)> slot);
     void OnPostCommand(boost::function<void (const CRPCCommand&)> slot);
 }
-
-class CRPCCommand;
-class CBlockIndex;
-class CNetAddr;
-class CRPCCommand;
-class JSONRequest;
 
 class JSONRequest
 {
