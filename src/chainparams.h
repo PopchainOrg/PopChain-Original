@@ -12,7 +12,8 @@
 #include <iostream>
 
 struct CDNSSeedData {
-    std::string name, host;
+    std::string name;
+	std::string host;
     CDNSSeedData(const std::string &strName, const std::string &strHost) : name(strName), host(strHost) {}
 };
 
