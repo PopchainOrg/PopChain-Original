@@ -2065,22 +2065,6 @@ bool CClaimTrieCache::addSupport(const std::string& name, const COutPoint& outPo
     return addSupportToQueues(name, support);
 }
 
-bool CClaimTrieCache::undoSpendSupport(const std::string& name, const COutPoint& outPoint, uint160 supportedClaimId, CAmount nAmount, int nHeight, int nValidAtHeight) const
-{
-    LogPrintf("%s: name: %s, txhash: %s, nOut: %d, nAmount: %d, supportedClaimId: %s, nHeight: %d, nCurrentHeight: %d\n", __func__, name, outPoint.hash.GetHex(), outPoint.n, nAmount, supportedClaimId.GetHex(), nHeight, nCurrentHeight);
-    CSupportValue support(outPoint, supportedClaimId, nAmount, nHeight, nValidAtHeight);
-    if (nValidAtHeight < nCurrentHeight)
-    {
-        nameOutPointType entry(name, support.outPoint);
-        addSupportToExpirationQueue(support.nHeight + base->nExpirationTime, entry);
-        return insertSupportIntoMap(name, support, false);
-    }
-    else
-    {
-        return addSupportToQueues(name, support);
-    }
-}
-
 bool CClaimTrieCache::removeSupport(const std::string& name, const COutPoint& outPoint, int nHeight, int& nValidAtHeight, bool fCheckTakeover) const
 {
     bool removed = false;
@@ -2095,6 +2079,22 @@ bool CClaimTrieCache::removeSupport(const std::string& name, const COutPoint& ou
         nValidAtHeight = support.nValidAtHeight;
     }
     return removed;
+}
+
+bool CClaimTrieCache::undoSpendSupport(const std::string& name, const COutPoint& outPoint, uint160 supportedClaimId, CAmount nAmount, int nHeight, int nValidAtHeight) const
+{
+    LogPrintf("%s: name: %s, txhash: %s, nOut: %d, nAmount: %d, supportedClaimId: %s, nHeight: %d, nCurrentHeight: %d\n", __func__, name, outPoint.hash.GetHex(), outPoint.n, nAmount, supportedClaimId.GetHex(), nHeight, nCurrentHeight);
+    CSupportValue support(outPoint, supportedClaimId, nAmount, nHeight, nValidAtHeight);
+    if (nValidAtHeight < nCurrentHeight)
+    {
+        nameOutPointType entry(name, support.outPoint);
+        addSupportToExpirationQueue(support.nHeight + base->nExpirationTime, entry);
+        return insertSupportIntoMap(name, support, false);
+    }
+    else
+    {
+        return addSupportToQueues(name, support);
+    }
 }
 
 void CClaimTrieCache::addSupportToExpirationQueue(int nExpirationHeight, nameOutPointType& entry) const
