@@ -84,8 +84,8 @@ public:
 	
     /** Return the founder's reward address and script for a given block height */
     std::string GetFoundersRewardAddressAtHeight(int height) const;
-    CScript GetFoundersRewardScriptAtHeight(int height) const;
     std::string GetFoundersRewardAddressAtIndex(int i) const;
+	CScript GetFoundersRewardScriptAtHeight(int height) const;
     
 protected:
     CChainParams() {}
