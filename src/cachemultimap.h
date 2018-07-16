@@ -111,12 +111,6 @@ public:
         return true;
     }
 
-    bool HasKey(const K& key) const
-    {
-        map_cit it = mapIndex.find(key);
-        return (it != mapIndex.end());
-    }
-
     bool Get(const K& key, V& value) const
     {
         map_cit it = mapIndex.find(key);
@@ -142,6 +136,12 @@ public:
             vecValues.push_back(item.value);
         }
         return true;
+    }
+
+    bool HasKey(const K& key) const
+    {
+        map_cit it = mapIndex.find(key);
+        return (it != mapIndex.end());
     }
 
     void Erase(const K& key)
