@@ -137,12 +137,12 @@ typedef std::vector<CSupportValue> supportMapEntryType;
 class CClaimTrieNode
 {
 public:
-    CClaimTrieNode() : nHeightOfLastTakeover(0) {}
-    CClaimTrieNode(uint256 hash) : hash(hash), nHeightOfLastTakeover(0) {}
-    uint256 hash;
+	uint256 hash;
     nodeMapType children;
     int nHeightOfLastTakeover;
     std::vector<CClaimValue> claims;
+    CClaimTrieNode() : nHeightOfLastTakeover(0) {}
+    CClaimTrieNode(uint256 hash) : hash(hash), nHeightOfLastTakeover(0) {}
 
     bool insertClaim(CClaimValue claim);
     bool removeClaim(const COutPoint& outPoint, CClaimValue& claim);
