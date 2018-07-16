@@ -19,6 +19,17 @@ void CChain::SetTip(CBlockIndex *pindex) {
     }
 }
 
+const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
+    if (pindex == NULL) {
+        return NULL;
+    }
+    if (pindex->nHeight > Height())
+        pindex = pindex->GetAncestor(Height());
+    while (pindex && !Contains(pindex))
+        pindex = pindex->pprev;
+    return pindex;
+}
+
 CBlockLocator CChain::GetLocator(const CBlockIndex *pindex) const {
     int nStep = 1;
     std::vector<uint256> vHave;
@@ -45,17 +56,6 @@ CBlockLocator CChain::GetLocator(const CBlockIndex *pindex) const {
     }
 
     return CBlockLocator(vHave);
-}
-
-const CBlockIndex *CChain::FindFork(const CBlockIndex *pindex) const {
-    if (pindex == NULL) {
-        return NULL;
-    }
-    if (pindex->nHeight > Height())
-        pindex = pindex->GetAncestor(Height());
-    while (pindex && !Contains(pindex))
-        pindex = pindex->pprev;
-    return pindex;
 }
 
 /** Turn the lowest '1' bit in the binary representation of a number into a '0'. */
