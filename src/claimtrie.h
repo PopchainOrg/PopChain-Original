@@ -447,7 +447,9 @@ public:
         assert(base);
         nCurrentHeight = base->nCurrentHeight;
     }
-    
+
+	~CClaimTrieCache() { clear(); }
+	
     uint256 getMerkleHash() const;
     
     bool empty() const;
@@ -488,8 +490,6 @@ public:
                         insertUndoType& insertSupportUndo,
                         supportQueueRowType& expireSupportUndo,
                         std::vector<std::pair<std::string, int> >& takeoverHeightUndo) const;
-    
-    ~CClaimTrieCache() { clear(); }
     
     bool insertClaimIntoTrie(const std::string& name, CClaimValue claim,
                              bool fCheckTakeover = false) const;
