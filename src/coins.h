@@ -92,7 +92,7 @@ public:
     }
 	
 	//! empty constructor
-	   CCoins() : fCoinBase(false), vout(0), nHeight(0), nVersion(0) { }
+	CCoins() : fCoinBase(false), vout(0), nHeight(0), nVersion(0) { }
 
     //! construct a CCoins from a CTransaction, at a given height
     CCoins(const CTransaction &tx, int nHeightIn) {
@@ -130,6 +130,10 @@ public:
     }
 
     //! equality test
+    friend bool operator!=(const CCoins &a, const CCoins &b) {
+        return !(a == b);
+    }
+	
     friend bool operator==(const CCoins &a, const CCoins &b) {
          // Empty CCoins objects are always equal.
          if (a.IsPruned() && b.IsPruned())
@@ -138,9 +142,6 @@ public:
                 a.nHeight == b.nHeight &&
                 a.nVersion == b.nVersion &&
                 a.vout == b.vout;
-    }
-    friend bool operator!=(const CCoins &a, const CCoins &b) {
-        return !(a == b);
     }
 
     void CalcMaskSize(unsigned int &nBytes, unsigned int &nNonzeroBytes) const;
