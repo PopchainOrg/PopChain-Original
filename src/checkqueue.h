@@ -193,6 +193,12 @@ public:
             Wait();
     }
 
+    void Add(std::vector<T>& vChecks)
+    {
+        if (pqueue != NULL)
+            pqueue->Add(vChecks);
+    }
+
     bool Wait()
     {
         if (pqueue == NULL)
@@ -200,12 +206,6 @@ public:
         bool fRet = pqueue->Wait();
         fDone = true;
         return fRet;
-    }
-
-    void Add(std::vector<T>& vChecks)
-    {
-        if (pqueue != NULL)
-            pqueue->Add(vChecks);
     }
 
 };
