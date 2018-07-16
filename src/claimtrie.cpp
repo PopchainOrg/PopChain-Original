@@ -845,14 +845,6 @@ bool CClaimTrie::update(nodeCacheType& cache, hashMapType& hashes, std::map<std:
     return true;
 }
 
-void CClaimTrie::markNodeDirty(const std::string &name, CClaimTrieNode* node)
-{
-    std::pair<nodeCacheType::iterator, bool> ret;
-    ret = dirtyNodes.insert(std::pair<std::string, CClaimTrieNode*>(name, node));
-    if (ret.second == false)
-        ret.first->second = node;
-}
-
 bool CClaimTrie::updateName(const std::string &name, CClaimTrieNode* updatedNode)
 {
     CClaimTrieNode* current = &root;
@@ -961,6 +953,14 @@ bool CClaimTrie::updateTakeoverHeight(const std::string& name, int nTakeoverHeig
     current->nHeightOfLastTakeover = nTakeoverHeight;
     markNodeDirty(name, current);
     return true;
+}
+
+void CClaimTrie::markNodeDirty(const std::string &name, CClaimTrieNode* node)
+{
+    std::pair<nodeCacheType::iterator, bool> ret;
+    ret = dirtyNodes.insert(std::pair<std::string, CClaimTrieNode*>(name, node));
+    if (ret.second == false)
+        ret.first->second = node;
 }
 
 void CClaimTrie::BatchWriteNode(CDBBatch& batch, const std::string& name, const CClaimTrieNode* pNode) const
