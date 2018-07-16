@@ -137,12 +137,6 @@ public:
         Loop();
     }
 
-    //! Wait until execution finishes, and return whether all evaluations were successful.
-    bool Wait()
-    {
-        return Loop(true);
-    }
-
     //! Add a batch of checks to the queue
     void Add(std::vector<T>& vChecks)
     {
@@ -156,6 +150,12 @@ public:
             condWorker.notify_one();
         else if (vChecks.size() > 1)
             condWorker.notify_all();
+    }
+
+    //! Wait until execution finishes, and return whether all evaluations were successful.
+    bool Wait()
+    {
+        return Loop(true);
     }
 
     bool IsIdle()
