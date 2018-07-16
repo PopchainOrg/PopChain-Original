@@ -125,14 +125,14 @@ public:
     }
 };
 
-class CClaimTrieNode;
 class CClaimTrie;
-
-typedef std::vector<CSupportValue> supportMapEntryType;
+class CClaimTrieNode;
 
 typedef std::map<unsigned char, CClaimTrieNode*> nodeMapType;
 
 typedef std::pair<std::string, CClaimTrieNode> namedNodeType;
+
+typedef std::vector<CSupportValue> supportMapEntryType;
 
 class CClaimTrieNode
 {
