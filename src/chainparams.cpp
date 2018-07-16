@@ -311,8 +311,8 @@ public:
         consensus.nMajorityRejectBlockOutdated = 75;
         consensus.nMajorityWindow = 100;
         consensus.BIP34Height = 0;
+		consensus.powLimit = uint256S("0x000fffffff000000000000000000000000000000000000000000000000000000");
         consensus.BIP34Hash = uint256S("00065185c3ffa77ff797ea3141fba9b1ab76a0f336863dec1199042ca5560fc4");
-        consensus.powLimit = uint256S("0x000fffffff000000000000000000000000000000000000000000000000000000");
         consensus.nPowAveragingWindow = 17;
         consensus.nPowMaxAdjustDown = 32;                               // 32% adjustment down
         //consensus.nPowMaxAdjustUp = 16;                                 // 16% adjustment up
