@@ -462,9 +462,9 @@ public:
         vSeeds.clear();                                                  //! Regtest mode doesn't have any DNS seeds.
 
         fMiningRequiresPeers = false;
+		fMineBlocksOnDemand = true;
         fDefaultConsistencyChecks = true;
         fRequireStandard = false;
-        fMineBlocksOnDemand = true;
         fTestnetToBeDeprecatedFieldRPC = false;
 
         nFulfilledRequestExpireTime = 5*60;                              // fulfilled requests expire in 5 minutes
