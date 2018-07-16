@@ -427,8 +427,8 @@ public:
         consensus.BIP34Hash = uint256();
         consensus.powLimit = uint256S("0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f");
         consensus.nPowAveragingWindow = 17;
+		consensus.nPowMaxAdjustUp = 0;                                  // Turn off adjustment up
         consensus.nPowMaxAdjustDown = 0;                                // Turn off adjustment down
-        consensus.nPowMaxAdjustUp = 0;                                  // Turn off adjustment up
         consensus.nPowTargetTimespan = 24 * 60 * 60;                    // Pop: 1 day
         consensus.nPowTargetSpacing = 2.5 * 60;                         // Pop: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
