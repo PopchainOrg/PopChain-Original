@@ -523,6 +523,8 @@ private:
     uint256 hashBlock;
     
     uint256 computeHash() const;
+	
+	bool clear() const;
     
     bool reorderTrieNode(const std::string& name, bool fCheckTakeover) const;
     bool recursiveComputeMerkleHash(CClaimTrieNode* tnCurrent,
@@ -530,8 +532,6 @@ private:
     bool recursivePruneName(CClaimTrieNode* tnCurrent, unsigned int nPos,
                             std::string sName,
                             bool* pfNullified = NULL) const;
-    
-    bool clear() const;
     
     bool removeClaim(const std::string& name, const COutPoint& outPoint,
                      int nHeight, int& nValidAtHeight, bool fCheckTakeover) const;
@@ -553,12 +553,13 @@ private:
     bool removeSupport(const std::string& name, const COutPoint& outPoint,
                        int nHeight, int& nValidAtHeight,
                        bool fCheckTakeover) const;
-    bool removeSupportFromMap(const std::string& name, const COutPoint& outPoint,
-                              CSupportValue& support,
-                              bool fCheckTakeover) const;
-    
+	    
     bool insertSupportIntoMap(const std::string& name,
                               CSupportValue support,
+                              bool fCheckTakeover) const;
+	
+    bool removeSupportFromMap(const std::string& name, const COutPoint& outPoint,
+                              CSupportValue& support,
                               bool fCheckTakeover) const;
     
     supportQueueType::iterator getSupportQueueCacheRow(int nHeight,
