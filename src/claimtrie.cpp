@@ -894,27 +894,6 @@ bool CClaimTrie::updateName(const std::string &name, CClaimTrieNode* updatedNode
     return true;
 }
 
-bool CClaimTrie::recursiveNullify(CClaimTrieNode* node, std::string& name)
-{
-    if(node == NULL)
-    {
-        LogPrintf("current is error %d,%s\n",__LINE__,__func__);
-	    return false;
-    }
-    for (nodeMapType::iterator itchild = node->children.begin(); itchild != node->children.end(); ++itchild)
-    {
-        std::stringstream ss;
-        ss << name << itchild->first;
-        std::string newName = ss.str();
-        if (!recursiveNullify(itchild->second, newName))
-            return false;
-    }
-    node->children.clear();
-    markNodeDirty(name, NULL);
-    delete node;
-    return true;
-}
-
 bool CClaimTrie::updateHash(const std::string& name, uint256& hash)
 {
     CClaimTrieNode* current = &root;
@@ -961,6 +940,27 @@ void CClaimTrie::markNodeDirty(const std::string &name, CClaimTrieNode* node)
     ret = dirtyNodes.insert(std::pair<std::string, CClaimTrieNode*>(name, node));
     if (ret.second == false)
         ret.first->second = node;
+}
+
+bool CClaimTrie::recursiveNullify(CClaimTrieNode* node, std::string& name)
+{
+    if(node == NULL)
+    {
+        LogPrintf("current is error %d,%s\n",__LINE__,__func__);
+	    return false;
+    }
+    for (nodeMapType::iterator itchild = node->children.begin(); itchild != node->children.end(); ++itchild)
+    {
+        std::stringstream ss;
+        ss << name << itchild->first;
+        std::string newName = ss.str();
+        if (!recursiveNullify(itchild->second, newName))
+            return false;
+    }
+    node->children.clear();
+    markNodeDirty(name, NULL);
+    delete node;
+    return true;
 }
 
 void CClaimTrie::BatchWriteNode(CDBBatch& batch, const std::string& name, const CClaimTrieNode* pNode) const
