@@ -1,14 +1,12 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
 #include "checkpoints.h"
-
-#include "chain.h"
-//#include "chainparams.h"
 #include "main.h"
 #include "uint256.h"
+#include "chain.h"
+//#include "chainparams.h"
 
 #include <stdint.h>
-
 #include <boost/foreach.hpp>
 
 namespace Checkpoints {
