@@ -397,10 +397,10 @@ public:
     ~CCoinsViewCache();
 
     // Standard CCoinsView methods
-    bool GetCoins(const uint256 &txid, CCoins &coins) const;
     bool HaveCoins(const uint256 &txid) const;
+    bool GetCoins(const uint256 &txid, CCoins &coins) const;
+	void SetBestBlock(const uint256 &hashBlock);
     uint256 GetBestBlock() const;
-    void SetBestBlock(const uint256 &hashBlock);
     bool BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlock);
 
     /**
