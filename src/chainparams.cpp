@@ -7,12 +7,12 @@
 #include "tinyformat.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include "arith_uint256.h"
+#include "chainparamsseeds.h"
 
 #include <assert.h>
 
 #include <boost/assign/list_of.hpp>
-#include "arith_uint256.h"
-#include "chainparamsseeds.h"
 
 //#define GENESIS_GENERATION
 
