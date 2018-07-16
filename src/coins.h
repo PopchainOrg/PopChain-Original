@@ -313,12 +313,12 @@ struct CCoinsStats
 class CCoinsView
 {
 public:
-    //! Retrieve the CCoins (unspent transaction outputs) for a given txid
-    virtual bool GetCoins(const uint256 &txid, CCoins &coins) const;
-
-    //! Just check whether we have data for a given txid.
+	//! Just check whether we have data for a given txid.
     //! This may (but cannot always) return true for fully spent transactions
     virtual bool HaveCoins(const uint256 &txid) const;
+	
+    //! Retrieve the CCoins (unspent transaction outputs) for a given txid
+    virtual bool GetCoins(const uint256 &txid, CCoins &coins) const;
 
     //! Retrieve the block hash whose state this CCoinsView currently represents
     virtual uint256 GetBestBlock() const;
