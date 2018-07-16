@@ -261,7 +261,7 @@ uint160 CBitcoinAddress::GetUint160() const
         return uint160();
 	uint160 id;
     memcpy(&id, &vchData[0], 20);
-	 if (vchVersion == Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS))
+	if (vchVersion == Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS))
         return id;
 }
 
@@ -311,6 +311,13 @@ bool CBitcoinAddress::IsScript() const
     return IsValid() && vchVersion == Params().Base58Prefix(CChainParams::SCRIPT_ADDRESS);
 }
 
+bool CBitcoinSecret::IsValid() const
+{
+    bool fExpectedFormat = vchData.size() == 32 || (vchData.size() == 33 && vchData[32] == 1);
+    bool fCorrectVersion = vchVersion == Params().Base58Prefix(CChainParams::SECRET_KEY);
+    return fExpectedFormat && fCorrectVersion;
+}
+
 CTxDestination DecodeDestination(const std::string &str) {                                                                                                                                                                                                                   
          return CBitcoinAddress(str).Get();
 }
@@ -329,13 +336,6 @@ CKey CBitcoinSecret::GetKey()
     assert(vchData.size() >= 32);
     ret.Set(vchData.begin(), vchData.begin() + 32, vchData.size() > 32 && vchData[32] == 1);
     return ret;
-}
-
-bool CBitcoinSecret::IsValid() const
-{
-    bool fExpectedFormat = vchData.size() == 32 || (vchData.size() == 33 && vchData[32] == 1);
-    bool fCorrectVersion = vchVersion == Params().Base58Prefix(CChainParams::SECRET_KEY);
-    return fExpectedFormat && fCorrectVersion;
 }
 
 bool CBitcoinSecret::SetString(const char* pszSecret)
