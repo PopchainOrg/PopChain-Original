@@ -30,10 +30,10 @@ uint256 getValueHash(COutPoint outPoint, int nHeightOfLastTakeover);
 class CClaimValue
 {
 public:
-    COutPoint outPoint;
     uint160 claimId;
     CAmount nAmount;
     CAmount nEffectiveAmount;
+	COutPoint outPoint;
     int nHeight;
     int nValidAtHeight;
 
@@ -73,16 +73,17 @@ public:
         }
         return false;
     }
-    
-    bool operator==(const CClaimValue& other) const
-    {
-        return outPoint == other.outPoint && claimId == other.claimId && nAmount == other.nAmount && nHeight == other.nHeight && nValidAtHeight == other.nValidAtHeight;
-    }
-    
+        
     bool operator!=(const CClaimValue& other) const
     {
         return !(*this == other);
     }
+	
+    bool operator==(const CClaimValue& other) const
+    {
+        return outPoint == other.outPoint && claimId == other.claimId && nAmount == other.nAmount && nHeight == other.nHeight && nValidAtHeight == other.nValidAtHeight;
+    }
+
 };
 
 class CSupportValue
