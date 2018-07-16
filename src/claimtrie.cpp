@@ -2520,6 +2520,19 @@ bool CClaimTrieCache::finalizeDecrement() const
     return true;
 }
 
+uint256 CClaimTrieCache::getBestBlock()
+{
+    if (hashBlock.IsNull())
+        if (base != NULL)
+            hashBlock = base->hashBlock;
+    return hashBlock;
+}
+
+void CClaimTrieCache::setBestBlock(const uint256& hashBlockIn)
+{
+    hashBlock = hashBlockIn;
+}
+
 bool CClaimTrieCache::getLastTakeoverForName(const std::string& name, int& nLastTakeoverForName) const
 {
     if (!fRequireTakeoverHeights)
@@ -2569,19 +2582,6 @@ int CClaimTrieCache::getDelayForName(const std::string& name) const
     }
     int nBlocksOfContinuousOwnership = getNumBlocksOfContinuousOwnership(name);
     return std::min(nBlocksOfContinuousOwnership / base->nProportionalDelayFactor, 4032);
-}
-
-uint256 CClaimTrieCache::getBestBlock()
-{
-    if (hashBlock.IsNull())
-        if (base != NULL)
-            hashBlock = base->hashBlock;
-    return hashBlock;
-}
-
-void CClaimTrieCache::setBestBlock(const uint256& hashBlockIn)
-{
-    hashBlock = hashBlockIn;
 }
 
 bool CClaimTrieCache::clear() const
