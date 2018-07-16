@@ -531,6 +531,12 @@ std::string CChainParams::GetFoundersRewardAddressAtHeight(int height) const
     return vFoundersRewardAddress[i];
 }
 
+std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const
+{
+    assert(i >= 0 && i < int(vFoundersRewardAddress.size()));
+    return vFoundersRewardAddress[i];
+}
+
 // Block height must be >1 and <last founders reward block height
 // The founders reward address is expected to be a multisig (P2SH) address
 CScript CChainParams::GetFoundersRewardScriptAtHeight(int height) const
@@ -541,11 +547,5 @@ CScript CChainParams::GetFoundersRewardScriptAtHeight(int height) const
     assert(address.IsValid());
     CScript scriptPubKey = GetScriptForDestination(address.Get());
     return scriptPubKey;
-}
-
-std::string CChainParams::GetFoundersRewardAddressAtIndex(int i) const
-{
-    assert(i >= 0 && i < int(vFoundersRewardAddress.size()));
-    return vFoundersRewardAddress[i];
 }
 
