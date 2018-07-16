@@ -2520,17 +2520,17 @@ bool CClaimTrieCache::finalizeDecrement() const
     return true;
 }
 
+void CClaimTrieCache::setBestBlock(const uint256& hashBlockIn)
+{
+    hashBlock = hashBlockIn;
+}
+
 uint256 CClaimTrieCache::getBestBlock()
 {
     if (hashBlock.IsNull())
         if (base != NULL)
             hashBlock = base->hashBlock;
     return hashBlock;
-}
-
-void CClaimTrieCache::setBestBlock(const uint256& hashBlockIn)
-{
-    hashBlock = hashBlockIn;
 }
 
 bool CClaimTrieCache::getLastTakeoverForName(const std::string& name, int& nLastTakeoverForName) const
