@@ -187,6 +187,12 @@ public:
         }
     }
 
+    ~CCheckQueueControl()
+    {
+        if (!fDone)
+            Wait();
+    }
+
     bool Wait()
     {
         if (pqueue == NULL)
@@ -202,11 +208,6 @@ public:
             pqueue->Add(vChecks);
     }
 
-    ~CCheckQueueControl()
-    {
-        if (!fDone)
-            Wait();
-    }
 };
 
 #endif // BITCOIN_CHECKQUEUE_H
