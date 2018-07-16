@@ -147,14 +147,14 @@ bool CCoinsViewCache::HaveCoinsInCache(const uint256 &txid) const {
     return it != cacheCoins.end();
 }
 
+void CCoinsViewCache::SetBestBlock(const uint256 &hashBlockIn) {
+    hashBlock = hashBlockIn;
+}
+
 uint256 CCoinsViewCache::GetBestBlock() const {
     if (hashBlock.IsNull())
         hashBlock = base->GetBestBlock();
     return hashBlock;
-}
-
-void CCoinsViewCache::SetBestBlock(const uint256 &hashBlockIn) {
-    hashBlock = hashBlockIn;
 }
 
 bool CCoinsViewCache::BatchWrite(CCoinsMap &mapCoins, const uint256 &hashBlockIn) {
