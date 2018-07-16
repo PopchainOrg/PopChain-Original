@@ -493,9 +493,9 @@ public:
         vFoundersRewardAddress = {"pbFyUjHfZB8BBivQS1LXh8EaJNH5jjGbzk"};
    }
 };
-static CRegTestParams regTestParams;
 
 static CChainParams *pCurrentParams = 0;
+static CRegTestParams regTestParams;
 
 const CChainParams &Params() {
     assert(pCurrentParams);
