@@ -22,8 +22,9 @@ struct SeedSpec6 {
     uint16_t port;
 };
 
-typedef std::map<int, uint256> MapCheckpoints;
 typedef std::pair<int, uint256> PairCheckpoints;
+typedef std::map<int, uint256> MapCheckpoints;
+
 
 struct CCheckpointData {
     MapCheckpoints mapCheckpoints;
@@ -77,14 +78,15 @@ public:
     const std::vector<unsigned char>& Base58Prefix(Base58Type type) const { return base58Prefixes[type]; }
     const std::vector<SeedSpec6>& FixedSeeds() const { return vFixedSeeds; }
     const CCheckpointData& Checkpoints() const { return checkpointData; }
+	int PoolMaxTransactions() const { return nPoolMaxTransactions; }
+    int FulfilledRequestExpireTime() const { return nFulfilledRequestExpireTime; }
+    std::string ForkPubKey() const { return strForkPubKey; }
+	
     /** Return the founder's reward address and script for a given block height */
     std::string GetFoundersRewardAddressAtHeight(int height) const;
     CScript GetFoundersRewardScriptAtHeight(int height) const;
     std::string GetFoundersRewardAddressAtIndex(int i) const;
-
-    int PoolMaxTransactions() const { return nPoolMaxTransactions; }
-    int FulfilledRequestExpireTime() const { return nFulfilledRequestExpireTime; }
-    std::string ForkPubKey() const { return strForkPubKey; }
+    
 protected:
     CChainParams() {}
 
