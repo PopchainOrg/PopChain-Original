@@ -414,14 +414,15 @@ private:
 class CClaimTrieProofNode
 {
 public:
+	std::vector<std::pair<unsigned char, uint256> > children;
+    bool hasValue;
+    uint256 valHash;
     CClaimTrieProofNode() {};
     CClaimTrieProofNode(std::vector<std::pair<unsigned char, uint256> > children,
                         bool hasValue, uint256 valHash)
         : children(children), hasValue(hasValue), valHash(valHash)
         {};
-    std::vector<std::pair<unsigned char, uint256> > children;
-    bool hasValue;
-    uint256 valHash;
+    
 };
 
 class CClaimTrieProof
