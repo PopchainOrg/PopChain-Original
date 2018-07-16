@@ -30,10 +30,10 @@ uint256 getValueHash(COutPoint outPoint, int nHeightOfLastTakeover);
 class CClaimValue
 {
 public:
+	COutPoint outPoint;
     uint160 claimId;
     CAmount nAmount;
     CAmount nEffectiveAmount;
-	COutPoint outPoint;
     int nHeight;
     int nValidAtHeight;
 
@@ -89,9 +89,9 @@ public:
 class CSupportValue
 {
 public:
+	COutPoint outPoint;
     uint160 supportedClaimId;
     CAmount nAmount;
-	COutPoint outPoint;
     int nHeight;
     int nValidAtHeight;
     
@@ -184,9 +184,9 @@ struct nodenamecompare
 
 struct outPointHeightType
 {
-	int nHeight;
 	COutPoint outPoint;
-
+	int nHeight;
+	
     outPointHeightType() {}
 
     outPointHeightType(COutPoint outPoint, int nHeight)
@@ -206,8 +206,8 @@ struct outPointHeightType
 struct nameOutPointHeightType
 {
     std::string name;
+	COutPoint outPoint;
 	int nHeight;
-    COutPoint outPoint;
 
     nameOutPointHeightType() {}
 
