@@ -220,6 +220,6 @@ public:
         }
         return true;
     }
-}
+};
 
 #endif
