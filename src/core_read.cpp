@@ -122,14 +122,6 @@ bool DecodeHexBlk(CBlock& block, const std::string& strHexBlk)
     return true;
 }
 
-uint256 ParseHashUV(const UniValue& v, const string& strName)
-{
-    string strHex;
-    if (v.isStr())
-        strHex = v.getValStr();
-    return ParseHashStr(strHex, strName);  // Note: ParseHashStr("") throws a runtime_error
-}
-
 uint256 ParseHashStr(const std::string& strHex, const std::string& strName)
 {
     if (!IsHex(strHex)) // Note: IsHex("") is false
@@ -138,6 +130,14 @@ uint256 ParseHashStr(const std::string& strHex, const std::string& strName)
     uint256 result;
     result.SetHex(strHex);
     return result;
+}
+
+uint256 ParseHashUV(const UniValue& v, const string& strName)
+{
+    string strHex;
+    if (v.isStr())
+        strHex = v.getValStr();
+    return ParseHashStr(strHex, strName);  // Note: ParseHashStr("") throws a runtime_error
 }
 
 vector<unsigned char> ParseHexUV(const UniValue& v, const string& strName)
