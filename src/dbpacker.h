@@ -212,6 +212,14 @@ public:
     }
 
     template <typename K>
+    bool Erase(const K& key, bool fSync = false) throw(dbpacker_error)
+    {
+        CDBBatch batch(&obfuscate_key);
+        batch.Erase(key);
+        return WriteBatch(batch, fSync);
+    }
+
+    template <typename K>
     bool Exists(const K& key) const throw(dbpacker_error)
     {
         CDataStream ssKey(SER_DISK, CLIENT_VERSION);
@@ -228,14 +236,6 @@ public:
             HandleError(status);
         }
         return true;
-    }
-
-    template <typename K>
-    bool Erase(const K& key, bool fSync = false) throw(dbpacker_error)
-    {
-        CDBBatch batch(&obfuscate_key);
-        batch.Erase(key);
-        return WriteBatch(batch, fSync);
     }
 
     bool WriteBatch(CDBBatch& batch, bool fSync = false) throw(dbpacker_error);
