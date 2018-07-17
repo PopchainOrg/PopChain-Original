@@ -238,6 +238,12 @@ bool CForkMessage::Sign(std::string strSignKey)
     return true;
 }
 
+void CForkMessage::Relay()
+{
+    CInv inv(MSG_FORK, GetHash());
+    RelayInv(inv);
+}
+
 bool CForkMessage::CheckSignature()
 {
     //note: need to investigate why this is failing
@@ -253,8 +259,3 @@ bool CForkMessage::CheckSignature()
     return true;
 }
 
-void CForkMessage::Relay()
-{
-    CInv inv(MSG_FORK, GetHash());
-    RelayInv(inv);
-}
