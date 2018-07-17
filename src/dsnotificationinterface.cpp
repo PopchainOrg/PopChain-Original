@@ -24,7 +24,3 @@ void CDSNotificationInterface::UpdatedBlockTip(const CBlockIndex *pindex)
     popnodeSync.UpdatedBlockTip(pindex);
 }
 
-void CDSNotificationInterface::SyncTransaction(const CTransaction &tx, const CBlock *pblock)
-{
-    instantsend.SyncTransaction(tx, pblock);
-}
