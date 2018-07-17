@@ -41,6 +41,9 @@ public:
 
 class HTTPRPCTimerInterface : public RPCTimerInterface
 {
+private:
+	struct event_base* base;
+
 public:
     HTTPRPCTimerInterface(struct event_base* base) : base(base)
     {
@@ -53,8 +56,6 @@ public:
     {
         return new HTTPRPCTimer(base, func, millis);
     }
-private:
-    struct event_base* base;
 };
 
 
