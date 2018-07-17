@@ -7,10 +7,11 @@
 #include "script/script.h"
 #include "serialize.h"
 #include "streams.h"
-#include <univalue.h>
 #include "util.h"
 #include "utilstrencodings.h"
 #include "version.h"
+
+#include <univalue.h>
 
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/predicate.hpp>
