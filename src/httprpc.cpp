@@ -25,6 +25,9 @@ static const char* WWW_AUTH_HEADER_DATA = "Basic realm=\"jsonrpc\"";
  */
 class HTTPRPCTimer : public RPCTimerBase
 {
+private:
+	HTTPEvent ev;
+
 public:
     HTTPRPCTimer(struct event_base* eventBase, boost::function<void(void)>& func, int64_t millis) :
         ev(eventBase, false, func)
@@ -34,8 +37,6 @@ public:
         tv.tv_usec = (millis%1000)*1000;
         ev.trigger(&tv);
     }
-private:
-    HTTPEvent ev;
 };
 
 class HTTPRPCTimerInterface : public RPCTimerInterface
