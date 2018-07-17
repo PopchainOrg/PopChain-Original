@@ -98,6 +98,11 @@ bool CHDChain::SetMnemonic(const SecureString& ssMnemonic, const SecureString& s
     return !IsNull();
 }
 
+bool CHDChain::SetMnemonic(const SecureVector& vchMnemonic, const SecureVector& vchMnemonicPassphrase, bool fUpdateID)
+{
+    return SetMnemonic(SecureString(vchMnemonic.begin(), vchMnemonic.end()), SecureString(vchMnemonicPassphrase.begin(), vchMnemonicPassphrase.end()), fUpdateID);
+}
+
 bool CHDChain::GetMnemonic(SecureVector& vchMnemonicRet, SecureVector& vchMnemonicPassphraseRet) const
 {
     // mnemonic was not set, fail
