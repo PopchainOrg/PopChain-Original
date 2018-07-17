@@ -8,10 +8,11 @@
 #include "script/standard.h"
 #include "serialize.h"
 #include "streams.h"
-#include <univalue.h>
 #include "util.h"
 #include "utilmoneystr.h"
 #include "utilstrencodings.h"
+
+#include <univalue.h>
 
 #include <boost/assign/list_of.hpp>
 #include <boost/foreach.hpp>
