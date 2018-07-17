@@ -33,11 +33,6 @@ void CHDChain::SetCrypted(bool fCryptedIn)
     fCrypted = fCryptedIn;
 }
 
-bool CHDChain::IsCrypted() const
-{
-    return fCrypted;
-}
-
 void CHDChain::Debug(std::string strName) const
 {
     DBG(
