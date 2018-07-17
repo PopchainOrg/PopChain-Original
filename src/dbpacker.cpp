@@ -127,13 +127,6 @@ std::vector<unsigned char> CDBPacker::CreateObfuscateKey() const
 
 }
 
-bool CDBPacker::IsEmpty()
-{
-    boost::scoped_ptr<CDBIterator> it(NewIterator());
-    it->SeekToFirst();
-    return !(it->Valid());
-}
-
 const std::vector<unsigned char>& CDBPacker::GetObfuscateKey() const
 {
     return obfuscate_key;
@@ -142,6 +135,13 @@ const std::vector<unsigned char>& CDBPacker::GetObfuscateKey() const
 std::string CDBPacker::GetObfuscateKeyHex() const
 {
     return HexStr(obfuscate_key);
+}
+
+bool CDBPacker::IsEmpty()
+{
+    boost::scoped_ptr<CDBIterator> it(NewIterator());
+    it->SeekToFirst();
+    return !(it->Valid());
 }
 
 CDBIterator::~CDBIterator() { delete piter; }
