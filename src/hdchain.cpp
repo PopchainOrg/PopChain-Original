@@ -28,6 +28,11 @@ bool CHDChain::SetNull()
     return IsNull();
 }
 
+bool CHDChain::IsCrypted() const
+{
+    return fCrypted;
+}
+
 void CHDChain::SetCrypted(bool fCryptedIn)
 {
     fCrypted = fCryptedIn;
