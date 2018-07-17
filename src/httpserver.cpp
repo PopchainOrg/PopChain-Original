@@ -629,11 +629,6 @@ CService HTTPRequest::GetPeer()
     return peer;
 }
 
-std::string HTTPRequest::GetURI()
-{
-    return evhttp_request_get_uri(req);
-}
-
 HTTPRequest::RequestMethod HTTPRequest::GetRequestMethod()
 {
     switch (evhttp_request_get_command(req)) {
