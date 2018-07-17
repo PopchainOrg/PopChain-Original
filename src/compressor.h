@@ -47,8 +47,9 @@ protected:
     bool IsToPubKey(CPubKey &pubkey) const;
 
     bool Compress(std::vector<unsigned char> &out) const;
+	bool Decompress(unsigned int nSize, const std::vector<unsigned char> &out);
     unsigned int GetSpecialSize(unsigned int nSize) const;
-    bool Decompress(unsigned int nSize, const std::vector<unsigned char> &out);
+    
 public:
     CScriptCompressor(CScript &scriptIn) : script(scriptIn) { }
 
