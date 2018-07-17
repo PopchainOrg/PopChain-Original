@@ -96,10 +96,10 @@ private:
     CTxOut &txout;
 
 public:
-    static uint64_t CompressAmount(uint64_t nAmount);
-    static uint64_t DecompressAmount(uint64_t nAmount);
-
     CTxOutCompressor(CTxOut &txoutIn) : txout(txoutIn) { }
+	
+	static uint64_t CompressAmount(uint64_t nAmount);
+	static uint64_t DecompressAmount(uint64_t nAmount);
 
     ADD_SERIALIZE_METHODS;
 
