@@ -257,20 +257,20 @@ public:
         return WriteBatch(batch, true);
     }
 
-    /**
-     * Return true if the database managed by this class contains no entries.
-     */
-    bool IsEmpty();
-
-    /**
+     /**
      * Accessor for obfuscate_key.
      */
     const std::vector<unsigned char>& GetObfuscateKey() const;
 
-    /**
+     /**
      * Return the obfuscate_key as a hex-formatted string.
      */
     std::string GetObfuscateKeyHex() const;
+	 /**
+	 * Return true if the database managed by this class contains no entries.
+	 */
+	bool IsEmpty();
+	
 
 };
 
