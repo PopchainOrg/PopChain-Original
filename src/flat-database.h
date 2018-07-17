@@ -199,8 +199,6 @@ public:
         return true;
     }
 
-};
-
     bool Load(T& objToLoad)
     {
         LogPrintf("Reading info from %s...\n", strFilename);
@@ -222,5 +220,6 @@ public:
         }
         return true;
     }
+}
 
 #endif
