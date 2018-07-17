@@ -85,8 +85,9 @@ public:
     }
 
     bool Sign(std::string strSignKey);
+	void Relay();
     bool CheckSignature();
-    void Relay();
+    
 };
 
 
