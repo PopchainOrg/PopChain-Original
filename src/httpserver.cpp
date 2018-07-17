@@ -615,6 +615,11 @@ void HTTPRequest::WriteReply(int nStatus, const std::string& strReply)
     req = 0; // transferred back to main thread
 }
 
+std::string HTTPRequest::GetURI()
+{
+    return evhttp_request_get_uri(req);
+}
+
 CService HTTPRequest::GetPeer()
 {
     evhttp_connection* con = evhttp_request_get_connection(req);
