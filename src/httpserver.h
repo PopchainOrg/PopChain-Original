@@ -125,6 +125,9 @@ public:
  */
 class HTTPEvent
 {
+private:
+	struct event* ev;
+
 public:
     /** Create a new event.
      * deleteWhenTriggered deletes this event object after the event is triggered (and the handler called)
@@ -140,8 +143,7 @@ public:
 
     bool deleteWhenTriggered;
     boost::function<void(void)> handler;
-private:
-    struct event* ev;
+
 };
 
 #endif // BITCOIN_HTTPSERVER_H
