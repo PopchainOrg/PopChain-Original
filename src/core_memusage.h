@@ -7,12 +7,12 @@
 #include "primitives/block.h"
 #include "memusage.h"
 
-static inline size_t RecursiveDynamicUsage(const CScript& script) {
-    return memusage::DynamicUsage(*static_cast<const CScriptBase*>(&script));
-}
-
 static inline size_t RecursiveDynamicUsage(const COutPoint& out) {
     return 0;
+}
+
+static inline size_t RecursiveDynamicUsage(const CScript& script) {
+    return memusage::DynamicUsage(*static_cast<const CScriptBase*>(&script));
 }
 
 static inline size_t RecursiveDynamicUsage(const CTxIn& in) {
