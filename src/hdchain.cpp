@@ -8,6 +8,11 @@
 #include "util.h"
 #include "utilstrencodings.h"
 
+bool CHDChain::IsNull() const
+{
+    return vchSeed.empty() || id == uint256();
+}
+
 bool CHDChain::SetNull()
 {
     LOCK(cs_accounts);
