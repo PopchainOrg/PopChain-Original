@@ -53,6 +53,12 @@ public:
     int64_t nValue;
     int64_t nTimeSigned;
 
+    CForkMessage() :
+        nForkID(0),
+        nValue(0),
+        nTimeSigned(0)
+        {}
+
     CForkMessage(int nForkID, int64_t nValue, int64_t nTimeSigned) :
         nForkID(nForkID),
         nValue(nValue),
