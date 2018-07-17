@@ -201,5 +201,26 @@ public:
 
 };
 
+    bool Load(T& objToLoad)
+    {
+        LogPrintf("Reading info from %s...\n", strFilename);
+        ReadResult readResult = Read(objToLoad);
+        if (readResult == FileError)
+            LogPrintf("Missing file %s, will try to recreate\n", strFilename);
+        else if (readResult != Ok)
+        {
+            LogPrintf("Error reading %s: ", strFilename);
+            if(readResult == IncorrectFormat)
+            {
+                LogPrintf("%s: Magic is ok but data has invalid format, will try to recreate\n", __func__);
+            }
+            else {
+                LogPrintf("%s: File format is unknown or invalid, please fix it manually\n", __func__);
+                // program should exit with an error
+                return false;
+            }
+        }
+        return true;
+    }
 
 #endif
