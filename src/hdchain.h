@@ -92,8 +92,8 @@ public:
         return *this;
     }
 
+	bool IsNull() const;
     bool SetNull();
-    bool IsNull() const;
 
     void SetCrypted(bool fCryptedIn);
     bool IsCrypted() const;
