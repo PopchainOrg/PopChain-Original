@@ -16,11 +16,12 @@
 #include "cryptopop/oneWayFunction.h"
 #include "streams.h"
 #include "primitives/block.h"
+#include "util.h"
+#include "utilstrencodings.h"
+
 #include <string>
 #include <cstring>
 #include <vector>
-#include "util.h"
-#include "utilstrencodings.h"
 
 //#define KDBUG
 #ifdef KDBUG
