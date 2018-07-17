@@ -94,9 +94,9 @@ public:
 
 	bool IsNull() const;
     bool SetNull();
-
-    void SetCrypted(bool fCryptedIn);
+	
     bool IsCrypted() const;
+    void SetCrypted(bool fCryptedIn);
 
     void Debug(std::string strName) const;
 
