@@ -180,6 +180,16 @@ void CHDChain::AddAccount()
     mapAccounts.insert(std::pair<uint32_t, CHDAccount>(mapAccounts.size(), CHDAccount()));
 }
 
+bool CHDChain::SetAccount(uint32_t nAccountIndex, const CHDAccount& hdAccount)
+{
+    LOCK(cs_accounts);
+    // can only replace existing accounts
+    if (nAccountIndex > mapAccounts.size() - 1)
+        return false;
+    mapAccounts[nAccountIndex] = hdAccount;
+    return true;
+}
+
 bool CHDChain::GetAccount(uint32_t nAccountIndex, CHDAccount& hdAccountRet)
 {
     LOCK(cs_accounts);
