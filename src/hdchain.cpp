@@ -23,11 +23,6 @@ bool CHDChain::SetNull()
     return IsNull();
 }
 
-bool CHDChain::IsNull() const
-{
-    return vchSeed.empty() || id == uint256();
-}
-
 void CHDChain::SetCrypted(bool fCryptedIn)
 {
     fCrypted = fCryptedIn;
