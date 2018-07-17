@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers
 
-#ifndef DASH_HDCHAIN_H
-#define DASH_HDCHAIN_H
+#ifndef POP_HDCHAIN_H
+#define POP_HDCHAIN_H
 
 #include "key.h"
 #include "sync.h"
@@ -149,4 +149,4 @@ public:
     std::string GetKeyPath() const;
 };
 
-#endif // DASH_HDCHAIN_H
+#endif // POP_HDCHAIN_H
