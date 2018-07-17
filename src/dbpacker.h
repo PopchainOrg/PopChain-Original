@@ -246,12 +246,6 @@ public:
         return true;
     }
 
-    bool Sync() throw(dbpacker_error)
-    {
-        CDBBatch batch(&obfuscate_key);
-        return WriteBatch(batch, true);
-    }
-
     CDBIterator *NewIterator()
     {
         return new CDBIterator(pdb->NewIterator(iteroptions), &obfuscate_key);
