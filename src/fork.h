@@ -59,13 +59,6 @@ public:
         nTimeSigned(nTimeSigned)
         {}
 
-    CForkMessage() :
-        nForkID(0),
-        nValue(0),
-        nTimeSigned(0)
-        {}
-
-
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
