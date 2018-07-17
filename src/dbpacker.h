@@ -251,6 +251,12 @@ public:
         return new CDBIterator(pdb->NewIterator(iteroptions), &obfuscate_key);
     }
 
+    bool Sync() throw(dbpacker_error)
+    {
+        CDBBatch batch(&obfuscate_key);
+        return WriteBatch(batch, true);
+    }
+
     /**
      * Return true if the database managed by this class contains no entries.
      */
