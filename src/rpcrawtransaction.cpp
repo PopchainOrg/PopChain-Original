@@ -1168,4 +1168,217 @@ UniValue atomicswapsecondtx(const UniValue &params, bool fHelp)
 	
 }
 
+
+
+UniValue atomicswapredeemtx(const UniValue &params, bool fHelp)
+{
+    if (fHelp || params.size() !=3)
+        throw runtime_error(
+            "atomicswapredeemtx \"htlc\" \"transaction\" \"rawhash\" \n"
+            "\nCreate atomicswap redeem transaction spending the given inputs .\n"
+            "\nArguments:\n"
+            "1. \"htlc \"        (string) The hash time lock contract in hex\n"
+            "2. \"transaction\"  (string) hex string of the transaction\n"
+            "3. \"rawhash \"     (string) The raw data of hashlock in hex\n"
+            "nResult:\n"
+            "\"txfee\"           (string) The fee of transacton\n"
+            "\"transactionhash\" (string) The transaction hash in hex\n"
+            "\"transaction\"     (string) The transaction in hex\n"
+        );
+	
+	LOCK(cs_main);
+	
+	//check params type
+	RPCTypeCheck(params, boost::assign::list_of(UniValue::VSTR)(UniValue::VSTR)(UniValue::VSTR));
+		
+	//check params size is zero or not
+	if ((params[0].get_str().size() <= 0)||(params[1].get_str().size() <= 0)||(params[2].get_str().size() <= 0))
+		{
+			return JSONRPCError(RPC_INVALID_PARAMS, "Error:the parameter size can't be zero");
+		}
+	
+	//get the hash time lock contract from parameter 0
+	string strHtlc = params[0].get_str();
+	std::vector<unsigned char>vHtlc = ParseHex(strHtlc);
+	CScript htlc(vHtlc.begin(),vHtlc.end());
+	
+	//split the hash time lock contract
+	std::string htlcString	= ScriptToAsmStr(htlc);
+	std::vector<std::string> htlcVStr;
+	boost::split( htlcVStr, htlcString, boost::is_any_of( " " ), boost::token_compress_on );
+	
+	// check the hash time lock contract is valid contract or not
+	if(!htlc.IsAtomicSwapPaymentScript())
+		{
+			return JSONRPCError(RPC_INVALID_PARAMS, "Error:the parameter is no stander HTLC");
+		}	
+	
+	//get receiver address hash
+	std::vector<unsigned char> vRecAdrHash = ParseHex(htlcVStr[6]);
+	uint160 recAdrHash(vRecAdrHash);
+	
+	//decode the input transaction
+	CTransaction inputTx;
+	if (!DecodeHexTx(inputTx, params[1].get_str()))
+	   throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
+	
+	//get lock hash from hash time lock contract
+	std::vector<unsigned char> contractLockHash = ParseHex(htlcVStr[2]);	
+	uint160 uContractLockHash(contractLockHash);
+	
+	//get htlc hash form parameter 2 the raw hash
+	std::vector<unsigned char> rawHashVector =ParseHexV(params[2], "rawHash");
+	
+	//check the htlc hash in parameter and in hash time lock contract
+	std::vector<unsigned char> parameterLockHash(20);
+	CRIPEMD160().Write(begin_ptr(rawHashVector), rawHashVector.size()).Finalize(begin_ptr(parameterLockHash));
+	uint160 uParameterLockHash(parameterLockHash);	
+	if ( 0 != strcmp(uContractLockHash.ToString().c_str(),uParameterLockHash.ToString().c_str()) )
+		{
+			return JSONRPCError(RPC_INVALID_PARAMS, "Error:the lock hash in parameter not match in in contract");		
+		}
+	
+	//declare transaction
+	CMutableTransaction txNew;
+	CAmount nFeePay = 3100;
+	
+	//the redeem amount is input amount - tx fee
+	CAmount preOutAmount = 0;
+	COutPoint preOutPoint;
+	uint256 preTxid = inputTx.GetHash();
+	CTxOut preTxOut;
+	uint32_t preOutN =0;	
+	std::vector<valtype> vSolutions;
+	txnouttype addressType = TX_NONSTANDARD;
+	uint160 addrhash;
+	
+	//get the previous tx ouput
+	BOOST_FOREACH(const CTxOut& txout, inputTx.vout) 
+	{
+		const CScript scriptPubkey = StripClaimScriptPrefix(txout.scriptPubKey);
+		if (Solver(scriptPubkey, addressType, vSolutions))
+		{
+			if(addressType== TX_SCRIPTHASH )
+			{
+				addrhash=uint160(vSolutions[0]);
+				preOutAmount =	txout.nValue;
+				CTxIn tmptxin = CTxIn(preTxid,preOutN,CScript());
+				tmptxin.prevPubKey = txout.scriptPubKey;
+				txNew.vin.push_back(tmptxin);
+				break;	
+			}
+		}
+		preOutN++;
+	}
+	
+	//check the previous tx output type
+	if(addressType !=TX_SCRIPTHASH)
+		{
+			return JSONRPCError(RPC_INVALID_PARAMS, "Error:the transaction have none P2SH type tx out");	
+		}
+	
+	//check the hash time lock contract is match input transaction or not 
+	if ( 0 != strcmp(addrhash.ToString().c_str(),Hash160(vHtlc).ToString().c_str()) )
+	{
+		return JSONRPCError(RPC_INVALID_PARAMS, "Error:the HTLC in parameter can't match  transaction");
+	}
+		
+	//get the pubkey and key of recevier address
+	const CKeyStore& keystore = *pwalletMain;
+	CKeyID keyID(recAdrHash);
+	CPubKey pubKey;
+	CKey key;	
+	if(!keystore.GetPubKey(keyID,pubKey))
+		{
+			return JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Error:Can't find the pubkey of receiver address");			
+		}
+	if(!keystore.GetKey(keyID,key))
+		{
+			return JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Error:Can't find the key of receiver address");	
+		}
+	
+	//declare the reserverkey for commit transaction
+	CReserveKey reservekey(pwalletMain);
+
+	//build the output use the hash time lock contract receiver address
+	CBitcoinAddress outPutAddress(CTxDestination(pubKey.GetID()));
+	if (!outPutAddress.IsValid())
+		return JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Error:Invalid PopChain address");
+	
+	// Start building the lock script for the p2pkh type.
+	CScript recP2PkHScript = GetScriptForDestination(CTxDestination(pubKey.GetID()));
+	CAmount nAmount = preOutAmount- nFeePay;
+	CTxOut outNew(nAmount,recP2PkHScript);
+	txNew.vout.push_back(outNew);
+	
+	txNew.nLockTime = chainActive.Height();
+	txNew.nVersion = 1;
+	
+	// Sign the redeem transaction
+	CTransaction txNewConst(txNew);
+	std::vector<unsigned char> vchSig;
+	CScript scriptSigRs;
+	uint256 hash = SignatureHash(htlc, txNew, 0, SIGHASH_ALL);
+	bool signSuccess = key.Sign(hash, vchSig);	
+	bool verifySuccess = pubKey.Verify(hash,vchSig);
+	vchSig.push_back((unsigned char)SIGHASH_ALL);
+	
+	if(signSuccess)
+		{
+		CScript script1 =CScript() <<ToByteVector(vchSig);
+		CScript script2 =CScript() << ToByteVector(pubKey);
+		CScript script3 =CScript() <<ToByteVector(rawHashVector);
+		CScript script4 =CScript() << OP_TRUE <<ToByteVector(vHtlc);
+		scriptSigRs= script1 + script2 + script3 + script4;
+		txNew.vin[0].scriptSig = scriptSigRs;		
+		}
+	else
+		{
+			return JSONRPCError(RPC_INTERNAL_ERROR, "ERROR:sign transaction error");
+		}
+	
+	if(!verifySuccess)
+		{
+			return JSONRPCError(RPC_INTERNAL_ERROR, "ERROR:verify the sign of transaction error");
+		}
+	
+	//serialize and get the size of transaction
+	unsigned int nBytes = ::GetSerializeSize(txNew, SER_NETWORK, PROTOCOL_VERSION);
+	
+	//check is match limit size or not 
+	if (nBytes >= MAX_STANDARD_TX_SIZE)
+	{
+		return JSONRPCError(RPC_INTERNAL_ERROR, "ERROR:transaction too large");
+	}
+	
+	//check transaction is Dust
+	if (txNew.vout[0].IsDust(::minRelayTxFee))
+	{
+		return JSONRPCError(RPC_INTERNAL_ERROR, "ERROR:transaction is dust transaction");
+	}
+	
+	//commit the redeem transaction 
+	 CWalletTx wtxNew;
+	 wtxNew.fTimeReceivedIsTxTime = true;
+	 wtxNew.BindWallet(pwalletMain);
+	 wtxNew.fFromMe = true;
+	*static_cast<CTransaction*>(&wtxNew) = CTransaction(txNew); 
+	if (!pwalletMain->CommitTransaction(wtxNew, reservekey,NetMsgType::TX))
+			return JSONRPCError(RPC_WALLET_ERROR, "Transaction commit failed");
+	
+	double fFeePay = (double)nFeePay;
+	string strRedeemFee = strprintf("tx fee: %.8f Pch(%.8f Pch/kB)\n", (fFeePay / COIN), ((fFeePay / COIN)/nBytes));
+	
+	//declare return data
+	UniValue result(UniValue::VOBJ);
+	
+	result.push_back(Pair("txfee",strRedeemFee));
+	result.push_back(Pair("transactionhash",CTransaction(txNew).GetHash().GetHex()));
+	result.push_back(Pair("transaction",EncodeHexTx(CTransaction(txNew))));
+	return result;
+	
+}
+
+
+
 #endif

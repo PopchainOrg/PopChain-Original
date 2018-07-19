@@ -620,6 +620,7 @@ public:
 
     bool IsNormalPaymentScript() const;
 	bool IsCrossChainPaymentScript()const;
+	bool IsAtomicSwapPaymentScript()const;
     bool IsPayToPublicKeyHash() const;
 
     bool IsPayToScriptHash() const;
