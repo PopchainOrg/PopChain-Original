@@ -357,6 +357,12 @@ void OnRPCPreCommand(const CRPCCommand& cmd)
         throw JSONRPCError(RPC_FORBIDDEN_BY_SAFE_MODE, string("Safe mode: ") + strWarning);
 }
 
+void OnRPCStopped()
+{
+    cvBlockChange.notify_all();
+    LogPrint("rpc", "RPC stopped.\n");
+}
+
 std::string HelpMessage(HelpMessageMode mode)
 {
     const bool showDebug = GetBoolArg("-help-debug", false);
