@@ -127,6 +127,7 @@ public:
         nTimeCreated(GetTime())
         {}
 
+	bool IsTimedOut() const;
     bool IsValid(bool fRequireUnspent = true) const;
     CAmount GetMinFee() const;
     int GetMaxSignatures() const;
