@@ -313,6 +313,12 @@ void Shutdown()
 /**
  * Signal handlers are very limited in what they are allowed to do, so:
  */
+ 
+void HandleSIGHUP(int)
+{
+    fReopenDebugLog = true;
+}
+
 void HandleSIGTERM(int)
 {
     fRequestShutdown = true;
