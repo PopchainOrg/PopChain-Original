@@ -25,6 +25,7 @@ void InitLogging();
 void InitParameterInteraction();
 bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler);
 void PrepareShutdown();
+void Shutdown();
 
 
 /** The help message mode determines what help message to show */
