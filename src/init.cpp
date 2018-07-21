@@ -348,12 +348,6 @@ bool static Bind(const CService &addr, unsigned int flags) {
     return true;
 }
 
-void OnRPCStopped()
-{
-    cvBlockChange.notify_all();
-    LogPrint("rpc", "RPC stopped.\n");
-}
-
 void OnRPCPreCommand(const CRPCCommand& cmd)
 {
     // Observe safe mode
