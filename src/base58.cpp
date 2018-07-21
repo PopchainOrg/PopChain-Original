@@ -263,6 +263,7 @@ uint160 CBitcoinAddress::GetUint160() const
     memcpy(&id, &vchData[0], 20);
 	if (vchVersion == Params().Base58Prefix(CChainParams::PUBKEY_ADDRESS))
         return id;
+	return uint160();
 }
 
 CTxDestination CBitcoinAddress::Get() const
