@@ -28,9 +28,9 @@ static const int DEFAULT_INSTANTSEND_DEPTH          = 5;
 
 static const int MIN_INSTANTSEND_PROTO_VERSION      = 70205;
 
+extern int nCompleteTXLocks;
 extern bool fEnableInstantSend;
 extern int nInstantSendDepth;
-extern int nCompleteTXLocks;
 
 class CInstantSend
 {
