@@ -742,21 +742,6 @@ int CInstantSend::GetTransactionLockSignatures(const uint256& txHash)
     return -1;
 }
 
-bool CInstantSend::IsTxLockRequestTimedOut(const uint256& txHash)
-{
-    if(!fEnableInstantSend) return false;
-
-    LOCK(cs_instantsend);
-
-    std::map<uint256, CTxLockCandidate>::iterator itLockCandidate = mapTxLockCandidates.find(txHash);
-    if (itLockCandidate != mapTxLockCandidates.end()) {
-        return !itLockCandidate->second.IsAllOutPointsReady() &&
-                itLockCandidate->second.txLockRequest.IsTimedOut();
-    }
-
-    return false;
-}
-
 void CInstantSend::Relay(const uint256& txHash)
 {
     LOCK(cs_instantsend);
