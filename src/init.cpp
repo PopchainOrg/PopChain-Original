@@ -318,11 +318,6 @@ void HandleSIGTERM(int)
     fRequestShutdown = true;
 }
 
-void HandleSIGHUP(int)
-{
-    fReopenDebugLog = true;
-}
-
 bool static InitError(const std::string &str)
 {
     uiInterface.ThreadSafeMessageBox(str, "", CClientUIInterface::MSG_ERROR);
