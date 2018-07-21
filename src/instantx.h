@@ -130,7 +130,7 @@ public:
     bool IsValid(bool fRequireUnspent = true) const;
     CAmount GetMinFee() const;
     int GetMaxSignatures() const;
-    bool IsTimedOut() const;
+
 };
 
 class CTxLockVote
