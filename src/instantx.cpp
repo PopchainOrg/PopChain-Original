@@ -667,17 +667,6 @@ bool CInstantSend::HasTxLockRequest(const uint256& txHash)
     return GetTxLockRequest(txHash, txLockRequestTmp);
 }
 
-bool CInstantSend::GetTxLockRequest(const uint256& txHash, CTxLockRequest& txLockRequestRet)
-{
-    LOCK(cs_instantsend);
-
-    std::map<uint256, CTxLockCandidate>::iterator it = mapTxLockCandidates.find(txHash);
-    if(it == mapTxLockCandidates.end()) return false;
-    txLockRequestRet = it->second.txLockRequest;
-
-    return true;
-}
-
 bool CInstantSend::GetTxLockVote(const uint256& hash, CTxLockVote& txLockVoteRet)
 {
     LOCK(cs_instantsend);
