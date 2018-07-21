@@ -661,6 +661,17 @@ void CInstantSend::RejectLockRequest(const CTxLockRequest& txLockRequest)
     mapLockRequestRejected.insert(make_pair(txLockRequest.GetHash(), txLockRequest));
 }
 
+bool CInstantSend::GetTxLockRequest(const uint256& txHash, CTxLockRequest& txLockRequestRet)
+{
+    LOCK(cs_instantsend);
+
+    std::map<uint256, CTxLockCandidate>::iterator it = mapTxLockCandidates.find(txHash);
+    if(it == mapTxLockCandidates.end()) return false;
+    txLockRequestRet = it->second.txLockRequest;
+
+    return true;
+}
+
 bool CInstantSend::HasTxLockRequest(const uint256& txHash)
 {
     CTxLockRequest txLockRequestTmp;
