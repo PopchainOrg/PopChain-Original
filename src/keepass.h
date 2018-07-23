@@ -71,6 +71,10 @@ private:
         SecureString getLogin() {
             return sLogin;
         }
+		
+		SecureString getName() {
+            return sName;
+        }
 
         SecureString getPassword() {
             return sPassword;
