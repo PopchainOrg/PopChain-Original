@@ -122,6 +122,11 @@ void CKeePassIntegrator::init()
     }
 }
 
+std::string CKeePassIntegrator::CKeePassRequest::getJson()
+{
+    return requestObj.write();
+}
+
 void CKeePassIntegrator::CKeePassRequest::addStrParameter(std::string strName, std::string strValue)
 {
     requestObj.push_back(Pair(strName, strValue));
