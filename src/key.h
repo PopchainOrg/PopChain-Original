@@ -5,7 +5,6 @@
 
 #include "pubkey.h"
 #include "serialize.h"
-#include "support/allocators/secure.h"
 #include "uint256.h"
 
 #include <stdexcept>
