@@ -144,17 +144,6 @@ void CKeePassIntegrator::CKeePassRequest::addStrParameter(std::string strName, S
     addStrParameter(strName, EncodeBase64(sCipherValue));
 }
 
-void CKeePassIntegrator::CKeePassRequest::init()
-{
-    SecureString sIVSecure = generateRandomKey(KEEPASS_CRYPTO_BLOCK_SIZE);
-    strIV = std::string(&sIVSecure[0], sIVSecure.size());
-    // Generate Nonce, Verifier and RequestType
-    SecureString sNonceBase64Secure = EncodeBase64Secure(sIVSecure);
-    addStrParameter("Nonce", std::string(&sNonceBase64Secure[0], sNonceBase64Secure.size())); // Plain
-    addStrParameter("Verifier", sNonceBase64Secure); // Encoded
-    addStrParameter("RequestType", strType);
-}
-
 void CKeePassIntegrator::CKeePassResponse::parseResponse(std::string strResponse)
 {
     UniValue responseValue;
