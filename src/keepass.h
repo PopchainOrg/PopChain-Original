@@ -68,10 +68,6 @@ private:
             return sUuid;
         }
 
-        SecureString getName() {
-            return sName;
-        }
-
         SecureString getLogin() {
             return sLogin;
         }
