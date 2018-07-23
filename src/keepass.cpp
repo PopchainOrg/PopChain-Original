@@ -15,6 +15,7 @@
 
 #include "util.h"
 #include "utilstrencodings.h"
+#include "support/cleanse.h" // for OPENSSL_cleanse()
 
 #include <boost/foreach.hpp>
 
@@ -26,7 +27,6 @@
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 #include <openssl/buffer.h>
-#include "support/cleanse.h" // for OPENSSL_cleanse()
 
 const char* CKeePassIntegrator::KEEPASS_HTTP_HOST = "localhost";
 
