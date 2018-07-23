@@ -435,50 +435,6 @@ void CKeePassIntegrator::rpcTestAssociation(bool bTriggerUnlock)
     LogPrint("keepass", "CKeePassIntegrator::rpcTestAssociation -- send result: status: %d response: %s\n", nStatus, strResponse);
 }
 
-std::vector<CKeePassIntegrator::CKeePassEntry> CKeePassIntegrator::rpcGetLogins()
-{
-
-    // Convert key format
-    SecureString sKey = DecodeBase64Secure(sKeyBase64);
-
-    CKeePassRequest request(sKey, "get-logins");
-    request.addStrParameter("addStrParameter", std::string("true"));
-    request.addStrParameter("TriggerUnlock", std::string("true"));
-    request.addStrParameter("Id", strKeePassId);
-    request.addStrParameter("Url", sUrl);
-
-    int nStatus;
-    std::string strResponse;
-
-    doHTTPPost(request.getJson(), nStatus, strResponse);
-
-    // Logging of actual response data disabled as to not write passphrase in debug.log. Only enable temporarily when needed
-    //LogPrint("keepass", "CKeePassIntegrator::rpcGetLogins -- send result: status: %d response: %s\n", nStatus, strResponse);
-    LogPrint("keepass", "CKeePassIntegrator::rpcGetLogins -- send result: status: %d\n", nStatus);
-
-    if(nStatus != 200)
-    {
-        std::string strError = "Error returned by KeePassHttp: HTTP code ";
-        strError += itostr(nStatus);
-        strError += " - Response: ";
-        strError += " response: [";
-        strError += strResponse;
-        strError += "]";
-        throw std::runtime_error(strError);
-    }
-
-    // Parse the response
-    CKeePassResponse response(sKey, strResponse);
-
-    if(!response.getSuccess())
-    {
-        std::string strError = "KeePassHttp returned failure status";
-        throw std::runtime_error(strError);
-    }
-
-    return response.getEntries();
-}
-
 void CKeePassIntegrator::rpcSetLogin(const SecureString& sWalletPass, const SecureString& sEntryId)
 {
 
