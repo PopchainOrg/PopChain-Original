@@ -22,8 +22,8 @@ private:
 
     bool bIsActive;
     unsigned int nPort;
+	SecureString sKey;
     SecureString sKeyBase64;
-    SecureString sKey;
     SecureString sUrl;
     //SecureString sSubmitUrl;
     std::string strKeePassId;
