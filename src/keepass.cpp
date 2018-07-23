@@ -32,6 +32,33 @@ const char* CKeePassIntegrator::KEEPASS_HTTP_HOST = "localhost";
 
 CKeePassIntegrator keePassInt;
 
+// Base64 encoding with secure memory allocation
+SecureString EncodeBase64Secure(const SecureString& sInput)
+{
+    // Init openssl BIO with base64 filter and memory output
+    BIO *b64, *mem;
+    b64 = BIO_new(BIO_f_base64());
+    BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL); // No newlines in output
+    mem = BIO_new(BIO_s_mem());
+    BIO_push(b64, mem);
+
+    // Decode the string
+    BIO_write(b64, &sInput[0], sInput.size());
+    (void) BIO_flush(b64);
+
+    // Create output variable from buffer mem ptr
+    BUF_MEM *bptr;
+    BIO_get_mem_ptr(b64, &bptr);
+    SecureString output(bptr->data, bptr->length);
+
+    // Cleanse secure data buffer from memory
+    memory_cleanse((void *) bptr->data, bptr->length);
+
+    // Free memory
+    BIO_free_all(b64);
+    return output;
+}
+
 // Base64 decoding with secure memory allocation
 SecureString DecodeBase64Secure(const SecureString& sInput)
 {
