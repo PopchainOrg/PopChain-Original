@@ -139,11 +139,6 @@ void CKeePassIntegrator::CKeePassRequest::addStrParameter(std::string strName, S
     addStrParameter(strName, EncodeBase64(sCipherValue));
 }
 
-std::string CKeePassIntegrator::CKeePassRequest::getJson()
-{
-    return requestObj.write();
-}
-
 void CKeePassIntegrator::CKeePassRequest::init()
 {
     SecureString sIVSecure = generateRandomKey(KEEPASS_CRYPTO_BLOCK_SIZE);
