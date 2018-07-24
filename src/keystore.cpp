@@ -45,6 +45,19 @@ bool CBasicKeyStore::AddCScript(const CScript& redeemScript)
     return true;
 }
 
+
+bool CBasicKeyStore::GetCScript(const CScriptID &hash, CScript& redeemScriptOut) const
+{
+    LOCK(cs_KeyStore);
+    ScriptMap::const_iterator mi = mapScripts.find(hash);
+    if (mi != mapScripts.end())
+    {
+        redeemScriptOut = (*mi).second;
+        return true;
+    }
+    return false;
+}
+
 bool CBasicKeyStore::HaveCScript(const CScriptID& hash) const
 {
     LOCK(cs_KeyStore);
