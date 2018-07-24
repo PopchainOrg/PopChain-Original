@@ -119,6 +119,12 @@ public:
     CPubKey GetPubKey() const;
 
     /**
+     * Verify thoroughly whether a private key and a public key match.
+     * This is done using a different mechanism than just regenerating it.
+     */
+    bool VerifyPubKey(const CPubKey& vchPubKey) const;
+
+    /**
      * Create a DER-serialized signature.
      * The test_case parameter tweaks the deterministic nonce.
      */
