@@ -35,7 +35,6 @@ public:
     size_type size() const { return map.size(); }
     bool empty() const { return map.empty(); }
     const_iterator find(const key_type& k) const { return map.find(k); }
-    size_type count(const key_type& k) const { return map.count(k); }
     void insert(const value_type& x)
     {
         std::pair<iterator, bool> ret = map.insert(x);
