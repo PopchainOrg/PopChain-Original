@@ -220,6 +220,14 @@ bool CKey::Load(CPrivKey &privkey, CPubKey &vchPubKey, bool fSkipCheck=false) {
     return VerifyPubKey(vchPubKey);
 }
 
+bool CExtKey::Derive(CExtKey &out, unsigned int nChild) const {
+    out.nDepth = nDepth + 1;
+    CKeyID id = key.GetPubKey().GetID();
+    memcpy(&out.vchFingerprint[0], &id, 4);
+    out.nChild = nChild;
+    return key.Derive(out.key, out.chaincode, nChild, chaincode);
+}
+
 bool CKey::Derive(CKey& keyChild, ChainCode &ccChild, unsigned int nChild, const ChainCode& cc) const {
     assert(IsValid());
     assert(IsCompressed());
