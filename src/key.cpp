@@ -292,13 +292,6 @@ void CExtKey::Decode(const unsigned char code[74]) {
     key.Set(code+42, code+74, true);
 }
 
-bool ECC_InitSanityCheck() {
-    CKey key;
-    key.MakeNewKey(true);
-    CPubKey pubkey = key.GetPubKey();
-    return key.VerifyPubKey(pubkey);
-}
-
 void ECC_Start() {
     assert(secp256k1_context_sign == NULL);
 
