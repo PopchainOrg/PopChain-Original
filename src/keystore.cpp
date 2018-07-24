@@ -51,18 +51,6 @@ bool CBasicKeyStore::HaveCScript(const CScriptID& hash) const
     return mapScripts.count(hash) > 0;
 }
 
-bool CBasicKeyStore::GetCScript(const CScriptID &hash, CScript& redeemScriptOut) const
-{
-    LOCK(cs_KeyStore);
-    ScriptMap::const_iterator mi = mapScripts.find(hash);
-    if (mi != mapScripts.end())
-    {
-        redeemScriptOut = (*mi).second;
-        return true;
-    }
-    return false;
-}
-
 static bool ExtractPubKey(const CScript &dest, CPubKey& pubKeyOut)
 {
     //TODO: Use Solver to extract this?
