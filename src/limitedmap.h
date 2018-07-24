@@ -34,6 +34,7 @@ public:
     const_iterator end() const { return map.end(); }
     size_type size() const { return map.size(); }
     bool empty() const { return map.empty(); }
+	size_type count(const key_type& k) const { return map.count(k); }
     const_iterator find(const key_type& k) const { return map.find(k); }
     void insert(const value_type& x)
     {
