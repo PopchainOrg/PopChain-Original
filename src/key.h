@@ -153,8 +153,8 @@ public:
 
 struct CExtKey {
     unsigned char nDepth;
+	unsigned int nChild;
     unsigned char vchFingerprint[4];
-    unsigned int nChild;
     ChainCode chaincode;
     CKey key;
 
