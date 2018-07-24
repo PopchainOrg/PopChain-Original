@@ -177,7 +177,4 @@ void ECC_Start(void);
 /** Deinitialize the elliptic curve support. No-op if ECC_Start wasn't called first. */
 void ECC_Stop(void);
 
-/** Check that required EC support is available at runtime. */
-bool ECC_InitSanityCheck(void);
-
 #endif // BITCOIN_KEY_H
