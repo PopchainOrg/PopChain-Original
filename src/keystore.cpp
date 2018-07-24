@@ -106,8 +106,3 @@ bool CBasicKeyStore::HaveWatchOnly(const CScript &dest) const
     return setWatchOnly.count(dest) > 0;
 }
 
-bool CBasicKeyStore::HaveWatchOnly() const
-{
-    LOCK(cs_KeyStore);
-    return (!setWatchOnly.empty());
-}
