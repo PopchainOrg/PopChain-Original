@@ -311,6 +311,13 @@ void ECC_Start() {
     secp256k1_context_sign = ctx;
 }
 
+bool ECC_InitSanityCheck() {
+    CKey key;
+    key.MakeNewKey(true);
+    CPubKey pubkey = key.GetPubKey();
+    return key.VerifyPubKey(pubkey);
+}
+
 void ECC_Stop() {
     secp256k1_context *ctx = secp256k1_context_sign;
     secp256k1_context_sign = NULL;
