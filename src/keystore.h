@@ -22,6 +22,7 @@ public:
     virtual ~CKeyStore() {}
 
     //! Add a key to the store.
+    virtual bool AddKey(const CKey &key);
     virtual bool AddKeyPubKey(const CKey &key, const CPubKey &pubkey) =0;
     
 
