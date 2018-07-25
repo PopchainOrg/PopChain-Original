@@ -44,11 +44,11 @@ BOOST_AUTO_TEST_CASE(GetSigOpCount)
     BOOST_CHECK_EQUAL(p2sh.GetSigOpCount(scriptSig), 3U);
 
     std::vector<CPubKey> keys;
+	Ckey key[3];
     for (int i = 0; i < 3; i++)
     {
-        CKey k;
-        k.MakeNewKey(true);
-        keys.push_back(k.GetPubKey());
+        key[i].CreateNewKey(true);
+        keys.push_back(key[i].GetPubKey());
     }
     CScript s2 = GetScriptForMultisig(1, keys);
     BOOST_CHECK_EQUAL(s2.GetSigOpCount(true), 3U);

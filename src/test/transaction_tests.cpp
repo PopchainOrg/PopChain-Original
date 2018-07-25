@@ -263,7 +263,7 @@ SetupDummyInputs(CBasicKeyStore& keystoreRet, CCoinsViewCache& coinsRet)
     CKey key[4];
     for (int i = 0; i < 4; i++)
     {
-        key[i].MakeNewKey(i % 2);
+        key[i].CreateNewKey(i % 2);
         keystoreRet.AddKey(key[i]);
     }
 
@@ -327,7 +327,7 @@ BOOST_AUTO_TEST_CASE(test_IsStandard)
     t.vout.resize(1);
     t.vout[0].nValue = 90*CENT;
     CKey key;
-    key.MakeNewKey(true);
+    key.CreateNewKey(true);
     t.vout[0].scriptPubKey = GetScriptForDestination(key.GetPubKey().GetID());
 
     string reason;
