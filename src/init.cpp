@@ -42,7 +42,7 @@
 
 #include "activepopnode.h"
 #include "popsend.h"
-#include "dsnotificationinterface.h"
+#include "dsannouncementinterface.h"
 #include "flat-database.h"
 #include "instantx.h"
 #ifdef ENABLE_WALLET

@@ -102,7 +102,6 @@ BITCOIN_CORE_H = \
   core_io.h \
   core_memusage.h \
   popsend.h \
-  dsnotificationinterface.h \
   popsend-relay.h \
   ratecheckbuffer.h \
   superblock.h \
@@ -254,7 +253,6 @@ libbitcoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libbitcoin_wallet_a_SOURCES = \
   activepopnode.cpp \
   popsend.cpp \
-  dsnotificationinterface.cpp \
   popsend-relay.cpp \
   instantx.cpp \
   popnode.cpp \
