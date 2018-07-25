@@ -1,6 +1,6 @@
 // Copyright (c) 2017-2018 The Popchain Core Developers 
 
-#include "cdsannouncementinterface.h"
+#include "dsannouncementinterface.h"
 #include "popsend.h"
 #include "instantx.h"
 #include "popnodeman.h"

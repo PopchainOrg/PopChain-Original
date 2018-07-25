@@ -95,7 +95,7 @@ static const bool DEFAULT_STOPAFTERBLOCKIMPORT = false;
 static CZMQNotificationInterface* pzmqNotificationInterface = NULL;
 #endif
 
-static CDSNotificationInterface* pdsNotificationInterface = NULL;
+static CDSAnnouncementInterface* pdsAnnouncementInterface = NULL;
 
 #ifdef WIN32
 // Win32 LevelDB doesn't use filedescriptors, and the ones used for
@@ -268,10 +268,10 @@ void PrepareShutdown()
     }
 #endif
 
-    if (pdsNotificationInterface) {
-        UnregisterValidationInterface(pdsNotificationInterface);
-        delete pdsNotificationInterface;
-        pdsNotificationInterface = NULL;
+    if (pdsAnnouncementInterface) {
+        UnregisterValidationInterface(pdsAnnouncementInterface);
+        delete pdsAnnouncementInterface;
+        pdsAnnouncementInterface = NULL;
     }
 
 #ifndef WIN32
@@ -1396,8 +1396,8 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
     }
 #endif
 
-    pdsNotificationInterface = new CDSNotificationInterface();
-    RegisterValidationInterface(pdsNotificationInterface);
+    pdsAnnouncementInterface = new CDSAnnouncementInterface();
+    RegisterValidationInterface(pdsAnnouncementInterface);
 
     if (mapArgs.count("-maxuploadtarget")) {
         CNode::SetMaxOutboundTarget(GetArg("-maxuploadtarget", DEFAULT_MAX_UPLOAD_TARGET)*1024*1024);
