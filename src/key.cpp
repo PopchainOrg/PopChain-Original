@@ -121,15 +121,6 @@ bool CKey::Check(const unsigned char *vch) {
     return secp256k1_ec_seckey_verify(secp256k1_context_sign, vch);
 }
 
-void CKey::MakeNewKey(bool fCompressedIn) {
-    RandAddSeedPerfmon();
-    do {
-        GetRandBytes(vch, sizeof(vch));
-    } while (!Check(vch));
-    fValid = true;
-    fCompressed = fCompressedIn;
-}
-
 bool CKey::SetPrivKey(const CPrivKey &privkey, bool fCompressedIn) {
     if (!ec_privkey_import_der(secp256k1_context_sign, (unsigned char*)begin(), &privkey[0], privkey.size()))
         return false;
