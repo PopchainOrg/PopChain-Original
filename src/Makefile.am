@@ -174,6 +174,7 @@ BITCOIN_CORE_H = \
   utilstrencodings.h \
   utiltime.h \
   validationinterface.h \
+  dsannouncementinterface.h \
   version.h \
   versionbits.h \
   wallet/crypter.h \
@@ -231,6 +232,7 @@ libbitcoin_server_a_SOURCES = \
   txdb.cpp \
   txmempool.cpp \
   validationinterface.cpp \
+  dsannouncementinterface.cpp \
   versionbits.cpp \
   $(BITCOIN_CORE_H)
 

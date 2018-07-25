@@ -175,6 +175,7 @@ BITCOIN_CORE_H = \
   utilstrencodings.h \
   utiltime.h \
   validationinterface.h \
+  dsannouncementinterface.h \
   version.h \
   wallet/crypter.h \
   wallet/db.h \
@@ -252,6 +253,7 @@ libbitcoin_wallet_a_SOURCES = \
   popsend-relay.cpp \
   superblock.cpp \
   instantx.cpp \
+  dsannouncementinterface.cpp \
   popnode.cpp \
   popnodeconfig.cpp \
   popnode-payments.cpp \
