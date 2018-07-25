@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(GetSigOpCount)
     BOOST_CHECK_EQUAL(p2sh.GetSigOpCount(scriptSig), 3U);
 
     std::vector<CPubKey> keys;
-	Ckey key[3];
+	CKey key[3];
     for (int i = 0; i < 3; i++)
     {
         key[i].CreateNewKey(true);
