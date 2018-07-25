@@ -299,7 +299,7 @@ UniValue popnode(const UniValue& params, bool fHelp)
     if (strCommand == "genkey")
     {
         CKey secret;
-        secret.MakeNewKey(false);
+        secret.CreateNewKey(false);
 
         return CBitcoinSecret(secret).ToString();
     }

@@ -121,6 +121,9 @@ public:
      */
     bool VerifyPubKey(const CPubKey& vchPubKey) const;
 
+    //Create a new private key using a cryptographic PRNG.
+    void CreateNewKey(bool fCompressed);
+
     /**
      * Create a DER-serialized signature.
      * The test_case parameter tweaks the deterministic nonce.

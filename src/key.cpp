@@ -169,6 +169,15 @@ bool CKey::VerifyPubKey(const CPubKey& pubkey) const {
     return pubkey.Verify(hash, vchSig);
 }
 
+void CKey::CreateNewKey(bool fCompressedIn) {
+    RandAddSeedPerfmon();
+    do {
+        GetRandBytes(vch, sizeof(vch));
+    } while (!Check(vch));
+    fValid = true;
+    fCompressed = fCompressedIn;
+}
+
 bool CKey::Sign(const uint256 &hash, std::vector<unsigned char>& vchSig, uint32_t test_case) const {
     if (!fValid)
         return false;
@@ -304,7 +313,7 @@ void ECC_Start() {
 
 bool ECC_InitSanityCheck() {
     CKey key;
-    key.MakeNewKey(true);
+    key.CreateNewKey(true);
     CPubKey pubkey = key.GetPubKey();
     return key.VerifyPubKey(pubkey);
 }
