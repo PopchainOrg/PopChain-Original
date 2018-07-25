@@ -26,6 +26,9 @@ struct CBlockTemplate
     std::vector<int64_t> vTxSigOps;
 };
 
+/** Run the miner threads */
+void GeneratePopcoins(bool fGenerate, int nThreads, const CChainParams& chainparams);
+
 /** Generate a new block, without valid proof-of-work */
 CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& scriptPubKeyIn);
 /** Modify the extranonce in a block */
