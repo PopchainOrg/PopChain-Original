@@ -97,6 +97,31 @@ void GeneratePopcoins(bool fGenerate, int nThreads, const CChainParams& chainpar
         minerThreads->create_thread(boost::bind(&PopcoinMiner, boost::cref(chainparams)));
 }
 
+static bool ProcessBlockFound(const CBlock* pblock, const CChainParams& chainparams)
+{
+    LogPrintf("%s\n", pblock->ToString());
+    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue));
+
+    // Found a solution
+    {
+        LOCK(cs_main);
+        if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
+		{
+			return error("ProcessBlockFound -- generated block is stale");
+		}
+    }
+
+    // Inform about the new block
+    GetMainSignals().BlockFound(pblock->GetHash());
+
+    // Process this block the same as if we had received it from another node
+    CValidationState state;
+    if (!ProcessNewBlock(state, chainparams, NULL, pblock, true, NULL))
+        return error("ProcessBlockFound -- ProcessNewBlock() failed, block not accepted");
+
+    return true;
+}
+
 // ***TODO*** that part changed in Popchain, we are using a mix with old one here for now
 void static PopcoinMiner(const CChainParams& chainparams)
 {
