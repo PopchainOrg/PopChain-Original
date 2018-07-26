@@ -124,7 +124,8 @@ class CSubNet
         bool Match(const CNetAddr &addr) const;
 
         std::string ToString() const;
-        bool IsValid() const;
+        
+		bool IsValid() const{return valid;}
 
         friend bool operator==(const CSubNet& a, const CSubNet& b);
         friend bool operator!=(const CSubNet& a, const CSubNet& b);
@@ -188,8 +189,8 @@ class proxyType
 public:
     proxyType(): randomize_credentials(false) {}
     proxyType(const CService &proxy, bool randomize_credentials=false): proxy(proxy), randomize_credentials(randomize_credentials) {}
-
-    bool IsValid() const { return proxy.IsValid(); }
+	~proxyType(){}
+    bool IsValid() const;
 
     CService proxy;
     bool randomize_credentials;
