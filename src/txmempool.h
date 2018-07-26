@@ -12,6 +12,7 @@
 #include "coins.h"
 #include "primitives/transaction.h"
 #include "sync.h"
+#include "policy/fees.h"
 
 #undef foreach
 #include "boost/multi_index_container.hpp"
@@ -443,8 +444,23 @@ public:
      *  around what it "costs" to relay a transaction around the network and
      *  below which we would reasonably say a transaction has 0-effective-fee.
      */
-    CTxMemPool(const CFeeRate& _minReasonableRelayFee);
-    ~CTxMemPool();
+    CTxMemPool(const CFeeRate& _minReasonableRelayFee) : nTransactionsUpdated(0)
+	{
+    	_clear();       //lock free clear
+    	
+    	// Sanity checks off by default for performance, because otherwise
+    	// accepting transactions becomes O(N^2) where N is the number
+    	// of transactions in the pool
+    	nCheckFrequency = 0;
+
+    	minerPolicyEstimator = new CBlockPolicyEstimator(_minReasonableRelayFee);
+    	minReasonableRelayFee = _minReasonableRelayFee;
+	}
+
+	~CTxMemPool()
+	{
+   	 delete minerPolicyEstimator;
+	}
 
     /**
      * If sanity-checking is turned on, check makes sure the pool is
@@ -637,7 +653,7 @@ protected:
     CTxMemPool &mempool;
 
 public:
-    CCoinsViewMemPool(CCoinsView *baseIn, CTxMemPool &mempoolIn);
+    CCoinsViewMemPool(CCoinsView *baseIn, CTxMemPool &mempoolIn) : CCoinsViewBacked(baseIn), mempool(mempoolIn) { }
     bool GetCoins(const uint256 &txid, CCoins &coins) const;
     bool HaveCoins(const uint256 &txid) const;
 };
