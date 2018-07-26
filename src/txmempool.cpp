@@ -322,25 +322,6 @@ void CTxMemPoolEntry::UpdateState(int64_t modifySize, CAmount modifyFee, int64_t
     }
 }
 
-CTxMemPool::CTxMemPool(const CFeeRate& _minReasonableRelayFee) :
-    nTransactionsUpdated(0)
-{
-    _clear(); //lock free clear
-
-    // Sanity checks off by default for performance, because otherwise
-    // accepting transactions becomes O(N^2) where N is the number
-    // of transactions in the pool
-    nCheckFrequency = 0;
-
-    minerPolicyEstimator = new CBlockPolicyEstimator(_minReasonableRelayFee);
-    minReasonableRelayFee = _minReasonableRelayFee;
-}
-
-CTxMemPool::~CTxMemPool()
-{
-    delete minerPolicyEstimator;
-}
-
 void CTxMemPool::pruneSpent(const uint256 &hashTx, CCoins &coins)
 {
     LOCK(cs);
@@ -959,8 +940,6 @@ bool CTxMemPool::HasNoInputsOf(const CTransaction &tx) const
             return false;
     return true;
 }
-
-CCoinsViewMemPool::CCoinsViewMemPool(CCoinsView *baseIn, CTxMemPool &mempoolIn) : CCoinsViewBacked(baseIn), mempool(mempoolIn) { }
 
 bool CCoinsViewMemPool::GetCoins(const uint256 &txid, CCoins &coins) const {
     // If an entry in the mempool exists, always return that one, as it's guaranteed to never
