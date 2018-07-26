@@ -1397,9 +1397,9 @@ std::string CSubNet::ToString() const
     return network.ToString() + "/" + strNetmask;
 }
 
-bool CSubNet::IsValid() const
+bool proxyType::IsValid() const 
 {
-    return valid;
+	return proxy.IsValid(); 
 }
 
 bool operator==(const CSubNet& a, const CSubNet& b)
