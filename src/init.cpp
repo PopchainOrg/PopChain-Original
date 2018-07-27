@@ -553,7 +553,7 @@ std::string HelpMessage(HelpMessageMode mode)
         strUsage += HelpMessageOpt("-privdb", strprintf("Sets the DB_PRIVATE flag in the wallet db environment (default: %u)", DEFAULT_WALLET_PRIVDB));
 #endif
     }
-    strUsage += HelpMessageOpt("-shrinkdebugfile", _("Shrink debug.log file on client startup (default: 1 when no -debug)"));
+    strUsage += HelpMessageOpt("-reducedebugfile", _("Reduce debug.log file on client startup (default: 1 when no -debug)"));
     AppendParamsHelpMessages(strUsage, showDebug);
     
     strUsage += HelpMessageOpt("-litemode=<n>", strprintf(_("Disable all Pop specific functionality (Popnodes, PrivateSend, InstantSend) (0-1, default: %u)"), 0));
@@ -1185,8 +1185,8 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
 #ifndef WIN32
     CreatePidFile(GetPidFile(), getpid());
 #endif
-    if (GetBoolArg("-shrinkdebugfile", !fDebug))
-        ShrinkDebugFile();
+    if (GetBoolArg("-reducedebugfile", !fDebug))
+        ReduceDebugFile();
 
     if (fPrintToDebugLog)
         OpenDebugLog();
