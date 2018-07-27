@@ -22,6 +22,12 @@ int CAddrInfo::GetNewBucket(const uint256& nKey, const CNetAddr& src) const
     return hash2 % ADDRMAN_NEW_BUCKET_COUNT;
 }
 
+int CAddrInfo::GetNewBucket(const uint256 &nKey) const
+{
+    return GetNewBucket(nKey, source);
+}
+
+
 int CAddrInfo::GetBucketPosition(const uint256 &nKey, bool fNew, int nBucket) const
 {
     uint64_t hash1 = (CHashWriter(SER_GETHASH, 0) << nKey << (fNew ? 'N' : 'K') << nBucket << GetKey()).GetHash().GetCheapHash();
@@ -93,6 +99,16 @@ double CAddrInfo::GetChance(int64_t nNow) const
     fChance *= pow(0.66, std::min(nAttempts, 8));
 
     return fChance;
+}
+
+CAddrInfo::CAddrInfo() : CAddress(), source()
+{
+    Init();
+}
+
+CAddrInfo::CAddrInfo(const CAddress &addrIn, const CNetAddr &addrSource) : CAddress(addrIn), source(addrSource)
+{
+    Init();
 }
 
 void CAddrMan::Delete(int nId)
