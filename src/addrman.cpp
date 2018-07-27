@@ -5,6 +5,7 @@
 #include "hash.h"
 #include "serialize.h"
 #include "streams.h"
+#include "random.h"
 // addr manager user hash table .
 int CAddrInfo::GetTriedBucket(const uint256& nKey) const
 {
@@ -142,6 +143,26 @@ void CAddrMan::SwapRandom(unsigned int nRndPos1, unsigned int nRndPos2)
 
     vRandom[nRndPos1] = nId2;
     vRandom[nRndPos2] = nId1;
+}
+
+void CAddrMan::Clear()
+{
+	std::vector<int>().swap(vRandom);
+	nKey = GetRandHash();
+	for (size_t bucket = 0; bucket < ADDRMAN_NEW_BUCKET_COUNT; bucket++) {
+		for (size_t entry = 0; entry < ADDRMAN_BUCKET_SIZE; entry++) {
+			vvNew[bucket][entry] = -1;
+		}
+	}
+	for (size_t bucket = 0; bucket < ADDRMAN_TRIED_BUCKET_COUNT; bucket++) {
+		for (size_t entry = 0; entry < ADDRMAN_BUCKET_SIZE; entry++) {
+			vvTried[bucket][entry] = -1;
+		}
+	}
+
+	nIdCount = 0;
+	nTried = 0;
+	nNew = 0;
 }
 
 void CAddrMan::ClearNew(int nUBucket, int nUBucketPos)
@@ -390,6 +411,10 @@ void CAddrMan::Good_(const CService& addr, int64_t nTime)
     MakeTried(info, nId);
 }
 
+unsigned int CAddrMan::GetSerializeSize(int nType, int nVersion) const
+{
+	return (CSizeComputer(nType, nVersion) << *this).size();
+}
 
 #ifdef DEBUG_ADDRMAN
 int CAddrMan::Check_()
