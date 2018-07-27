@@ -61,6 +61,7 @@ CDBPacker::CDBPacker(const boost::filesystem::path& path, size_t nCacheSize, boo
             leveldb::Status result = leveldb::DestroyDB(path.string(), options);
             HandleError(result);
         }
+		CreateDirectory(path);
         LogPrintf("Opening LevelDB in %s\n", path.string());
     }
     leveldb::Status status = leveldb::DB::Open(options, path.string(), &pdb);

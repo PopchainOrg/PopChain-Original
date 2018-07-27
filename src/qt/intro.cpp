@@ -188,7 +188,7 @@ void Intro::pickDataDirectory()
             }
             dataDir = intro.getDataDirectory();
             try {
-                TryCreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
+                CreateDirectory(GUIUtil::qstringToBoostPath(dataDir));
                 break;
             } catch (const fs::filesystem_error&) {
                 QMessageBox::critical(0, tr("Pop Core"),
