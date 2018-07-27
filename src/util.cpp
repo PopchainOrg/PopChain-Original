@@ -262,6 +262,25 @@ void OpenDebugLog()
     vMsgsBeforeOpenLog = NULL;
 }
 
+/**
+ * Ignores exceptions thrown by Boost's create_directory if the requested directory exists.
+ * Specifically handles case where path p exists, but it wasn't possible for the user to
+ * write to the parent directory.
+ */
+bool CreateDirectory(const boost::filesystem::path& path)
+{
+    try
+    {
+        return boost::filesystem::create_directory(path);
+    } catch (const boost::filesystem::filesystem_error&) {
+        if (!boost::filesystem::exists(path) || !boost::filesystem::is_directory(path))
+            throw;
+    }
+
+    // create_directory didn't create the directory, it had to have existed already
+    return false;
+}
+
 bool LogAcceptCategory(const char* category)
 {
     if (category != NULL)
