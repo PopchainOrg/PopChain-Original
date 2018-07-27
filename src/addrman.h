@@ -69,15 +69,9 @@ public:
         nRandomPos = -1;
     }
 
-    CAddrInfo(const CAddress &addrIn, const CNetAddr &addrSource) : CAddress(addrIn), source(addrSource)
-    {
-        Init();
-    }
+    CAddrInfo(const CAddress &addrIn, const CNetAddr &addrSource);
 
-    CAddrInfo() : CAddress(), source()
-    {
-        Init();
-    }
+    CAddrInfo();
 
     //! Calculate in which "tried" bucket this entry belongs
     int GetTriedBucket(const uint256 &nKey) const;
@@ -86,11 +80,8 @@ public:
     int GetNewBucket(const uint256 &nKey, const CNetAddr& src) const;
 
     //! Calculate in which "new" bucket this entry belongs, using its default source
-    int GetNewBucket(const uint256 &nKey) const
-    {
-        return GetNewBucket(nKey, source);
-    }
-
+    int GetNewBucket(const uint256 &nKey) const;
+	
     //! Calculate in which position of a bucket to store this entry.
     int GetBucketPosition(const uint256 &nKey, bool fNew, int nBucket) const;
 
