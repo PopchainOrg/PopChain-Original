@@ -95,7 +95,7 @@ Issue the following:
 Make note of the hash (which is your collateral_output) and index.
 
 ### Enter your Popnode details into your popnode.conf file
-[From the pop github repo](https://github.com/poppay/pop/blob/master/doc/popnode_conf.md)
+[From the pop github repo](https://github.com/PopchainOrg/PopChain-gho/tree/master/doc/popnode_conf.md)
 
 `popnode.conf` format is a space seperated text file. Each line consisting of an alias, IP address followed by port, popnode private key, collateral output transaction id and collateral output index.
 
@@ -135,7 +135,7 @@ You can confirm that remote server is on the correct block by issuing
 
 ```pop-cli getinfo```
 
-and comparing with the official explorer at https://explorer.pop.org/chain/Pop
+and comparing with the official explorer at https://popchain.org/popchain
 
 ### Local
 
@@ -174,6 +174,6 @@ Command output should have "_Popnode successfully started_" in its `status` fiel
 
 ### Local
 
-Search your Popnodes on https://popninja.pl/popnodes.html
+Search your Popnodes on https://popchain.org/popchain
 
 _Hint: Bookmark it, you definitely will be using this site a lot._

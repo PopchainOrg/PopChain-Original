@@ -11,7 +11,7 @@ the same, tested dependencies are used and statically built into the executable.
 Multiple developers build the source code by following a specific descriptor
 ("recipe"), cryptographically sign the result, and upload the resulting signature.
 These results are compared and only if they match, the build is accepted and uploaded
-to pop.org.
+to popchain.org.
 
 More independent Gitian builders are needed, which is why this guide exists.
 It is preferred you follow these steps yourself instead of using someone else's
@@ -303,8 +303,8 @@ cd ..
 Clone the git repositories for Pop Core and Gitian.
 
 ```bash
-git clone https://github.com/devrandom/gitian-builder.git
-git clone https://github.com/poppay/pop
+git clone https://github.com/PopchainOrg/PopChain-gho.git
+git clone https://github.com/PopchainOrg/PopChain-gho.git
 ```
 
 Setting up the Gitian image
@@ -368,7 +368,7 @@ Output from `gbuild` will look something like
     remote: Total 57959 (delta 0), reused 0 (delta 0), pack-reused 57958
     Receiving objects: 100% (57959/57959), 53.76 MiB | 484.00 KiB/s, done.
     Resolving deltas: 100% (41590/41590), done.
-    From https://github.com/poppay/pop
+    From https://github.com/PopchainOrg/PopChain-gho
     ... (new tags, new branch etc)
     --- Building for precise amd64 ---
     Stopping target if it is up
@@ -394,7 +394,7 @@ and inputs.
 
 For example:
 ```bash
-URL=https://github.com/crowning-/pop.git
+URL=https://github.com/PopchainOrg/PopChain-gho.git
 COMMIT=b616fb8ef0d49a919b72b0388b091aaec5849b96
 ./bin/gbuild --commit pop=${COMMIT} --url pop=${URL} ../pop/contrib/gitian-descriptors/gitian-linux.yml
 ./bin/gbuild --commit pop=${COMMIT} --url pop=${URL} ../pop/contrib/gitian-descriptors/gitian-win.yml
@@ -444,10 +444,10 @@ Then when building, override the remote URLs that gbuild would otherwise pull fr
 ```bash
 
 cd /some/root/path/
-git clone https://github.com/poppay/pop-detached-sigs.git
+git clone https://github.com/PopchainOrg/PopChain-gho.git
 
-UCPATH=/some/root/path/pop.git
-SIGPATH=/some/root/path/pop-detached-sigs.git
+UCPATH=/some/root/path/PopChain-gho.git
+SIGPATH=/some/root/path/PopChain-gho.git
 
 ./bin/gbuild --url pop=${UCPATH},signature=${SIGPATH} ../pop/contrib/gitian-descriptors/gitian-win-signer.yml
 ```
@@ -476,6 +476,6 @@ Uploading signatures (not yet implemented)
 ---------------------
 
 In the future it will be possible to push your signatures (both the `.assert` and `.assert.sig` files) to the
-[pop/gitian.sigs](https://github.com/poppay/gitian.sigs/) repository, or if that's not possible to create a pull
+[pop](https://github.com/PopchainOrg/PopChain-gho/) repository, or if that's not possible to create a pull
 request.
 There will be an official announcement when this repository is online.

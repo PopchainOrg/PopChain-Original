@@ -19,5 +19,5 @@ depending on the speed of your computer and network connection, the synchronizat
 process can take anywhere from a few hours to a day or more.
 
 See the pop wiki at:
-  https://poppay.atlassian.net/wiki/
+  http://coinwik.org/POPCHAIN
 for more help and information.

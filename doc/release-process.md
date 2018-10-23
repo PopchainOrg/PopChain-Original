@@ -1,7 +1,7 @@
 Release Process
 ====================
 
-* Update translations, see [translation_process.md](https://github.com/poppay/pop/blob/master/doc/translation_process.md#syncing-with-transifex)
+* Update translations, see [translation_process.md](https://github.com/PopchainOrg/PopChain-gho)
 * Update hardcoded [seeds](/contrib/seeds)
 
 * * *
@@ -10,10 +10,10 @@ Release Process
 Check out the source code in the following directory hierarchy.
 
 	cd /path/to/your/toplevel/build
-	git clone https://github.com/poppay/gitian.sigs.git
-	git clone https://github.com/poppay/pop-detached-sigs.git
-	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/poppay/pop.git
+	git clone https://github.com/PopchainOrg/PopChain-gho.git
+	git clone https://github.com/PopchainOrg/PopChain-gho.git
+	git clone https://github.com/PopchainOrg/PopChain-gho.git
+	git clone https://github.com/PopchainOrg/PopChain-gho.git
 
 ###Pop Core maintainers/release engineers, update (commit) version in sources
 
@@ -139,7 +139,7 @@ Commit your signature to gitian.sigs:
 
   Wait for Windows/OS X detached signatures:
 	Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-	Detached signatures will then be committed to the [pop-detached-sigs](https://github.com/poppay/pop-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+	Detached signatures will then be committed to the [pop-detached-sigs](https://github.com/PopchainOrg/PopChain-gho) repository, which can be combined with the unsigned apps to create signed binaries.
 
   Create (and optionally verify) the signed OS X binary:
 
@@ -182,21 +182,21 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the pop.org server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the popchain.org server
 
-- Update pop.org
+- Update popchain.org
 
 - Announce the release:
 
-  - Release on Pop forum: https://www.pop.org/forum/topic/official-announcements.54/
+  - Release on Pop forum: https://github.com/PopchainOrg/PopChain-gho
 
   - Pop-development mailing list
 
-  - Update title of #poppay on Freenode IRC
+  - Update title of #popchain on Freenode IRC
 
-  - Optionally reddit /r/Poppay, ... but this will usually sort out itself
+  - Optionally reddit /r/popchain, ... but this will usually sort out itself
 
-- Notify flare so that he can start building [the PPAs](https://launchpad.net/~pop.org/+archive/ubuntu/pop)
+- Notify flare so that he can start building [the PPAs](https://github.com/PopchainOrg/PopChain-gho)
 
 - Add release notes for the new version to the directory `doc/release-notes` in git master
 

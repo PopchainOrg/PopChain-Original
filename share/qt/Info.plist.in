@@ -46,7 +46,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.pop.PopPayment</string>
+      <string>org.pop.Payment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>pop</string>
@@ -60,7 +60,7 @@
       <key>UTTypeIdentifier</key>
       <string>org.pop.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Pop payment request</string>
+      <string>payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -71,7 +71,7 @@
         <string>application/x-pop-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>poppaymentrequest</string>
+          <string>paymentrequest</string>
         </array>
       </dict>
     </dict>

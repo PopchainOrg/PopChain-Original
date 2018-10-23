@@ -24,7 +24,7 @@
  *
  * \section intro_sec Introduction
  *
- * This is the developer documentation of the reference client for an experimental new digital currency called Pop (https://www.pop.org/),
+ * This is the developer documentation of the reference client for an experimental new digital currency called Pop (https://popchain.org/popchain/),
  * which enables instant payments to anyone, anywhere in the world. Pop uses peer-to-peer technology to operate
  * with no central authority: managing transactions and issuing money are carried out collectively by the network.
  *

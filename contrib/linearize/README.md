@@ -3,7 +3,7 @@ Construct a linear, no-fork, best version of the blockchain.
 
 ## Step 0: Install pop_hash
 
-https://github.com/poppay/pop_hash
+https://github.com/PopchainOrg/PopChain-gho
 
 ## Step 1: Download hash list
 

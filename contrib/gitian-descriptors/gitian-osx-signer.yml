@@ -8,7 +8,7 @@ packages:
 - "faketime"
 reference_datetime: "2017-01-01 00:00:00"
 remotes:
-- "url": "https://github.com/poppay/pop-detached-sigs.git"
+- "url": "https://github.com/PopchainOrg/PopChain-gho.git"
   "dir": "signature"
 files:
 - "pop-osx-unsigned.tar.gz"

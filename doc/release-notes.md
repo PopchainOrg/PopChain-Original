@@ -1,6 +1,6 @@
 Pop Core version 0.12.1 is now available from:
 
-  <https://www.pop.org/downloads/>
+  <https://popchain.org/popchain/downloads/>
 
 
 
